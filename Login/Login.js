@@ -32,6 +32,12 @@ const LoginScreen = ({ navigation }) => {
     navigation.navigate('Cadastro');
   };
 
+  const [isPasswordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible((prevVisible) => !prevVisible);
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -41,7 +47,7 @@ const LoginScreen = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <View style={styles.entrarConta}>
           <Image source={require('../assets/Login/Voltar.png')} style={styles.imagem} />
-          <Text style={styles.texto}>Entrar com uma conta</Text>
+          <Text style={[styles.texto, { fontWeight: 'bold' }]}>Entrar com uma conta</Text>
         </View> 
         <StatusBar style="auto" />
         <View style={styles.barraEmail}>
@@ -56,22 +62,33 @@ const LoginScreen = ({ navigation }) => {
             placeholder="Senha"
             placeholderTextColor="#FFFFFF"
             style={styles.input}
-            secureTextEntry // Esconder os caracteres
+            secureTextEntry={!isPasswordVisible} // Usar secureTextEntry com base no estado
           />
+          <TouchableOpacity onPress={togglePasswordVisibility} style={styles.visualizar}>
+            <Image
+              source={
+                isPasswordVisible
+                  ? require('../assets/Cadastro/Esconder.png')
+                  : require('../assets/Cadastro/Ver.png')
+              }
+            />
+          </TouchableOpacity>
         </View>
         <Text style={styles.esqueceuSenha}>Esqueceu a senha?</Text>
         <View style={styles.avancarButtonContainer}>
-          <TouchableOpacity style={styles.avancarButton} onPress={avancarButton}>
-            <Text style={styles.avancarButtonText}>AVANÇAR</Text>
+          <TouchableOpacity style={styles.avancarButton}>
+            <Text style={[styles.avancarButtonText, { fontWeight: 'bold' }]}>AVANÇAR</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.cadastro}>
           <Text style={styles.naoTemConta}>Ainda não tem uma conta?</Text>
-          <Text style={styles.inscrevase}>Inscreva-se</Text>
+          <TouchableOpacity onPress={avancarButton}>
+            <Text style={[styles.inscrevase, { fontWeight: 'bold' }]}>Inscreva-se</Text>
+          </TouchableOpacity>
         </View>
         
         <View style={styles.loginCom}> 
-          <Text style={styles.login}>Fazer Login com</Text>
+          <Text style={[styles.login, { fontWeight: 'bold' }]}>Fazer Login com</Text>
           <View style={styles.entrar}> 
             <Image source={require('../assets/Login/Google.png')} style={styles.google} />
             <Image source={require('../assets/Login/Face.png')} style={styles.face} />
@@ -128,6 +145,7 @@ const styles = StyleSheet.create({
       borderRadius: 13,
       padding: 10,
       alignSelf: 'center',
+      flexDirection: 'row',
     },
     input: {
       flex: 1,
@@ -214,6 +232,10 @@ const styles = StyleSheet.create({
       height: 48,
       resizeMode: 'contain',
       marginTop: '13%'
+    },
+    visualizar: {
+      marginTop: '2.5%',
+      marginRight: '3%',
     },
   });
 

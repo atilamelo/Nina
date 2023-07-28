@@ -53,7 +53,7 @@ const CadastroScreen = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <View style={styles.entrarConta}>
           <Image source={require('../assets/Cadastro/Voltar.png')} style={styles.imagem} />
-          <Text style={styles.texto}>Cadastrar uma conta</Text>
+          <Text style={[styles.texto, { fontWeight: 'bold' }]}>Cadastrar uma conta</Text>
         </View> 
         <StatusBar style="auto" />
         <View style={styles.barraNome}>
@@ -89,7 +89,7 @@ const CadastroScreen = ({ navigation }) => {
         </View>
         <View style={styles.barraReescrever}>
         <TextInput
-            placeholder="Senha"
+            placeholder="Reescreva sua senha"
             placeholderTextColor="#FFFFFF"
             style={styles.input}
             secureTextEntry={!isReescrevaVisible} // Usar secureTextEntry com base no estado
@@ -105,26 +105,27 @@ const CadastroScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.checkboxContainer}>
+          
           <BouncyCheckbox
             size={25}
             fillColor="#ffffff"
             unfillColor="transparent"
-            text="Aceitar Termos & Condições"
-            textStyle={{ color: 'white', textDecorationLine: "none",  }}
             iconStyle={{ borderColor: "white", borderRadius: 0 }}
             innerIconStyle={{ borderWidth: 3, borderRadius: 0 }}
             onPress={(isChecked: boolean) => {}}
             checkIconImageSource={require('../assets/Cadastro/Check_Icon.png')}
           />
+          <Text style={styles.termos}>Aceitar </Text>
+          <Text style={[styles.termos, { fontWeight: 'bold' }]}>Termos & Condições</Text>
         </View>
         <View style={styles.avancarButtonContainer}>
           <TouchableOpacity style={styles.avancarButton} onPress={avancarButton}>
-            <Text style={styles.avancarButtonText}>AVANÇAR</Text>
+            <Text style={[styles.avancarButtonText, { fontWeight: 'bold' }]}>AVANÇAR</Text>
           </TouchableOpacity>
         </View>
         
-        <View style={styles.loginCom}> 
-          <Text style={styles.login}>Cadastrar com</Text>
+        <View style={styles.cadCom}> 
+          <Text style={[styles.cad, { fontWeight: 'bold' }]}>Cadastrar com</Text>
           <View style={styles.entrar}> 
             <Image source={require('../assets/Cadastro/Google.png')} style={styles.google} />
             <Image source={require('../assets/Cadastro/Face.png')} style={styles.face} />
@@ -234,15 +235,6 @@ const styles = StyleSheet.create({
       //fontFamily: 'Montserrat-SemiBold',
       fontSize: 15,
     },
-    naoTemConta: {
-      color: '#D9D9D9',
-      //fontFamily: 'Montserrat-Light',
-      fontSize: 13,
-      paddingTop: '13%',
-      marginRight: '1%',
-      alignSelf: 'flex-start',
-      marginLeft: '7%',
-    },
     inscrevase: {
       color: '#D9D9D9',
       //fontFamily: 'Montserrat-SemiBold',
@@ -258,14 +250,15 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
     },
     checkboxContainer: {
+      flexDirection: 'row',
       marginTop: '13%',
       marginLeft: '7%',
     },
-    loginCom: {
+    cadCom: {
       alignItems: 'center',
       justifyContent: 'center',
     },
-    login: {
+    cad: {
       color: '#FFFFFF',
       fontSize: 16,
       paddingTop: '9%',
@@ -294,6 +287,11 @@ const styles = StyleSheet.create({
     visualizar: {
       marginTop: '2.5%',
       marginRight: '3%',
+    },
+    termos: {
+      flexDirection: 'row',
+      color: '#FFFFFF',
+      fontSize: 15
     }
   });
 
