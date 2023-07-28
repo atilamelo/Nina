@@ -1,14 +1,28 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginScreen from './Login/Login';
+import CadastroScreen from './Cadastro/Cadastro';
 
-import Tabs from './ navigation/Tabs';
+const Stack = createStackNavigator();
 
-const App = () => {
-  return(
+const AppNavigator = () => {
+  return (
     <NavigationContainer>
-      <Tabs/>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }} // Ocultar o cabeçalho na tela de login
+        />
+        <Stack.Screen
+          name="Cadastro"
+          component={CadastroScreen}
+          options={{ headerShown: false }} // Ocultar o cabeçalho na tela de cadastro
+        />
+      </Stack.Navigator>
     </NavigationContainer>
-  )
-}
+  );
+};
 
-export default App;
+export default AppNavigator;
