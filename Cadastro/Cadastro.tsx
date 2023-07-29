@@ -29,6 +29,11 @@ const CadastroScreen = ({ navigation }) => {
 
   const avancarButton = () => { 
     
+    if (!nome || !email || !password || !reescrita || !toggleCheckBox) {
+      alert('Por favor, preencha todos os campos antes de avançar.');
+      return;
+    }
+    
     if (!emailIsValid(email)) {
       alert('Por favor, digite um email válido.');
       return;
@@ -47,6 +52,11 @@ const CadastroScreen = ({ navigation }) => {
       alert('As senhas digitadas não coincidem. Por favor, tente novamente.');
       return;
     }
+
+    navigation.navigate('Login');
+  };
+
+  const voltarButton = () => {
 
     navigation.navigate('Login');
   };
@@ -77,84 +87,87 @@ const CadastroScreen = ({ navigation }) => {
 
   return (
     <>
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
-    >
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <View style={styles.entrarConta}>
-          <Image source={require('../assets/Cadastro/Voltar.png')} style={styles.imagem} />
-          <Text style={[styles.texto, { fontWeight: 'bold' }]}>Cadastrar uma conta</Text>
-        </View> 
-        <StatusBar style="auto" />
-        <View style={styles.barraNome}>
-          <TextInput
-            placeholder="Nome"
-            placeholderTextColor="#FFFFFF"
-            style={styles.input}
-          />
-        </View>
-        <View style={styles.barraEmail}>
-          <TextInput
-            placeholder="Email"
-            placeholderTextColor="#FFFFFF"
-            style={styles.input}
-            value={email} 
-            onChangeText={(text) => setEmail(text)}
-          />
-        </View>
-        <View style={styles.barraSenha}>
-          <TextInput
-            placeholder="Senha"
-            placeholderTextColor="#FFFFFF"
-            style={styles.input}
-            secureTextEntry={!isPasswordVisible} // Usar secureTextEntry com base no estado
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-          />
-          <TouchableOpacity onPress={togglePasswordVisibility} style={styles.visualizar}>
-            <Image
-              source={
-                isPasswordVisible
-                  ? require('../assets/Cadastro/Esconder.png')
-                  : require('../assets/Cadastro/Ver.png')
-              }
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.container}
+      >
+        <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+          <View style={styles.entrarConta}>
+            <TouchableOpacity onPress={voltarButton}>
+              <Image source={require('../assets/Cadastro/Voltar.png')} style={styles.imagem} />
+            </TouchableOpacity>
+            <Text style={[styles.texto, { fontWeight: 'bold' }]}>Cadastrar uma conta</Text>
+          </View> 
+          <StatusBar style="auto" />
+          <View style={styles.barraNome}>
+            <TextInput
+              placeholder="Nome"
+              placeholderTextColor="#FFFFFF"
+              style={styles.input}
+              value={nome}
+              onChangeText={(text) => setNome(text)}
             />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.barraReescrever}>
-        <TextInput
-            placeholder="Reescreva sua senha"
-            placeholderTextColor="#FFFFFF"
-            style={styles.input}
-            secureTextEntry={!isReescrevaVisible} // Usar secureTextEntry com base no estado
-            value={reescrita}
-            onChangeText={(text) => setReescrita(text)}
-          />
-          <TouchableOpacity onPress={toggleReescrevaVisibility} style={styles.visualizar}>
-            <Image
-              source={
-                isReescrevaVisible
-                  ? require('../assets/Cadastro/Esconder.png')
-                  : require('../assets/Cadastro/Ver.png')
-              }
+          </View>
+          <View style={styles.barraEmail}>
+            <TextInput
+              placeholder="Email"
+              placeholderTextColor="#FFFFFF"
+              style={styles.input}
+              value={email}
+              onChangeText={(text) => setEmail(text)}
             />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.checkboxContainer}>
-          
-          <BouncyCheckbox
-            size={25}
-            fillColor="#ffffff"
-            unfillColor="transparent"
-            iconStyle={{ borderColor: "white", borderRadius: 0 }}
-            innerIconStyle={{ borderWidth: 3, borderRadius: 0 }}
-            onPress={(isChecked: boolean) => {}}
-            checkIconImageSource={require('../assets/Cadastro/Check_Icon.png')}
-          />
-          <Text style={styles.termos}>Aceitar </Text>
-          <Text style={[styles.termos, { fontWeight: 'bold' }]}>Termos & Condições</Text>
-        </View>
+          </View>
+          <View style={styles.barraSenha}>
+            <TextInput
+              placeholder="Senha"
+              placeholderTextColor="#FFFFFF"
+              style={styles.input}
+              secureTextEntry={!isPasswordVisible}
+              value={password}
+              onChangeText={(text) => setPassword(text)}
+            />
+            <TouchableOpacity onPress={togglePasswordVisibility} style={styles.visualizar}>
+              <Image
+                source={
+                  isPasswordVisible
+                    ? require('../assets/Cadastro/Esconder.png')
+                    : require('../assets/Cadastro/Ver.png')
+                }
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.barraReescrever}>
+            <TextInput
+              placeholder="Reescreva sua senha"
+              placeholderTextColor="#FFFFFF"
+              style={styles.input}
+              secureTextEntry={!isReescrevaVisible}
+              value={reescrita}
+              onChangeText={(text) => setReescrita(text)}
+            />
+            <TouchableOpacity onPress={toggleReescrevaVisibility} style={styles.visualizar}>
+              <Image
+                source={
+                  isReescrevaVisible
+                    ? require('../assets/Cadastro/Esconder.png')
+                    : require('../assets/Cadastro/Ver.png')
+                }
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.checkboxContainer}>
+            <BouncyCheckbox
+              size={25}
+              fillColor="#ffffff"
+              unfillColor="transparent"
+              iconStyle={{ borderColor: "white", borderRadius: 0 }}
+              innerIconStyle={{ borderWidth: 3, borderRadius: 0 }}
+              onPress={(isChecked: boolean) => setToggleCheckBox(isChecked)}
+              checkIconImageSource={require('../assets/Cadastro/Check_Icon.png')}
+            />
+            <Text style={styles.termos}>Aceitar </Text>
+            <Text style={[styles.termos, { fontWeight: 'bold' }]}>Termos & Condições</Text>
+          </View>
         <View style={styles.avancarButtonContainer}>
           <TouchableOpacity style={styles.avancarButton} onPress={avancarButton}>
             <Text style={[styles.avancarButtonText, { fontWeight: 'bold' }]}>AVANÇAR</Text>
