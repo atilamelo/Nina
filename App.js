@@ -3,11 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './Login/Login';
 import CadastroScreen from './Cadastro/Cadastro';
+import { StatusBar } from 'expo-status-bar';
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
+    <>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
@@ -22,6 +24,8 @@ const AppNavigator = () => {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    <StatusBar style='light' backgroundColor = 'transparent'/>
+    </>
   );
 };
 

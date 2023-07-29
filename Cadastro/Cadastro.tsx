@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TextInput, KeyboardAvoidingView, Platform, ScrollView, TouchableOpacity } from 'react-native';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+
 //import * as Font from 'expo-font';
 
 // Vou Ignorar as fontes por enquanto
@@ -26,11 +27,40 @@ const CadastroScreen = ({ navigation }) => {
   const [reescrita, setReescrita] = useState('');
   const [toggleCheckBox, setToggleCheckBox] = useState(false)
 
-  const avancarButton = () => { //trocar para avancarButton
-    // Lógica para realizar o login com email e senha
-    // Exemplo: realizar uma requisição para a API de autenticação
-    // Se o login for bem-sucedido, navegar para a tela de cadastro
+  const avancarButton = () => { 
+    
+    if (!emailIsValid(email)) {
+      alert('Por favor, digite um email válido.');
+      return;
+    }
+
+    // Verificação da senha
+    if (!passwordIsValid(password)) {
+      alert(
+        'A senha deve conter ao menos 8 caracteres, incluindo letras maiúsculas, letras minúsculas e números.'
+      );
+      return;
+    }
+
+    // Verificação da reescrita da senha
+    if (password !== reescrita) {
+      alert('As senhas digitadas não coincidem. Por favor, tente novamente.');
+      return;
+    }
+
     navigation.navigate('Login');
+  };
+
+  // Função para verificar se o email é válido
+  const emailIsValid = (email) => {
+    const emailRegex = /\S+@\S+\.\S+/;
+    return emailRegex.test(email);
+  };
+
+  // Função para verificar se a senha é válida
+  const passwordIsValid = (password) => {
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+    return passwordRegex.test(password);
   };
 
   const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -46,6 +76,7 @@ const CadastroScreen = ({ navigation }) => {
   };
 
   return (
+    <>
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
@@ -68,6 +99,8 @@ const CadastroScreen = ({ navigation }) => {
             placeholder="Email"
             placeholderTextColor="#FFFFFF"
             style={styles.input}
+            value={email} 
+            onChangeText={(text) => setEmail(text)}
           />
         </View>
         <View style={styles.barraSenha}>
@@ -76,6 +109,8 @@ const CadastroScreen = ({ navigation }) => {
             placeholderTextColor="#FFFFFF"
             style={styles.input}
             secureTextEntry={!isPasswordVisible} // Usar secureTextEntry com base no estado
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
           <TouchableOpacity onPress={togglePasswordVisibility} style={styles.visualizar}>
             <Image
@@ -93,6 +128,8 @@ const CadastroScreen = ({ navigation }) => {
             placeholderTextColor="#FFFFFF"
             style={styles.input}
             secureTextEntry={!isReescrevaVisible} // Usar secureTextEntry com base no estado
+            value={reescrita}
+            onChangeText={(text) => setReescrita(text)}
           />
           <TouchableOpacity onPress={toggleReescrevaVisibility} style={styles.visualizar}>
             <Image
@@ -134,6 +171,8 @@ const CadastroScreen = ({ navigation }) => {
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
+    <StatusBar style='light' backgroundColor = 'transparent'/>
+    </>
   );
 };
 
@@ -151,7 +190,7 @@ const styles = StyleSheet.create({
       //fontFamily: 'Inter-Medium',
       fontSize: 16,
       alignSelf: 'flex-start',
-      marginRight: '8%',
+      marginRight: '13%',
     },
     imagem: {
       width: 30,
