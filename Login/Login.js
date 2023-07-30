@@ -68,8 +68,8 @@ const LoginScreen = ({ navigation }) => {
             <Image
               source={
                 isPasswordVisible
-                  ? require('../assets/Cadastro/Esconder.png')
-                  : require('../assets/Cadastro/Ver.png')
+                  ? require('../assets/Login/Esconder.png')
+                  : require('../assets/Login/Ver.png')
               }
             />
           </TouchableOpacity>
