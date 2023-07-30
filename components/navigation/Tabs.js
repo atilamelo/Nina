@@ -7,10 +7,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Text, View, Image, Touchable, TouchableOpacity } from 'react-native';
 
-import HomeScreen from '../screens/HomeScreen';
-import StatisticsScreen from '../screens/StatisticsScreen';
-import CalendarScreen from '../screens/CalendarScreen';
-import ConfigScreen from '../screens/ConfigScreen';
+import HomeScreen from '../../screens/main-screens/HomeScreen';
+import StatisticsScreen from '../../screens/main-screens/StatisticsScreen';
+import CalendarScreen from '../../screens/main-screens/CalendarScreen';
+import ConfigScreen from '../../screens/main-screens/ConfigScreen';
 
 const Tab = createBottomTabNavigator();
 const focusedColor = '#C0C3D0';
@@ -61,7 +61,7 @@ const Tabs = () => {
                 tabBarIcon: ({ focused }) => (
                     <View style={styles.tabIconContainer}>
                         <Image
-                            source={require('../assets/icons/home.png')}
+                            source={require('../../assets/icons/home.png')}
                             resizeMode="contain"
                             style={[styles.tabIcon, { tintColor: focused ? focusedColor : unfocusedColor }]}
                         />
@@ -74,7 +74,7 @@ const Tabs = () => {
                 tabBarIcon: ({ focused }) => (
                     <View style={styles.tabIconContainer}>
                         <Image
-                            source={require('../assets/icons/statistics.png')}
+                            source={require('../../assets/icons/statistics.png')}
                             resizeMode="contain"
                             style={[styles.tabIcon, { tintColor: focused ? focusedColor : unfocusedColor }]}
                         />
@@ -86,7 +86,7 @@ const Tabs = () => {
             <Tab.Screen name="WriteDreams" component={HomeScreen} options={{
                 tabBarIcon: ({ focused }) => (
                     <Image
-                        source={require('../assets/icons/pen.png')}
+                        source={require('../../assets/icons/pen.png')}
                         resizeMode="contain"
                         style={{
                             width: 30,
@@ -104,7 +104,7 @@ const Tabs = () => {
                 tabBarIcon: ({ focused }) => (
                     <View style={styles.tabIconContainer}>
                         <Image
-                            source={require('../assets/icons/calendar.png')}
+                            source={require('../../assets/icons/calendar.png')}
                             resizeMode="contain"
                             style={[styles.tabIcon, { tintColor: focused ? focusedColor : unfocusedColor }]}
                         />
@@ -116,7 +116,7 @@ const Tabs = () => {
                 tabBarIcon: ({ focused }) => (
                     <View style={styles.tabIconContainer}>
                         <Image
-                            source={require('../assets/icons/settings.png')}
+                            source={require('../../assets/icons/settings.png')}
                             resizeMode="contain"
                             style={[styles.tabIcon, { tintColor: focused ? focusedColor : unfocusedColor }]}
                         />
