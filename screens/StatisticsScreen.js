@@ -1,3 +1,8 @@
+/* Creator: Átila Melo
+ * Data: 28/06/2023
+ * Description: Statistics Screen that will show the statistics of the user based on dreams
+ */
+
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 

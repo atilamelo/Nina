@@ -1,3 +1,8 @@
+/* Creator: Carla Chicareli
+ * Data: 30/06/2023
+ * Description: Configurations screen of the App
+ */
+
 import React, { useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';

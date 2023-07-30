@@ -1,3 +1,8 @@
+/* Creator: Átila Melo
+ * Data: 28/06/2023
+ * Description: Home Screen that will show the registered dreams
+ */
+
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, FlatList } from 'react-native';
 

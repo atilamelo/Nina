@@ -1,12 +1,15 @@
+/* Creator: Átila Melo
+ * Data: 28/06/2023
+ * Description: Main App Screen
+ */
+
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './Login/Login';
 import CadastroScreen from './Cadastro/Cadastro';
-import ConfigScreen from './Configuracoes/Configuracoes';
 import { StatusBar } from 'expo-status-bar';
 import Tabs from './ navigation/Tabs';
-import { StatusBar } from 'expo-status-bar';
 
 // Default home app 
 const App = () => {

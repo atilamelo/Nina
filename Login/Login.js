@@ -1,3 +1,8 @@
+/* Creator: Carla Chicareli
+ * Data: 28/06/2023
+ * Description: Login Screen
+ */
+
 import React, { useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
