@@ -1,3 +1,9 @@
+/* Creator: Átila Melo
+ * Data: 28/06/2023
+ * Description: Create the navigation bar of the app
+ * Credits: www.youtube.com/watch?v=gPaBicMaib4
+ */
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Text, View, Image, Touchable, TouchableOpacity } from 'react-native';
 
