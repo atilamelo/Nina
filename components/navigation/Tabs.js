@@ -20,7 +20,7 @@ const AddDreamButton = ({ children, onPress }) => {
     return (
         <TouchableOpacity
             style={{
-                top: -30,
+                top: -25,
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
@@ -46,11 +46,11 @@ const Tabs = () => {
                 tabBarShowLabel: false,
                 tabBarStyle: {
                     position: 'absolute',
-                    height: 80,
+                    height: 60,
                     backgroundColor: '#222840',
                     borderTopWidth: 0,
-                    borderTopLeftRadius: 20,
-                    borderTopRightRadius: 20,
+                    borderTopLeftRadius: 5,
+                    borderTopRightRadius: 5,
                 },
                 tabBarInactiveTintColor: unfocusedColor,
                 tabBarActiveTintColor: focusedColor,
@@ -134,12 +134,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     tabIcon: {
-        width: 27,
-        height: 27,
+        width: 23,
+        height: 23,
     },
     tabText: {
         paddingTop: 5,
-        fontSize: 12,
+        fontSize: 11,
     },
 });
 
