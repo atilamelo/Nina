@@ -12,29 +12,16 @@ import CadastroScreen from './screens/cadastro/Cadastro';
 import ConfigScreen from './screens/main-screens/ConfigScreen';
 import Tabs from './components/navigation/Tabs';
 
-// Default home app 
-const App = () => {
-    return (
-        <>
-            <NavigationContainer>
-                <Tabs />
-            </NavigationContainer>
-            <StatusBar style='light' backgroundColor='transparent' />
-        </>
-    );
-};
-
 const Stack = createStackNavigator();
 
-/* Versão antiga do App, com navegação por Stack, feita pela Carla*/
-const AppNavigator = () => {
+const App = () => {
     return (
         <>
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen
-                        name="Configuracoes"
-                        component={ConfigScreen}
+                        name="Tabs"
+                        component={Tabs}
                         options={{ headerShown: false }} // Ocultar o cabeçalho
                     />
                     <Stack.Screen

@@ -30,7 +30,7 @@ const ConfigScreen = ({ navigation }) => {
         // Lógica para realizar o login com email e senha
         // Exemplo: realizar uma requisição para a API de autenticação
         // Se o login for bem-sucedido, navegar para a tela de cadastro
-        navigation.navigate('../login/Login');
+        navigation.navigate('Login  ');
     };
 
     return (
@@ -44,6 +44,7 @@ const ConfigScreen = ({ navigation }) => {
                 <View style={styles.entrarConta}>
                     <Text style={[styles.texto, { fontWeight: 'bold' }]}>Configurações</Text>
                 </View>
+
                 <StatusBar style="auto" />
                 <TouchableOpacity onPress={loginButton}>
                     <View style={styles.barra}>
@@ -51,26 +52,32 @@ const ConfigScreen = ({ navigation }) => {
                         <Image source={require('../../assets/Config/Entrar.png')} style={styles.icones} />
                     </View>
                 </TouchableOpacity>
+
                 <View style={styles.barra}>
                     <Text placeholderTextColor="#FFFFFF" style={[styles.input, { fontWeight: 'bold' }]}>Mudar senha</Text>
                     <Image source={require('../../assets/Config/bloquear.png')} style={styles.icones} />
                 </View>
+
                 <View style={styles.barra}>
                     <Text placeholderTextColor="#FFFFFF" style={[styles.input, { fontWeight: 'bold' }]}>Notificações</Text>
                     <Image source={require('../../assets/Config/notificacao.png')} style={styles.icones} />
                 </View>
+
                 <View style={styles.barra}>
                     <Text placeholderTextColor="#FFFFFF" style={[styles.input, { fontWeight: 'bold' }]}>Backup em nuvem</Text>
                     <Image source={require('../../assets/Config/backup.png')} style={styles.icones} />
                 </View>
+
                 <View style={styles.barra}>
                     <Text placeholderTextColor="#FFFFFF" style={[styles.input, { fontWeight: 'bold' }]}>Termos & Condições</Text>
                     <Image source={require('../../assets/Config/termos.png')} style={styles.icones} />
                 </View>
+
                 <View style={styles.barra}>
                     <Text placeholderTextColor="#FFFFFF" style={[styles.input, { fontWeight: 'bold' }]}>Fale conosco</Text>
                     <Image source={require('../../assets/Config/telefone.png')} style={styles.icones} />
                 </View>
+
                 <TouchableOpacity onPress={loginButton}>
                     <View style={styles.barra}>
                         <Text placeholderTextColor="#FFFFFF" style={[styles.input, { fontWeight: 'bold' }]}>Sair</Text>
