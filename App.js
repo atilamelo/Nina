@@ -26,7 +26,7 @@ const App = () => {
 
 const Stack = createStackNavigator();
 
-// Login/Cadastro App Screen
+/* Versão antiga do App, com navegação por Stack, feita pela Carla*/
 const AppNavigator = () => {
     return (
         <>
@@ -54,4 +54,4 @@ const AppNavigator = () => {
     );
 };
 
-export default AppNavigator;
+export default App;
