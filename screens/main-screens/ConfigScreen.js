@@ -30,7 +30,7 @@ const ConfigScreen = ({ navigation }) => {
         // Lógica para realizar o login com email e senha
         // Exemplo: realizar uma requisição para a API de autenticação
         // Se o login for bem-sucedido, navegar para a tela de cadastro
-        navigation.navigate('Login  ');
+        navigation.navigate('Login');
     };
 
     return (
