@@ -11,6 +11,7 @@ import HomeScreen from '../../screens/main-screens/HomeScreen';
 import StatisticsScreen from '../../screens/main-screens/StatisticsScreen';
 import CalendarScreen from '../../screens/main-screens/CalendarScreen';
 import ConfigScreen from '../../screens/main-screens/ConfigScreen';
+import WriteScreen from '../../screens/main-screens/WriteScreen';
 
 const Tab = createBottomTabNavigator();
 const focusedColor = '#9F238E';
@@ -83,7 +84,7 @@ const Tabs = () => {
                 ),
             }} />
 
-            <Tab.Screen name="WriteDreams" component={HomeScreen} options={{
+            <Tab.Screen name="WriteDreams" component={WriteScreen} options={{
                 tabBarIcon: ({ focused }) => (
                     <Image
                         source={require('../../assets/icons/pen.png')}

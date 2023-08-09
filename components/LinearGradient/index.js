@@ -12,7 +12,7 @@ const LinearGradientBackground = ({ children }) => {
                 colors={['#653483', '#1A1F32']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 0, y: 1 }}
-                style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 650, marginTop: -insets.top }}
+                style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 670, marginTop: -insets.top }}
             />
             {children}
         </View>

@@ -4,7 +4,6 @@
  */
 
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { ConfigItem } from '../../../components/ConfigItem';
 import { Barra } from '../../../components/Barra/Barra';
@@ -23,7 +22,6 @@ const ConfigScreen = ({ navigation }) => {
                     <Text style={styles.headerText}>Entre para armazenar seus dados na nuvem!</Text>
                 </View>
                 <Barra/>
-                <StatusBar style="auto" />
 
                 <ConfigItem label="Notificações" iconSource={require('../../../assets/Config/notificacao.png')} onPress={() => { }} />
                 <ConfigItem label="Backup em nuvem" iconSource={require('../../../assets/Config/backup.png')} onPress={() => { }} />
