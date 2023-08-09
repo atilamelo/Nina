@@ -7,6 +7,8 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { ConfigItem } from '../../../components/ConfigItem';
+import { Barra } from '../../../components/Barra/Barra';
+import { TopBar } from '../../../components/TopBar';
 
 const ConfigScreen = ({ navigation }) => {
     const navigateTo = ({ screen_name }) => {
@@ -16,10 +18,11 @@ const ConfigScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+            
                 <View style={styles.header}>
-                    <Text style={styles.headerText}>Configurações</Text>
+                    <Text style={styles.headerText}>Entre para armazenar seus dados na nuvem!</Text>
                 </View>
-
+                <Barra/>
                 <StatusBar style="auto" />
 
                 <ConfigItem label="Notificações" iconSource={require('../../../assets/Config/notificacao.png')} onPress={() => { }} />
@@ -44,15 +47,12 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row',
-        justifyContent: 'flex-end',
-        marginRight: '28%',
+        justifyContent: 'center',
         marginBottom: '10%', // Distance from the top of the box
     },
     headerText: {
         color: 'white',
-        fontSize: 16,
-        alignSelf: 'flex-start',
-        marginRight: '48%',
+        fontSize: 17,
         fontWeight: 'bold',
     },
 });

@@ -13,7 +13,7 @@ import CalendarScreen from '../../screens/main-screens/CalendarScreen';
 import ConfigScreen from '../../screens/main-screens/ConfigScreen';
 
 const Tab = createBottomTabNavigator();
-const focusedColor = '#C0C3D0';
+const focusedColor = '#9F238E';
 const unfocusedColor = '#585C6D';
 
 const AddDreamButton = ({ children, onPress }) => {
