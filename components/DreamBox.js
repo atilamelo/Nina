@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { useFonts } from 'expo-font';
+
 
 const DreamBox = ({ item }) => {
     return (

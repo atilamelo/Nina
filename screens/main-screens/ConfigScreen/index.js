@@ -8,6 +8,7 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { ConfigItem } from '../../../components/ConfigItem';
 import { Barra } from '../../../components/Barra/Barra';
 import { TopBar } from '../../../components/TopBar';
+import Background from '../../../components/Background/Background';
 
 const ConfigScreen = ({ navigation }) => {
     const navigateTo = ({ screen_name }) => {
@@ -15,22 +16,26 @@ const ConfigScreen = ({ navigation }) => {
     };
 
     return (
+        
         <View style={styles.container}>
-            <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-            
-                <View style={styles.header}>
-                    <Text style={styles.headerText}>Entre para armazenar seus dados na nuvem!</Text>
-                </View>
-                <Barra/>
+            <Background>
+                <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+                
+                    <View style={styles.header}>
+                        <Text style={styles.headerText}>Entre para armazenar seus dados na nuvem!</Text>
+                    </View>
+                    <Barra/>
 
-                <ConfigItem label="Notificações" iconSource={require('../../../assets/Config/notificacao.png')} onPress={() => { }} />
-                <ConfigItem label="Backup em nuvem" iconSource={require('../../../assets/Config/backup.png')} onPress={() => { }} />
-                <ConfigItem label="Termos & Condições" iconSource={require('../../../assets/Config/termos.png')} onPress={() => { }} />
-                <ConfigItem label="Política de privacidade" iconSource={require('../../../assets/Config/termos.png')} onPress={() => { }} />
-                <ConfigItem label="Fale conosco" iconSource={require('../../../assets/Config/telefone.png')} onPress={() => { }} />
-                <ConfigItem label="Sair" iconSource={require('../../../assets/Config/sair.png')} onPress={() => { }} />
-            </ScrollView>
+                    <ConfigItem label="Notificações" iconSource={require('../../../assets/Config/notificacao.png')} onPress={() => { }} />
+                    <ConfigItem label="Backup em nuvem" iconSource={require('../../../assets/Config/backup.png')} onPress={() => { }} />
+                    <ConfigItem label="Termos & Condições" iconSource={require('../../../assets/Config/termos.png')} onPress={() => { }} />
+                    <ConfigItem label="Política de privacidade" iconSource={require('../../../assets/Config/termos.png')} onPress={() => { }} />
+                    <ConfigItem label="Fale conosco" iconSource={require('../../../assets/Config/telefone.png')} onPress={() => { }} />
+                    <ConfigItem label="Sair" iconSource={require('../../../assets/Config/sair.png')} onPress={() => { }} />
+                </ScrollView>
+            </Background>
         </View>
+        
     );
 };
 

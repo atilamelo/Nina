@@ -1,26 +1,23 @@
-/* Creator: Átila Melo
- * Data: 28/06/2023
- * Description: Statistics Screen that will show the statistics of the user based on dreams
- */
-
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import Background from '../../../components/Background/Background';
 
-const StatisticsScreen = ({navigation}) => {
+const WriteScreen = ({ navigation }) => {
     return (
-        <View style={styles.container}>
-            <Text>Estatisticas Screen</Text>
-        </View>
+        <Background>
+            <View style={styles.container}>
+                <Text>Tela de escrita</Text>
+            </View>
+        </Background>
     );
 }
 
-export default StatisticsScreen;
+export default WriteScreen;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#1A1F32'
-    }
-})
+    },
+});
