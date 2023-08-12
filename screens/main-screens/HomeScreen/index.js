@@ -7,28 +7,27 @@ import Background from '../../../components/Background/Background';
 
 const HomeScreen = ({ navigation }) => {
     return (
-<Background>
-    <View style={styles.container}>
-        
-            <TopBar
-                left={<Text>Esquerda</Text>} // Conteúdo para a seção esquerda da TopBar
-                middle={<Text>No Meio</Text>} // Conteúdo para a seção do meio da TopBar
-                right={<Text>Direita</Text>} // Conteúdo para a seção direita da TopBar
-            />
+    <Background>
+        <View style={styles.container}>
             
-            <View style={styles.content}>
-                {/* List of dreams */}
-                <View style={styles.dreamsList}>
-                    <FlatList
-                        data={dreamsExample}
-                        renderItem={({ item }) => <DreamBox item={item} />}
-                        keyExtractor={(item, index) => index.toString()}
-                    />
+                <TopBar
+                    middle={<Text>No Meio</Text>} // Conteúdo para a seção do meio da TopBar
+                    right={<Text>Direita</Text>} // Conteúdo para a seção direita da TopBar
+                />
+                
+                <View style={styles.content}>
+                    {/* List of dreams */}
+                    <View style={styles.dreamsList}>
+                        <FlatList
+                            data={dreamsExample}
+                            renderItem={({ item }) => <DreamBox item={item} />}
+                            keyExtractor={(item, index) => index.toString()}
+                        />
+                    </View>
                 </View>
-            </View>
 
-        
-    </View>
+            
+        </View>
     </Background> 
     );
 };

@@ -2,23 +2,23 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 const TopBarContainer = styled.View`
-  height: 48px;
+  height: 5%;
   flex-direction: row;
   align-items: center;
   background-color: 'transparent';
-  padding-horizontal: 16px;
+  padding-horizontal: 5%;
+  margin-top: 7%;
 `;
 
 const LeftSection = styled.View`
   flex: 1;
   align-items: flex-start;
-  backgroundColor: yellow;
 `;
 
 const MiddleSection = styled.View`
-  flex: 2;
-  align-items: center;
-  backgroundColor: green;
+  flex: 3;
+  align-items: flex-start;
+  
 `;
 
 const RightSection = styled.View`

@@ -99,6 +99,7 @@ const Tabs = () => {
                 tabBarButton: ( props ) => (
                     <AddDreamButton  { ... props}/>
                 )
+                
             }}/>
 
             <Tab.Screen name="Calendário" component={CalendarScreen} options={{
