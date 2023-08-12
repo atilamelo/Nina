@@ -5,7 +5,7 @@ const TopBarContainer = styled.View`
   height: 5%;
   flex-direction: row;
   align-items: center;
-  background-color: 'transparent';
+  background-color: 'red';
   padding-horizontal: 5%;
   margin-top: 7%;
 `;

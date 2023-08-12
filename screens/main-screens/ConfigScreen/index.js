@@ -18,7 +18,6 @@ const ConfigScreen = ({ navigation }) => {
     return (
         
         <View style={styles.container}>
-            <Background>
                 <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
                 
                     <View style={styles.header}>
@@ -33,7 +32,6 @@ const ConfigScreen = ({ navigation }) => {
                     <ConfigItem label="Fale conosco" iconSource={require('../../../assets/Config/telefone.png')} onPress={() => { }} />
                     <ConfigItem label="Sair" iconSource={require('../../../assets/Config/sair.png')} onPress={() => { }} />
                 </ScrollView>
-            </Background>
         </View>
         
     );

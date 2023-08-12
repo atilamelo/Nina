@@ -7,22 +7,22 @@ import voltarImage from '../../../assets/icons/Voltar.png';
 
 const WriteScreen = ({ navigation }) => {
     return (
-        <Background>
-            <Container>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                     style={styles.container}
                     windowSoftInputMode="adjustResize"
                 >
+        <Background>
+            <Container>
                             <TopBar
                                 left={<Voltar source={voltarImage} />}
                                 middle={<Texto>Escreva seu sonho</Texto>}
                             />
                             <TextInputStyled placeholder="Digite seu sonho aqui" />
                         
-                </KeyboardAvoidingView>
             </Container>
         </Background>
+                </KeyboardAvoidingView>
     );
 }
 
