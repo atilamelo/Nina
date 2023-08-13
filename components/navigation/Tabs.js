@@ -12,6 +12,7 @@ import StatisticsScreen from '../../screens/main-screens/StatisticsScreen';
 import CalendarScreen from '../../screens/main-screens/CalendarScreen';
 import ConfigScreen from '../../screens/main-screens/ConfigScreen';
 import WriteScreen from '../../screens/main-screens/WriteScreen';
+import Etapa1Registro from '../../screens/main-screens/RegistroSonho/Etapa1Registro';
 
 const Tab = createBottomTabNavigator();
 const focusedColor = '#9F238E';
@@ -56,7 +57,9 @@ const Tabs = () => {
                 tabBarInactiveTintColor: unfocusedColor,
                 tabBarActiveTintColor: focusedColor,
                 headerShown: false,
+                
             }}
+            initialRouteName='HomeScreen'
         >
             <Tab.Screen name="Sonhos" component={HomeScreen} options={{
                 tabBarIcon: ({ focused }) => (

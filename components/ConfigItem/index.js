@@ -1,6 +1,6 @@
 import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
 
-export const ConfigItem = ({ label, iconSource, onPress }) => {
+const ConfigItem = ({ label, iconSource, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.itemContainer}>
@@ -10,6 +10,9 @@ export const ConfigItem = ({ label, iconSource, onPress }) => {
         </TouchableOpacity>
     );
 };
+
+export default ConfigItem;
+
 
 const styles = StyleSheet.create({
     itemContainer: {

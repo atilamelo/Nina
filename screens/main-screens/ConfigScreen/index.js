@@ -5,9 +5,8 @@
 
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import { ConfigItem } from '../../../components/ConfigItem';
-import { Barra } from '../../../components/Barra/Barra';
-import { TopBar } from '../../../components/TopBar';
+import ConfigItem  from '../../../components/ConfigItem';
+import Barra from '../../../components/Barra/Barra';
 import Background from '../../../components/Background/Background';
 
 const ConfigScreen = ({ navigation }) => {
