@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ScrollView, KeyboardAvoidingView, TextInput, Platform } from 'react-native';
 import styled from 'styled-components/native';
 import Background from '../../../components/Background/Background';
@@ -6,23 +6,57 @@ import TopBar from '../../../components/TopBar';
 import voltarImage from '../../../assets/icons/Voltar.png';
 
 const WriteScreen = ({ navigation }) => {
+
+    //Modelo JSON
+    const modelo = {titulo:''}
+
+    //useState
+    const [sonho, setSonho] = useState(modelo);
+
+    //Evento
+    const evento = (e) => {
+        let titulo = e.target.name;
+        let valor = e.target.value;
+        
+        setSonho({...sonho, [titulo]: valor});
+    }
     return (
-                <KeyboardAvoidingView
-                    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                    style={styles.container}
-                    windowSoftInputMode="adjustResize"
+        
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.container}
+            windowSoftInputMode="adjustResize"
+        >
+            <Background>
+                <ScrollView
                 >
-        <Background>
-            <Container>
-                            <TopBar
-                                left={<Voltar source={voltarImage} />}
-                                middle={<Texto>Escreva seu sonho</Texto>}
-                            />
-                            <TextInputStyled placeholder="Digite seu sonho aqui" />
-                        
-            </Container>
-        </Background>
-                </KeyboardAvoidingView>
+                    <Container>
+                                <TopBar
+                                    left={<Voltar source={voltarImage} />}
+                                    middle={<Texto>Escreva seu sonho</Texto>}
+                                />
+                                <Titulo 
+                                    placeholder="Título"
+                                    placeholderTextColor="#FFFFFF"
+                                    type = "text" 
+                                    name = "titulo"
+                                    multiline={true} // Habilita várias linhas
+                                    onChange={evento}
+                                />
+                                <>{sonho.titulo}</>
+
+                                <Sonho 
+                                    placeholder="Escreva aqui seu sonho."
+                                    placeholderTextColor="#FFFFFF"
+                                    type="text" 
+                                    name="titulo"
+                                    multiline={true}
+                                    onChange={evento}
+                                />
+                    </Container>
+                </ScrollView>
+            </Background>
+        </KeyboardAvoidingView>
     );
 }
 
@@ -44,15 +78,26 @@ const Voltar = styled.Image`
 const Texto = styled.Text`
     text-align: right;
     font-size: 22px;
-    color: #D9D9D9;
+    color: #ffffff;
     font-weight: bold;
 `;
 
-const TextInputStyled = styled.TextInput`
-    border: 1px solid #D9D9D9;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 16px;
+const Titulo = styled.TextInput`
+    margin-top: 10%;
+    margin-left: 8%;
+    margin-horizontal: 6%;
+    font-size: 25px;
+    color: #ffffff;
+    font-weight: bold;
+`;
+
+const Sonho = styled.TextInput`
+    margin-top: 9%;
+    margin-left: 8%;
+    margin-horizontal: 6%;
+    font-size: 17px;
+    color: #ffffff;
+    caret-color: #ff0000; 
 `;
 
 const styles = {
