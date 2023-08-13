@@ -8,17 +8,18 @@ import voltarImage from '../../../assets/icons/Voltar.png';
 const WriteScreen = ({ navigation }) => {
 
     //Modelo JSON
-    const modelo = {titulo:''}
+    const modelo = {titulo:'', texto: ''}
 
     //useState
     const [sonho, setSonho] = useState(modelo);
 
     //Evento
     const evento = (e) => {
-        let titulo = e.target.name;
-        let valor = e.target.value;
+        let titulo = e.target.text;
+        let texto = e.target.text;
+        let valor = e.target.value; //Não sei se eu tenho q criar outro valor para cada variavel
         
-        setSonho({...sonho, [titulo]: valor});
+        setSonho({...sonho, [titulo]: valor, [texto]: valor});
     }
     return (
         
@@ -49,7 +50,7 @@ const WriteScreen = ({ navigation }) => {
                                     placeholder="Escreva aqui seu sonho."
                                     placeholderTextColor="#FFFFFF"
                                     type="text" 
-                                    name="titulo"
+                                    name="texto"
                                     multiline={true}
                                     onChange={evento}
                                 />
