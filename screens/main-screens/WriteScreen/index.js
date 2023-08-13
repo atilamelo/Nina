@@ -38,21 +38,23 @@ const WriteScreen = ({ navigation }) => {
                                 />
                                 <Titulo 
                                     placeholder="Título"
-                                    placeholderTextColor="#FFFFFF"
+                                    placeholderTextColor="#B4B4B4"
                                     type = "text" 
                                     name = "titulo"
                                     multiline={true} // Habilita várias linhas
                                     onChange={evento}
+                                    selectionColor="purple"
                                 />
                                 <>{sonho.titulo}</>
 
                                 <Sonho 
                                     placeholder="Escreva aqui seu sonho."
-                                    placeholderTextColor="#FFFFFF"
+                                    placeholderTextColor="#B4B4B4"
                                     type="text" 
                                     name="texto"
                                     multiline={true}
                                     onChange={evento}
+                                    selectionColor="purple"
                                 />
                     </Container>
                 </ScrollView>
@@ -98,7 +100,7 @@ const Sonho = styled.TextInput`
     margin-horizontal: 6%;
     font-size: 17px;
     color: #ffffff;
-    caret-color: #ff0000; 
+   
 `;
 
 const styles = {
