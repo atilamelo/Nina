@@ -12,9 +12,20 @@ import Tabs from './components/navigation/Tabs';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Background from './components/Background/Background';
 
+// fonts
+import { useFonts } from 'expo-font';
+import AppLoading  from 'expo-app-loading';
+
 const Stack = createStackNavigator();
 
 const App = () => {
+    let [fontsLoaded] = useFonts({
+        "Inter Bold": require("./assets/fonts/Inter-Bold.ttf"),
+        // "Inter Black": require("./assets/fonts/Inter Black.ttf"),
+    });
+
+    if(!fontsLoaded) return (<AppLoading />);
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
                 <NavigationContainer>
