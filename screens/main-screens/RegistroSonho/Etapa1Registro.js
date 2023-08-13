@@ -4,12 +4,15 @@ import YesNoQuestionComponent from '../../../components/Questions/YesNoQuestion'
 import LucidyQuestion  from '../../../components/Questions/LucidyQuestion';
 import Barra from '../../../components/Barra/Barra';
 import styled from 'styled-components/native';
+import QuestionNavigationHeader from '../../../components/Headers/QuestionNavigationHeader';
+import NextButton from '../../../components/NextButton';
 
 const QuestionsContainer = styled.View`
     flex: 1;
     margin-right: 25px;
     margin-left: 25px;
-`
+    `
+
 
 const Etapa1Registro = ({ navigation }) => {
     const [lucidityRating, setLucidityRating] = useState(null);
@@ -28,8 +31,18 @@ const Etapa1Registro = ({ navigation }) => {
         setRecurrenceQuestionAnswer(value);
     };
 
+    const handleSkip = () => {
+
+    };
+
+    const handleBack = () => {
+
+    }
+
     return (
         <Background>
+            <QuestionNavigationHeader onSkip={handleSkip} onBack={handleBack} />
+
             <QuestionsContainer>
                 <LucidyQuestion
                     lucidityRating={lucidityRating}
@@ -60,6 +73,9 @@ const Etapa1Registro = ({ navigation }) => {
                     handleAnswerClick={handleRecurrenceClick}
                 />
             </QuestionsContainer>
+
+
+        <NextButton/>
         </Background>
     );
 };
