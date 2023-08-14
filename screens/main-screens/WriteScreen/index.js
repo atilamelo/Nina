@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
-import { ScrollView, KeyboardAvoidingView, TextInput, Platform, TouchableOpacity  } from 'react-native';
+import { ScrollView, KeyboardAvoidingView, View, Platform, TouchableOpacity  } from 'react-native';
 import styled from 'styled-components/native';
 import Background from '../../../components/Background/Background';
 import TopBar from '../../../components/TopBar';
 import voltarImage from '../../../assets/icons/Voltar.png';
+import BottomBar from '../../../components/BottomBar.js';
+import DegradeButton from '../../../components/DegradeButton.js';
+import BasicButton from '../../../components/BasicButton';
 
 const WriteScreen = ({ navigation }) => {
 
@@ -35,40 +38,71 @@ const WriteScreen = ({ navigation }) => {
             windowSoftInputMode="adjustResize"
         >
             <Background>
-                <ScrollView
-                >
+                <ScrollView>
                     <Container>
-                                <TopBar
-                                    left={
-                                        <TouchableOpacity onPress={voltarButton}>
-                                            <Voltar source={voltarImage} />
-                                        </TouchableOpacity>
-                                    }
-                                    middle={<Texto>Escreva seu sonho</Texto>}
-                                />
-                                <Titulo 
-                                    placeholder="Título"
-                                    placeholderTextColor="#B4B4B4"
-                                    type = "text" 
-                                    name = "titulo"
-                                    multiline={true} // Habilita várias linhas
-                                    onChange={evento}
-                                    selectionColor="purple"
-                                    maxLength={50}
-                                />
-                                <>{Titulo.titulo}</>
 
-                                <Sonho 
-                                    placeholder="Escreva aqui seu sonho."
-                                    placeholderTextColor="#B4B4B4"
-                                    type="text" 
-                                    name="texto"
-                                    multiline={true}
-                                    onChange={evento}
-                                    selectionColor="purple"
-                                />
+                        <TopBar
+                            left={
+                                <TouchableOpacity onPress={voltarButton}>
+                                    <Voltar source={voltarImage} />
+                                </TouchableOpacity>
+                            }
+                            middle={<Texto>Escreva seu sonho</Texto>}
+                        />
+
+                        <Titulo 
+                            placeholder="Título"
+                            placeholderTextColor="#B4B4B4"
+                            type = "text" 
+                            name = "titulo"
+                            multiline={true} // Habilita várias linhas
+                            onChange={evento}
+                            selectionColor="purple"
+                            maxLength={50}
+                        />
+
+                        <>{Titulo.titulo}</>
+
+                        <Sonho 
+                            placeholder="Escreva aqui seu sonho."
+                            placeholderTextColor="#B4B4B4"
+                            type="text" 
+                            name="texto"
+                            multiline={true}
+                            onChange={evento}
+                            selectionColor="purple"
+                        />
+
                     </Container>
                 </ScrollView>
+                
+                <BottomBar style={{justifyContent: 'space-between'}}>
+                    <View style={{flexDirection: 'row'}}>
+                        <View style={{marginRight: 27}}>
+                            <BasicButton 
+                                onPress={() => undefined}
+                                iconFile={require('../../../assets/icons/mic.png')}
+                                iconWidth={31}
+                                iconHeight={29}
+                            />
+                        </View>
+
+                        <BasicButton 
+                            onPress={() => undefined}
+                            iconFile={require('../../../assets/icons/img.png')}
+                            iconWidth={27}
+                            iconHeight={22}
+                        />
+                    </View>
+
+
+                    <DegradeButton 
+                        onPress={() => undefined}
+                        iconFile={require('../../../assets/icons/arrow.png')}
+                        iconWidth={22}
+                        iconHeight={22}
+                    />                
+                </BottomBar>
             </Background>
         </KeyboardAvoidingView>
     );
