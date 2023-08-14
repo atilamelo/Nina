@@ -4,6 +4,8 @@
  */
 
 import React from 'react';
+import { useEffect } from 'react';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
@@ -14,17 +16,28 @@ import Background from './components/Background/Background';
 
 // fonts
 import { useFonts } from 'expo-font';
-import AppLoading  from 'expo-app-loading';
+import * as SplashScreen  from 'expo-splash-screen';
 
 const Stack = createStackNavigator();
 
 const App = () => {
-    let [fontsLoaded] = useFonts({
+    const [fontsLoaded] = useFonts({
         "Inter Bold": require("./assets/fonts/Inter-Bold.ttf"),
-        // "Inter Black": require("./assets/fonts/Inter Black.ttf"),
+        "Inter Black": require("./assets/fonts/Inter-Black.ttf"),
     });
 
-    if(!fontsLoaded) return (<AppLoading />);
+    useEffect(() => {
+        async function prepare(){
+            await SplashScreen.preventAutoHideAsync();
+        }
+        prepare();
+    }, []);
+
+    if(!fontsLoaded) {
+        return undefined;
+    }else{
+        SplashScreen.hideAsync();
+    }
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
