@@ -1,16 +1,9 @@
 import React from 'react';
-import styled from 'styled-components/native';
+import { Image } from 'react-native'  
 import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableOpacity } from 'react-native';
 
-
-const ArrowIcon = styled.Image`
-    width: 22px;
-    height: 22px;
-`
-
-
-const NextButton = ( { onPress } ) => {
+const DegradeButton = ( { onPress, iconFile, iconWidth, iconHeight } ) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <LinearGradient
@@ -25,11 +18,16 @@ const NextButton = ( { onPress } ) => {
                     justifyContent: 'center',
                 }}
             >
-                <ArrowIcon source={require('../assets/icons/arrow.png')} />
+                <Image 
+                    source={iconFile}
+                    style={{
+                        width: iconWidth ? 22 : iconWidth,
+                        height: iconHeight ? 22 : iconHeight,
+                    }}
+                />
             </LinearGradient>
         </TouchableOpacity>
     );
 };
 
-
-export default NextButton;
+export default DegradeButton;
