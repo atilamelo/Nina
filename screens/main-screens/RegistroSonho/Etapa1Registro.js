@@ -8,18 +8,29 @@ import QuestionNavigationHeader from '../../../components/Headers/QuestionNaviga
 import NextButton from '../../../components/NextButton';
 
 const QuestionsContainer = styled.View`
-    flex: 1;
-    margin-right: 25px;
-    margin-left: 25px;
     `
 
+const BottomBarContainer = styled.View`
+    flex: 1;
+    position: absolute;
+    width: 100%;
+    bottom: 6.5%;
+    align-items: flex-end;
+    align-self: flex-end;
+`;
+
+const MainContent = styled.View`
+    flex: 1;
+    margin-right: 8%;
+    margin-left: 8%;
+`
 
 const Etapa1Registro = ({ navigation }) => {
     const [lucidityRating, setLucidityRating] = useState(null);
     const [realityQuestionAnswer, setRealityQuestionAnswer] = useState(null);
     const [recurrenceQuestionAnswer, setRecurrenceQuestionAnswer] = useState(null);
 
-    const handleElipseClick = (index) => {
+    const handleLucidyClick = (index) => {
         setLucidityRating(index);
     };
 
@@ -39,14 +50,19 @@ const Etapa1Registro = ({ navigation }) => {
 
     }
 
+    const handleNext = () => {
+
+    }
+
     return (
         <Background>
             <QuestionNavigationHeader onSkip={handleSkip} onBack={handleBack} />
 
+            <MainContent>
             <QuestionsContainer>
                 <LucidyQuestion
                     lucidityRating={lucidityRating}
-                    handleElipseClick={handleElipseClick}
+                    handleElipseClick={handleLucidyClick}
                 />
 
                 <Barra/>
@@ -74,8 +90,10 @@ const Etapa1Registro = ({ navigation }) => {
                 />
             </QuestionsContainer>
 
-
-        <NextButton/>
+            <BottomBarContainer>
+                <NextButton onClick={handleNext}/>
+            </BottomBarContainer>
+            </MainContent>
         </Background>
     );
 };

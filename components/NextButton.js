@@ -10,11 +10,11 @@ const ArrowIcon = styled.Image`
 `
 
 
-const NextButton = ( handleNext ) => {
+const NextButton = ( onClick ) => {
     return (
-        <TouchableOpacity onPress={() => handleNext()}>
+        <TouchableOpacity onPress={() => {onClick}}>
             <LinearGradient
-                colors={['#FF6B6B', '#9F238E']} // Define your gradient colors
+                colors={['#703E8E', '#9A248D']} // Define your gradient colors
                 start={[0, 0]} // Start point of the gradient
                 end={[1, 1]} // End point of the gradient
                 style={{
