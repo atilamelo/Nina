@@ -13,7 +13,6 @@ const QuestionsContainer = styled.View`
     margin-left: 25px;
     `
 
-
 const Etapa1Registro = ({ navigation }) => {
     const [lucidityRating, setLucidityRating] = useState(null);
     const [realityQuestionAnswer, setRealityQuestionAnswer] = useState(null);
