@@ -8,7 +8,7 @@ export default function Screen2() {
 
   return (
     <ScreenContainer windowWidth={width}>
-      <Text>Screen2</Text>
+      <Text>O que você sentiu nesse sonho? </Text>
     </ScreenContainer>
   )
 }

@@ -3,7 +3,9 @@ import { FlatList, View, Animated } from 'react-native';
 import Background from '../../../components/Background/Background';
 import styled from 'styled-components/native';
 import QuestionNavigationHeader from '../../../components/Headers/QuestionNavigationHeader';
-import NextButton from '../../../components/NextButton';
+import DegradeButton from '../../../components/DegradeButton';
+import BasicButton from '../../../components/BasicButton';
+import BottomBar from '../../../components/BottomBar';
 import Screen1 from './Screen1';
 import Screen2 from './Screen2';
 import Screen3 from './Screen3';
@@ -61,21 +63,17 @@ const RegistroSonho = ({ navigation }) => {
 
             <Paginator data={screens} scrollx={scrollX}/>
 
-            <BottomBarContainer>
-                <NextButton onPress={scrollTo}/>
-            </BottomBarContainer>
+            <BottomBar style={{justifyContent: 'flex-end'}}>
+                
+                <DegradeButton 
+                    onPress={scrollTo}
+                    iconFile={require('../../../assets/icons/arrow.png')}
+                    iconWidth={22}
+                    iconHeight={22}
+                />
+            </BottomBar>
         </Background>
     );
 };
 
 export default RegistroSonho;
-
-const BottomBarContainer = styled.View`
-    flex: 1;
-    position: absolute;
-    width: 100%;
-    bottom: 6.5%;
-    padding-right: 25px;
-    align-items: flex-end;
-    align-self: flex-end;
-`;
