@@ -5,14 +5,16 @@ import styled from 'styled-components/native';
 import QuestionNavigationHeader from '../../../components/Headers/QuestionNavigationHeader';
 import NextButton from '../../../components/NextButton';
 import Screen1 from './Screen1';
-import Paginator from './Paginator';
+import Screen2 from './Screen2';
+import Screen3 from './Screen3';
+import Paginator from '../../../components/Paginator';
 
 const screens = [
-    { key: 1, component: <Screen1 /> },
-    { key: 2, component: <Screen1 /> },
-    { key: 3, component: <Screen1 /> },
+    { key: 1, component: <Screen1/> },
+    { key: 2, component: <Screen2/> },
+    { key: 3, component: <Screen3/> },
   ]
-const Etapa1Registro = ({ navigation }) => {
+const RegistroSonho = ({ navigation }) => {
     const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
     const slidesRef = useRef(null);
@@ -66,10 +68,7 @@ const Etapa1Registro = ({ navigation }) => {
     );
 };
 
-export default Etapa1Registro;
-
-const QuestionsContainer = styled.View`
-    `
+export default RegistroSonho;
 
 const BottomBarContainer = styled.View`
     flex: 1;
@@ -80,7 +79,3 @@ const BottomBarContainer = styled.View`
     align-items: flex-end;
     align-self: flex-end;
 `;
-
-const MainContent = styled.View`
-    flex: 1;
-`

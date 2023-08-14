@@ -2,16 +2,10 @@ import YesNoQuestionComponent from '../../../components/Questions/YesNoQuestion'
 import LucidyQuestion  from '../../../components/Questions/LucidyQuestion';
 import Barra from '../../../components/Barra/Barra';
 import React, { useState } from 'react';
-import styled from 'styled-components/native';
 import { useWindowDimensions } from 'react-native';
+import { ScreenContainer } from './style'
 
-
-const ScreenContainer = styled.View`
-    padding-right: 25px;
-    padding-left: 25px;
-`
-
-const Screen1 = () => {
+export default function Screen1() {
     const { width } = useWindowDimensions();
 
     const [lucidityRating, setLucidityRating] = useState(null);
@@ -32,7 +26,7 @@ const Screen1 = () => {
 
 
     return (
-        <ScreenContainer style={{width}}>
+        <ScreenContainer windowWidth={width}>
             <LucidyQuestion
                 lucidityRating={lucidityRating}
                 handleElipseClick={handleLucidyClick}
@@ -64,5 +58,3 @@ const Screen1 = () => {
         </ScreenContainer>
     )
 }
-
-export default Screen1;
