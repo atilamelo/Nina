@@ -54,6 +54,7 @@ const WriteScreen = ({ navigation }) => {
                                     multiline={true} // Habilita várias linhas
                                     onChange={evento}
                                     selectionColor="purple"
+                                    maxLength={50}
                                 />
                                 <>{Titulo.titulo}</>
 
