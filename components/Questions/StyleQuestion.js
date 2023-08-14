@@ -1,8 +1,7 @@
 import styled from 'styled-components/native';
 
 export const QuestionContainer = styled.View`
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 25px;
     align-items: center;
     justify-content: center;
 `;
