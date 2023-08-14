@@ -3,12 +3,12 @@ import React from 'react'
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style'
 
-export default function Screen2() {
+export default function Screen3() {
   const { width } = useWindowDimensions();
 
   return (
     <ScreenContainer windowWidth={width}>
-      <Text>Screen2</Text>
+      <Text>Screen3</Text>
     </ScreenContainer>
   )
 }
