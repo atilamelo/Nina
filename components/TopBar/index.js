@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 const TopBarContainer = styled.View`
-  height: 5%;
+  height: 6%;
   flex-direction: row;
   align-items: center;
   background-color: 'red';
