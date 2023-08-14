@@ -6,6 +6,9 @@ import TopBar from '../../../components/TopBar';
 import voltarImage from '../../../assets/icons/Voltar.png';
 import purpleCatImage from '../../../assets/purple_cat.jpg';
 import arrow from '../../../assets/icons/arrow.png';
+import DegradeButton from '../../../components/DegradeButton';
+import reload from '../../../assets/icons/reload.png';
+import BottomBar from '../../../components/BottomBar';
 
 
 
@@ -40,19 +43,35 @@ const WriteScreen = ({ navigation }) => {
             windowSoftInputMode="adjustResize"
         >
             <Background>
+                
+                <TopBar
+                    left={
+                        <TouchableOpacity onPress={voltarButton}>
+                            <Voltar source={voltarImage} />
+                        </TouchableOpacity>
+                    }
+                    middle={<Texto>Imagem Gerada</Texto>}
+                />
                 <Container>
-                            <TopBar
-                                left={
-                                    <TouchableOpacity onPress={voltarButton}>
-                                        <Voltar source={voltarImage} />
-                                    </TouchableOpacity>
-                                }
-                                middle={<Texto>Imagem Gerada</Texto>}
+                    <Content>
+                        <Imagem source={purpleCatImage} resizeMode="contain" borderRadius={13}/>
+
+                        <BottomBar style = {{justifyContent: "space-between"}}>
+                            
+                            <DegradeButton
+                                iconFile={reload}
+                                iconWidth={22}
+                                iconHeight={22}
                             />
 
-                            <Imagem source={purpleCatImage} resizeMode="contain"/>
+                            <DegradeButton
+                                iconFile={arrow}
+                                iconWidth={22}
+                                iconHeight={22}
+                            />
 
-                            <BottomBarContainer source={arrow}/>
+                        </BottomBar>
+                    </Content>
 
                 </Container>
             </Background>
@@ -62,6 +81,13 @@ const WriteScreen = ({ navigation }) => {
 
 const Container = styled.View`
     flex: 1;
+    padding: 20px; 
+`;
+
+const Content = styled.View`
+    flex: 1;
+    align-items: center;
+    
 `;
 
 const Voltar = styled.Image`
@@ -82,19 +108,6 @@ const Imagem = styled.Image`
     height: 289px;
     align-self: center;
     margin-top: 40%;
-`;
-
-const BottomBarContainer = styled.View`
-    flex: 1;
-    flex-direction: row;
-    position: absolute;
-    width: 100%;
-    bottom: 6.5%;
-    padding-right: 25px;
-    padding-left: 25px;
-    justify-content: space-between;
-    align-self: flex-end;
-    background-color: red;
 `;
 
 const styles = {
