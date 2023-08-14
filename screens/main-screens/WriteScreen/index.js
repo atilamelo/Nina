@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { ScrollView, KeyboardAvoidingView, TextInput, Platform } from 'react-native';
+import { ScrollView, KeyboardAvoidingView, TextInput, Platform, TouchableOpacity  } from 'react-native';
 import styled from 'styled-components/native';
 import Background from '../../../components/Background/Background';
 import TopBar from '../../../components/TopBar';
@@ -7,11 +7,16 @@ import voltarImage from '../../../assets/icons/Voltar.png';
 
 const WriteScreen = ({ navigation }) => {
 
+    const voltarButton = () => {
+        navigation.navigate('Sonhos');
+    };
+
     //Modelo JSON
     const modelo = {titulo:'', texto: ''}
 
     //useState
-    const [sonho, setSonho] = useState(modelo);
+    const [titulo, setTitulo] = useState(modelo);
+    const [texto, setTexto] = useState(modelo);
 
     //Evento
     const evento = (e) => {
@@ -19,7 +24,8 @@ const WriteScreen = ({ navigation }) => {
         let texto = e.target.text;
         let valor = e.target.value; //Não sei se eu tenho q criar outro valor para cada variavel
         
-        setSonho({...sonho, [titulo]: valor, [texto]: valor});
+        setTitulo({...titulo, [titulo]: valor});
+        setTexto({...texto, [texto]: valor});
     }
     return (
         
@@ -33,7 +39,11 @@ const WriteScreen = ({ navigation }) => {
                 >
                     <Container>
                                 <TopBar
-                                    left={<Voltar source={voltarImage} />}
+                                    left={
+                                        <TouchableOpacity onPress={voltarButton}>
+                                            <Voltar source={voltarImage} />
+                                        </TouchableOpacity>
+                                    }
                                     middle={<Texto>Escreva seu sonho</Texto>}
                                 />
                                 <Titulo 
@@ -45,7 +55,7 @@ const WriteScreen = ({ navigation }) => {
                                     onChange={evento}
                                     selectionColor="purple"
                                 />
-                                <>{sonho.titulo}</>
+                                <>{Titulo.titulo}</>
 
                                 <Sonho 
                                     placeholder="Escreva aqui seu sonho."
@@ -88,7 +98,7 @@ const Texto = styled.Text`
 const Titulo = styled.TextInput`
     margin-top: 10%;
     margin-left: 8%;
-    margin-horizontal: 6%;
+    margin-horizontal: 8%;
     font-size: 25px;
     color: #ffffff;
     font-weight: bold;
@@ -97,7 +107,7 @@ const Titulo = styled.TextInput`
 const Sonho = styled.TextInput`
     margin-top: 9%;
     margin-left: 8%;
-    margin-horizontal: 6%;
+    margin-horizontal: 8%;
     font-size: 17px;
     color: #ffffff;
    

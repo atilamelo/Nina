@@ -12,7 +12,6 @@ const screens = [
     { key: 2, component: <Screen1 /> },
     { key: 3, component: <Screen1 /> },
   ]
-
 const Etapa1Registro = ({ navigation }) => {
     const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
