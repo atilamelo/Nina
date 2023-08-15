@@ -11,8 +11,8 @@ import HomeScreen from '../../screens/main-screens/HomeScreen';
 import StatisticsScreen from '../../screens/main-screens/StatisticsScreen';
 import CalendarScreen from '../../screens/main-screens/CalendarScreen';
 import ConfigScreen from '../../screens/main-screens/ConfigScreen';
-import WriteScreen from '../../screens/main-screens/WriteScreen';
-import Etapa1Registro from '../../screens/main-screens/RegistroSonho/Etapa1Registro';
+import WriteNavigator from '../../screens/main-screens/WriteScreen/WriteNavigator';
+import RegistroSonho from '../../screens/main-screens/RegistroSonho/RegistroSonho';
 
 const Tab = createBottomTabNavigator();
 const focusedColor = '#9F238E';
@@ -59,7 +59,7 @@ const Tabs = () => {
                 headerShown: false,
                 
             }}
-            initialRouteName='HomeScreen'
+            initialRouteName='WriteDreams'
         >
             <Tab.Screen name="Sonhos" component={HomeScreen} options={{
                 tabBarIcon: ({ focused }) => (
@@ -87,7 +87,7 @@ const Tabs = () => {
                 ),
             }} />
 
-            <Tab.Screen name="WriteDreams" component={WriteScreen} options={{
+            <Tab.Screen name="WriteDreams" component={WriteNavigator} options={{
                 tabBarIcon: ({ focused }) => (
                     <Image
                         source={require('../../assets/icons/pen.png')}

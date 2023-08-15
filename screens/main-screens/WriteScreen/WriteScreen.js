@@ -26,7 +26,7 @@ const WriteScreen = ({ navigation }) => {
         let titulo = e.target.text;
         let texto = e.target.text;
         let valor = e.target.value; //Não sei se eu tenho q criar outro valor para cada variavel
-        
+        console.log(titulo)
         setTitulo({...titulo, [titulo]: valor});
         setTexto({...texto, [texto]: valor});
     }
