@@ -19,6 +19,7 @@ const App = () => {
     const [fontsLoaded] = useFonts({
         "Inter Bold": require("./assets/fonts/Inter-Bold.ttf"),
         "Inter Black": require("./assets/fonts/Inter-Black.ttf"),
+        "Inter Regular": require("./assets/fonts/Inter-Regular.ttf"),
     });
 
     useEffect(() => {

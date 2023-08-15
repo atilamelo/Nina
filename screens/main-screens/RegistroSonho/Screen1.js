@@ -36,7 +36,7 @@ export default function Screen1() {
 
             <YesNoQuestionComponent
                 options={[
-                    { label: 'Sim', value: true },
+                    { label: 'Sim', value: true }, // Lembrar de dar a opção de desmarcar
                     { label: 'Não', value: false }
                 ]}
                 questionLabel={'Seu sonho teve conexão com a realidade?'}
