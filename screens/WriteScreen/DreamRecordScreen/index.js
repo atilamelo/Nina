@@ -63,7 +63,7 @@ const RegistroSonho = ({ navigation }) => {
 
             <Paginator data={screens} scrollx={scrollX}/>
 
-            <BottomBar style={{justifyContent: 'flex-end'}}>
+            <DreamFooter style={{justifyContent: 'flex-end'}}>
                 
                 <DegradeButton 
                     onPress={scrollTo}
@@ -71,7 +71,7 @@ const RegistroSonho = ({ navigation }) => {
                     iconWidth={22}
                     iconHeight={22}
                 />
-            </BottomBar>
+            </DreamFooter>
         </Background>
     );
 };

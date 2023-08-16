@@ -1,9 +1,8 @@
-import {} from 'react-native'
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import WriteScreen from '../screens/WriteScreen';
 import DreamRecordScreen from '../screens/WriteScreen/DreamRecordScreen';
+import GenerateImageScreen from '../screens/WriteScreen/ImageScreen';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
@@ -16,11 +15,15 @@ export default function WriteNavigator() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="DreamRecord"
+          name="DreamRec"
           component={DreamRecordScreen}
           options={{ headerShown: false }}
         />
-        
+        <Stack.Screen
+          name="DreamImage"
+          component={GenerateImageScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
   )
 }

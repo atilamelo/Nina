@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { ScrollView, KeyboardAvoidingView, View, Platform, TouchableOpacity  } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import Background from '../../components/Background';
 import voltarImage from '../../assets/icons/Voltar.png';
@@ -8,11 +9,19 @@ import DreamFooter from '../../components/Footers/DreamFooter';
 import BasicButton  from '../../components/Buttons/BasicButton'
 import DegradeButton from '../../components/Buttons/DegradeButton'
 
-const WriteScreen = ({ navigation }) => {
+const WriteScreen = ( { navigation } ) => {
 
     const voltarButton = () => {
         navigation.navigate('Sonhos');
     };
+
+    const nextScreen = () => {
+        navigation.navigate('DreamRec');
+    };
+
+    const generateImage = () => {
+        navigation.navigate('DreamImage');
+    }
 
     //Modelo JSON
     const modelo = {titulo:'', texto: ''}
@@ -79,6 +88,7 @@ const WriteScreen = ({ navigation }) => {
                 <DreamFooter style={{justifyContent: 'space-between'}}>
                     <View style={{flexDirection: 'row'}}>
                         <View style={{marginRight: 27}}>
+                            {/* Gravar com o áudio */}
                             <BasicButton 
                                 onPress={() => undefined}
                                 iconFile={require('../../assets/icons/mic.png')}
@@ -86,9 +96,10 @@ const WriteScreen = ({ navigation }) => {
                                 iconHeight={29}
                             />
                         </View>
-
+                        
+                        {/* Gerar imagem com IA */}
                         <BasicButton 
-                            onPress={() => undefined}
+                            onPress={generateImage}
                             iconFile={require('../../assets/icons/img.png')}
                             iconWidth={27}
                             iconHeight={22}
@@ -97,7 +108,7 @@ const WriteScreen = ({ navigation }) => {
 
 
                     <DegradeButton 
-                        onPress={() => undefined}
+                        onPress={nextScreen}
                         iconFile={require('../../assets/icons/arrow.png')}
                         iconWidth={22}
                         iconHeight={22}

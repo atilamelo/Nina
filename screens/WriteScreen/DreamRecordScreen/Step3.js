@@ -1,6 +1,7 @@
 import Barra from '../../../components/Barra';
 import React, { useState } from 'react';
-import { YesNoQuestion, LucidyQuestion } from '../../../components/DreamQuestions';
+import YesNoQuestion from '../../../components/DreamQuestions/YesNoQuestion';
+import LucidyQuestion from '../../../components/DreamQuestions/LucidyQuestion';
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style'
 
