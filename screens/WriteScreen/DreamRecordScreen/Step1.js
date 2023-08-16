@@ -11,7 +11,6 @@ export default function Step1() {
   const { width } = useWindowDimensions();
 
   const [dateOfDream, setDateOfDream] = useState("");
-
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
 
@@ -40,7 +39,7 @@ export default function Step1() {
   };
 
   const tagOptions = ['Pesadelo', 'Surreal', 'Vivido', 'Diferente', 'Recorrente'];
-  const [selectedTagsIndexes, setSelectedTagsIndexes] = useState([]); // Inicialize com uma matriz vazia
+  const [selectedTagsIndexes, setSelectedTagsIndexes] = useState([]);
 
   const handleFeelingsClick = (index) => {
     if (selectedTagsIndexes.includes(index)) {
@@ -57,40 +56,39 @@ export default function Step1() {
         <QuestionText>Que dia você sonhou?</QuestionText>
       </QuestionContainer>
 
+      <Pressable onPress={toggleDatepicker}>
+        <Styled>
+          <TextInput
+            style={{
+              textAlignVertical: 'center',
+              justifyContent: 'space-between',
+              color: '#ffffff',
+              borderColor: 'white', 
+              borderWidth: 2,
+              paddingHorizontal: 40,
+              height: 50,
+              fontSize: 20,
+              borderRadius: 10,
+            }}
+            placeholder="15 Ago 2023"
+            value={dateOfDream}
+            onChangeText={setDateOfDream}
+            placeholderTextColor="#ffffff"
+            editable={false}
+          />
+        </Styled>
+      </Pressable>
+
       {showPicker && (
         <DateTimePicker
-        mode="date"
-        display="spinner"
-        value={date}
-        onChange={onChange}
-        maximumDate={new Date()}
-      />)}
-
-      {!showPicker && (
-        <Pressable onPress={toggleDatepicker}>
-          <Styled>
-            <TextInput
-              style={{
-                textAlignVertical: 'center',
-                justifyContent: 'space-between',
-                color: '#ffffff',
-                borderColor: 'white', 
-                borderWidth: 2,
-                paddingHorizontal: 40,
-                height: 50,
-                fontSize: 20,
-                borderRadius: 10,
-              }}
-              placeholder="15 Ago 2023"
-              value={dateOfDream}
-              onChangeText={setDateOfDream}
-              placeholderTextColor="#ffffff"
-              editable={false}
-            />
-          </Styled>
-        </Pressable>
+          mode="date"
+          display="spinner"
+          value={date}
+          onChange={onChange}
+          maximumDate={new Date()}
+        />
       )}
-      
+
       <QuestionContainer>
         <QuestionText>Deseja adicionar esse sonho em alguma tag?</QuestionText>
       </QuestionContainer>
@@ -110,7 +108,6 @@ export default function Step1() {
 }
 
 const Styled = styled.View`
-
   align-items: center;
   justify-content: center;
   flex-direction: row;
@@ -118,7 +115,6 @@ const Styled = styled.View`
 `;
 
 const TagContainer = styled.View`
-
   width: 300px; 
   height: 210px;
   align-items: center;
