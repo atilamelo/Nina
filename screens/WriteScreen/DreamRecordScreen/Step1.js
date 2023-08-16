@@ -13,13 +13,11 @@ export default function Step1() {
   const setDreamData = dreamContext.setDreamData;
   const { width } = useWindowDimensions();
   const tagOptions = ['Pesadelo', 'Surreal', 'Vivido', 'Diferente', 'Recorrente'];
-
-  const [dateOfDream, setDateOfDream] = useState("");
-  const [date, setDate] = useState(new Date());
+  
+  // Stores the date formated at schema Day Month(at full lenght) Year
+  const [datePlaceHolder, setDatePlaceHolder] = useState("");
+  // Stores the state of the datepicker
   const [showPicker, setShowPicker] = useState(false);
-
-  console.log(dateOfDream)
-  console.log(date)
 
   const toggleDatepicker = () => {
     setShowPicker(!showPicker);
@@ -28,12 +26,15 @@ export default function Step1() {
   const onChange = ({ type }, selectedDate) => {
     if (type === "set") {
       const currentDate = selectedDate;
-      setDate(currentDate);
+      setDreamData(prevData => ({
+        ...prevData,
+        date: currentDate
+      }));
   
       if (Platform.OS === "android") {
         toggleDatepicker();
         const formattedDate = formatDate(currentDate);
-        setDateOfDream(formattedDate);
+        setDatePlaceHolder(formattedDate);
       }
     } else {
       toggleDatepicker();
@@ -80,8 +81,8 @@ export default function Step1() {
               borderRadius: 10,
             }}
             placeholder="15 Ago 2023"
-            value={dateOfDream}
-            onChangeText={setDateOfDream}
+            value={datePlaceHolder}
+            onChangeText={setDatePlaceHolder}
             placeholderTextColor="#ffffff"
             editable={false}
           />
@@ -92,7 +93,7 @@ export default function Step1() {
         <DateTimePicker
           mode="date"
           display="spinner"
-          value={date}
+          value={dreamData.date}
           onChange={onChange}
           maximumDate={new Date()}
         />
