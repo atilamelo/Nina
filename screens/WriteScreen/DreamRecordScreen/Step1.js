@@ -70,7 +70,17 @@ export default function Step1() {
         <Pressable onPress={toggleDatepicker}>
           <Styled>
             <TextInput
-              style={{ textAlignVertical: 'center', justifyContent: 'space-between', color: '#ffffff'}}
+              style={{
+                textAlignVertical: 'center',
+                justifyContent: 'space-between',
+                color: '#ffffff',
+                borderColor: 'white', 
+                borderWidth: 2,
+                paddingHorizontal: 40,
+                height: 50,
+                fontSize: 20,
+                borderRadius: 10,
+              }}
               placeholder="15 Ago 2023"
               value={dateOfDream}
               onChangeText={setDateOfDream}
@@ -104,15 +114,15 @@ const Styled = styled.View`
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  
+  margin-top: 10%;
 `;
 
 const TagContainer = styled.View`
 
   width: 300px; 
-  height: 280px;
+  height: 210px;
   align-items: center;
   justify-content: center;
   margin: auto;
-  margin-top: 5%;
+  margin-top: 9%;
 `;
