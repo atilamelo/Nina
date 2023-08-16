@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style';
-import FeelingsQuestionComponent from '../../../components/Questions/FeelingsQuestion';
-import Barra from '../../../components/Barra/Barra';
-import { QuestionContainer, QuestionText } from '../../../components/Questions/StyleQuestion';
+import { FeelingsQuestion } from '../../../components/DreamQuestions';
+import Barra from '../../../components/Barra';
+import { QuestionContainer, QuestionText } from '../../../components/DreamQuestions/StyleQuestion';
 
-export default function Screen2() {
+export default function Step2() {
   const { width } = useWindowDimensions();
 
   const feelingsOptions = ['Felicidade', 'Curiosidade', 'Tristeza', 'Ansiedade', 'Medo', 'Surpresa', 'Raiva', 'Calma'];
@@ -25,7 +25,7 @@ export default function Screen2() {
         <QuestionText>Como você se sentiu no sonho?</QuestionText>
       </QuestionContainer>
 
-      <FeelingsQuestionComponent
+      <FeelingsQuestion
         options={feelingsOptions}
         selectedAnswers={selectedFeelingsIndexes} // Atualizado para selectedAnswers
         handleAnswerClick={handleFeelingsClick}

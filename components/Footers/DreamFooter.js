@@ -1,6 +1,6 @@
 import { styled } from "styled-components/native";
 
-export default BotttomBar = styled.View`
+export default DreamFooter = styled.View`
     flex: 1;
     flex-direction: row;
     position: absolute;

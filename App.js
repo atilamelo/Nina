@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import Tabs from './components/navigation/Tabs';
+import HomeNavigator from './navigators/HomeNavigator';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import * as SplashScreen  from 'expo-splash-screen';
@@ -41,7 +41,7 @@ const App = () => {
                     <Stack.Navigator>
                         <Stack.Screen
                             name="Tabs"
-                            component={Tabs}
+                            component={HomeNavigator}
                             options={{ headerShown: false }} // Ocultar o cabeçalho
                         />
                     </Stack.Navigator>

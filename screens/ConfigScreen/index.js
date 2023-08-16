@@ -5,9 +5,9 @@
 
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import ConfigItem  from '../../../components/ConfigItem';
-import Barra from '../../../components/Barra/Barra';
-import Background from '../../../components/Background/Background';
+import ConfigItem  from '../../components/ConfigItem';
+import Barra from '../../components/Barra';
+import Background from '../../components/Background';
 
 const ConfigScreen = ({ navigation }) => {
     const navigateTo = ({ screen_name }) => {
@@ -24,12 +24,12 @@ const ConfigScreen = ({ navigation }) => {
                     </View>
                     <Barra/>
 
-                    <ConfigItem label="Notificações" iconSource={require('../../../assets/Config/notificacao.png')} onPress={() => { }} />
-                    <ConfigItem label="Backup em nuvem" iconSource={require('../../../assets/Config/backup.png')} onPress={() => { }} />
-                    <ConfigItem label="Termos & Condições" iconSource={require('../../../assets/Config/termos.png')} onPress={() => { }} />
-                    <ConfigItem label="Política de privacidade" iconSource={require('../../../assets/Config/termos.png')} onPress={() => { }} />
-                    <ConfigItem label="Fale conosco" iconSource={require('../../../assets/Config/telefone.png')} onPress={() => { }} />
-                    <ConfigItem label="Sair" iconSource={require('../../../assets/Config/sair.png')} onPress={() => { }} />
+                    <ConfigItem label="Notificações" iconSource={require('../../assets/Config/notificacao.png')} onPress={() => { }} />
+                    <ConfigItem label="Backup em nuvem" iconSource={require('../../assets/Config/backup.png')} onPress={() => { }} />
+                    <ConfigItem label="Termos & Condições" iconSource={require('../../assets/Config/termos.png')} onPress={() => { }} />
+                    <ConfigItem label="Política de privacidade" iconSource={require('../../assets/Config/termos.png')} onPress={() => { }} />
+                    <ConfigItem label="Fale conosco" iconSource={require('../../assets/Config/telefone.png')} onPress={() => { }} />
+                    <ConfigItem label="Sair" iconSource={require('../../assets/Config/sair.png')} onPress={() => { }} />
                 </ScrollView>
         </View>
         

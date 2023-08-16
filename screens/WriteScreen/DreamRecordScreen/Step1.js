@@ -3,7 +3,7 @@ import React from 'react'
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style'
 
-export default function Screen3() {
+export default function Step1() {
   const { width } = useWindowDimensions();
 
   return (

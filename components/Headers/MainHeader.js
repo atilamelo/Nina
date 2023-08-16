@@ -31,7 +31,7 @@ const TopBarText = styled.Text`
   color: white;
 `;
 
-const TopBar = ({ left, middle, right }) => {
+const MainHeader = ({ left, middle, right }) => {
   return (
     <TopBarContainer>
       <LeftSection>{left}</LeftSection>
@@ -41,4 +41,4 @@ const TopBar = ({ left, middle, right }) => {
   );
 };
 
-export default TopBar;
+export default MainHeader;

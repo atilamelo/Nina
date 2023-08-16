@@ -1,11 +1,10 @@
-import YesNoQuestionComponent from '../../../components/Questions/YesNoQuestion';
-import LucidyQuestion  from '../../../components/Questions/LucidyQuestion';
-import Barra from '../../../components/Barra/Barra';
+import Barra from '../../../components/Barra';
 import React, { useState } from 'react';
+import { YesNoQuestion, LucidyQuestion } from '../../../components/DreamQuestions';
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style'
 
-export default function Screen1() {
+export default function Step3() {
     const { width } = useWindowDimensions();
 
     const [lucidityRating, setLucidityRating] = useState(null);
@@ -34,7 +33,7 @@ export default function Screen1() {
 
             <Barra/>
 
-            <YesNoQuestionComponent
+            <YesNoQuestion
                 options={[
                     { label: 'Sim', value: true }, // Lembrar de dar a opção de desmarcar
                     { label: 'Não', value: false }
@@ -46,7 +45,7 @@ export default function Screen1() {
 
             <Barra/>
 
-            <YesNoQuestionComponent
+            <YesNoQuestion
                 options={[
                     { label: 'Sim', value: true },
                     { label: 'Não', value: false }

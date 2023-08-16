@@ -1,20 +1,20 @@
 import React, { useRef, useState } from 'react';
 import { FlatList, View, Animated } from 'react-native';
-import Background from '../../../components/Background/Background';
+import Background from '../../../components/Background';
 import styled from 'styled-components/native';
 import QuestionNavigationHeader from '../../../components/Headers/QuestionNavigationHeader';
-import DegradeButton from '../../../components/DegradeButton';
-import BasicButton from '../../../components/BasicButton';
-import BottomBar from '../../../components/BottomBar';
-import Screen1 from './Screen1';
-import Screen2 from './Screen2';
-import Screen3 from './Screen3';
+import DegradeButton from '../../../components/Buttons/DegradeButton';
+import BasicButton from '../../../components/Buttons/BasicButton';
+import DreamFooter from '../../../components/Footers/DreamFooter';
+import Step1 from './Step1';
+import Step2 from './Step2';
+import Step3 from './Step3';
 import Paginator from '../../../components/Paginator';
 
 const screens = [
-    { key: 1, component: <Screen1/> },
-    { key: 2, component: <Screen2/> },
-    { key: 3, component: <Screen3/> },
+    { key: 1, component: <Step1/> },
+    { key: 2, component: <Step2/> },
+    { key: 3, component: <Step3/> },
   ]
 const RegistroSonho = ({ navigation }) => {
     const [currentScreenIndex, setCurrentScreenIndex] = useState(0);

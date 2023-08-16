@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import { ScrollView, KeyboardAvoidingView, View, Platform, TouchableOpacity  } from 'react-native';
 import styled from 'styled-components/native';
-import Background from '../../../components/Background/Background';
-import TopBar from '../../../components/TopBar';
-import voltarImage from '../../../assets/icons/Voltar.png';
-import BottomBar from '../../../components/BottomBar.js';
-import DegradeButton from '../../../components/DegradeButton.js';
-import BasicButton from '../../../components/BasicButton';
+import Background from '../../components/Background';
+import voltarImage from '../../assets/icons/Voltar.png';
+import MainHeader from '../../components/Headers/MainHeader';
+import DreamFooter from '../../components/Footers/DreamFooter';
+import BasicButton  from '../../components/Buttons/BasicButton'
+import DegradeButton from '../../components/Buttons/DegradeButton'
 
 const WriteScreen = ({ navigation }) => {
 
@@ -41,7 +41,7 @@ const WriteScreen = ({ navigation }) => {
                 <ScrollView>
                     <Container>
 
-                        <TopBar
+                        <MainHeader
                             left={
                                 <TouchableOpacity onPress={voltarButton}>
                                     <Voltar source={voltarImage} />
@@ -76,12 +76,12 @@ const WriteScreen = ({ navigation }) => {
                     </Container>
                 </ScrollView>
                 
-                <BottomBar style={{justifyContent: 'space-between'}}>
+                <DreamFooter style={{justifyContent: 'space-between'}}>
                     <View style={{flexDirection: 'row'}}>
                         <View style={{marginRight: 27}}>
                             <BasicButton 
                                 onPress={() => undefined}
-                                iconFile={require('../../../assets/icons/mic.png')}
+                                iconFile={require('../../assets/icons/mic.png')}
                                 iconWidth={31}
                                 iconHeight={29}
                             />
@@ -89,7 +89,7 @@ const WriteScreen = ({ navigation }) => {
 
                         <BasicButton 
                             onPress={() => undefined}
-                            iconFile={require('../../../assets/icons/img.png')}
+                            iconFile={require('../../assets/icons/img.png')}
                             iconWidth={27}
                             iconHeight={22}
                         />
@@ -98,11 +98,11 @@ const WriteScreen = ({ navigation }) => {
 
                     <DegradeButton 
                         onPress={() => undefined}
-                        iconFile={require('../../../assets/icons/arrow.png')}
+                        iconFile={require('../../assets/icons/arrow.png')}
                         iconWidth={22}
                         iconHeight={22}
                     />                
-                </BottomBar>
+                </DreamFooter>
             </Background>
         </KeyboardAvoidingView>
     );
