@@ -7,7 +7,7 @@ const YesNoQuestion = styled.View`
     width: 82px;
     height: 35px;
     border-radius: 10px;
-    background-color: ${({ selected }) => (selected ? '#9F238E' : '#2B314C')};
+    background-color: ${ p => (p.selected ? '#9F238E' : '#2B314C')};
     justify-content: center;
     align-items: center;
     margin-left: 12.5px;

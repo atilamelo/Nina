@@ -6,7 +6,7 @@ const FeelingsQuestion = styled.TouchableOpacity`
   width: 144px;
   height: 37px;
   border-radius: 10px;
-  background-color: ${({ selected }) => (selected ? '#9F238E' : '#2B314C')};
+  background-color: ${p => (p.selected ? '#9F238E' : '#2B314C')};
   justify-content: center;
   align-items: center;
   margin-left: 12.5px;
@@ -23,11 +23,11 @@ const FeelingsText = styled.Text`
 const FeelingsGroup = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 20%;
-  flex-wrap: wrap; {/* Faz com que os botões quebrem para a linha de baixo */}
+  margin-top: 25px;
+  flex-wrap: wrap;
 `;
 
-const FeelingsQuestionComponent = ({ options, selectedAnswers, handleAnswerClick }) => {
+const FeelingsQuestionComponent = ({ options, questionLabel, selectedAnswers, handleAnswerClick }) => {
     const buttonRows = [];
     for (let i = 0; i < options.length; i += 2) {
       buttonRows.push(

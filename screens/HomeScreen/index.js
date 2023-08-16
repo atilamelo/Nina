@@ -1,17 +1,17 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import DreamBox from '../../../components/DreamBox';
+import DreamBox from '../../components/DreamBox';
 import { dreamsExample } from './data'; // Sample data moved to a separate file
-import TopBar from '../../../components/TopBar';
-import Background from '../../../components/Background/Background';
+import MainHeader from '../../components/Headers/MainHeader';
+import Background from '../../components/Background';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const HomeScreen = ({ navigation }) => {
     return (
         <Background>
             <View style={styles.container}>
-                    <TopBar
+                    <MainHeader
                         middle={<Text>No Meio</Text>} // Conteúdo para a seção do meio da TopBar
                         right={<Text>Direita</Text>} // Conteúdo para a seção direita da TopBar
                     />
