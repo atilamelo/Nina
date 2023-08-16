@@ -9,7 +9,7 @@ export const QuestionContainer = styled.View`
 export const QuestionText = styled.Text`
     font-family: "Inter Bold";
     text-align: center;
-    font-size: 22px;
+    font-size: 20px;
     color: #fff;
 `;  
 

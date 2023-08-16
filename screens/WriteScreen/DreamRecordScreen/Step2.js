@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style';
 import FeelingsQuestion from '../../../components/DreamQuestions/FeelingsQuestion';
-import Barra from '../../../components/Barra';
 import { QuestionContainer, QuestionText } from '../../../components/DreamQuestions/StyleQuestion';
 
 export default function Step2() {
