@@ -1,25 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style';
 import FeelingsQuestion from '../../../components/DreamQuestions/FeelingsQuestion';
 import Barra from '../../../components/Barra';
 import { QuestionContainer, QuestionText } from '../../../components/DreamQuestions/StyleQuestion';
+import { DreamContext } from '../../../contexts/DreamContext';
 
 export default function Step2() {
+  const dreamContext = useContext(DreamContext);
+  const dreamData = dreamContext.dreamData;
+  const setDreamData = dreamContext.setDreamData;
   const { width } = useWindowDimensions();
-
   const feelingsOptions = ['Felicidade', 'Curiosidade', 'Tristeza', 'Ansiedade', 'Medo', 'Surpresa', 'Raiva', 'Calma', 'Frustração', 'Empolgação'];
-  const [selectedFeelingsIndexes, setSelectedFeelingsIndexes] = useState([]); // Inicialize com uma matriz vazia
 
   const handleFeelingsClick = (index) => {
-    if (selectedFeelingsIndexes.includes(index)) {
-      setSelectedFeelingsIndexes(selectedFeelingsIndexes.filter(item => item !== index));
+    if (dreamData.selectedFeelings.includes(index)) {
+      setDreamData(prevData => ({
+        ...prevData,
+        selectedFeelings: prevData.selectedFeelings.filter(item => item !== index)
+      }));
     } else {
-      setSelectedFeelingsIndexes([...selectedFeelingsIndexes, index]);
+      setDreamData(prevData => ({
+        ...prevData,
+        selectedFeelings: [...prevData.selectedFeelings, index]
+      }));
     }
   };
   
-  console.log("Sentimentos selecionados: " + selectedFeelingsIndexes)
+  
+  
   return (
     <ScreenContainer windowWidth={width}>
       <QuestionContainer>
@@ -28,7 +37,7 @@ export default function Step2() {
 
       <FeelingsQuestion
         options={feelingsOptions}
-        selectedAnswers={selectedFeelingsIndexes} // Atualizado para selectedAnswers
+        selectedAnswers={dreamData.selectedFeelings} // Atualizado para selectedAnswers
         handleAnswerClick={handleFeelingsClick}
       />
     </ScreenContainer>

@@ -1,11 +1,13 @@
 import {TextInput, Platform } from 'react-native'
-import React, {useState} from 'react'
+import React, { useState, useContext } from 'react'
 import { useWindowDimensions, Pressable } from 'react-native';
 import { ScreenContainer } from './style'
 import { QuestionContainer, QuestionText } from '../../../components/DreamQuestions/StyleQuestion';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { DreamContext } from '../../../contexts/DreamContext';
 
 export default function Step1() {
+  const dreamData = useContext(DreamContext)
   const { width } = useWindowDimensions();
 
   const [dateOfDream, setDateOfDream] = useState("");

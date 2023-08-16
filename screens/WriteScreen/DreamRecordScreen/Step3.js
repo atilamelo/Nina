@@ -1,34 +1,35 @@
 import Barra from '../../../components/Barra';
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import YesNoQuestion from '../../../components/DreamQuestions/YesNoQuestion';
 import LucidyQuestion from '../../../components/DreamQuestions/LucidyQuestion';
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style'
+import { DreamContext } from '../../../contexts/DreamContext';
 
 export default function Step3() {
+    const dreamContext = useContext(DreamContext);
+    const dreamData = dreamContext.dreamData;
+    const setDreamData = dreamContext.setDreamData;
     const { width } = useWindowDimensions();
-
-    const [lucidityRating, setLucidityRating] = useState(null);
-    const [realityQuestionAnswer, setRealityQuestionAnswer] = useState(null);
-    const [recurrenceQuestionAnswer, setRecurrenceQuestionAnswer] = useState(null);
     
-    const handleLucidyClick = (index) => {
-        setLucidityRating(index);
+    const handleLucidyClick = (index) => { 
+        setDreamData({...dreamData, lucidyRating: index})
     };
 
     const handleRealityClick = (value) => {
-        setRealityQuestionAnswer(value);
+        setDreamData({...dreamData, realityConection: value})
     };
 
     const handleRecurrenceClick = (value) => {
-        setRecurrenceQuestionAnswer(value);
+        setDreamData({...dreamData, recurrence: value})
     };
 
+    console.log(dreamContext.dreamData);
 
     return (
         <ScreenContainer windowWidth={width}>
             <LucidyQuestion
-                lucidityRating={lucidityRating}
+                lucidityRating={dreamContext.dreamData.lucidyRating}
                 handleElipseClick={handleLucidyClick}
             />
 
@@ -40,7 +41,7 @@ export default function Step3() {
                     { label: 'Não', value: false }
                 ]}
                 questionLabel={'Seu sonho teve conexão com a realidade?'}
-                selectedAnswer={realityQuestionAnswer}
+                selectedAnswer={dreamData.realityConection}
                 handleAnswerClick={handleRealityClick}
             />
 
@@ -52,7 +53,7 @@ export default function Step3() {
                     { label: 'Não', value: false }
                 ]}
                 questionLabel={'Esse sonho é recorrente?'}
-                selectedAnswer={recurrenceQuestionAnswer}
+                selectedAnswer={dreamData.recurrence}
                 handleAnswerClick={handleRecurrenceClick}
             />
         </ScreenContainer>

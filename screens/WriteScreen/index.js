@@ -22,22 +22,21 @@ const WriteScreen = ( { navigation } ) => {
         navigation.navigate('DreamImage');
     }
 
-    //Modelo JSON
-    const modelo = {titulo:'', texto: ''}
-
     //useState
-    const [titulo, setTitulo] = useState(modelo);
-    const [texto, setTexto] = useState(modelo);
+    const [titulo, setTitulo] = useState('');
+    const [texto, setTexto] = useState('');
 
     //Evento
-    const evento = (e) => {
-        let titulo = e.target.text;
-        let texto = e.target.text;
-        let valor = e.target.value; //Não sei se eu tenho q criar outro valor para cada variavel
-        console.log(titulo)
-        setTitulo({...titulo, [titulo]: valor});
-        setTexto({...texto, [texto]: valor});
+    const onChangeTitle = ( text ) => {
+        setTitulo(text);
     }
+
+    const onChangeText = ( text ) => {
+        setTexto(text);
+    }
+
+    console.log("Título: " + titulo) 
+    console.log("Texto: " + texto)
     return (
         
         <KeyboardAvoidingView
@@ -64,9 +63,10 @@ const WriteScreen = ( { navigation } ) => {
                             type = "text" 
                             name = "titulo"
                             multiline={true} // Habilita várias linhas
-                            onChange={evento}
+                            onChangeText={onChangeTitle}
                             selectionColor="purple"
                             maxLength={50}
+                            value={titulo}
                         />
 
                         <>{Titulo.titulo}</>
@@ -77,8 +77,9 @@ const WriteScreen = ( { navigation } ) => {
                             type="text" 
                             name="texto"
                             multiline={true}
-                            onChange={evento}
+                            onChangeText={onChangeText}
                             selectionColor="purple"
+                            value={texto}
                         />
 
                     </Container>

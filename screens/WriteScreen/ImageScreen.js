@@ -14,7 +14,7 @@ import arrow from '../../assets/icons/arrow.png';
 import reload from '../../assets/icons/reload.png';
 
 
-const apiUrl = 'https://7eb4-2804-d45-9958-2600-35be-2ff2-bfed-42f2.ngrok-free.app'
+const apiUrl = 'http://6783-200-131-182-32.ngrok-free.app'
 
 const GenerateImage = ({ navigation }) => {
 

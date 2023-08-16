@@ -3,11 +3,13 @@ import WriteScreen from '../screens/WriteScreen';
 import DreamRecordScreen from '../screens/WriteScreen/DreamRecordScreen';
 import GenerateImageScreen from '../screens/WriteScreen/ImageScreen';
 import { createStackNavigator } from '@react-navigation/stack';
+import DreamContext from '../contexts/DreamContext';
 
 const Stack = createStackNavigator();
 
 export default function WriteNavigator() {
   return (
+    <DreamContext>
       <Stack.Navigator initialRouteName="WriteHome">
         <Stack.Screen
           name="WriteHome"
@@ -25,5 +27,6 @@ export default function WriteNavigator() {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
+    </DreamContext>
   )
 }
