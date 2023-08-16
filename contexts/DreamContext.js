@@ -6,7 +6,7 @@ function DreamProvider ( { children } ) {
     const modelo = {
         title: 'aaa',
         text: '',
-        date: '',
+        date: new Date(),
         imagePath: '',
         selectedTags: [],
         selectedFeelings: [],

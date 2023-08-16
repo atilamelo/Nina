@@ -8,11 +8,14 @@ import styled from 'styled-components/native'
 import TagQuestion from '../../../components/DreamQuestions/TagQuestion';
 
 export default function Step1() {
-  const dreamData = useContext(DreamContext)
+  const dreamContext = useContext(DreamContext);
+  const dreamData = dreamContext.dreamData;
+  const setDreamData = dreamContext.setDreamData;
   const { width } = useWindowDimensions();
+  const tagOptions = ['Pesadelo', 'Surreal', 'Vivido', 'Diferente', 'Recorrente'];
+
 
   const [dateOfDream, setDateOfDream] = useState("");
-
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
 
@@ -40,18 +43,20 @@ export default function Step1() {
     return date.toLocaleDateString('pt-BR', options);
   };
 
-  const tagOptions = ['Pesadelo', 'Surreal', 'Vivido', 'Diferente', 'Recorrente'];
-  const [selectedTagsIndexes, setSelectedTagsIndexes] = useState([]); // Inicialize com uma matriz vazia
 
-  const handleFeelingsClick = (index) => {
-    if (selectedTagsIndexes.includes(index)) {
-      setSelectedTagsIndexes(selectedTagsIndexes.filter(item => item !== index));
+  const handleTagsClick = (index) => {
+    if (dreamData.selectedTags.includes(index)) {
+      setDreamData(prevData => ({
+        ...prevData,
+        selectedTags: prevData.selectedTags.filter(item => item !== index)
+      }))
     } else {
-      setSelectedTagsIndexes([...selectedTagsIndexes, index]);
-    }
+      setDreamData(prevData => ({
+        ...prevData,
+        selectedTags: [...prevData.selectedTags, index]
+      }));    }
   };
 
-  console.log("Tags selecionadas: " + selectedTagsIndexes)
   return (
     <ScreenContainer windowWidth={width}>
       <QuestionContainer>
@@ -90,8 +95,8 @@ export default function Step1() {
         <ScrollView>
           <TagQuestion
             options={tagOptions}
-            selectedAnswers={selectedTagsIndexes}
-            handleAnswerClick={handleFeelingsClick} 
+            selectedAnswers={dreamData.selectedTags}
+            handleAnswerClick={handleTagsClick} 
           />
         </ScrollView>
       </TagContainer>
@@ -109,7 +114,6 @@ const Styled = styled.View`
 `;
 
 const TagContainer = styled.View`
-
   width: 300px; 
   height: 280px;
   align-items: center;
