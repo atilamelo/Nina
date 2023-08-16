@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { ScrollView, KeyboardAvoidingView, View, Platform, TouchableOpacity  } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import Background from '../../components/Background';
 import voltarImage from '../../assets/icons/Voltar.png';

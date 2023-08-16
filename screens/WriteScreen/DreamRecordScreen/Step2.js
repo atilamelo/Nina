@@ -18,7 +18,8 @@ export default function Step2() {
       setSelectedFeelingsIndexes([...selectedFeelingsIndexes, index]);
     }
   };
-
+  
+  console.log("Sentimentos selecionados: " + selectedFeelingsIndexes)
   return (
     <ScreenContainer windowWidth={width}>
       <QuestionContainer>

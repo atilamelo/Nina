@@ -12,7 +12,7 @@ const ElipseQuestion = styled.View`
     width: 50px;
     height: 50px;
     border-radius: 50px;
-    background-color: ${({ selected }) => (selected ? '#9F238E' : '#2B314C')};
+    background-color: ${ p  => (p.selected ? '#9F238E' : '#2B314C')};
     justify-content: center;
     align-items: center;
     margin: 0px 0px 10px 10px;
