@@ -23,11 +23,11 @@ const FeelingsText = styled.Text`
 const FeelingsGroup = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 25px;
+  margin-top: 20%;
   flex-wrap: wrap; {/* Faz com que os botões quebrem para a linha de baixo */}
 `;
 
-const FeelingsQuestionComponent = ({ options, questionLabel, selectedAnswers, handleAnswerClick }) => {
+const FeelingsQuestionComponent = ({ options, selectedAnswers, handleAnswerClick }) => {
     const buttonRows = [];
     for (let i = 0; i < options.length; i += 2) {
       buttonRows.push(

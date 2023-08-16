@@ -8,7 +8,7 @@ import { QuestionContainer, QuestionText } from '../../../components/Questions/S
 export default function Screen2() {
   const { width } = useWindowDimensions();
 
-  const feelingsOptions = ['Felicidade', 'Curiosidade', 'Tristeza', 'Ansiedade', 'Medo', 'Surpresa', 'Raiva', 'Calma'];
+  const feelingsOptions = ['Felicidade', 'Curiosidade', 'Tristeza', 'Ansiedade', 'Medo', 'Surpresa', 'Raiva', 'Calma', 'Frustração', 'Empolgação'];
   const [selectedFeelingsIndexes, setSelectedFeelingsIndexes] = useState([]); // Inicialize com uma matriz vazia
 
   const handleFeelingsClick = (index) => {
