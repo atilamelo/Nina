@@ -14,10 +14,12 @@ export default function Step1() {
   const { width } = useWindowDimensions();
   const tagOptions = ['Pesadelo', 'Surreal', 'Vivido', 'Diferente', 'Recorrente'];
 
-
   const [dateOfDream, setDateOfDream] = useState("");
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
+
+  console.log(dateOfDream)
+  console.log(date)
 
   const toggleDatepicker = () => {
     setShowPicker(!showPicker);

@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import { ScrollView, KeyboardAvoidingView, View, Platform, TouchableOpacity  } from 'react-native';
+import { DreamContext } from '../../contexts/DreamContext';
 import styled from 'styled-components/native';
 import Background from '../../components/Background';
 import voltarImage from '../../assets/icons/Voltar.png';
@@ -9,7 +10,10 @@ import BasicButton  from '../../components/Buttons/BasicButton'
 import DegradeButton from '../../components/Buttons/DegradeButton'
 
 const WriteScreen = ( { navigation } ) => {
-
+    const dreamContext = useContext(DreamContext);
+    const dreamData = dreamContext.dreamData;
+    const setDreamData = dreamContext.setDreamData;
+  
     const voltarButton = () => {
         navigation.navigate('Sonhos');
     };
@@ -20,23 +24,24 @@ const WriteScreen = ( { navigation } ) => {
 
     const generateImage = () => {
         navigation.navigate('DreamImage');
-    }
+    };
 
-    //useState
-    const [titulo, setTitulo] = useState('');
-    const [texto, setTexto] = useState('');
-
-    //Evento
-    const onChangeTitle = ( text ) => {
-        setTitulo(text);
-    }
+    const onChangeTitle = ( title ) => {
+        setDreamData(prevData => ({
+            ...prevData,
+            title: title
+        }))
+    };
 
     const onChangeText = ( text ) => {
-        setTexto(text);
-    }
+        setDreamData(prevData => ({
+            ...prevData,
+            text: text
+        }))
+    };
 
-    console.log("Título: " + titulo) 
-    console.log("Texto: " + texto)
+    console.log(dreamData);
+
     return (
         
         <KeyboardAvoidingView
@@ -66,7 +71,7 @@ const WriteScreen = ( { navigation } ) => {
                             onChangeText={onChangeTitle}
                             selectionColor="purple"
                             maxLength={50}
-                            value={titulo}
+                            value={dreamData.title}
                         />
 
                         <>{Titulo.titulo}</>
@@ -79,7 +84,7 @@ const WriteScreen = ( { navigation } ) => {
                             multiline={true}
                             onChangeText={onChangeText}
                             selectionColor="purple"
-                            value={texto}
+                            value={dreamData.text}
                         />
 
                     </Container>
@@ -122,11 +127,6 @@ const WriteScreen = ( { navigation } ) => {
 const Container = styled.View`
     flex: 1;
 `;
-
-// const Content = styled.View`
-//     flex-grow: 1;
-//     padding-top: 10%;
-// `;
 
 const Voltar = styled.Image`
     width: 15px;

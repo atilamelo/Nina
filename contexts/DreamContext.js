@@ -4,9 +4,9 @@ export const DreamContext = createContext();
 
 function DreamProvider ( { children } ) {
     const modelo = {
-        title: 'aaa',
+        title: '',
         text: '',
-        date: new Date(),
+        date: undefined,
         imagePath: '',
         selectedTags: [],
         selectedFeelings: [],
