@@ -1,16 +1,21 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
-import Google from '../../assets/Config/Google.png';
+import Google from '../../../assets/Config/Google.png';
 
-const LoginGoogle = ({ label, iconSource, onPress }) => {
+const LoginGoogle = ({ onPress }) => {
     return (
+      <>
+          <Header>
+            <HeaderText>Entre para armazenar seus dados na nuvem!</HeaderText>
+          </Header>
         <TouchableOpacity onPress={onPress}>
-            <GoogleLogin>
-                <GoogleIcon source={Google} />
-                <Texto>Entrar com o Google</Texto>
-            </GoogleLogin>
+          <GoogleLogin>
+              <GoogleIcon source={Google} />
+              <Texto>Entrar com o Google</Texto>
+          </GoogleLogin>
         </TouchableOpacity>
+      </>
     );
 };
 
@@ -40,6 +45,21 @@ const Texto = styled.Text`
   font-size: 16px;
   margin-left: 23px;
   color: #000;
+`;
+
+const Header = styled.View`
+  padding-horizontal: 20px;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 10%;
+  align-items: center;
+`;
+
+const HeaderText = styled.Text`
+  font-family: "Inter Bold";
+  text-align: center;
+  font-size: 17px;
+  color: #fff;
 `;
 
 export default LoginGoogle;

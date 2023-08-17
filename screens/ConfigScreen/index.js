@@ -1,30 +1,26 @@
-/* Creator: Carla Chicareli
- * Data: 30/06/2023
- * Description: Configurations screen of the App
- */
-
-import React from 'react';
+import React, { useState } from 'react'; // Importe o useState
 import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
-import ConfigItem from '../../components/ConfigItem';
+import ConfigItem from '../../components/ConfigComponets/ConfigItem';
 import Barra from '../../components/Barra';
-import LoginGoogle from '../../components/LoginGoogle';
+import LogOff from '../../components/ConfigComponets/LogOff';
 import Background from '../../components/Background';
+import Logged from '../../components/ConfigComponets/Logged'; // Importe o componente Logado
 
 const ConfigScreen = ({ navigation }) => {
   const navigateTo = ({ screen_name }) => {
     navigation.navigate(screen_name);
   };
+  
+  //Defina true para logado e false para deslogado
+  const [isLogged, setIsLogged] = useState(true);
 
   return (
     <Background>
         <ScrollView contentContainerStyle={{ paddingBottom: 60 }}>
             <Container>
-                <Header>
-                    <HeaderText>Entre para armazenar seus dados na nuvem!</HeaderText>
-                </Header>
-
-                <LoginGoogle/>
+            
+                {isLogged ? <Logged /> : <LogOff />}
 
                 <Content>
                     <Barra/>
@@ -53,20 +49,6 @@ const Container = styled.View`
   padding-top: 10%;
 `;
 
-const Header = styled.View`
-  padding-horizontal: 20px;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 10%;
-  align-items: center;
-`;
-
-const HeaderText = styled.Text`
-  font-family: "Inter Bold";
-  text-align: center;
-  font-size: 17px;
-  color: #fff;
-`;
 
 
 export default ConfigScreen;
