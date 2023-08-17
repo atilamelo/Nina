@@ -1,32 +1,47 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text, Image } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import DreamBox from '../../components/DreamBox';
 import { dreamsExample } from './data'; // Sample data moved to a separate file
 import MainHeader from '../../components/Headers/MainHeader';
 import Background from '../../components/Background';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import styled from 'styled-components/native';
-import BackHeader from '../../components/Headers/BackHeader';
 
-const BackImage = styled.Image`
-    width: 16px;
-    height: 27px;
-`;
-
-const BackButton = styled.TouchableOpacity`
-
-    background-color: 'red';
-`
-
+// Images
+import menuIco from '../../assets/icons/menu.png'; 
+import searchIco from '../../assets/icons/search.png';
+import optionsIco from '../../assets/icons/options.png';
 
 const HomeScreen = ({ navigation }) => {
     return (
         <Background>
             <View style={styles.container}>
 
-                    {/* Necessário ainda programar Header */}
-                    <MainHeader/>
+                    <MainHeader
+                        left={
+                            <TouchableOpacity>
+                                <Image 
+                                    source={menuIco}
+                                    style={{ width: 24, height: 20, resizeMode: 'contain' }}
+                                />
+                            </TouchableOpacity>
+                        }
+                        right={
+                            <View style={{flexDirection: 'row', alignItems:'center', justifyContent:'center'}}>
+                                <TouchableOpacity>
+                                    <Image 
+                                        source={searchIco}
+                                        style={{ width: 24, height: 24, marginHorizontal: 12 }}
+                                    />
+                                </TouchableOpacity>
+
+                                <TouchableOpacity>
+                                    <Image 
+                                        source={optionsIco}
+                                        style={{ width: 5, height: 19, marginHorizontal: 12 }}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                        }
+                    />
                     
                     <View style={styles.content}>
                         {/* List of dreams */}
