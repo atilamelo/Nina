@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
         marginBottom: 30, // Distance between email and password
         alignSelf: 'center',
     },
-        itemLabel: {
+    itemLabel: {
         flex: 1,
         color: '#FFFFFF',
         fontSize: 15,
         paddingTop: '2%',
         marginLeft: '5%',
-        fontWeight: 'bold',
+        fontFamily: "Inter Bold",
     },
     itemIcon: {
         width: 20,

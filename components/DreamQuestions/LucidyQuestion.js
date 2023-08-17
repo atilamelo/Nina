@@ -15,7 +15,7 @@ const ElipseQuestion = styled.View`
     background-color: ${ p  => (p.selected ? '#9F238E' : '#2B314C')};
     justify-content: center;
     align-items: center;
-    margin: 0px 0px 10px 10px;
+    margin: 0px 0px 0px 10px;
 `;
 
 const ElipseText = styled.Text`

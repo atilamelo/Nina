@@ -50,6 +50,7 @@ const HomeScreen = ({ navigation }) => {
                                 data={dreamsExample}
                                 renderItem={({ item }) => <DreamBox item={item} />}
                                 keyExtractor={(item, index) => index.toString()}
+                                contentContainerStyle={{ paddingBottom: 90 }}
                             />
                         </View>
                     </View>

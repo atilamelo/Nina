@@ -124,19 +124,6 @@ const Content = styled.View`
     
 `;
 
-const Voltar = styled.Image`
-    width: 15px;
-    resize-mode: contain;
-    left: 10%;
-`;
-
-const Texto = styled.Text`
-    text-align: right;
-    font-size: 22px;
-    color: #ffffff;
-    font-weight: bold;
-`;
-
 const Imagem = styled.Image`
     width: 283px;
     height: 289px;
