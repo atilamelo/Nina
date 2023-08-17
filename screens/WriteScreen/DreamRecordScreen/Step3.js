@@ -23,7 +23,7 @@ export default function Step3() {
     const handleRecurrenceClick = (value) => {
         setDreamData({...dreamData, recurrence: value})
     };
-ds
+
     return (
         <ScreenContainer windowWidth={width}>
             <LucidyQuestion

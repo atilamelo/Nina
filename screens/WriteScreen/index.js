@@ -3,6 +3,7 @@ import { ScrollView, KeyboardAvoidingView, View, Platform, TouchableOpacity  } f
 import { DreamContext } from '../../contexts/DreamContext';
 import styled from 'styled-components/native';
 import Background from '../../components/Background';
+import BackHeader from '../../components/Headers/BackHeader';
 import voltarImage from '../../assets/icons/Voltar.png';
 import MainHeader from '../../components/Headers/MainHeader';
 import DreamFooter from '../../components/Footers/DreamFooter';
@@ -51,18 +52,11 @@ const WriteScreen = ( { navigation } ) => {
             windowSoftInputMode="adjustResize"
         >
             <Background>
+                
+                <BackHeader onPress={() => {navigation.goBack()}} title={'Escreva seu sonho'}/>
+
                 <ScrollView>
                     <Container>
-
-                        <MainHeader
-                            left={
-                                <TouchableOpacity onPress={voltarButton}>
-                                    <Voltar source={voltarImage} />
-                                </TouchableOpacity>
-                            }
-                            middle={<Texto>Escreva seu sonho</Texto>}
-                        />
-
                         <Titulo 
                             placeholder="Título"
                             placeholderTextColor="#B4B4B4"
@@ -90,7 +84,6 @@ const WriteScreen = ( { navigation } ) => {
 
                     </Container>
                 </ScrollView>
-                
                 <DreamFooter style={{justifyContent: 'space-between'}}>
                     <View style={{flexDirection: 'row'}}>
                         <View style={{marginRight: 27}}>
@@ -120,6 +113,7 @@ const WriteScreen = ( { navigation } ) => {
                         iconHeight={22}
                     />                
                 </DreamFooter>
+                
             </Background>
         </KeyboardAvoidingView>
     );
@@ -143,8 +137,7 @@ const Texto = styled.Text`
 `;
 
 const Titulo = styled.TextInput`
-    margin-top: 10%;
-    margin-left: 8%;
+    margin-vertical: 5%;
     margin-horizontal: 8%;
     font-size: 25px;
     color: #ffffff;
@@ -152,7 +145,6 @@ const Titulo = styled.TextInput`
 `;
 
 const Sonho = styled.TextInput`
-    margin-top: 9%;
     margin-left: 8%;
     margin-horizontal: 8%;
     font-size: 17px;

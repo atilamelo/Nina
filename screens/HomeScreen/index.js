@@ -1,20 +1,32 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text} from 'react-native';
+import { View, StyleSheet, FlatList, Text, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import DreamBox from '../../components/DreamBox';
 import { dreamsExample } from './data'; // Sample data moved to a separate file
 import MainHeader from '../../components/Headers/MainHeader';
 import Background from '../../components/Background';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import styled from 'styled-components/native';
+import BackHeader from '../../components/Headers/BackHeader';
+
+const BackImage = styled.Image`
+    width: 16px;
+    height: 27px;
+`;
+
+const BackButton = styled.TouchableOpacity`
+
+    background-color: 'red';
+`
+
 
 const HomeScreen = ({ navigation }) => {
     return (
         <Background>
             <View style={styles.container}>
-                    <MainHeader
-                        middle={<Text>No Meio</Text>} // Conteúdo para a seção do meio da TopBar
-                        right={<Text>Direita</Text>} // Conteúdo para a seção direita da TopBar
-                    />
+
+                    {/* Necessário ainda programar Header */}
+                    <MainHeader/>
                     
                     <View style={styles.content}>
                         {/* List of dreams */}

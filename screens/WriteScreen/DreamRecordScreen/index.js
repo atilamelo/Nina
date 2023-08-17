@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { FlatList, View, Animated } from 'react-native';
 import Background from '../../../components/Background';
 import styled from 'styled-components/native';
-import QuestionNavigationHeader from '../../../components/Headers/QuestionNavigationHeader';
+import DreamHeader from '../../../components/Headers/DreamHeader';
 import DegradeButton from '../../../components/Buttons/DegradeButton';
 import BasicButton from '../../../components/Buttons/BasicButton';
 import DreamFooter from '../../../components/Footers/DreamFooter';
@@ -29,7 +29,6 @@ const RegistroSonho = ({ navigation }) => {
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
     const handleSkip = () => {};
-    const handleBack = () => {};
     
     const scrollTo = () => {
         if(currentScreenIndex < screens.length - 1) {
@@ -40,7 +39,7 @@ const RegistroSonho = ({ navigation }) => {
 
     return (
         <Background>
-            <QuestionNavigationHeader onSkip={handleSkip} onBack={handleBack} />
+            <DreamHeader onSkip={handleSkip} navigation={navigation} />
 
             <View>
                 <FlatList

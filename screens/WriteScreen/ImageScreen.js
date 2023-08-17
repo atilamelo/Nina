@@ -6,6 +6,7 @@ import DegradeButton from '../../components/Buttons/DegradeButton';
 import MainHeader from '../../components/Headers/MainHeader';
 import DreamFooter from '../../components/Footers/DreamFooter';
 import * as FileSystem from 'expo-file-system';
+import BackHeader from '../../components/Headers/BackHeader';
 
 /* Images */
 import voltarImage from '../../assets/icons/Voltar.png';
@@ -82,14 +83,8 @@ const GenerateImage = ({ navigation }) => {
         >
             <Background>
                 
-                <MainHeader
-                    left={
-                        <TouchableOpacity onPress={voltarButton}>
-                            <Voltar source={voltarImage} />
-                        </TouchableOpacity>
-                    }
-                    middle={<Texto>Imagem Gerada</Texto>}
-                />
+                <BackHeader onPress={() => {navigation.goBack()}} title={'Gerar imagem'}/>
+
                 <Container>
                     <Content>
                         <Imagem source={imagePath} resizeMode="contain" borderRadius={13}/>
