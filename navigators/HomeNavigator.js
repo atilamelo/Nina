@@ -12,6 +12,7 @@ import StatisticsScreen from '../screens/StatisticsScreen';
 import CalendarScreen from '../screens/CalendarScreen';
 import ConfigScreen from '../screens/ConfigScreen';
 import WriteNavigator from './WriteNavigator';
+import ConfigNavigator from './ConfigNavigator';
 
 const Tab = createBottomTabNavigator();
 const focusedColor = '#9F238E';
@@ -116,7 +117,7 @@ const Tabs = () => {
                     </View>
                 ),
             }} />
-            <Tab.Screen name="Configurações" component={ConfigScreen} options={{
+            <Tab.Screen name="Configurações" component={ConfigNavigator} options={{
                 tabBarIcon: ({ focused }) => (
                     <View style={styles.tabIconContainer}>
                         <Image
@@ -127,6 +128,7 @@ const Tabs = () => {
                         <Text style={[styles.tabText, { color: focused ? focusedColor : unfocusedColor }]}>Config.</Text>
                     </View>
                 ),
+                
             }} />
         </Tab.Navigator>
     );
