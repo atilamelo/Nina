@@ -3,10 +3,11 @@ import { ScrollView, KeyboardAvoidingView, View, Platform, TouchableOpacity  } f
 import styled from 'styled-components/native';
 import Background from '../../../components/Background';
 import BackHeader from '../../../components/Headers/BackHeader';
+import SettingsItem from '../../../components/ConfigComponets/SettingsItem';
 import { DreamContext } from '../../../contexts/DreamContext';
-import ConfigItem from '../../../components/ConfigComponets/ConfigItem';
 
 const Notificacoes = ( { navigation } ) => {
+
     const dreamContext = useContext(DreamContext);
     const dreamData = dreamContext.dreamData;
 
@@ -27,7 +28,9 @@ const Notificacoes = ( { navigation } ) => {
                 <ScrollView>
                     <Container>
 
-                        <ConfigItem label="Notificação da manhã" onPress={() => { }} />
+                        <SettingsItem label="Notificação da manhã" description= "Lembre-se de escrever seus sonhos" onPress={() => { }} showSwitch={true} />
+                        <SettingsItem label="Notificação da noite" description= "Lembre-se de revisar seus sonhos" onPress={() => { }} showSwitch={true} />
+                        <SettingsItem label="Silenciar notificações " description= "Defina um intervalo sem notificações" onPress={() => { }} showSwitch={false} />
 
                     </Container>
                 </ScrollView>
