@@ -1,5 +1,8 @@
-import React, { useRef, useState } from 'react';
-import { FlatList, View, Animated } from 'react-native';
+import React, { useRef, useState, useContext } from 'react';
+import { FlatList, View, Animated, Alert } from 'react-native';
+import { useRealm } from '../../../databases/realm';
+import { DreamContext } from '../../../contexts/DreamContext';
+import uuid from 'react-native-uuid';
 import Background from '../../../components/Background';
 import styled from 'styled-components/native';
 import DreamHeader from '../../../components/Headers/DreamHeader';
@@ -17,6 +20,9 @@ const screens = [
     { key: 3, component: <Step3/> },
   ]
 const RegistroSonho = ({ navigation }) => {
+    const dreamContext = useContext(DreamContext);
+    const dreamData = dreamContext.dreamData;  
+    const realm = useRealm();
     const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
     const slidesRef = useRef(null);
@@ -36,10 +42,45 @@ const RegistroSonho = ({ navigation }) => {
         }
     }
 
+    async function addDream() {
+        try{
+            const dream = realm.write(() => {
+                realm.create('Dream', {
+                    _id: uuid.v4(),
+                    title: 'aa',
+                    text: 'bb',
+                    date: dreamData.date,
+                });
+            });
+
+            console.log("Sonho Cadastrado => " + dream)
+            console.log("Dream data => " + dreamData)
+            Alert.alert("Sonho", "Sonho salvo com sucesso!");
+        } catch (e){
+            
+              console.error(e.message);
+            
+            Alert.alert("Sonho", "Problema ao salvar o sonho!");
+        } finally {
+            realm.close();
+        }
+    }
+
+    // Get all Dream in the realm schema Dream 
+    async function getDreams() {
+        try{
+            const dreams = realm.objects('Dream');
+            console.log("Sonhos => ", JSON.stringify(dreams, null, 2));
+        } catch (e){
+            console.log("Erro ao buscar sonhos => " + e.message)
+        }
+    }
+
+    getDreams();
 
     return (
         <Background>
-            <DreamHeader onSkip={handleSkip} navigation={navigation} />
+            <DreamHeader onSkip={addDream} navigation={navigation} />
 
             <View>
                 <FlatList

@@ -41,9 +41,6 @@ const WriteScreen = ( { navigation } ) => {
         }))
     };
 
-    // Dream Data log to debug purposes
-    console.log(JSON.stringify(dreamData));
-
     return (
         
         <KeyboardAvoidingView
