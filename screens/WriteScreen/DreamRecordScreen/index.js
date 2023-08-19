@@ -33,8 +33,6 @@ const RegistroSonho = ({ navigation }) => {
     }).current;
 
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
-
-    const handleSkip = () => {};
     
     const scrollTo = () => {
         if(currentScreenIndex < screens.length - 1) {
@@ -44,25 +42,26 @@ const RegistroSonho = ({ navigation }) => {
 
     async function addDream() {
         try{
-            const dream = realm.write(() => {
+            console.log("Dream data => " + JSON.stringify(dreamData))
+            realm.write(() => {
                 realm.create('Dream', {
                     _id: uuid.v4(),
-                    title: 'aa',
-                    text: 'bb',
+                    title: dreamData.title,
+                    text: dreamData.text,
                     date: dreamData.date,
+                    imagePath: dreamData.imagePath,
+                    selectedTags: dreamData.selectedTags,
+                    selectedFeelings:  dreamData.selectedFeelings,
+                    lucidyRating:  dreamData.lucidyRating,
+                    realityConection: dreamData.realityConection,
+                    recurrence: dreamData.recurrence,
                 });
             });
 
-            console.log("Sonho Cadastrado => " + dream)
-            console.log("Dream data => " + dreamData)
             Alert.alert("Sonho", "Sonho salvo com sucesso!");
         } catch (e){
-            
-              console.error(e.message);
-            
+            console.error(e.message);
             Alert.alert("Sonho", "Problema ao salvar o sonho!");
-        } finally {
-            realm.close();
         }
     }
 
@@ -75,8 +74,6 @@ const RegistroSonho = ({ navigation }) => {
             console.log("Erro ao buscar sonhos => " + e.message)
         }
     }
-
-    getDreams();
 
     return (
         <Background>
