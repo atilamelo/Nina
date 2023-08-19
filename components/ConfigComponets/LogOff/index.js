@@ -3,13 +3,17 @@ import styled from 'styled-components/native';
 import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
 import Google from '../../../assets/Config/Google.png';
 
-const LoginGoogle = ({ onPress }) => {
+const LoginGoogle = ({ setIsLogged }) => {
+
+  const handleGoogleLogin = () => {
+    setIsLogged(true);
+  };
     return (
       <>
           <Header>
             <HeaderText>Entre para armazenar seus dados na nuvem!</HeaderText>
           </Header>
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={handleGoogleLogin}>
           <GoogleLogin>
               <GoogleIcon source={Google} />
               <Texto>Entrar com o Google</Texto>

@@ -14,15 +14,19 @@ const ConfigScreen = ({ navigation }) => {
     navigation.navigate('Notificacoes');
   };
 
+  const handleLogout = () => {
+    setIsLogged(false); // Define o estado para "false" ao fazer logout
+  };
+  
   //Defina true para logado e false para deslogado
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
 
   return (
     <Background>
         <ScrollView contentContainerStyle={{ paddingBottom: 60 }}>
             <Container>
             
-                {isLogged ? <Logged /> : <LogOff />}
+                {isLogged ? <Logged /> : <LogOff setIsLogged={setIsLogged}/> }
 
                 <Content>
                     <Barra/>
@@ -33,7 +37,7 @@ const ConfigScreen = ({ navigation }) => {
                 <ConfigItem label="Termos & Condições" iconSource={require('../../assets/Config/termos.png')} onPress={() => { }} />
                 <ConfigItem label="Política de privacidade" iconSource={require('../../assets/Config/privacidade.png')} onPress={() => { }} />
                 <ConfigItem label="Fale conosco" iconSource={require('../../assets/Config/telefone.png')} onPress={() => { }} />
-                <ConfigItem label="Sair" iconSource={require('../../assets/Config/sair.png')} onPress={() => { }} />
+                <ConfigItem label="Sair" iconSource={require('../../assets/Config/sair.png')} onPress={handleLogout} />
 
             </Container>
         </ScrollView>
