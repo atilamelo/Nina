@@ -17,6 +17,7 @@
     "@react-navigation/stack": "^6.3.17",
     "@realm/react": "^0.5.2",
     "@types/react": "~18.2.14",
+    "date-fns": "^2.30.0",
     "expo": "~49.0.5",
     "expo-file-system": "^15.4.3",
     "expo-font": "~11.4.0",

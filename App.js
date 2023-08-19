@@ -13,7 +13,6 @@ import { useFonts } from 'expo-font';
 import { RealmProvider } from './databases/realm';
 import HomeNavigator from './navigators/HomeNavigator';
 import * as SplashScreen  from 'expo-splash-screen';
-
 const Stack = createStackNavigator();
 
 const App = () => {
