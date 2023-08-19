@@ -57,7 +57,7 @@ const Tabs = () => {
                 tabBarInactiveTintColor: unfocusedColor,
                 tabBarActiveTintColor: focusedColor,
                 headerShown: false,
-                
+
             }}
             initialRouteName='HomeScreen'
         >

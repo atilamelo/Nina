@@ -1,27 +1,23 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState } from 'react';
 
 export const DreamContext = createContext();
 
-function DreamProvider ( { children } ) {
-    const modelo = {
-        title: '',
-        text: '',
-        date: new Date(),
-        imagePath: '',
-        selectedTags: [],
-        selectedFeelings: [],
-        lucidyRating: '',
-        realityConection: '',
-        recurrence: '',
-    }
+function DreamProvider({ children }) {
+  const modelo = {
+    title: undefined,
+    text: undefined,
+    date: new Date(),
+    imagePath: undefined,
+    selectedTags: [],
+    selectedFeelings: [],
+    lucidyRating: undefined,
+    realityConection: undefined,
+    recurrence: undefined,
+  };
 
-    const [dreamData, setDreamData] = useState(modelo);
-    
-    return (
-        <DreamContext.Provider value = {{dreamData, setDreamData}}>
-            { children }
-        </DreamContext.Provider>
-    )
+  const [dreamData, setDreamData] = useState(modelo);
+
+  return <DreamContext.Provider value={{ dreamData, setDreamData }}>{children}</DreamContext.Provider>;
 }
 
 export default DreamProvider;

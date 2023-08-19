@@ -1,14 +1,18 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { useFonts } from 'expo-font';
+import format from 'date-fns/format';
+import ptBR from 'date-fns/locale/pt-BR';
 
+const formatDate = ( date ) => {  
+    return format(date, 'dd \'de\' MMMM \'de\' yyyy', { locale: ptBR });
+};
 
-const DreamBox = ({ item }) => {
+const DreamBox = ({ item: props }) => {
     return (
         <View style={styles.container}>
             <View style={styles.cardContainer}>
-                <DreamContent item={item} />
-                <AdditionalInformation item={item} />
+                <DreamContent item={props} />
+                <AdditionalInformation item={props} />
             </View>
         </View>
     );
@@ -18,7 +22,7 @@ const DreamContent = ({ item }) => {
     return (
         <View style={styles.backgroundMain}>
             <View style={styles.mainContainer}>
-                <Text style={styles.text}>{item.resumedText}</Text>
+                <Text style={styles.text}>{item.text}</Text>
                 <Image style={styles.dreamImage} source={item.imagePath} />
             </View>
         </View>
@@ -29,7 +33,7 @@ const AdditionalInformation = ({ item }) => {
     return (
         <View style={styles.aditionalInformation}>
             <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.data}>{item.data}</Text>
+            <Text style={styles.data}>{formatDate(item.date)}</Text>
         </View>
     );
 };

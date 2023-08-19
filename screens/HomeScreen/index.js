@@ -1,14 +1,20 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import DreamBox from '../../components/DreamBox';
-import { dreamsExample } from './data'; // Sample data moved to a separate file
 import MainHeader from '../../components/Headers/MainHeader';
 import Background from '../../components/Background';
+import { useQuery } from '../../databases/realm';
+import { DreamSchema } from '../../databases/schemas/DreamSchema';
 
 // Images
 import menuIco from '../../assets/icons/menu.png'; 
 import searchIco from '../../assets/icons/search.png';
 import optionsIco from '../../assets/icons/options.png';
+
+const getSortedDreams = () => {
+    console.log(useQuery(DreamSchema).sorted('date', true));
+    return useQuery(DreamSchema).sorted('date', true)
+}
 
 const HomeScreen = ({ navigation }) => {
     return (
@@ -47,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
                         {/* List of dreams */}
                         <View style={styles.dreamsList}>
                             <FlatList
-                                data={dreamsExample}
+                                data={getSortedDreams()}
                                 renderItem={({ item }) => <DreamBox item={item} />}
                                 keyExtractor={(item, index) => index.toString()}
                                 contentContainerStyle={{ paddingBottom: 90 }}
