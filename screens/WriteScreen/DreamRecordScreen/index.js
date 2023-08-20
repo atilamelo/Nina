@@ -37,8 +37,11 @@ const RegistroSonho = ({ navigation }) => {
     const scrollTo = () => {
         if(currentScreenIndex < screens.length - 1) {
             slidesRef.current.scrollToIndex({ index: currentScreenIndex + 1 });
+        }if(currentScreenIndex == screens.length - 1){
+            addDream();
         }
     }
+      
 
     async function addDream() {
         try{
@@ -58,6 +61,11 @@ const RegistroSonho = ({ navigation }) => {
                 });
             });
 
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Home' }],
+              });
+            dreamContext.clearDreamData();
             Alert.alert("Sonho", "Sonho salvo com sucesso!");
         } catch (e){
             console.error(e.message);

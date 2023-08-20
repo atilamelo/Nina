@@ -59,9 +59,9 @@ const Tabs = () => {
                 headerShown: false,
 
             }}
-            initialRouteName='HomeScreen'
+            initialRouteName='Home'
         >
-            <Tab.Screen name="Sonhos" component={HomeScreen} options={{
+            <Tab.Screen name="Home" component={HomeScreen} options={{
                 tabBarIcon: ({ focused }) => (
                     <View style={styles.tabIconContainer}>
                         <Image

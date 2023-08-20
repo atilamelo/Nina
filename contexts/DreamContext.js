@@ -17,7 +17,11 @@ function DreamProvider({ children }) {
 
   const [dreamData, setDreamData] = useState(modelo);
 
-  return <DreamContext.Provider value={{ dreamData, setDreamData }}>{children}</DreamContext.Provider>;
+  const clearDreamData = () => {
+    setDreamData(modelo);
+  }
+
+  return <DreamContext.Provider value={{ dreamData, setDreamData, clearDreamData }}>{children}</DreamContext.Provider>;
 }
 
 export default DreamProvider;
