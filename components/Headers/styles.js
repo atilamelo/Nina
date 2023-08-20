@@ -22,7 +22,6 @@ export const Title = ( { text }) => {
 
 const TitleStyle = styled.Text`
     font-family:'Inter Bold';
-    font-weight: bold;
     color: white;
     font-size: 23px;
     margin-left: 3.5%;

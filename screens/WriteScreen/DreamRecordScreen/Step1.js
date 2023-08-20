@@ -75,12 +75,14 @@ export default function Step1() {
               color: '#ffffff',
               borderColor: 'white', 
               borderWidth: 2,
-              paddingHorizontal: 40,
+              paddingHorizontal: 50,
               height: 50,
-              fontSize: 20,
+              width: 292,
+              fontSize: 18,
               borderRadius: 10,
+              fontFamily: 'Inter Regular',
             }}
-            placeholder="15 Ago 2023"
+            placeholder={formatDate(new Date())}
             value={datePlaceHolder}
             onChangeText={setDatePlaceHolder}
             placeholderTextColor="#ffffff"

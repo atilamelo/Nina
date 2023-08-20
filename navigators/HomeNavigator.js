@@ -4,7 +4,7 @@
  * Credits: www.youtube.com/watch?v=gPaBicMaib4
  */
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, CardStyleInterpolators } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Text, View, Image, Touchable, TouchableOpacity } from 'react-native';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -146,6 +146,7 @@ const styles = StyleSheet.create({
     tabText: {
         paddingTop: 5,
         fontSize: 11,
+        fontFamily: 'Inter Regular',
     },
 });
 
