@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
-import Google from '../../../assets/Config/Google.png';
+import Google from '@assets/Config/Google.png';
 
 const LoginGoogle = ({ setIsLogged }) => {
 

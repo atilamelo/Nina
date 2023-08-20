@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style';
-import FeelingsQuestion from '../../../components/DreamQuestions/FeelingsQuestion';
-import { QuestionContainer, QuestionText } from '../../../components/DreamQuestions/StyleQuestion';
-import { DreamContext } from '../../../contexts/DreamContext';
+import { QuestionContainer, QuestionText } from '@components/DreamQuestions/StyleQuestion';
+import { DreamContext } from '@contexts/DreamContext';
+import FeelingsQuestion from '@components/DreamQuestions/FeelingsQuestion';
 
 export default function Step2() {
   const dreamContext = useContext(DreamContext);

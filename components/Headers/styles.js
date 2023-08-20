@@ -1,6 +1,6 @@
 import { TouchableOpacity, Image } from 'react-native';
 import styled from 'styled-components/native'
-import VoltarImg from '../../assets/icons/Voltar.png'
+import VoltarImg from '@assets/icons/Voltar.png'
 
 export const BackButton = ( { onPress } ) => {
     return(

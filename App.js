@@ -10,18 +10,19 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
-import { RealmProvider } from './databases/realm';
-import HomeNavigator from './navigators/HomeNavigator';
+import { RealmProvider } from '@databases/realm';
+import HomeNavigator from '@navigators/HomeNavigator';
 import * as SplashScreen  from 'expo-splash-screen';
+
 const Stack = createStackNavigator();
 
 const App = () => {
     const [fontsLoaded] = useFonts({
-        "Inter Bold": require("./assets/fonts/Inter-Bold.ttf"),
-        "Inter Black": require("./assets/fonts/Inter-Black.ttf"),
-        "Inter Regular": require("./assets/fonts/Inter-Regular.ttf"),
-        "Inter Medium": require("./assets/fonts/Inter-Medium.ttf"),
-        "Inter SemiBold": require("./assets/fonts/Inter-SemiBold.ttf"),
+        "Inter Bold": require("@assets/fonts/Inter-Bold.ttf"),
+        "Inter Black": require("@assets/fonts/Inter-Black.ttf"),
+        "Inter Regular": require("@assets/fonts/Inter-Regular.ttf"),
+        "Inter Medium": require("@assets/fonts/Inter-Medium.ttf"),
+        "Inter SemiBold": require("@assets/fonts/Inter-SemiBold.ttf"),
     });
 
     useEffect(() => {

@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
-import DreamBox from '../../components/DreamBox';
-import MainHeader from '../../components/Headers/MainHeader';
-import Background from '../../components/Background';
-import { useQuery } from '../../databases/realm';
-import { DreamSchema } from '../../databases/schemas/DreamSchema';
+import { DreamSchema } from '@databases/schemas/DreamSchema';
+import { useQuery } from '@databases/realm';
+import DreamBox from '@components/DreamBox';
+import Background from '@components/Background';
+import MainHeader from '@components/Headers/MainHeader';
 
 // Images
-import menuIco from '../../assets/icons/menu.png'; 
-import searchIco from '../../assets/icons/search.png';
-import optionsIco from '../../assets/icons/options.png';
+import menuIco from '@assets/icons/menu.png'; 
+import searchIco from '@assets/icons/search.png';
+import optionsIco from 'assets/icons/options.png';
 
 const getSortedDreams = () => {
     console.log(useQuery(DreamSchema).sorted('date', true));

@@ -1,10 +1,9 @@
-import Barra from '../../../components/Barra';
 import React, { useContext } from 'react';
-import YesNoQuestion from '../../../components/DreamQuestions/YesNoQuestion';
-import LucidyQuestion from '../../../components/DreamQuestions/LucidyQuestion';
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style'
-import { DreamContext } from '../../../contexts/DreamContext';
+import { DreamContext } from '@contexts/DreamContext';
+import { YesNoQuestion, LucidyQuestion} from '@components/DreamQuestions';
+import Barra from '@components/Barra';
 
 export default function Step3() {
     const dreamContext = useContext(DreamContext);

@@ -1,7 +1,5 @@
 import React from 'react'
 import { Animated, useWindowDimensions, StyleSheet, View } from 'react-native'
-import { styled } from 'styled-components/native'
-
 
 export default function Paginator({ data, scrollx }) {
     const { width } = useWindowDimensions();

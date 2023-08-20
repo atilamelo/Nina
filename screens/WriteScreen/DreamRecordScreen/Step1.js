@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'
 import {TextInput, Platform, useWindowDimensions, Pressable, ScrollView } from 'react-native'
 import { ScreenContainer } from './style'
-import { QuestionContainer, QuestionText } from '../../../components/DreamQuestions/StyleQuestion';
-import { DreamContext } from '../../../contexts/DreamContext';
+import { QuestionContainer, QuestionText } from '@components/DreamQuestions/StyleQuestion';
+import { DreamContext } from '@contexts/DreamContext';
+import TagQuestion from '@components/DreamQuestions/TagQuestion';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import styled from 'styled-components/native'
-import TagQuestion from '../../../components/DreamQuestions/TagQuestion';
 
 export default function Step1() {
   const dreamContext = useContext(DreamContext);

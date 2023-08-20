@@ -1,18 +1,15 @@
 import React, {useState} from 'react';
-import { ScrollView, KeyboardAvoidingView, Platform, TouchableOpacity, Image  } from 'react-native';
-import styled from 'styled-components/native';
-import Background from '../../components/Background';
-import DegradeButton from '../../components/Buttons/DegradeButton';
-import MainHeader from '../../components/Headers/MainHeader';
-import DreamFooter from '../../components/Footers/DreamFooter';
+import { KeyboardAvoidingView, Platform } from 'react-native';
+import { DegradeButton } from '@components/Buttons';
+import DreamFooter from '@components/Footers/DreamFooter';
+import Background from '@components/Background';
+import BackHeader from '@components/Headers/BackHeader';
 import * as FileSystem from 'expo-file-system';
-import BackHeader from '../../components/Headers/BackHeader';
+import styled from 'styled-components/native';
 
 /* Images */
-import voltarImage from '../../assets/icons/Voltar.png';
-import purpleCatImage from '../../assets/purple_cat.jpg';
-import arrow from '../../assets/icons/arrow.png';
-import reload from '../../assets/icons/reload.png';
+import arrow from '@assets/icons/arrow.png';
+import reload from '@assets/icons/reload.png';
 
 
 const apiUrl = 'http://6783-200-131-182-32.ngrok-free.app'
@@ -27,7 +24,7 @@ const GenerateImage = ({ navigation }) => {
 
     const [titulo, setTitulo] = useState(modelo);
     const [texto, setTexto] = useState(modelo);
-    const [imagePath, setImagePath] = useState(require('../../assets/purple_cat.jpg'));
+    const [imagePath, setImagePath] = useState(require('@assets/purple_cat.jpg'));
     
     //Evento
     const evento = (e) => {

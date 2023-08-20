@@ -1,18 +1,25 @@
 import React, { useState } from 'react'; // Importe o useState
 import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
-import ConfigItem from '../../components/ConfigComponets/ConfigItem';
-import Barra from '../../components/Barra';
-import LogOff from '../../components/ConfigComponets/LogOff';
-import Background from '../../components/Background';
-import Logged from '../../components/ConfigComponets/Logged';
-import Notificacoes from './ConfigItemScreen/Notificacoes';
+import ConfigItem from '@components/ConfigComponets/ConfigItem';
+import Barra from '@components/Barra';
+import LogOff from '@components/ConfigComponets/LogOff';
+import Background from '@components/Background';
+import Logged from '@components/ConfigComponets/Logged';
 
 const ConfigScreen = ({ navigation }) => {
 
   const ToNotificacoes = ({}) => {
     navigation.navigate('Notificacoes');
   };
+
+  const ToBackup = ({}) => {
+    navigation.navigate('Backup');
+  }
+
+  const ToFaleConosco = ({}) => {
+    navigation.navigate('FaleConosco');
+  }
 
   const handleLogout = () => {
     setIsLogged(false); // Define o estado para "false" ao fazer logout
@@ -33,10 +40,8 @@ const ConfigScreen = ({ navigation }) => {
                 </Content>
 
                 <ConfigItem label="Notificações" iconSource={require('../../assets/Config/notificacao.png')} onPress={ToNotificacoes} />
-                <ConfigItem label="Backup em nuvem" iconSource={require('../../assets/Config/backup.png')} onPress={() => { }} />
-                <ConfigItem label="Termos & Condições" iconSource={require('../../assets/Config/termos.png')} onPress={() => { }} />
-                <ConfigItem label="Política de privacidade" iconSource={require('../../assets/Config/privacidade.png')} onPress={() => { }} />
-                <ConfigItem label="Fale conosco" iconSource={require('../../assets/Config/telefone.png')} onPress={() => { }} />
+                <ConfigItem label="Backup em nuvem" iconSource={require('../../assets/Config/backup.png')} onPress={ToBackup} />
+                <ConfigItem label="Fale conosco" iconSource={require('../../assets/Config/telefone.png')} onPress={ToFaleConosco} />
                 <ConfigItem label="Sair" iconSource={require('../../assets/Config/sair.png')} onPress={handleLogout} />
 
             </Container>

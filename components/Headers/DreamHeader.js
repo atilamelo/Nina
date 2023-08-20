@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import MainHeader from './MainHeader';
-import { BackButton, Title } from './styles';
+import { BackButton } from './styles';
 
 const DreamHeader = ({ navigation, onSkip }) => {
     return (

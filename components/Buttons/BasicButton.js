@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image } from 'react-native'  
-import { LinearGradient } from 'expo-linear-gradient';
 import { TouchableOpacity } from 'react-native';
 
 const BasicButton = ( { onPress, iconFile, iconWidth, iconHeight, bg } ) => {
