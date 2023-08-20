@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { ScrollView, KeyboardAvoidingView, Platform  } from 'react-native';
+import { ScrollView, KeyboardAvoidingView, View, Platform, TouchableOpacity  } from 'react-native';
 import styled from 'styled-components/native';
 import Background from '../../../components/Background';
 import BackHeader from '../../../components/Headers/BackHeader';
 import SettingsItem from '../../../components/ConfigComponets/SettingsItem';
 
-const Notificacoes = ( { navigation } ) => {
+const FaleConosco = ( { navigation } ) => {
 
     return (
         
@@ -16,15 +16,15 @@ const Notificacoes = ( { navigation } ) => {
         >
             <Background>
                 
-                <BackHeader onPress={() => {navigation.goBack()}} title={'Notificações'}/>
+                <BackHeader onPress={() => {navigation.goBack()}} title={'Fale conosco'}/>
 
                 <ScrollView>
                     <Container>
 
-                        <SettingsItem label="Notificação da manhã" description= "Lembre-se de escrever seus sonhos" onPress={() => { }} showSwitch={true} />
-                        <SettingsItem label="Notificação da noite" description= "Lembre-se de revisar seus sonhos" onPress={() => { }} showSwitch={true} />
-                        <SettingsItem label="Silenciar notificações " description= "Defina um intervalo sem notificações" onPress={() => { }} showSwitch={false} />
-
+                        <Contatos>carlachicareli@gmail.com</Contatos>
+                        <Contatos>carolina@emof.com.br</Contatos>
+                        <Contatos>atilamelodesouza@gmail.com</Contatos>
+                        
                     </Container>
                 </ScrollView>
                 
@@ -35,6 +35,15 @@ const Notificacoes = ( { navigation } ) => {
 
 const Container = styled.View`
     flex: 1;
+    flex-direction: column;
+`;
+
+const Contatos = styled.Text`
+    font-size: 16px;
+    color: #fff;
+    margin-left: 10%;
+    margin-top: 4%;
+    font-family: 'Inter Regular';
 `;
 
 const styles = {
@@ -43,4 +52,4 @@ const styles = {
     },
 };
 
-export default Notificacoes;
+export default FaleConosco;

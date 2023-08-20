@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { ScrollView, KeyboardAvoidingView, Platform  } from 'react-native';
+import { ScrollView, KeyboardAvoidingView, View, Platform, TouchableOpacity  } from 'react-native';
 import styled from 'styled-components/native';
 import Background from '../../../components/Background';
 import BackHeader from '../../../components/Headers/BackHeader';
 import SettingsItem from '../../../components/ConfigComponets/SettingsItem';
 
-const Notificacoes = ( { navigation } ) => {
+const Backup = ( { navigation } ) => {
 
     return (
         
@@ -16,14 +16,14 @@ const Notificacoes = ( { navigation } ) => {
         >
             <Background>
                 
-                <BackHeader onPress={() => {navigation.goBack()}} title={'Notificações'}/>
+                <BackHeader onPress={() => {navigation.goBack()}} title={'Backup em nuvem'}/>
 
                 <ScrollView>
                     <Container>
 
-                        <SettingsItem label="Notificação da manhã" description= "Lembre-se de escrever seus sonhos" onPress={() => { }} showSwitch={true} />
-                        <SettingsItem label="Notificação da noite" description= "Lembre-se de revisar seus sonhos" onPress={() => { }} showSwitch={true} />
-                        <SettingsItem label="Silenciar notificações " description= "Defina um intervalo sem notificações" onPress={() => { }} showSwitch={false} />
+                        <SettingsItem label="Última sincronização" description= "Uma semana atrás" onPress={() => { }} showSwitch={false} />
+                        <SettingsItem label="Frequência de backup" description= "A cada uma semana" onPress={() => { }} showSwitch={false} />
+                        <SettingsItem label="Sincronizar com dados móveis " description= "Fazer backup usando dados móveis" onPress={() => { }} showSwitch={true} />
 
                     </Container>
                 </ScrollView>
@@ -43,4 +43,4 @@ const styles = {
     },
 };
 
-export default Notificacoes;
+export default Backup;

@@ -21,7 +21,7 @@ const ConfigItem = ({ label, description, onPress, showSwitch }) => {
                     <Switch
                         value={isChecked}
                         onValueChange={handleCheck}
-                        thumbColor={isChecked ? '#FFFFFF' : '#FFFFFF'}
+                        thumbColor={isChecked ? '#FFFFFF' : '#A8A8A8'}
                         trackColor={{ false: '#1A1F32', true: '#9F238E' }}
                     />
                 )}
