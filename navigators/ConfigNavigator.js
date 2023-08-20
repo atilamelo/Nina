@@ -2,7 +2,7 @@ import React from 'react'
 import ConfigScreen from '../screens/ConfigScreen';
 import Notificacoes from '../screens/ConfigScreen/ConfigItemScreen/Notificacoes';
 import Backup from '../screens/ConfigScreen/ConfigItemScreen/Backup';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import DreamContext from '../contexts/DreamContext';
 import FaleConosco from '../screens/ConfigScreen/ConfigItemScreen/FaleConosco';
 
@@ -11,7 +11,15 @@ const Stack = createStackNavigator();
 export default function WriteNavigator() {
   return (
     <DreamContext>
-      <Stack.Navigator initialRouteName="ConfigScreen">
+      <Stack.Navigator
+        initialRouteName="ConfigScreen"
+        screenOptions={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, // Transição horizontal entre os elementos
+          gestureDirection: 'horizontal', 
+          ...TransitionPresets.SlideFromRightIOS, 
+        }}
+      >
         <Stack.Screen
           name="ConfigScreen"
           component={ConfigScreen}
