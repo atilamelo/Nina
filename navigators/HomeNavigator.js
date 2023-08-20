@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, TouchableOpacity, View, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { LinearGradient } from 'expo-linear-gradient';
 import HomeScreen from '@screens/HomeScreen';
 import StatisticsScreen from '@screens/StatisticsScreen';
 import CalendarScreen from '@screens/CalendarScreen';
@@ -21,7 +22,10 @@ const CustomTabBarButton = ({ children, onPress }) => (
     }}
     onPress={onPress}
   >
-    <View
+    <LinearGradient
+      colors={['#653483', '#9A248D']}
+      start={[0, 0]}
+      end={[1, 1]}
       style={{
         width: 70,
         height: 70,
@@ -30,7 +34,7 @@ const CustomTabBarButton = ({ children, onPress }) => (
       }}
     >
       {children}
-    </View>
+    </LinearGradient>
   </TouchableOpacity>
 );
 
