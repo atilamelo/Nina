@@ -2,7 +2,7 @@ import React from 'react'
 import WriteScreen from '../screens/WriteScreen';
 import DreamRecordScreen from '../screens/WriteScreen/DreamRecordScreen';
 import GenerateImageScreen from '../screens/WriteScreen/ImageScreen';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import DreamContext from '../contexts/DreamContext';
 
 const Stack = createStackNavigator();
@@ -10,7 +10,13 @@ const Stack = createStackNavigator();
 export default function WriteNavigator() {
   return (
     <DreamContext>
-      <Stack.Navigator initialRouteName="WriteHome">
+      <Stack.Navigator initialRouteName="WriteHome"
+      screenOptions={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, // Transição horizontal entre os elementos
+          gestureDirection: 'horizontal', 
+          ...TransitionPresets.SlideFromRightIOS, 
+        }}>
         <Stack.Screen
           name="WriteHome"
           component={WriteScreen}

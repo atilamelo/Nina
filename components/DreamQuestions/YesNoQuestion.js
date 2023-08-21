@@ -24,7 +24,6 @@ const YesNoText = styled.Text`
     color: #fff;
     font-family: "Inter Bold";
     font-size: 20px;
-    font-weight: bold;
 `;
 
 const YesNoQuestionComponent = ({ options, questionLabel, selectedAnswer, handleAnswerClick }) => {

@@ -22,7 +22,6 @@ const ElipseText = styled.Text`
     color: #fff;
     font-family: "Inter Bold";
     font-size: 28px;
-    font-weight: bold;
 `;
 
 const LucidyQuestion = ({ lucidityRating, handleElipseClick }) => {
