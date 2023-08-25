@@ -73,16 +73,18 @@ const styles = StyleSheet.create({
     text: {
         textAlign: 'justify',
         color: '#fff',
+        fontFamily: 'Inter Regular',
     },
     title: {
         textAlign: 'center',
         marginTop: 10,
-        fontWeight: 'bold',
+        fontFamily: 'Inter Bold',
         fontSize: 15,
         color: '#fff',
     },
     data: {
         textAlign: 'center',
         color: '#686565',
+        fontFamily: 'Inter Regular',
     },
 });

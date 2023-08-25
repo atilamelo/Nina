@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { ScrollView, KeyboardAvoidingView, View, Platform, TouchableOpacity  } from 'react-native';
+import { ScrollView, KeyboardAvoidingView, View, Platform  } from 'react-native';
 import { DreamContext } from '@contexts/DreamContext';
 import { BasicButton, DegradeButton } from '@components/Buttons';
-import { DreamFooter } from '@components/Footers/DreamFooter';
-import { BackHeader } from '@components/Headers/BackHeader';
-import { Background } from '@components/Background';
+import DreamFooter from '@components/Footers/DreamFooter';
+import BackHeader from '@components/Headers/BackHeader';
+import Background from '@components/Background';
 import styled from 'styled-components/native';
 
 const WriteScreen = ( { navigation } ) => {
@@ -117,25 +117,12 @@ const Container = styled.View`
     flex: 1;
 `;
 
-const Voltar = styled.Image`
-    width: 15px;
-    resize-mode: contain;
-    left: 10%;
-`;
-
-const Texto = styled.Text`
-    text-align: right;
-    font-size: 22px;
-    color: #ffffff;
-    font-weight: bold;
-`;
-
 const Titulo = styled.TextInput`
     margin-vertical: 5%;
     margin-horizontal: 8%;
     font-size: 25px;
     color: #ffffff;
-    font-weight: bold;
+    font-family: 'Inter Bold';
 `;
 
 const Sonho = styled.TextInput`
@@ -143,7 +130,7 @@ const Sonho = styled.TextInput`
     margin-horizontal: 8%;
     font-size: 17px;
     color: #ffffff;
-   
+    font-family: 'Inter Regular';
 `;
 
 const styles = {

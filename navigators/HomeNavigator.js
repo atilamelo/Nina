@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, TouchableOpacity, View, Text } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, CardStyleInterpolators } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
 import HomeScreen from '@screens/HomeScreen';
 import StatisticsScreen from '@screens/StatisticsScreen';

@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { ScreenContainer } from './style'
 import { DreamContext } from '@contexts/DreamContext';
-import { YesNoQuestion, LucidyQuestion} from '@components/DreamQuestions';
+import LucidyQuestion from '@components/DreamQuestions/LucidyQuestion';
+import YesNoQuestion from '@components/DreamQuestions/YesNoQuestion';
 import Barra from '@components/Barra';
 
 export default function Step3() {
@@ -24,12 +25,12 @@ export default function Step3() {
     };
 
     return (
+
         <ScreenContainer windowWidth={width}>
-            <LucidyQuestion
+             <LucidyQuestion
                 lucidityRating={dreamContext.dreamData.lucidyRating}
                 handleElipseClick={handleLucidyClick}
             />
-
             <Barra/>
 
             <YesNoQuestion
@@ -52,7 +53,7 @@ export default function Step3() {
                 questionLabel={'Esse sonho é recorrente?'}
                 selectedAnswer={dreamData.recurrence}
                 handleAnswerClick={handleRecurrenceClick}
-            />
+            /> 
         </ScreenContainer>
     )
 }
