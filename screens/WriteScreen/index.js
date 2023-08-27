@@ -49,7 +49,7 @@ const WriteScreen = ( { navigation } ) => {
                 
                 <BackHeader onPress={() => {navigation.goBack()}} title={'Escreva seu sonho'}/>
 
-                <ScrollView>
+                <ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
                     <Container>
                         <Titulo 
                             placeholder="Título"
