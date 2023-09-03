@@ -7,7 +7,7 @@ import styled from 'styled-components/native';
 import DreamFooter from '@components/Footers/DreamFooter';
 import {DegradeButton } from '@components/Buttons';
 import { useNavigation } from '@react-navigation/native';
-import WriteScreen from '@screens/WriteScreen';
+import Reprodutor from '@components/AudioComponents/Reprodutor';
 
 const EndDreamScreen = ({ navigation }) => {
 
@@ -117,6 +117,8 @@ const EndDreamScreen = ({ navigation }) => {
                 <TextTag>{tag.tag}</TextTag>
               </Tag>
             </ContainerTags>
+
+            <Reprodutor audioSource={require('../../assets/teste.mp3')} />
 
           </CenteredContainer>
         </ScrollView>
