@@ -3,12 +3,11 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import Slider from '@react-native-community/slider';
+import { Slider } from '@react-native-assets/slider'
 import styled from 'styled-components/native'; 
 
 const StyledSlider = styled(Slider)`
-  width: 230px;
-  margin-top: 1px;
+  width: 220px;
 `;
 
 const SeekBar = ({
