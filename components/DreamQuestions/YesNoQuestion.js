@@ -23,7 +23,7 @@ const YesNoGroup = styled.View`
 const YesNoText = styled.Text`
     color: #fff;
     font-family: "Inter Bold";
-    font-size: 20px;
+    font-size: 18px;
 `;
 
 const YesNoQuestionComponent = ({ options, questionLabel, selectedAnswer, handleAnswerClick }) => {

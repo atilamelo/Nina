@@ -7,7 +7,9 @@ import styled from 'styled-components/native';
 import DreamFooter from '@components/Footers/DreamFooter';
 import {DegradeButton } from '@components/Buttons';
 import { useNavigation } from '@react-navigation/native';
-import Reprodutor from '@components/AudioComponents/Reprodutor';
+import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
+import TextoComponents from '@components/EndComponents/TextoComponent';
+import Barra from '@components/Barra';
 
 const EndDreamScreen = ({ navigation }) => {
 
@@ -35,6 +37,7 @@ const EndDreamScreen = ({ navigation }) => {
   const [titulo, setTitulo] = useState(modelo);
   const [data, setData] = useState(modelo);
   const [tag, setTag] = useState(modelo);
+  const [sonho, setSonho] = useState(modelo);
   
   const [imagePath, setImagePath] = useState(require('@assets/purple_cat.jpg'));
 
@@ -43,10 +46,12 @@ const EndDreamScreen = ({ navigation }) => {
     let titulo = e.target.text;
     let data = e.target.text;
     let tag = e.target.text;
+    let sonho = e.target.text
     
     setTitulo({...titulo, [titulo]: valor});
     setData({...data, [data]: valor});
     setData({...tag, [tag]: valor});
+    setSonho({...sonho, [sonho]: valor});
   }
 
   return (
@@ -120,6 +125,10 @@ const EndDreamScreen = ({ navigation }) => {
 
             <Reprodutor audioSource={require('../../assets/teste.mp3')} />
 
+            <TextoComponents sonho={"Lorem ipsum dolor sit amet. Est natus dolor ut fuga commodi qui velit enim et sint dolore et quibusdam pariatur ut dolorum magni et eius. Eum vero dolor ut possimus Quis et dolor atque ab galisum corrupti et repellendus voluptatem."}/>
+
+            <Barra/>
+
           </CenteredContainer>
         </ScrollView>
 
@@ -180,6 +189,10 @@ const TextTag = styled.Text`
   font-size: 14px;
   font-family: 'Inter SemiBold';
   color: #fff;
+`;
+
+const BarraContainer = styled.View`
+  margin-bottom: 10px;
 `;
 
 const FavoriteButton = styled.TouchableOpacity``;

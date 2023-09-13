@@ -72,15 +72,14 @@ export default function Step1() {
             style={{
               textAlignVertical: 'center',
               justifyContent: 'space-between',
-              color: '#ffffff',
-              borderColor: 'white', 
-              borderWidth: 2,
+              backgroundColor: '#9F238E',
               paddingHorizontal: 50,
               height: 50,
               width: 292,
               fontSize: 18,
               borderRadius: 10,
-              fontFamily: 'Inter Regular',
+              fontFamily: 'Inter SemiBold',
+              color: '#ffffff',
             }}
             placeholder={formatDate(new Date())}
             value={datePlaceHolder}
@@ -106,7 +105,7 @@ export default function Step1() {
       </QuestionContainer>
 
       <TagContainer>
-        <ScrollView>
+        <ScrollView  style={{ width: 300 }}>
           <TagQuestion
             options={tagOptions}
             selectedAnswers={dreamData.selectedTags}
@@ -128,7 +127,7 @@ const Styled = styled.View`
 
 const TagContainer = styled.View`
   width: 300px; 
-  height: 210px;
+  height: 250px;
   align-items: center;
   justify-content: center;
   margin: auto;
