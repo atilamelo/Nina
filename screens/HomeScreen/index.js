@@ -1,10 +1,11 @@
-import React from 'react';
-import { View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, FlatList, Image, TouchableOpacity, Modal, Text } from 'react-native';
 import { DreamSchema } from '@databases/schemas/DreamSchema';
 import { useQuery } from '@databases/realm';
 import DreamBox from '@components/DreamBox';
 import Background from '@components/Background';
 import MainHeader from '@components/Headers/MainHeader';
+import OptionsModal from '@components/Modals/OptionsModal';
 
 // Images
 import menuIco from '@assets/icons/menu.png'; 
@@ -17,6 +18,12 @@ const getSortedDreams = () => {
 }
 
 const HomeScreen = ({ navigation }) => {
+    const [isOptionsVisible, setOptionsVisible] = useState(false);
+
+    const toggleOptionsModal = () => {
+        setOptionsVisible(!isOptionsVisible);
+    }
+
     return (
         <Background>
             <View style={styles.container}>
@@ -39,7 +46,7 @@ const HomeScreen = ({ navigation }) => {
                                     />
                                 </TouchableOpacity>
 
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={toggleOptionsModal}>
                                     <Image 
                                         source={optionsIco}
                                         style={{ width: 5, height: 19, marginHorizontal: 12 }}
@@ -61,6 +68,9 @@ const HomeScreen = ({ navigation }) => {
                         </View>
                     </View>
             </View>
+
+            <OptionsModal isVisible={isOptionsVisible} onClose={toggleOptionsModal} />
+            
         </Background>
     );
 };
@@ -74,7 +84,7 @@ const styles = StyleSheet.create({
     },
     dreamsList: {
         flex: 1,
-    }
+    },
 });
 
 export default HomeScreen;
