@@ -87,7 +87,7 @@ const HomeTab = () => (
           <TabIcon
             focused={focused}
             source={require('@assets/icons/home.png')}
-            text="Home"
+            text="Díario"
           />
         ),
       }}
@@ -101,7 +101,7 @@ const HomeTab = () => (
           <TabIcon
             focused={focused}
             source={require('@assets/icons/statistics.png')}
-            text="Statistics"
+            text="Estatísticas"
           />
         ),
       }}
@@ -135,7 +135,7 @@ const HomeTab = () => (
           <TabIcon
             focused={focused}
             source={require('@assets/icons/calendar.png')}
-            text="Calendar"
+            text="Calendário"
           />
         ),
       }}
@@ -149,11 +149,12 @@ const HomeTab = () => (
           <TabIcon
             focused={focused}
             source={require('@assets/icons/settings.png')}
-            text="Settings"
+            text="Config."
           />
         ),
       }}
     />
+
   </Tab.Navigator>
 );
 

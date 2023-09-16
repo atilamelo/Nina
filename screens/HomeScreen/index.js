@@ -23,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
 
                     <MainHeader
                         left={
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigation.openDrawer()}>
                                 <Image 
                                     source={menuIco}
                                     style={{ width: 24, height: 20, resizeMode: 'contain' }}

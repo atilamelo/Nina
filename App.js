@@ -3,6 +3,7 @@
  * Description: Main App Screen
  */
 
+import 'react-native-gesture-handler';
 import React from 'react';
 import { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,6 +14,10 @@ import { useFonts } from 'expo-font';
 import { RealmProvider } from '@databases/realm';
 import HomeNavigator from '@navigators/HomeNavigator';
 import * as SplashScreen  from 'expo-splash-screen';
+import DrawerNavigation from '@navigators/DrawerNavigator';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
 
 const Stack = createStackNavigator();
 
@@ -45,7 +50,7 @@ const App = () => {
                         <Stack.Navigator>
                             <Stack.Screen
                                 name="Tabs"
-                                component={HomeNavigator}
+                                component={DrawerNavigation} //Troquei HomeNavigator por DrawerNavigation
                                 options={{ headerShown: false }} // Ocultar o cabeçalho
                             />
                         </Stack.Navigator>
