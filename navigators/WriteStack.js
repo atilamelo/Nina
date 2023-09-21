@@ -7,7 +7,7 @@ import DreamContext from '../contexts/DreamContext';
 
 const Stack = createStackNavigator();
 
-export default function WriteNavigator() {
+export default function WriteStack() {
   return (
     <DreamContext>
       <Stack.Navigator initialRouteName="WriteHome"

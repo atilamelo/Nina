@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 
@@ -7,25 +7,28 @@ const formatDate = ( date ) => {
     return format(date, 'dd \'de\' MMMM \'de\' yyyy', { locale: ptBR });
 };
 
-const DreamBox = ({ item: props }) => {
+const DreamBox = ({ item: props, navigation }) => {
+    console.log(navigation);
     return (
-        <View style={styles.container}>
-            <View style={styles.cardContainer}>
-                <DreamContent item={props} />
-                <AdditionalInformation item={props} />
+        <TouchableOpacity onPress={() => navigation.navigate('Dream', { props })}>
+            <View style={styles.container}>
+                <View style={styles.cardContainer}>
+                    <DreamContent item={props} />
+                    <AdditionalInformation item={props} />
+                </View>
             </View>
-        </View>
+        </TouchableOpacity>
     );
 };
 
 const DreamContent = ({ item }) => {
     return (
-        <View style={styles.backgroundMain}>
-            <View style={styles.mainContainer}>
-                <Text style={styles.text}>{item.text}</Text>
-                <Image style={styles.dreamImage} source={item.imagePath} />
+            <View style={styles.backgroundMain}>
+                <View style={styles.mainContainer}>
+                    <Text style={styles.text}>{item.text}</Text>
+                    <Image style={styles.dreamImage} source={item.imagePath} />
+                </View>
             </View>
-        </View>
     );
 };
 

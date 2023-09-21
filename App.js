@@ -5,13 +5,12 @@
 
 import React from 'react';
 import { useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { RealmProvider } from '@databases/realm';
-import HomeNavigator from '@navigators/HomeNavigator';
+import MainStack from '@navigators/MainStack';
 import * as SplashScreen  from 'expo-splash-screen';
 
 const Stack = createStackNavigator();
@@ -41,15 +40,7 @@ const App = () => {
     return (
         <RealmProvider>
             <SafeAreaView style={{ flex: 1 }}>
-                    <NavigationContainer>
-                        <Stack.Navigator>
-                            <Stack.Screen
-                                name="Tabs"
-                                component={HomeNavigator}
-                                options={{ headerShown: false }} // Ocultar o cabeçalho
-                            />
-                        </Stack.Navigator>
-                    </NavigationContainer>
+                    <MainStack/>
                     <StatusBar style='light' backgroundColor='#2A0A41' />
             </SafeAreaView>
         </RealmProvider>
