@@ -4,26 +4,26 @@ import styled from 'styled-components/native';
 
 const FeelingsQuestion = styled.TouchableOpacity`
   width: 144px;
-  height: 37px;
+  height: 47px;
   border-radius: 10px;
   background-color: ${p => (p.selected ? '#9F238E' : '#2B314C')};
   justify-content: center;
   align-items: center;
   margin-left: 12.5px;
   margin-right: 12.5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 const FeelingsText = styled.Text`
     color: #fff;
-    font-family: "Inter Regular";
-    font-size: 20px;
+    font-family: "Inter SemiBold";
+    font-size: 18px;
 `;
 
 const FeelingsGroup = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 25px;
+  margin-top: 55px;
   flex-wrap: wrap;
 `;
 

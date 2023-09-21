@@ -21,7 +21,7 @@ const ElipseQuestion = styled.View`
 const ElipseText = styled.Text`
     color: #fff;
     font-family: "Inter Bold";
-    font-size: 28px;
+    font-size: 25px;
 `;
 
 const LucidyQuestion = ( props ) => {

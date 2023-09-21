@@ -7,7 +7,7 @@ const TagGroup = styled.View`
 
 const TagQuestion = styled.TouchableOpacity`
   width: 274px;
-  height: 45px;
+  height: 50px;
   border-radius: 10px;
   background-color: ${p => (p.selected ? '#9F238E' : '#2B314C')};
   justify-content: center;
@@ -17,8 +17,8 @@ const TagQuestion = styled.TouchableOpacity`
 
 const TagText = styled.Text`
   color: #fff;
-  font-family: "Inter Regular";
-  font-size: 20px;
+  font-family: "Inter SemiBold";
+  font-size: 18px;
 `;
 
 const TagQuestionComponent = ({ options, selectedAnswers, handleAnswerClick }) => {

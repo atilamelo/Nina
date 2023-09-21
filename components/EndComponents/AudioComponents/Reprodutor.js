@@ -3,7 +3,7 @@ import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import micIcon from '@assets/icons/mic.png';
-import SeekBar from '@components/AudioComponents/SeekBar';
+import SeekBar from '@components/EndComponents/AudioComponents/SeekBar';
 
 const Container = styled.View`
   flex: 1;
