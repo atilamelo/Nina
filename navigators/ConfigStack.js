@@ -8,7 +8,7 @@ import FaleConosco from '../screens/ConfigScreen/ConfigItemScreen/FaleConosco';
 
 const Stack = createStackNavigator();
 
-export default function WriteNavigator() {
+export default function ConfigStack() {
   return (
     <DreamContext>
       <Stack.Navigator

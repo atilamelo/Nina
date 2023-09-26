@@ -6,7 +6,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const CalendarScreen = ({navigation}) => {
+const CalendarScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text>Calendario Screen</Text>

@@ -5,8 +5,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import HomeScreen from '@screens/HomeScreen';
 import StatisticsScreen from '@screens/StatisticsScreen';
 import CalendarScreen from '@screens/CalendarScreen';
-import WriteNavigator from '@navigators/WriteNavigator';
-import ConfigNavigator from '@navigators/ConfigNavigator';
+import WriteStack from '@navigators/WriteStack';
+import ConfigStack from '@navigators/ConfigStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -61,7 +61,7 @@ const TabIcon = ({ focused, source, text }) => (
   </View>
 );
 
-const HomeTab = () => (
+const HomeNavigator = () => (
   <Tab.Navigator
     screenOptions={{
       tabBarShowLabel: false,
@@ -109,7 +109,7 @@ const HomeTab = () => (
 
     <Tab.Screen
       name="WriteDreams"
-      component={WriteNavigator}
+      component={WriteStack}
       options={{
         tabBarIcon: ({ focused }) => (
           <Image
@@ -143,7 +143,7 @@ const HomeTab = () => (
 
     <Tab.Screen
       name="Settings"
-      component={ConfigNavigator}
+      component={ConfigStack}
       options={{
         tabBarIcon: ({ focused }) => (
           <TabIcon
@@ -155,7 +155,16 @@ const HomeTab = () => (
       }}
     />
 
+  <Tab.Screen
+      name="DreamPage"
+      component={ConfigStack}
+      options={{
+        tabBarButton: () => null,
+        tabBarVisible: false
+      }}
+    />
+
   </Tab.Navigator>
 );
 
-export default HomeTab;
+export default HomeNavigator;

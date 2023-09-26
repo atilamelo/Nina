@@ -146,6 +146,9 @@ const EndDreamScreen = ({ navigation }) => {
   );
 };
 
+export default EndDreamScreen;
+
+
 const CenteredContainer = styled.View`
   flex: 1;
   align-items: center;
@@ -154,6 +157,7 @@ const CenteredContainer = styled.View`
 `;
 
 const Titulo = styled.Text`
+
   text-align: center;
   font-size: 17px;
   font-family: 'Inter Bold';
@@ -199,4 +203,3 @@ const FavoriteButton = styled.TouchableOpacity``;
 
 const FavoriteImage = styled.Image``;
 
-export default EndDreamScreen;

@@ -61,7 +61,7 @@ const HomeScreen = ({ navigation }) => {
                         <View style={styles.dreamsList}>
                             <FlatList
                                 data={getSortedDreams()}
-                                renderItem={({ item }) => <DreamBox item={item} />}
+                                renderItem={({ item }) => <DreamBox item={item} navigation={navigation} />}
                                 keyExtractor={(item, index) => index.toString()}
                                 contentContainerStyle={{ paddingBottom: 90 }}
                             />
