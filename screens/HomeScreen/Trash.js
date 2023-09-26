@@ -39,7 +39,7 @@ const Trash = ({ navigation }) => {
                             <TouchableOpacity>
                                 <Image 
                                     source={optionsIco}
-                                    style={{ width: 5, height: 19, marginHorizontal: 12 }}
+                                    style={{ width: 5, height: 22, marginHorizontal: 12 }}
                                 />
                             </TouchableOpacity>
                         </RightButtons>
