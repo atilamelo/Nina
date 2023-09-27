@@ -48,29 +48,29 @@ function AudioPlayer({ audioSource }) {
   const [soundDuration, setSoundDuration] = useState(0);
   const [pausedPosition, setPausedPosition] = useState(0); // Adiciona o estado para armazenar a posição pausada.
 
-  const onSeek = async (newValue) => {
-    if (soundObject) {
-      try {
-        await soundObject.setPositionAsync(newValue);
-        setSoundPosition(newValue);
+  // const onSeek = async (newValue) => {
+  //   if (soundObject) {
+  //     try {
+  //       await soundObject.setPositionAsync(newValue);
+  //       setSoundPosition(newValue);
   
-        // Se o áudio estiver pausado, inicie-o ao mexer na barra.
-        if (!isPlaying) {
-          await soundObject.playAsync();
-          setIsPlaying(true);
-        }
-      } catch (error) {
-        console.error('Erro ao buscar a posição de reprodução:', error);
-      }
-    }
-  };
+  //       // Se o áudio estiver pausado, inicie-o ao mexer na barra.
+  //       if (!isPlaying) {
+  //         await soundObject.playAsync();
+  //         setIsPlaying(true);
+  //       }
+  //     } catch (error) {
+  //       console.error('Erro ao buscar a posição de reprodução:', error);
+  //     }
+  //   }
+  // };
 
-  const onSlidingStart = () => {
-    if (isPlaying) {
-      // Pausa o áudio e salva a posição pausada.
-      setPausedPosition(soundPosition);
-    }
-  };
+  // const onSlidingStart = () => {
+  //   if (isPlaying) {
+  //     // Pausa o áudio e salva a posição pausada.
+  //     setPausedPosition(soundPosition);
+  //   }
+  // };
 
   useEffect(() => {
     if (soundObject) {
@@ -137,8 +137,8 @@ function AudioPlayer({ audioSource }) {
         <SeekBar
           trackLength={soundDuration}
           currentPosition={soundPosition}
-          onSeek={onSeek}
-          onSlidingStart={onSlidingStart}
+          // onSeek={onSeek}
+          // onSlidingStart={onSlidingStart}
           styles={seekBarStyles}
         />
         <IconContainer>
