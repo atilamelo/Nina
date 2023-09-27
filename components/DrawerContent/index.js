@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styled from 'styled-components/native';
 import Background from '@components/Background';
@@ -17,7 +17,7 @@ const Content = styled.View`
 const MenuItem = styled.TouchableOpacity`
   margin-top: 15%;
   flex-direction: row;
-  margin-horizontal: 33px; /* Espaço nas margens laterais */
+  margin-horizontal: 30px; /* Espaço nas margens laterais */
   align-items: center;
 `;
 
@@ -35,17 +35,34 @@ const MenuItemText = styled.Text`
   margin-left: 20px;
 `;
 
+const CountText = styled.Text`
+  font-family: 'Inter Bold';
+  font-size: 14px;
+  color: #8A8686;
+  margin-left: 15px;
+  flex: 1; /* Ocupar todo o espaço horizontal */
+  text-align: right; /* Alinhar o texto à direita */
+`;
+
+
 const DrawerContent = ({ navigation }) => {
+
+  // Posteriormente modifique para que aparece a quantidade exata de sonhos
+  const [todosSonhosCount, setTodosSonhosCount] = useState(10);
+  const [lixeiraCount, setLixeiraCount] = useState(5);
+  const [favoritosCount, setFavoritosCount] = useState(4);
+  const [tagsCount, setTagsCount] = useState(10);
+
   return (
     <Background>
       <Content>
-
         <MenuItem onPress={() => navigation.navigate('Home')}>
           <Image 
             source={home}
-            style={{ width: 23, height: 24, resizeMode: 'contain', tintColor: 'white',}}
+            style={{ width: 23, height: 24, resizeMode: 'contain', tintColor: 'white'}}
           />
           <MenuItemText>Todos os sonhos</MenuItemText>
+          <CountText>{todosSonhosCount}</CountText>
         </MenuItem>
 
         <MenuItem onPress={() => navigation.navigate('Trash')}>
@@ -54,6 +71,7 @@ const DrawerContent = ({ navigation }) => {
             style={{ width: 28, height: 29, resizeMode: 'contain' }}
           />
           <MenuItemText>Lixeira</MenuItemText>
+          <CountText>{lixeiraCount}</CountText>
         </MenuItem>
 
         <MenuItem onPress={() => navigation.navigate('FavoriteScreen')}>
@@ -61,7 +79,8 @@ const DrawerContent = ({ navigation }) => {
             source={favoritos}
             style={{ width: 29, height: 29, resizeMode: 'contain' }}
           />
-          <MenuItemText>Favoritos</MenuItemText>
+          <MenuItemText>Favoritos </MenuItemText>
+          <CountText>{favoritosCount}</CountText>
         </MenuItem>
         
         <Barra/>
@@ -72,6 +91,7 @@ const DrawerContent = ({ navigation }) => {
             style={{ width: 32, height: 23, resizeMode: 'contain' }}
           />
           <MenuItemText>Tags</MenuItemText>
+          <CountText>{tagsCount}</CountText>
         </View>
 
         <TagItem onPress={() => navigation.navigate()}>
