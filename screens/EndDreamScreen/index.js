@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, KeyboardAvoidingView, TouchableOpacity, Image } from 'react-native';
 import Background from '@components/Background';
 import { ScrollView } from 'react-native-gesture-handler';
-import EndDreamHeader from '@components/Headers/EndDreamHeader';
+import MainHeader from '@components/Headers/MainHeader';
 import styled from 'styled-components/native';
 import DreamFooter from '@components/Footers/DreamFooter';
 import {DegradeButton } from '@components/Buttons';
@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
 import TextoComponents from '@components/EndComponents/TextoComponent';
 import Barra from '@components/Barra';
+import BackHeader from '@components/Headers/BackHeader';
 
 const EndDreamScreen = ({ navigation }) => {
 
@@ -61,14 +62,11 @@ const EndDreamScreen = ({ navigation }) => {
       windowSoftInputMode="adjustResize"
     >
       <Background>
-        <EndDreamHeader //Header do EndDream
+        <MainHeader //Header do EndDream
           left={
-            <TouchableOpacity>
-              <Image
-                source={voltarIcon}
-                style={{ width: 24, height: 20, resizeMode: 'contain' }}
-              />
-            </TouchableOpacity>
+            <View style={{ width: 1, marginTop: 30}}>
+              <BackHeader onPress={() => {navigation.goBack()}} />
+            </View> 
           }
           right={
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
