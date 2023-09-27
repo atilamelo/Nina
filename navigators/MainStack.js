@@ -14,10 +14,7 @@ export default function ConfigStack() {
         <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{
-            headerShown: false,
-            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, // Transição horizontal entre os elementos
-            gestureDirection: 'horizontal', 
-            ...TransitionPresets.SlideFromRightIOS, 
+            headerShown: false, 
             }}
             >
             <Stack.Screen
