@@ -5,12 +5,15 @@
 
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import Background from '@components/Background';
 
 const StatisticsScreen = ({navigation}) => {
     return (
-        <View style={styles.container}>
-            <Text>Estatisticas Screen</Text>
-        </View>
+        <Background>
+            <View style={styles.container}>
+                <Text>Estatisticas Screen</Text>
+            </View>
+        </Background>
     );
 }
 
@@ -20,7 +23,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#1A1F32'
+        justifyContent: 'center'
     }
 })
