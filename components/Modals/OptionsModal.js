@@ -10,6 +10,8 @@ const OptionsModal = ({ isVisible, onClose }) => {
     setSelectedOption(option);
   };
 
+  
+
   return (
     <Modal
       animationType="fade"

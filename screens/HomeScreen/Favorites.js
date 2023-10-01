@@ -12,7 +12,7 @@ import MainHeader from '@components/Headers/MainHeader';
 // Images
 import menuIco from '@assets/icons/menu.png'; 
 import searchIco from '@assets/icons/search.png';
-import optionsIco from 'assets/icons/options.png';
+import organizarIco from 'assets/icons/organizar.png';
 
 const Favorites = ({ navigation }) => {
     return (
@@ -38,7 +38,7 @@ const Favorites = ({ navigation }) => {
 
                             <TouchableOpacity>
                                 <Image 
-                                    source={optionsIco}
+                                    source={organizarIco}
                                     style={{ width: 5, height: 22, marginHorizontal: 12 }}
                                 />
                             </TouchableOpacity>
