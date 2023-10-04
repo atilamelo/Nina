@@ -84,6 +84,10 @@ const Record = () => {
   return (
     <>
       <LowerRectangleContainer>
+        <Content>
+          <Descricao>Descreva seu sonho</Descricao>
+        </Content>
+      
         <PressableEllipse
           recording={recording}
           onPressIn={handleRecordingStart}
@@ -92,15 +96,6 @@ const Record = () => {
         </PressableEllipse>
         {recording ? <Tempo>{`${formatTime(timer)}`}</Tempo> : <Texto>Segure o Microfone para falar</Texto>}
       </LowerRectangleContainer>
-
-      <UpperRectangleContainer>
-        <Content>
-            <TouchableOpacity onPress={() => {}}>
-                <Image source={require('@assets/icons/Voltar.png')} style={{ width: 14, height: 24 }} />
-            </TouchableOpacity>
-            <Descricao>Descreva seu sonho</Descricao>
-        </Content>
-      </UpperRectangleContainer>
     </>
   );
 };
@@ -115,15 +110,6 @@ const PressableEllipse = styled.Pressable`
   justify-content: center;
   align-items: center;
   margin-bottom: 22px;
-`;
-
-const UpperRectangleContainer = styled.View`
-  width: 100%;
-  height: 59px;
-  background: #222840;
-  border-top-left-radius: 13px;
-  border-top-right-radius: 13px;
-  margin-bottom: 51%;
 `;
 
 const LowerRectangleContainer = styled.View`
@@ -157,10 +143,9 @@ const Descricao = styled.Text`
 const Content = styled.View`
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 4%;
-    margin-left: 6%;
-    margin-right: 35%;
+    justify-content: center;
+    margin-bottom: -10%;
+    margin-top: 5%;
 `;
 
 export default Record;
