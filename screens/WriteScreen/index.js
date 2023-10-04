@@ -8,6 +8,7 @@ import BackHeader from '@components/Headers/BackHeader';
 import Background from '@components/Background';
 import styled from 'styled-components/native';
 import Record from '@components/Record';
+import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
 
 const WriteScreen = ({ navigation }) => {
   const dreamContext = useContext(DreamContext);
@@ -17,6 +18,8 @@ const WriteScreen = ({ navigation }) => {
   const [showRecord, setShowRecord] = useState(false);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isRecordingComplete, setIsRecordingComplete] = useState(false);
+
 
   const voltarButton = () => {
     navigation.navigate('Sonhos');
@@ -51,6 +54,10 @@ const WriteScreen = ({ navigation }) => {
 
   const closeDrawer = () => {
     setIsDrawerOpen(false);
+  };
+
+  const onRecordingComplete = () => {
+    setIsRecordingComplete(true);
   };
 
   return (
@@ -88,6 +95,10 @@ const WriteScreen = ({ navigation }) => {
                 selectionColor="purple"
                 value={dreamData.text}
               />
+
+{isRecordingComplete && (
+              <Reprodutor audioSource={require('../../assets/teste.mp3')} />
+            )}
             </Container>
           </ScrollView>
           
@@ -110,7 +121,7 @@ const WriteScreen = ({ navigation }) => {
             backdropStyle={{ backgroundColor: 'transparent' }}
             topTouchAreaStyle={{ marginTop: 0, height: 35, backgroundColor: '#222840', borderRadius: 0, borderTopLeftRadius: 13,  borderTopRightRadius: 13}}
             handleStyle={{ marginTop: 9, height: 6, width: 35, borderRadius: 3, backgroundColor: '#5C658F' }}>
-          <Record />
+          <Record onRecordingComplete={onRecordingComplete}/>
         </FluidDrawerNative>
       </Background>
     </KeyboardAvoidingView>

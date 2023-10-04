@@ -3,8 +3,8 @@ import { Pressable, Image, Alert, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av';
 
-const Record = () => {
-  const [recording, setRecording] = useState();
+const Record = ({onRecordingComplete}) => {
+  const [recording, setRecording] = useState(false);
   const [recordingFileURI, setRecordingFileURI] = useState();
   const [timer, setTimer] = useState(0);
   const timerRef = useRef();
@@ -27,11 +27,18 @@ const Record = () => {
   };
 
   async function handleRecordingStart() {
+
+    if (recording) {
+      // Se já estiver gravando, ignore o início da gravação
+      return;
+    }
+
     const { granted } = await Audio.getPermissionsAsync();
 
     if (granted) {
       try {
         const { recording } = await Audio.Recording.createAsync();
+        setRecording(true); // Atualiza o estado para indicar que a gravação está em andamento
         setRecording(recording);
         startTimer();
       } catch (error) {
@@ -42,6 +49,11 @@ const Record = () => {
   }
 
   async function handleRecordingStop() {
+
+    if (!recording) {
+      // Se não estiver gravando, ignore a parada da gravação
+      return;
+    }
     try {
       if (recording) {
         await recording.stopAndUnloadAsync();
@@ -50,8 +62,10 @@ const Record = () => {
         console.log(fileUri);
 
         setRecordingFileURI(fileUri);
-        setRecording(null);
+        setRecording(false);
         stopTimer();
+
+        onRecordingComplete();
       }
     } catch (error) {
       console.log('error', error);
@@ -94,7 +108,7 @@ const Record = () => {
           onPressOut={handleRecordingStop}>
           <Image source={recording ? require('@assets/icons/rec.png') : require('@assets/icons/micPreenchido.png')} style={{ width: recording ? 25 : 21, height: recording ? 25 : 30 }} />
         </PressableEllipse>
-        {recording ? <Tempo>{`${formatTime(timer)}`}</Tempo> : <Texto>Segure o Microfone para falar</Texto>}
+        {recording ? <Tempo>{`${formatTime(timer)}`}</Tempo> : <Texto>Aperte ou segure o Microfone para falar</Texto>}
       </LowerRectangleContainer>
     </>
   );
