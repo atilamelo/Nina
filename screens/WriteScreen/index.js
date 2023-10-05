@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { ScrollView, KeyboardAvoidingView, View, Platform } from 'react-native';
+import { ScrollView, KeyboardAvoidingView, View, Platform, Button } from 'react-native';
 import { FluidDrawerNative } from '@builddiv/fluid-drawer-native';
 import { DreamContext } from '@contexts/DreamContext';
 import { BasicButton, DegradeButton } from '@components/Buttons';
@@ -9,6 +9,7 @@ import Background from '@components/Background';
 import styled from 'styled-components/native';
 import Record from '@components/Record';
 import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
+import AlertModal from '../../components/Modals/AlertModal';
 
 const WriteScreen = ({ navigation }) => {
   const dreamContext = useContext(DreamContext);
@@ -19,6 +20,8 @@ const WriteScreen = ({ navigation }) => {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isRecordingComplete, setIsRecordingComplete] = useState(false);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
 
   const voltarButton = () => {
@@ -60,6 +63,20 @@ const WriteScreen = ({ navigation }) => {
     setIsRecordingComplete(true);
   };
 
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const onRequestButton1 = () => {
+    // Lógica para apagar o audio
+    setIsRecordingComplete(false);
+    closeModal();
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -96,8 +113,8 @@ const WriteScreen = ({ navigation }) => {
                 value={dreamData.text}
               />
 
-{isRecordingComplete && (
-              <Reprodutor audioSource={require('../../assets/teste.mp3')} />
+            {isRecordingComplete && (
+              <Reprodutor onPress = {openModal} audioSource={require('../../assets/teste.mp3')} />
             )}
             </Container>
           </ScrollView>
@@ -123,6 +140,16 @@ const WriteScreen = ({ navigation }) => {
             handleStyle={{ marginTop: 9, height: 6, width: 35, borderRadius: 3, backgroundColor: '#5C658F' }}>
           <Record onRecordingComplete={onRecordingComplete}/>
         </FluidDrawerNative>
+
+        <AlertModal
+        visible={modalVisible}
+        content="Deseja apagar o audio?"
+        button1Text='APAGAR'
+        onClose={closeModal}
+        onRequestButton1={onRequestButton1}
+        button1Color="#BD2E32"
+      />
+      
       </Background>
     </KeyboardAvoidingView>
   );

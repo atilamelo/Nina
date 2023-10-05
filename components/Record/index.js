@@ -117,7 +117,7 @@ const Record = ({onRecordingComplete}) => {
 const PressableEllipse = styled.Pressable`
   width: 60px;
   height: 60px;
-  background-color: ${({ recording }) => (recording ? 'red' : '#9F238E')};
+  background-color: ${({ recording }) => (recording ? '#BD2E32' : '#9F238E')};
   border-radius: 30px;
   align-self: center;
   margin-top: 65px;

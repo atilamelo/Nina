@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Audio } from 'expo-av';
+import {TouchableOpacity, Pressable} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import micIcon from '@assets/icons/mic.png';
@@ -11,24 +12,23 @@ const Container = styled.View`
   align-items: center;
 `;
 
-const AudioButton = styled.View`
+const AudioButton = styled.Pressable`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 330px;
-  height: 54px;
+  width: 90%;
+  height: 59%;
   margin-top: 10%;
   border-radius: 13px;
   background-color: #2B314C;
 `;
 
 const IconContainer = styled.View`
-  padding: 14px;
+  padding: 16px;
 `;
 
-const PauseContainer = styled.View`
-  margin-right: 10px;
-  margin-left: 14px;
+const PauseContainer = styled(TouchableOpacity)`
+  padding: 14px;
 `;
 
 const MicIcon = styled.Image`
@@ -41,7 +41,7 @@ const seekBarStyles = {
   trackColor: '#9D9D9D',
 };
 
-function AudioPlayer({ audioSource }) {
+function AudioPlayer({ audioSource, disabled, onPress }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [soundObject, setSoundObject] = useState(null);
   const [soundPosition, setSoundPosition] = useState(0);
@@ -130,8 +130,8 @@ function AudioPlayer({ audioSource }) {
 
   return (
     <Container>
-      <AudioButton>
-        <PauseContainer>
+      <AudioButton disabled={disabled} onPress={onPress}>
+        <PauseContainer  onPress={playAudio} name={isPlaying ? 'ios-pause' : 'ios-play'} >
           <Ionicons onPress={playAudio} name={isPlaying ? 'ios-pause' : 'ios-play'} size={24} color="white" />
         </PauseContainer>
         <SeekBar
