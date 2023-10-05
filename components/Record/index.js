@@ -1,33 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Pressable, Image, Alert, TouchableOpacity } from 'react-native';
+import { Image, Alert } from 'react-native';
 import styled from 'styled-components/native';
 import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av';
 
-const Record = ({onRecordingComplete}) => {
+const Record = ({ onRecordingComplete }) => {
+  // Estados para gerenciar a gravação
   const [recording, setRecording] = useState(false);
   const [recordingFileURI, setRecordingFileURI] = useState();
   const [timer, setTimer] = useState(0);
   const timerRef = useRef();
 
+  // Função para iniciar o timer
   const startTimer = () => {
     timerRef.current = setInterval(() => {
       setTimer((prevTimer) => prevTimer + 1);
     }, 1000);
   };
 
+  // Função para parar o timer
   const stopTimer = () => {
     clearInterval(timerRef.current);
     setTimer(0);
   };
 
+  // Função para formatar o tempo em minutos e segundos
   const formatTime = (timeInSeconds) => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
     return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   };
 
+  // Função para lidar com o início da gravação
   async function handleRecordingStart() {
-
     if (recording) {
       // Se já estiver gravando, ignore o início da gravação
       return;
@@ -38,7 +42,7 @@ const Record = ({onRecordingComplete}) => {
     if (granted) {
       try {
         const { recording } = await Audio.Recording.createAsync();
-        setRecording(true); // Atualiza o estado para indicar que a gravação está em andamento
+        setRecording(true);
         setRecording(recording);
         startTimer();
       } catch (error) {
@@ -48,8 +52,8 @@ const Record = ({onRecordingComplete}) => {
     }
   }
 
+  // Função para lidar com a parada da gravação
   async function handleRecordingStop() {
-
     if (!recording) {
       // Se não estiver gravando, ignore a parada da gravação
       return;
@@ -58,13 +62,9 @@ const Record = ({onRecordingComplete}) => {
       if (recording) {
         await recording.stopAndUnloadAsync();
         const fileUri = recording.getURI();
-
-        console.log(fileUri);
-
         setRecordingFileURI(fileUri);
         setRecording(false);
         stopTimer();
-
         onRecordingComplete();
       }
     } catch (error) {
@@ -73,6 +73,7 @@ const Record = ({onRecordingComplete}) => {
     }
   }
 
+  // Efeito colateral para solicitar permissões de áudio ao carregar o componente
   useEffect(() => {
     Audio.requestPermissionsAsync().then(({ granted }) => {
       if (granted) {
@@ -88,6 +89,7 @@ const Record = ({onRecordingComplete}) => {
       }
     });
 
+    // Função de limpeza para parar o timer ao desmontar o componente
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current);
@@ -95,13 +97,14 @@ const Record = ({onRecordingComplete}) => {
     };
   }, []);
 
+  // Renderização do componente Record
   return (
     <>
       <LowerRectangleContainer>
         <Content>
           <Descricao>Descreva seu sonho</Descricao>
         </Content>
-      
+
         <PressableEllipse
           recording={recording}
           onPressIn={handleRecordingStart}
@@ -117,7 +120,7 @@ const Record = ({onRecordingComplete}) => {
 const PressableEllipse = styled.Pressable`
   width: 60px;
   height: 60px;
-  background-color: ${({ recording }) => (recording ? 'red' : '#9F238E')};
+  background-color: ${({ recording }) => (recording ? '#BD2E32' : '#9F238E')};
   border-radius: 30px;
   align-self: center;
   margin-top: 65px;
@@ -149,17 +152,17 @@ const Tempo = styled.Text`
 `;
 
 const Descricao = styled.Text`
-    color: #D9D9D9;
-    font-family: "Inter Regular";
-    font-size: 17px;
+  color: #D9D9D9;
+  font-family: "Inter Regular";
+  font-size: 17px;
 `;
 
 const Content = styled.View`
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: -10%;
-    margin-top: 5%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: -10%;
+  margin-top: 5%;
 `;
 
 export default Record;

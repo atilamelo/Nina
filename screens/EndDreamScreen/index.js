@@ -53,6 +53,7 @@ const EndDreamScreen = ({ navigation }) => {
     setData({...data, [data]: valor});
     setData({...tag, [tag]: valor});
     setSonho({...sonho, [sonho]: valor});
+
   }
 
   return (
@@ -121,7 +122,7 @@ const EndDreamScreen = ({ navigation }) => {
               </Tag>
             </ContainerTags>
 
-            <Reprodutor audioSource={require('../../assets/teste.mp3')} />
+            <Reprodutor disabled={true} audioSource={require('../../assets/teste.mp3')} />
 
             <TextoComponents sonho={"Lorem ipsum dolor sit amet. Est natus dolor ut fuga commodi qui velit enim et sint dolore et quibusdam pariatur ut dolorum magni et eius. Eum vero dolor ut possimus Quis et dolor atque ab galisum corrupti et repellendus voluptatem."}/>
 

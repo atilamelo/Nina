@@ -13,10 +13,10 @@ const Container = styled(View)`
 `;
 
 const Imagem = styled(Image)`
-    width: 25.667px;
-    height: 26px;
-    tint-color: #9F238E;
-    margin-right: 40px;
+  width: 25.667px;
+  height: 26px;
+  tint-color: #9F238E;
+  margin-right: 40px;
 `;
 
 const Content = styled(TouchableOpacity)`
@@ -34,30 +34,31 @@ const TagText = styled(Text)`
 `;
 
 const AddTag = ({ navigation }) => {
-  
-    const [searchQuery, setSearchQuery] = useState('');
+  // Estado para armazenar o texto da pesquisa
+  const [searchQuery, setSearchQuery] = useState('');
 
-    const handleContentPress = () => {
+  // Função chamada ao pressionar o botão
+  const handleContentPress = () => {
+    console.log('Tag criada:', searchQuery);
+    navigation.goBack();
+  };
 
-        console.log('Tag criada:', searchQuery);
-        navigation.goBack();
-    };
-
-    return (
+  return (
     <Background>
-        <Search 
+      <Search
         navigation={navigation}
         placeholder="Insira o nome da Tag"
         onChangeText={(text) => setSearchQuery(text)}
-        value={searchQuery}/>
-        <Container>
+        value={searchQuery}
+      />
+      <Container>
         <Content onPress={handleContentPress}>
-            <Imagem source={mais} />
-            <TagText>Criar tag "{searchQuery}"</TagText>
+          <Imagem source={mais} />
+          <TagText>Criar tag "{searchQuery}"</TagText>
         </Content>
-        </Container>
+      </Container>
     </Background>
-    );
-    };
+  );
+};
 
-    export default AddTag;
+export default AddTag;
