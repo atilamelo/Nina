@@ -3,22 +3,14 @@
  * Description: Main App Screen
  */
 
-import 'react-native-gesture-handler';
 import React from 'react';
 import { useEffect } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { RealmProvider } from '@databases/realm';
 import MainStack from '@navigators/MainStack';
 import * as SplashScreen  from 'expo-splash-screen';
-// import DrawerNavigation from '@navigators/DrawerNavigator';
-// import { createDrawerNavigator } from '@react-navigation/drawer';
-
-// const Drawer = createDrawerNavigator();
-
-// const Stack = createStackNavigator();
 
 const App = () => {
     const [fontsLoaded] = useFonts({

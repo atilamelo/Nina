@@ -26,7 +26,7 @@ const IconContainer = styled.View`
   padding: 16px;
 `;
 
-const PauseContainer = styled(TouchableOpacity)`
+const PauseContainer = styled.TouchableOpacity`
   padding: 14px;
 `;
 
