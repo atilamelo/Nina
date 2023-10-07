@@ -18,11 +18,11 @@ const DreamDetails = ({ dreamData }) => {
             ) : null}
 
             <TagsContainer>
-                {[...Array(3)].map((_, index) => (
-                    <Tag key={index}>
-                        <TextTag>{`Tag ${index + 1}`}</TextTag>
-                    </Tag>
-                ))}
+              {dreamData.selectedTags.map((tag, index) => (
+                <Tag key={index}>
+                  <TextTag>{tag}</TextTag>
+                </Tag>
+              ))}
             </TagsContainer>
 
             <Reprodutor disabled={true} audioSource={require('../../assets/teste.mp3')} />

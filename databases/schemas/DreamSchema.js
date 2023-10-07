@@ -8,10 +8,12 @@ export class DreamSchema extends Realm.Object{
             date: 'date',
             imagePath: 'string?',
             selectedTags: 'string?[]',
+            audioPath: 'string?',
             selectedFeelings: 'string?[]',
             lucidyRating: 'int?',
             realityConection: 'bool?',
             recurrence: 'bool?',
+            favorite: 'bool?'
         },
         primaryKey: '_id',
     }

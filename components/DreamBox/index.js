@@ -12,10 +12,12 @@ const DreamBox = ({ item: props, navigation }) => {
         <TouchableOpacity onPress={() => navigation.navigate('EndDreamScreen', { props: { ...props, date: props.date.toISOString() } })}>
             <View style={styles.container}>
                 <View style={styles.cardContainer}>
-                    <DreamContent item={props} />
                     <AdditionalInformation item={props} />
+                    <DreamContent item={props} />
+                    <Text style={styles.data}>{formatDate(props.date)}</Text>
                 </View>
             </View>
+
         </TouchableOpacity>
     );
 };
@@ -25,8 +27,10 @@ const DreamContent = ({ item }) => {
             <View style={styles.backgroundMain}>
                 <View style={styles.mainContainer}>
                     <Text style={styles.text}>{item.text}</Text>
-                    <Image style={styles.dreamImage} source={item.imagePath} />
-                </View>
+                    {item.imagePath ? (
+                        <Image style={styles.dreamImage} source={item.imagePath} />
+                    ) : null}                
+                    </View>
             </View>
     );
 };
@@ -35,7 +39,6 @@ const AdditionalInformation = ({ item }) => {
     return (
         <View style={styles.aditionalInformation}>
             <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.data}>{formatDate(item.date)}</Text>
         </View>
     );
 };
@@ -47,8 +50,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
-        marginBottom: 3,
-        marginTop: 15,
+        marginVertical: 10,
     },
     cardContainer: {
         width: 320,
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
     backgroundMain: {
         borderRadius: 5,
         padding: 15,
+        marginVertical: 5,
         alignItems: 'center',
         width: '100%',
         backgroundColor: '#2B314C',
@@ -65,7 +68,9 @@ const styles = StyleSheet.create({
     mainContainer: {
         width: 250,
     },
-    aditionalInformation: {},
+    aditionalInformation: {
+        
+    },
     dreamImage: {
         width: 250,
         height: 250,
@@ -79,7 +84,6 @@ const styles = StyleSheet.create({
     },
     title: {
         textAlign: 'center',
-        marginTop: 10,
         fontFamily: 'Inter Bold',
         fontSize: 15,
         color: '#fff',

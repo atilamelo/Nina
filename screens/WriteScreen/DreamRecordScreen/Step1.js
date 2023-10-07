@@ -15,8 +15,7 @@ export default function Step1() {
   const dreamData = dreamContext.dreamData;
   const setDreamData = dreamContext.setDreamData;
   const { width } = useWindowDimensions();
-  const tagOptions = ['Pesadelo', 'Surreal', 'Vivido', 'Diferente', 'Recorrente'];
-
+  const tagOptions = ['Pesadelo', 'Surreal', 'Vivido', 'Recorrente'];
   const navigation = useNavigation();
   
   // Stores the date formated at schema Day Month(at full lenght) Year

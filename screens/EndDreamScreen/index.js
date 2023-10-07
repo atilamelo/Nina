@@ -11,10 +11,9 @@ import Header from '@components/EndComponents/Header';
 const EndDreamScreen = ({ route, navigation }) => {
     const dreamData = route.params.props;
     const [favorited, setFavorited] = useState(false);
-    const [imagePath, setImagePath] = useState(require('@assets/purple_cat.jpg'));
 
     const toggleFavorite = () => {
-    setFavorited(!favorited);
+        setFavorited(!favorited);
     };
 
     return (
