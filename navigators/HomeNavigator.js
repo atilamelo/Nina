@@ -65,7 +65,7 @@ const HomeNavigator = () => (
   <Tab.Navigator
     screenOptions={{
       tabBarShowLabel: false,
-      tabBarStyle: {
+      tabBarStyle: { 
         position: 'absolute',
         height: 60,
         backgroundColor: '#222840',

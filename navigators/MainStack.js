@@ -12,19 +12,19 @@ export default function ConfigStack() {
     <DreamContext>
       <NavigationContainer>
         <Stack.Navigator
-            initialRouteName="Home"
+            initialRouteName="HomeNavigator"
             screenOptions={{
             headerShown: false, 
             }}
             >
             <Stack.Screen
-                name="Home"
+                name="HomeNavigator"
                 component={HomeNavigator}
                 options={{ headerShown: false }} 
             />
 
             <Stack.Screen
-                name="Dream"
+                name="EndDreamScreen"
                 component={EndDreamScreen}
                 options={{ headerShown: false }} 
             />

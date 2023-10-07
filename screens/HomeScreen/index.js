@@ -13,7 +13,6 @@ import searchIco from '@assets/icons/search.png';
 import organizarIco from 'assets/icons/organizar.png';
 
 const getSortedDreams = () => {
-    console.log(useQuery(DreamSchema).sorted('date', true));
     return useQuery(DreamSchema).sorted('date', true)
 }
 
