@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { Modal, TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
 
-import check from '@assets/icons/check.png';
-
 const OptionsModal = ({ isVisible, onClose }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
   };
-
   
-
   return (
     <Modal
       animationType="fade"

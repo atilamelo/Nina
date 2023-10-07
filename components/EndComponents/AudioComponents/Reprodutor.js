@@ -11,24 +11,23 @@ const Container = styled.View`
   align-items: center;
 `;
 
-const AudioButton = styled.View`
+const AudioButton = styled.Pressable`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 330px;
-  height: 54px;
+  width: 90%;
+  height: 59%;
   margin-top: 10%;
   border-radius: 13px;
   background-color: #2B314C;
 `;
 
 const IconContainer = styled.View`
-  padding: 14px;
+  padding: 16px;
 `;
 
-const PauseContainer = styled.View`
-  margin-right: 10px;
-  margin-left: 14px;
+const PauseContainer = styled(TouchableOpacity)`
+  padding: 14px;
 `;
 
 const MicIcon = styled.Image`
@@ -41,38 +40,15 @@ const seekBarStyles = {
   trackColor: '#9D9D9D',
 };
 
-function AudioPlayer({ audioSource }) {
+function AudioPlayer({ audioSource, disabled, onPress }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [soundObject, setSoundObject] = useState(null);
   const [soundPosition, setSoundPosition] = useState(0);
   const [soundDuration, setSoundDuration] = useState(0);
-  const [pausedPosition, setPausedPosition] = useState(0); // Adiciona o estado para armazenar a posição pausada.
-
-  // const onSeek = async (newValue) => {
-  //   if (soundObject) {
-  //     try {
-  //       await soundObject.setPositionAsync(newValue);
-  //       setSoundPosition(newValue);
-  
-  //       // Se o áudio estiver pausado, inicie-o ao mexer na barra.
-  //       if (!isPlaying) {
-  //         await soundObject.playAsync();
-  //         setIsPlaying(true);
-  //       }
-  //     } catch (error) {
-  //       console.error('Erro ao buscar a posição de reprodução:', error);
-  //     }
-  //   }
-  // };
-
-  // const onSlidingStart = () => {
-  //   if (isPlaying) {
-  //     // Pausa o áudio e salva a posição pausada.
-  //     setPausedPosition(soundPosition);
-  //   }
-  // };
+  const [pausedPosition, setPausedPosition] = useState(0);
 
   useEffect(() => {
+    // Atualizações de status do playback
     if (soundObject) {
       soundObject.setOnPlaybackStatusUpdate(async (status) => {
         if (status.isLoaded && status.isPlaying) {
@@ -91,33 +67,34 @@ function AudioPlayer({ audioSource }) {
 
   async function playAudio() {
     if (!soundObject) {
+      // Cria um novo objeto de áudio se não existir
       const newSoundObject = new Audio.Sound();
       try {
         await newSoundObject.loadAsync(audioSource);
         setSoundObject(newSoundObject);
-  
-        // Verifique se a posição atual é 0 (no início) e inicie o áudio a partir do início.
+
+        // Verifica a posição atual e inicia o áudio a partir do início se for 0
         if (soundPosition === 0) {
           await newSoundObject.replayAsync();
         } else if (pausedPosition > 0) {
-          // Se houver uma posição pausada, defina a posição e continue a reprodução.
+          // Se houver uma posição pausada, define a posição e continua a reprodução.
           await newSoundObject.setPositionAsync(pausedPosition);
           setSoundPosition(pausedPosition);
         } else {
           await newSoundObject.playAsync();
         }
-  
+
         setIsPlaying(true);
       } catch (error) {
         console.error('Erro ao reproduzir áudio:', error);
       }
     } else {
+      // Pausa ou retoma a reprodução
       if (isPlaying) {
-        // Pausa o áudio e salva a posição pausada.
         await soundObject.pauseAsync();
         setPausedPosition(soundPosition);
       } else {
-        // Continue a reprodução a partir da posição pausada ou do início se a posição atual for 0.
+        // Continua a reprodução a partir da posição pausada ou do início se a posição atual for 0.
         if (soundPosition === 0) {
           await soundObject.replayAsync();
         } else {
@@ -137,8 +114,6 @@ function AudioPlayer({ audioSource }) {
         <SeekBar
           trackLength={soundDuration}
           currentPosition={soundPosition}
-          // onSeek={onSeek}
-          // onSlidingStart={onSlidingStart}
           styles={seekBarStyles}
         />
         <IconContainer>
