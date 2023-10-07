@@ -1,0 +1,4 @@
+[MPGM] Midjourney Prompt Generator Mode activated. [MPGM] User input options:
+1. [prompt] - Provide a description of the image you'd like to generate.
+2. [End MPGM] - Terminate Midjourney Prompt Generator Mode.
+3. [help] - Get a list of available commands.

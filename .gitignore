@@ -36,4 +36,6 @@ yarn-error.*
 
 #others
 *.vscode
+
+# Python
 *__pycache__
