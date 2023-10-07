@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Audio } from 'expo-av';
-import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import micIcon from '@assets/icons/mic.png';
@@ -108,8 +107,8 @@ function AudioPlayer({ audioSource, disabled, onPress }) {
 
   return (
     <Container>
-      <AudioButton disabled={disabled} onPress={onPress}>
-        <PauseContainer onPress={playAudio}>
+      <AudioButton>
+        <PauseContainer>
           <Ionicons onPress={playAudio} name={isPlaying ? 'ios-pause' : 'ios-play'} size={24} color="white" />
         </PauseContainer>
         <SeekBar
