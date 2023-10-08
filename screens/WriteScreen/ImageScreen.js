@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import { KeyboardAvoidingView, Platform } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { KeyboardAvoidingView, Platform, Image } from 'react-native';
 import { DegradeButton } from '@components/Buttons';
+import { DreamContext } from '@contexts/DreamContext';
 import DreamFooter from '@components/Footers/DreamFooter';
 import Background from '@components/Background';
 import BackHeader from '@components/Headers/BackHeader';
@@ -11,30 +12,15 @@ import styled from 'styled-components/native';
 import arrow from '@assets/icons/arrow.png';
 import reload from '@assets/icons/reload.png';
 
-
-const apiUrl = 'http://6783-200-131-182-32.ngrok-free.app'
+const apiUrl = 'http://e3ab-2804-d45-995a-3300-94a0-9364-9c3a-6a0.ngrok-free.app'
 
 const GenerateImage = ({ navigation }) => {
+    const dreamContext = useContext(DreamContext);
+    const dreamData = dreamContext.dreamData;
 
-    const voltarButton = () => {
-        navigation.navigate('Sonhos');
-    };
-    
-    const modelo = {titulo:'', texto: ''}
 
-    const [titulo, setTitulo] = useState(modelo);
-    const [texto, setTexto] = useState(modelo);
     const [imagePath, setImagePath] = useState(require('@assets/purple_cat.jpg'));
-    
-    //Evento
-    const evento = (e) => {
-        let titulo = e.target.text;
-        let texto = e.target.text;
-        let valor = e.target.value; //Não sei se eu tenho q criar outro valor para cada variavel
-        
-        setTitulo({...titulo, [titulo]: valor});
-        setTexto({...texto, [texto]: valor});
-    }
+    const [isLoading, setIsLoading] = useState(true);
 
     const fr = new FileReader();
     const fetchData = async () => {
@@ -44,27 +30,16 @@ const GenerateImage = ({ navigation }) => {
                 headers: {
                 'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ text: 'Prompt test' }),
+                body: JSON.stringify({ text: dreamData.text }),
             });
-        
-            const blob = await response.blob();
-            const imagePath = `${FileSystem.documentDirectory}` + `generated_image.jpg`; // Use FileSystem.documentDirectory
-            
-            fr.onload = async () => {
-                await FileSystem.writeAsStringAsync(
-                    imagePath, 
-                    fr.result.split(',')[1], 
-                    {encoding: FileSystem.EncodingType.Base64,}
-                );
-                // Sharing.shareAsync(imagePath);
-            };
-            fr.readAsDataURL(blob);
+            const data = await response.json();
+            const link_generated_img = data.link_generated_img;
 
-            setImagePath({uri: imagePath});
-
+            setImagePath({uri: link_generated_img});
+            setIsLoading(false);
         } catch (error) {
           console.error('Error fetching or saving image:', error);
-        }
+        } 
       };
     
     const generateImage = () => {
@@ -84,8 +59,11 @@ const GenerateImage = ({ navigation }) => {
 
                 <Container>
                     <Content>
-                        <Imagem source={imagePath} resizeMode="contain" borderRadius={13}/>
-
+                        {isLoading ? (
+                            <Image source={require('@assets/icons/loading.gif')}/>
+                        ) : (
+                            <Imagem source={imagePath} resizeMode="contain" borderRadius={13}/>
+                        )}
                         <DreamFooter style = {{justifyContent: "space-between"}}>
                             
                             <DegradeButton
