@@ -1,18 +1,18 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-const Barra = () => {
-  return <View style={styles.barra} />;
+const Barra = ({ marginTop }) => {
+  return <View style={styles.barra(marginTop)} />;
 };
 
 const styles = StyleSheet.create({
-  barra: {
+  barra: (marginTop) => ({
     alignSelf: 'center',
     borderBottomColor: '#3F4A73',
     borderBottomWidth: 2,
     width: '90%',
-    marginTop: 30,
-  },
+    marginTop: marginTop,
+  }),
 });
 
 export default Barra;

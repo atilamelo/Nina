@@ -11,27 +11,29 @@ export default function Step3() {
     const dreamData = dreamContext.dreamData;
     const setDreamData = dreamContext.setDreamData;
     const { width } = useWindowDimensions();
-    
-    const handleLucidyClick = (index) => { 
-        setDreamData({...dreamData, lucidyRating: index})
+
+    const handleLucidyClick = (index) => {
+        setDreamData({ ...dreamData, lucidyRating: index })
     };
 
     const handleRealityClick = (value) => {
-        setDreamData({...dreamData, realityConection: value})
+        setDreamData({ ...dreamData, realityConection: value })
     };
 
     const handleRecurrenceClick = (value) => {
-        setDreamData({...dreamData, recurrence: value})
+        setDreamData({ ...dreamData, recurrence: value })
     };
+
+    const marginTopForBarra = 30;
 
     return (
 
         <ScreenContainer windowWidth={width}>
-             <LucidyQuestion
+            <LucidyQuestion
                 lucidityRating={dreamContext.dreamData.lucidyRating}
                 handleElipseClick={handleLucidyClick}
             />
-            <Barra/>
+            <Barra marginTop={marginTopForBarra}/>
 
             <YesNoQuestion
                 options={[
@@ -43,7 +45,7 @@ export default function Step3() {
                 handleAnswerClick={handleRealityClick}
             />
 
-            <Barra/>
+            <Barra marginTop={marginTopForBarra}/>
 
             <YesNoQuestion
                 options={[
@@ -53,7 +55,7 @@ export default function Step3() {
                 questionLabel={'Esse sonho é recorrente?'}
                 selectedAnswer={dreamData.recurrence}
                 handleAnswerClick={handleRecurrenceClick}
-            /> 
+            />
         </ScreenContainer>
     )
 }

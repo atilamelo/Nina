@@ -4,11 +4,9 @@ import Background from '@components/Background';
 import styled from 'styled-components/native';
 import CalendarPicker from 'react-native-calendar-picker';
 import 'moment/locale/pt-br';
-import MainHeader from '@components/Headers/MainHeader';
+import DrawerHeader from '@components/Headers/DrawerHeader';
 import DreamContainer from '@components/CalendarComponents/DreamContainer';
 import moment from 'moment';
-
-import menuIco from '@assets/icons/menu.png';
 
 const Container = styled(View)`
   flex: 1;
@@ -20,10 +18,7 @@ const Imagem = styled(Image)`
 `;
 
 const StyledCalendarPicker = styled(CalendarPicker)`
-`;
-
-const MenuButton = styled.TouchableOpacity`
-`;
+`
 
 const Texto = styled.Text`
   color: #ffffff;
@@ -58,17 +53,7 @@ class CalendarScreen extends Component {
 
     return (
       <Background>
-        <MainHeader
-          left={
-            <MenuButton onPress={() => navigation.openDrawer()}>
-              <Image
-                source={menuIco}
-                style={{ width: 24, height: 20, resizeMode: 'contain' }}
-              />
-            </MenuButton>
-          }
-        />
-
+        <DrawerHeader/>
         <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
           <Container>
             {/* Calendário interativo */}

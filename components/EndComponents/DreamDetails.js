@@ -4,35 +4,33 @@ import styled from 'styled-components/native';
 import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
 import Barra from '@components/Barra';
 import TextoComponents from '@components/EndComponents/TextoComponent';
-// import Barra from './Barra';
 
 const DreamDetails = ({ dreamData }) => {
+  const marginTopForBarra = '6%';
 
-    return (
-        <CenteredContainer>
-            <Titulo>{dreamData.title}</Titulo>
-            <Data>{new Date(dreamData.date).toLocaleDateString('pt-BR')}</Data>
+  return (
+    <CenteredContainer>
+      <Titulo>{dreamData.title}</Titulo>
+      <Data>{new Date(dreamData.date).toLocaleDateString('pt-BR')}</Data>
 
-            {dreamData.imagePath ? (
-            <Image source={dreamData.imagePath} style={{ width: 250, height: 250, marginTop: '5%' }} />
-            ) : null}
+      {dreamData.imagePath ? (
+        <Image source={dreamData.imagePath} style={{ width: 250, height: 250, marginTop: '5%' }} />
+      ) : null}
 
-            <TagsContainer>
-              {dreamData.selectedTags.map((tag, index) => (
-                <Tag key={index}>
-                  <TextTag>{tag}</TextTag>
-                </Tag>
-              ))}
-            </TagsContainer>
+      <TagsContainer>
+        {dreamData.selectedTags.map((tag, index) => (
+          <Tag key={index}>
+            <TextTag>{tag}</TextTag>
+          </Tag>
+        ))}
+      </TagsContainer>
 
-            <Reprodutor disabled={true} audioSource={require('../../assets/teste.mp3')} />
-            
-            <TextoComponents sonho={dreamData.text} />
-            <Barra/>
+      <Reprodutor disabled={true} audioSource={require('../../assets/teste.mp3')} />
 
-        </CenteredContainer>
-    );
-
+      <TextoComponents sonho={dreamData.text} />
+      <Barra marginTop={marginTopForBarra} />
+    </CenteredContainer>
+  );
 };
 
 export default DreamDetails;
@@ -60,28 +58,25 @@ const Data = styled.Text`
 `;
 
 const TagsContainer = styled.View`
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-width: 80%;
-margin-top: 9%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin-top: 9%;
 `;
 
 const Tag = styled.View`
-width: 85px;
-height: 30px;
-border-radius: 6px;
-background-color: #2b314c;
-justify-content: center;
+  margin: 6px;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #2b314c;
+  justify-content: center;
 `;
 
 const TextTag = styled.Text`
-text-align: center;
-font-size: 14px;
-font-family: 'Inter SemiBold';
-color: #fff;
-`;
-
-const BarraContainer = styled.View`
-  margin-bottom: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Inter SemiBold';
+  color: #fff;
 `;

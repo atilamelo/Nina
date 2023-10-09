@@ -49,10 +49,3 @@ const EndDreamScreen = ({ route, navigation }) => {
 };
 
 export default EndDreamScreen;
-
-const CenteredContainer = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  margin-top: 7%;
-`;

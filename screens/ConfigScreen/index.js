@@ -28,6 +28,8 @@ const ConfigScreen = ({ navigation }) => {
   //Defina true para logado e false para deslogado
   const [isLogged, setIsLogged] = useState(false);
 
+  const marginTopForBarra = 30;
+
   return (
     <Background>
         <ScrollView contentContainerStyle={{ paddingBottom: 60 }}>
@@ -36,7 +38,9 @@ const ConfigScreen = ({ navigation }) => {
                 {isLogged ? <Logged /> : <LogOff setIsLogged={setIsLogged}/> }
 
                 <Content>
-                    <Barra/>
+                    <Barra
+                      marginTop= {marginTopForBarra}
+                    />
                 </Content>
 
                 <ConfigItem label="Notificações" iconSource={require('../../assets/Config/notificacao.png')} onPress={ToNotificacoes} />
