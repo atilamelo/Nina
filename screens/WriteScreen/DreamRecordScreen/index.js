@@ -10,7 +10,6 @@ import DreamFooter from '@components/Footers/DreamFooter';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
-import uuid from 'react-native-uuid';
 
 const screens = [
     { key: 1, component: <Step1/> },
@@ -47,11 +46,12 @@ const RegistroSonho = ({ navigation }) => {
             console.log("Dream data => " + JSON.stringify(dreamData))
             realm.write(() => {
                 realm.create('Dream', {
-                    _id: uuid.v4(),
+                    _id: dreamData.id,
                     title: dreamData.title,
                     text: dreamData.text,
                     date: dreamData.date,
                     imagePath: dreamData.imagePath,
+                    localImagePath: dreamData.localImagePath,
                     selectedTags: dreamData.selectedTags,
                     selectedFeelings:  dreamData.selectedFeelings,
                     lucidyRating:  dreamData.lucidyRating,

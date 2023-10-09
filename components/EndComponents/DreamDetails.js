@@ -13,8 +13,8 @@ const DreamDetails = ({ dreamData }) => {
             <Titulo>{dreamData.title}</Titulo>
             <Data>{new Date(dreamData.date).toLocaleDateString('pt-BR')}</Data>
 
-            {dreamData.imagePath ? (
-            <Image source={dreamData.imagePath} style={{ width: 250, height: 250, marginTop: '5%' }} />
+            {dreamData.localImagePath ? (
+            <Image source={{uri: dreamData.localImagePath}} style={{ width: 250, height: 250, marginTop: '5%' }} />
             ) : null}
 
             <TagsContainer>

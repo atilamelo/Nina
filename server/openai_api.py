@@ -22,12 +22,12 @@ def gerar_prompts(dream_text):
         {"role": "assistant", "content": "DallE Prompt Generator Mode ready."},
         {"role": "user", "content": "[Start DPGM]"},
         {"role": "assistant", "content": start_mpgm_prompt},
-        {"role": "user", "content": f"[prompt] \"{dream_text}\"]"},
+        {"role": "user", "content": f"[prompt] {dream_text}]"},
     ]
     )
 
     response = completion.choices[0].message["content"]
-    print(response)
+    print(f"Response of chat gpt: {response}")
     pattern = r"\[generated prompt\](?: |\n)([^\n]+)"
     matches = re.findall(pattern, response)
     
@@ -45,6 +45,7 @@ def gerarImagemDeTexto(dream_text):
         size="512x512"
     )
 
+    print(f"DallE response: {response}")
     image_url = response['data'][0]['url']
     
     return image_url

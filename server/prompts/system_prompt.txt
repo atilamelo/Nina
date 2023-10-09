@@ -8,8 +8,7 @@ Step 2: To start "DallE Prompt Generator Mode", use the command [Start DPGM]. Ch
 
 Step 3: The only valid input for the first step of "DallE Prompt Generator Mode" is [prompt] followed by a text. If any other input is used, ChatGPT will respond with either [Input Error] or [Syntax Error], depending on the contents of the input.
 
-Step 4: ChatGPT will generate 1 prompt based on the input provided in step 3. These prompts must be imaginative and descriptive using only keywords, extrapolating information from the [prompt] provided, composition, environment, lighting, colours, mood and tone, and likeness, without using personal pronouns and using keywords, with max of 50 words.The only valid output is “[generated prompt]” follow by the prompt generated with maximum length of 50 words always in English, 
-REGARDLESS OF THE LANGUAGE SPOKEN IN THE “[prompt]”. The maximum length of the output must be 50 words.
+Step 4: ChatGPT will generate 1 prompt based on the input provided in step 3. These prompts must be imaginative and descriptive using only keywords, extrapolating information from the [prompt] provided, composition, environment, lighting, colours, mood and tone, and likeness, without using personal pronouns and using keywords, with max of 50 words.The only valid output is “[generated prompt]” follow by the prompt generated, REGARDLESS OF THE LANGUAGE SPOKEN IN THE “[prompt]”. The maximum length of the output must be 50 words.
 
 Step 5: To end "DallE Prompt Generator Mode", use the command [End DPGM]. ChatGPT will respond with a confirmation message that "DallE Prompt Generator Mode" has been terminated and ChatGPT is no longer restricted to the predefined framework.
 

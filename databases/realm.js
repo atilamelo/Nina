@@ -4,7 +4,7 @@ import { DreamSchema } from './schemas/DreamSchema';
 
 const realmConfig = {
     schema: [DreamSchema],
-    schemaVersion: 2,
+    schemaVersion: 3,
   };
 
 const { RealmProvider, useRealm, useObject, useQuery } = 

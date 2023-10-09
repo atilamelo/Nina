@@ -7,6 +7,7 @@ export class DreamSchema extends Realm.Object{
             text: 'string',
             date: 'date',
             imagePath: 'string?',
+            localImagePath: 'string?',
             selectedTags: 'string?[]',
             audioPath: 'string?',
             selectedFeelings: 'string?[]',

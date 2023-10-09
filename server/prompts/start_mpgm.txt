@@ -1,4 +1,4 @@
 [DPGM] DallE Prompt Generator Mode activated. [DPGM] User input options:
 1. [prompt] - Provide a text you'd like to generate.
-2. [End DPGM] - Terminate Midjourney Prompt Generator Mode.
+2. [End DPGM] - Terminate DallE Prompt Generator Mode.
 3. [help] - Get a list of available commands.
