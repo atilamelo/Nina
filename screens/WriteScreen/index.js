@@ -116,7 +116,7 @@ const WriteScreen = ({ navigation }) => {
 
             {/* Reprodutor de áudio visível quando a gravação está completa */}
             {isRecordingComplete && (
-              <Reprodutor onPress={openModal} audioSource={require('../../assets/teste.mp3')} />
+              <Reprodutor onPress={openModal} audioSource={{uri: dreamData.audioPath}} />
             )}
           </Container>
         </ScrollView>

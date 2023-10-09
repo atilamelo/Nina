@@ -27,8 +27,8 @@ const DreamContent = ({ item }) => {
             <View style={styles.backgroundMain}>
                 <View style={styles.mainContainer}>
                     <Text style={styles.text}>{item.text}</Text>
-                    {item.imagePath ? (
-                        <Image style={styles.dreamImage} source={item.imagePath} />
+                    {item.localImagePath ? (
+                        <Image style={styles.dreamImage} source={{uri: item.localImagePath}} />
                     ) : null}                
                     </View>
             </View>

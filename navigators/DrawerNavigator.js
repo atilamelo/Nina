@@ -12,7 +12,7 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigation = () => {
     return (
       <Drawer.Navigator
-        initialRouteName="HomeTab"
+        initialRouteName="HomeNavigator"
         drawerContent={(props) => <DrawerContent {...props} />}
         screenOptions={{
           headerShown: false, // Ocultar o cabeçalho nas telas do Drawer
@@ -21,7 +21,7 @@ const DrawerNavigation = () => {
         width: '870%', // Ajuste o tamanho do Drawer conforme necessário
       }}
       >
-        <Drawer.Screen name="HomeTab" component={HomeTab} />
+        <Drawer.Screen name="HomeNavigator" component={HomeNavigator} />
         <Drawer.Screen name="FavoriteScreen" component={FavoriteScreen} />
         <Drawer.Screen name="Trash" component={Trash} />
       </Drawer.Navigator>

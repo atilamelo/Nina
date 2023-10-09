@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Image, Alert } from 'react-native';
-import styled from 'styled-components/native';
+import { DreamContext } from '@contexts/DreamContext'; 
 import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av';
+import styled from 'styled-components/native';
 
 const Record = ({ onRecordingComplete }) => {
   // Estados para gerenciar a gravação
@@ -9,6 +10,8 @@ const Record = ({ onRecordingComplete }) => {
   const [recordingFileURI, setRecordingFileURI] = useState();
   const [timer, setTimer] = useState(0);
   const timerRef = useRef();
+  const dreamContext = useContext(DreamContext);
+  const dreamData = dreamContext.dreamData;
 
   // Função para iniciar o timer
   const startTimer = () => {
@@ -62,10 +65,12 @@ const Record = ({ onRecordingComplete }) => {
       if (recording) {
         await recording.stopAndUnloadAsync();
         const fileUri = recording.getURI();
-        setRecordingFileURI(fileUri);
+        dreamData.audioPath = fileUri;
         setRecording(false);
         stopTimer();
         onRecordingComplete();
+        
+        console.log('Registered audio, fileUri: ', fileUri)
       }
     } catch (error) {
       console.log('error', error);

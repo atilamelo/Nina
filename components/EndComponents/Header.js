@@ -10,7 +10,6 @@ const DreamHeader = ({ navigation, favorited, toggleFavorite}) => {
     : require('@assets/icons/favoritos.png');
     const compartilharIcon = require('@assets/icons/compartilhar.png');
     const lixoIcon = require('@assets/icons/lixo.png');
-  
 
     const FavoriteButton = styled.TouchableOpacity`
     margin-right: 12px;
