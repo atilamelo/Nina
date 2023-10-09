@@ -52,6 +52,7 @@ const RegistroSonho = ({ navigation }) => {
                     date: dreamData.date,
                     imagePath: dreamData.imagePath,
                     localImagePath: dreamData.localImagePath,
+                    audioPath: dreamData.audioPath,
                     selectedTags: dreamData.selectedTags,
                     selectedFeelings:  dreamData.selectedFeelings,
                     lucidyRating:  dreamData.lucidyRating,
