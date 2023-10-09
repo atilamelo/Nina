@@ -52,7 +52,8 @@ const DrawerContent = ({ navigation }) => {
   const [lixeiraCount, setLixeiraCount] = useState(5);
   const [favoritosCount, setFavoritosCount] = useState(4);
   const [tagsCount, setTagsCount] = useState(10);
-
+  const margin = '12%';
+  
   return (
     <Background>
       <Content>
@@ -83,7 +84,7 @@ const DrawerContent = ({ navigation }) => {
           <CountText>{favoritosCount}</CountText>
         </MenuItem>
         
-        <Barra/>
+        <Barra marginTop={margin}/>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: '15%', marginHorizontal: '12%'}}>
           <Image 

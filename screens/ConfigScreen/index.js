@@ -28,7 +28,7 @@ const ConfigScreen = ({ navigation }) => {
   //Defina true para logado e false para deslogado
   const [isLogged, setIsLogged] = useState(false);
 
-  const marginTopForBarra = 30;
+  const margin = 30;
 
   return (
     <Background>
@@ -39,7 +39,7 @@ const ConfigScreen = ({ navigation }) => {
 
                 <Content>
                     <Barra
-                      marginTop= {marginTopForBarra}
+                      marginTop= {margin}
                     />
                 </Content>
 

@@ -1,28 +1,33 @@
-/* Creator: Átila Melo
- * Data: 28/06/2023
- * Description: Statistics Screen that will show the statistics of the user based on dreams
- */
+// Creator: Átila Melo
+// Date: 28/06/2023
+// Description: Statistics Screen that will show the statistics of the user based on dreams
 
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import styled from 'styled-components/native';
 import Background from '@components/Background';
+import DrawerHeader from '@components/Headers/DrawerHeader';
+import GraficContent from '@components/StatisticsComponents/GraficContent';
+import { ScrollView } from 'react-native';
 
-const StatisticsScreen = ({navigation}) => {
-    return (
-        <Background>
-            <View style={styles.container}>
-                <Text>Estatisticas Screen</Text>
-            </View>
-        </Background>
-    );
-}
+const Container = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StatisticsScreen = ({ navigation }) => {
+  return (
+    <Background>
+    <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
+      <DrawerHeader />
+      <Container>
+        <GraficContent
+          Titulo="Sonhos Registrados por Semana"
+        />
+        <GraficContent/>
+      </Container></ScrollView>
+    </Background>
+  );
+};
 
 export default StatisticsScreen;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-})

@@ -11,6 +11,7 @@ import DreamContainer from '@components/CalendarComponents/DreamContainer';
 import moment from 'moment';
 import menuIco from '@assets/icons/menu.png';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import MainHeader from '@components/Headers/MainHeader';
 
 
 const CalendarScreen = ({ navigation }) => {

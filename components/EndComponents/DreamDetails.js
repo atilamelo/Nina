@@ -7,6 +7,7 @@ import TextoComponents from '@components/EndComponents/TextoComponent';
 
 const DreamDetails = ({ dreamData }) => {
   const marginTopForBarra = '6%';
+  const margin = '12%';
 
   return (
     <CenteredContainer>
@@ -35,7 +36,7 @@ const DreamDetails = ({ dreamData }) => {
             }
 
             <TextoComponents sonho={dreamData.text} />
-            <Barra/>
+            <Barra marginTop={margin}/>
 
         </CenteredContainer>
     );

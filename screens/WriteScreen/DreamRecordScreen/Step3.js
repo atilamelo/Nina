@@ -24,7 +24,7 @@ export default function Step3() {
         setDreamData({ ...dreamData, recurrence: value })
     };
 
-    const marginTopForBarra = 30;
+    const margin = 30;
 
     return (
 
@@ -33,7 +33,7 @@ export default function Step3() {
                 lucidityRating={dreamContext.dreamData.lucidyRating}
                 handleElipseClick={handleLucidyClick}
             />
-            <Barra marginTop={marginTopForBarra}/>
+            <Barra marginTop={margin}/>
 
             <YesNoQuestion
                 options={[
@@ -45,7 +45,7 @@ export default function Step3() {
                 handleAnswerClick={handleRealityClick}
             />
 
-            <Barra marginTop={marginTopForBarra}/>
+            <Barra marginTop={margin}/>
 
             <YesNoQuestion
                 options={[
