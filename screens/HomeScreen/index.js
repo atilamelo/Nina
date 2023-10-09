@@ -18,7 +18,6 @@ const getSortedDreams = () => {
 
 const HomeScreen = ({ navigation }) => {
     const [isOptionsVisible, setOptionsVisible] = useState(false);
-
     const toggleOptionsModal = () => {
         setOptionsVisible(!isOptionsVisible);
     }

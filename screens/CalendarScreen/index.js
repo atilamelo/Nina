@@ -40,6 +40,7 @@ class CalendarScreen extends Component {
       selectedStartDate: null,
     };
     this.onDateChange = this.onDateChange.bind(this);
+    this.navigation = props.navigation;
   }
 
   // Função chamada quando a data do calendário é alterada
@@ -60,7 +61,7 @@ class CalendarScreen extends Component {
       <Background>
         <MainHeader
           left={
-            <MenuButton onPress={() => navigation.openDrawer()}>
+            <MenuButton onPress={() => this.navigation.openDrawer()}>
               <Image
                 source={menuIco}
                 style={{ width: 24, height: 20, resizeMode: 'contain' }}

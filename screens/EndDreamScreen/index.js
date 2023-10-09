@@ -11,7 +11,7 @@ import Header from '@components/EndComponents/Header';
 const EndDreamScreen = ({ route, navigation }) => {
     const dreamData = route.params.props;
     const [favorited, setFavorited] = useState(false);
-
+    console.log(navigation)
     const toggleFavorite = () => {
         setFavorited(!favorited);
     };
@@ -24,7 +24,7 @@ const EndDreamScreen = ({ route, navigation }) => {
     >
         <Background>
 
-            <Header navigate={navigation} toggleFavorite={toggleFavorite} favorited={favorited} />
+            <Header navigation={navigation} toggleFavorite={toggleFavorite} favorited={favorited} />
 
             <ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
 

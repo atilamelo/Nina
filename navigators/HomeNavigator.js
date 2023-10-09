@@ -7,6 +7,7 @@ import StatisticsScreen from '@screens/StatisticsScreen';
 import CalendarScreen from '@screens/CalendarScreen';
 import WriteStack from '@navigators/WriteStack';
 import ConfigStack from '@navigators/ConfigStack';
+import DrawerNavigator from '@navigators/DrawerNavigator';
 
 const Tab = createBottomTabNavigator();
 

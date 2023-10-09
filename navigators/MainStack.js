@@ -2,6 +2,7 @@ import React from 'react'
 import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import DreamContext from '../contexts/DreamContext';
 import HomeNavigator from './HomeNavigator';
+import DrawerNavigator from './DrawerNavigator';
 import EndDreamScreen from '../screens/EndDreamScreen';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -12,14 +13,14 @@ export default function ConfigStack() {
     <DreamContext>
       <NavigationContainer>
         <Stack.Navigator
-            initialRouteName="HomeNavigator"
+            initialRouteName="DrawerNavigator"
             screenOptions={{
             headerShown: false, 
             }}
             >
             <Stack.Screen
-                name="HomeNavigator"
-                component={HomeNavigator}
+                name="DrawerNavigator"
+                component={DrawerNavigator}
                 options={{ headerShown: false }} 
             />
 
