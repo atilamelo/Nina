@@ -3,13 +3,14 @@ import { TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
 import Background from '@components/Background';
 import Search from '@components/Search';
 import styled from 'styled-components/native';
+import Tags from '@components/Tags';
 
 import mais from '@assets/icons/mais.png';
 
 const Container = styled(View)`
   flex: 1;
-  align-items: center;
-  justify-content: center;
+  align-self: flex-start;
+  margin-left: 8%;
 `;
 
 const Imagem = styled(Image)`
@@ -20,11 +21,9 @@ const Imagem = styled(Image)`
 `;
 
 const Content = styled(TouchableOpacity)`
-  flex: 1;
-  width: 100%;
   flex-direction: row;
-  margin-top: 10%;
-  margin-left: 19%;
+  padding: 10px;
+  margin-top: 8%; 
 `;
 
 const TagText = styled(Text)`
@@ -52,6 +51,9 @@ const AddTag = ({ navigation }) => {
         value={searchQuery}
       />
       <Container>
+        <Tags marginLeft ='5%' marginTop='8%'/>
+        <Tags marginLeft ='5%' marginTop='8%'/>
+        <Tags marginLeft ='5%' marginTop='8%'/>
         <Content onPress={handleContentPress}>
           <Imagem source={mais} />
           <TagText>Criar tag "{searchQuery}"</TagText>

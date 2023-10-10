@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styled from 'styled-components/native';
 import Background from '@components/Background';
 import Barra from '@components/Barra';
+import Tags from '@components/Tags';
 
 import home from '@assets/icons/home.png'; 
 import favoritos from '@assets/icons/favoritos.png'; 
@@ -95,29 +96,11 @@ const DrawerContent = ({ navigation }) => {
           <CountText>{tagsCount}</CountText>
         </View>
 
-        <TagItem onPress={() => navigation.navigate()}>
-          <Image 
-            source={tag}
-            style={{ width: 32, height: 23, resizeMode: 'contain', tintColor: '#9F238E', marginLeft: '7%'}}
-          />
-          <MenuItemText>Tag 1</MenuItemText>
-        </TagItem>
+        <Tags color= '#9F238E' marginLeft ='17%' marginTop='11%'/>
 
-        <TagItem onPress={() => navigation.navigate()}>
-          <Image 
-            source={tag}
-            style={{ width: 32, height: 23, resizeMode: 'contain', tintColor: '#9F238E', marginLeft: '7%'}}
-          />
-          <MenuItemText>Tag 2</MenuItemText>
-        </TagItem>
+        <Tags color= '#9F238E' marginLeft ='17%' marginTop='11%'/>
 
-        <TagItem onPress={() => navigation.navigate()}>
-          <Image 
-            source={tag}
-            style={{ width: 32, height: 23, resizeMode: 'contain', tintColor: '#9F238E', marginLeft: '7%'}}
-          />
-          <MenuItemText>Tag 3</MenuItemText>
-        </TagItem>
+        <Tags color= '#9F238E' marginLeft ='17%' marginTop='11%'/>
 
         <TagItem onPress={() => navigation.navigate()}>
           <Image 
