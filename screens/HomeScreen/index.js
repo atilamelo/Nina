@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, FlatList, Image, TouchableOpacity, Modal, Text } from 'react-native';
 import { DreamSchema } from '@databases/schemas/DreamSchema';
-import { useQuery } from '@databases/realm';
+import { useQuery, useRealm } from '@databases/realm';
 import DreamBox from '@components/DreamBox';
 import Background from '@components/Background';
 import MainHeader from '@components/Headers/MainHeader';

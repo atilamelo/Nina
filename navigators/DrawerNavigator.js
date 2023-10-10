@@ -6,6 +6,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeNavigator from '@navigators/HomeNavigator'; // Importe o seu HomeNavigator
 import DrawerContent from '@components/DrawerContent'; // Crie um componente para o conteúdo do Drawer (vamos chamá-lo de DrawerContent)
 import HomeTab from '@navigators/HomeNavigator';
+import AddTag from '@screens/WriteScreen/AddTag';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -24,6 +26,8 @@ const DrawerNavigation = () => {
         <Drawer.Screen name="HomeNavigator" component={HomeNavigator} />
         <Drawer.Screen name="FavoriteScreen" component={FavoriteScreen} />
         <Drawer.Screen name="Trash" component={Trash} />
+        <Drawer.Screen name="AddTag" component={AddTag} />
+        
       </Drawer.Navigator>
     );
   };

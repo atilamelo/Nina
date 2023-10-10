@@ -1,13 +1,15 @@
 import Realm from 'realm';
 import { createRealmContext } from '@realm/react';
 import { DreamSchema } from './schemas/DreamSchema';
+import { TagSchema } from './schemas/TagSchema';
+import uuid from 'react-native-uuid';
 
 const realmConfig = {
-    schema: [DreamSchema],
-    schemaVersion: 3,
-  };
+  schema: [DreamSchema, TagSchema],
+  schemaVersion: 7,
+};
 
 const { RealmProvider, useRealm, useObject, useQuery } = 
-    createRealmContext(realmConfig); 
+  createRealmContext(realmConfig); 
 
-export {RealmProvider, useRealm, useObject, useQuery};
+export { RealmProvider, useRealm, useObject, useQuery };
