@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import Barra from '@components/Barra';
 import GraficBar from '@components/StatisticsComponents/GraficBar';
 import HeaderChart from '@components/StatisticsComponents/HeaderChart';
+import { useGraficContext } from '@contexts/GraficContext';
 
 const Container = styled.View`
   flex: 1;
@@ -33,8 +34,15 @@ const ChartContent = styled.View`
   overflow: hidden;
 `;
 
-const GraficContent = ({ Titulo }) => {
-  
+const GraficContent = ({ Titulo, labels: propLabels, datasets: propDatasets }) => {
+
+  // Obtém os dados do contexto usando o hook personalizado useGraficContext
+  const { graficData } = useGraficContext();
+
+  // Utiliza os rótulos e conjuntos de dados fornecidos ou recupera do contexto se não fornecidos
+  const labels = propLabels || graficData.labels;
+  const datasets = propDatasets || graficData.datasets;
+
   const { width } = Dimensions.get('window');
   // Calcula a largura do conteúdo com base na largura da tela
   const contentSize = width * 0.91;
@@ -48,25 +56,13 @@ const GraficContent = ({ Titulo }) => {
 
         <Barra marginTop={margin} />
 
-        <HeaderChart/>
+        <HeaderChart />
 
         <ChartContent>
           <GraficBar
             contentWidth={contentSize}
-            labels={['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5']}
-            datasets={[
-              {
-                data: [2, 3, 4, 6, 8],
-                colors: [
-                  (opacity = 1) => `#9F238E`,
-                  (opacity = 1) => `#9F238E`,
-                  (opacity = 1) => `#9F238E`,
-                  (opacity = 1) => `#9F238E`,
-                  (opacity = 1) => `#9F238E`,
-                ],
-              },
-            ]}
-          />
+            labels={labels}
+            datasets={datasets} />
         </ChartContent>
       </Content>
     </Container>

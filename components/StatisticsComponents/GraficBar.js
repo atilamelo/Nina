@@ -2,6 +2,7 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { BarChart } from 'react-native-chart-kit';
+import { useGraficContext } from '@contexts/GraficContext';
 
 const Container = styled.View`
   flex: 1;
@@ -10,14 +11,20 @@ const Container = styled.View`
 `;
 
 // Componente GraficBar que renderiza um gráfico de barras
-const GraficBar = ({ contentWidth, labels, datasets }) => {
+const GraficBar = ({ contentWidth, labels: propLabels, datasets: propDatasets }) => {
 
+  // Obtém os dados do contexto usando o hook personalizado useGraficContext
+  const { graficData } = useGraficContext();
   const screenWidth = Dimensions.get('window').width;
+
+  // Utiliza os rótulos e conjuntos de dados fornecidos ou recupera do contexto se não fornecidos
+  const labels = propLabels || graficData.labels;
+  const datasets = propDatasets || graficData.datasets;
 
   // Configuração dos dados para o gráfico
   const data = {
-    labels: labels,       // Rótulos do eixo X (semanas)
-    datasets: datasets    // Rótulos do eixo Y (sonhos)
+    labels,     // Rótulos do eixo X (semanas)
+    datasets,  // Rótulos do eixo Y (sonhos)
   };
 
   // Configuração visual do gráfico
