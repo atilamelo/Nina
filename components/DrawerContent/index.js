@@ -4,28 +4,22 @@ import styled from 'styled-components/native';
 import Background from '@components/Background';
 import Barra from '@components/Barra';
 import Tags from '@components/Tags';
+import MenuItem from '@components/DrawerContent/MenuItem';
 
-import home from '@assets/icons/home.png'; 
-import favoritos from '@assets/icons/favoritos.png'; 
+import home from '@assets/icons/home.png';
+import favoritos from '@assets/icons/favoritos.png';
 import lixo from '@assets/icons/lixo.png';
-import tag from '@assets/icons/tag.png'; 
-import mais from '@assets/icons/mais.png'; 
+import tag from '@assets/icons/tag.png';
+import mais from '@assets/icons/mais.png';
 
 const Content = styled.View`
   margin-top: 15%;
 `;
 
-const MenuItem = styled.TouchableOpacity`
-  margin-top: 15%;
-  flex-direction: row;
-  margin-horizontal: 30px; /* Espaço nas margens laterais */
-  align-items: center;
-`;
-
 const TagItem = styled.TouchableOpacity`
   margin-top: 11%;
   flex-direction: row;
-  margin-horizontal: 33px; /* Espaço nas margens laterais */
+  margin-horizontal: 33px;
   align-items: center;
 `;
 
@@ -45,7 +39,6 @@ const CountText = styled.Text`
   text-align: right; /* Alinhar o texto à direita */
 `;
 
-
 const DrawerContent = ({ navigation }) => {
 
   // Posteriormente modifique para que aparece a quantidade exata de sonhos
@@ -54,41 +47,20 @@ const DrawerContent = ({ navigation }) => {
   const [favoritosCount, setFavoritosCount] = useState(4);
   const [tagsCount, setTagsCount] = useState(10);
   const margin = '12%';
-  
+
   return (
     <Background>
       <Content>
-        <MenuItem onPress={() => navigation.navigate('Home')}>
-          <Image 
-            source={home}
-            style={{ width: 23, height: 24, resizeMode: 'contain', tintColor: 'white'}}
-          />
-          <MenuItemText>Todos os sonhos</MenuItemText>
-          <CountText>{todosSonhosCount}</CountText>
-        </MenuItem>
+        <MenuItem menuItemText='Todos os Itens' imagem={home} count={todosSonhosCount} />
 
-        <MenuItem onPress={() => navigation.navigate('Trash')}>
-          <Image 
-            source={lixo}
-            style={{ width: 28, height: 29, resizeMode: 'contain' }}
-          />
-          <MenuItemText>Lixeira</MenuItemText>
-          <CountText>{lixeiraCount}</CountText>
-        </MenuItem>
+        <MenuItem menuItemText='Lixeira' imagem={lixo} count={lixeiraCount} />
 
-        <MenuItem onPress={() => navigation.navigate('FavoriteScreen')}>
-          <Image 
-            source={favoritos}
-            style={{ width: 29, height: 29, resizeMode: 'contain' }}
-          />
-          <MenuItemText>Favoritos </MenuItemText>
-          <CountText>{favoritosCount}</CountText>
-        </MenuItem>
-        
-        <Barra marginTop={margin}/>
+        <MenuItem menuItemText='Favoritos' imagem={favoritos} count={favoritosCount} />
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: '15%', marginHorizontal: '12%'}}>
-          <Image 
+        <Barra marginTop={margin} />
+
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: '15%', marginHorizontal: '12%' }}>
+          <Image
             source={tag}
             style={{ width: 32, height: 23, resizeMode: 'contain' }}
           />
@@ -96,20 +68,20 @@ const DrawerContent = ({ navigation }) => {
           <CountText>{tagsCount}</CountText>
         </View>
 
-        <Tags color= '#9F238E' marginLeft ='17%' marginTop='11%'/>
+        <Tags color='#9F238E' marginLeft='17%' marginTop='11%' />
 
-        <Tags color= '#9F238E' marginLeft ='17%' marginTop='11%'/>
+        <Tags color='#9F238E' marginLeft='17%' marginTop='11%' />
 
-        <Tags color= '#9F238E' marginLeft ='17%' marginTop='11%'/>
+        <Tags color='#9F238E' marginLeft='17%' marginTop='11%' />
 
         <TagItem onPress={() => navigation.navigate()}>
-          <Image 
+          <Image
             source={mais}
-            style={{ width: 25, height: 26, resizeMode: 'contain', marginLeft: '7%'}}
+            style={{ width: 25, height: 26, resizeMode: 'contain', marginLeft: '7%' }}
           />
-          <MenuItemText style={{ fontFamily: 'Inter SemiBold'}}>Adicionar nova tag</MenuItemText>
+          <MenuItemText style={{ fontFamily: 'Inter SemiBold' }}>Adicionar nova tag</MenuItemText>
         </TagItem>
-        
+
       </Content>
     </Background>
   );

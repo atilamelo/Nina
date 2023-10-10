@@ -50,10 +50,12 @@ const AddTag = ({ navigation }) => {
         onChangeText={(text) => setSearchQuery(text)}
         value={searchQuery}
       />
+
+      <Tags marginLeft='10%' marginTop='8%' />
+      <Tags marginLeft='10%' marginTop='8%' />
+      <Tags marginLeft='10%' marginTop='8%' />
+
       <Container>
-        <Tags marginLeft ='5%' marginTop='8%'/>
-        <Tags marginLeft ='5%' marginTop='8%'/>
-        <Tags marginLeft ='5%' marginTop='8%'/>
         <Content onPress={handleContentPress}>
           <Imagem source={mais} />
           <TagText>Criar tag "{searchQuery}"</TagText>
