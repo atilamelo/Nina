@@ -17,6 +17,8 @@ function DreamProvider({ children }) {
     lucidyRating: undefined,
     realityConection: undefined,
     recurrence: undefined,
+    deleted: false,
+    favorite: false,
   };
 
   const [dreamData, setDreamData] = useState(modelo);

@@ -58,6 +58,8 @@ const RegistroSonho = ({ navigation }) => {
                     lucidyRating:  dreamData.lucidyRating,
                     realityConection: dreamData.realityConection,
                     recurrence: dreamData.recurrence,
+                    favorite: dreamData.favorite,
+                    deleted: dreamData.deleted,
                 });
             });
 
@@ -73,15 +75,6 @@ const RegistroSonho = ({ navigation }) => {
         }
     }
 
-    // Get all Dream in the realm schema Dream 
-    async function getDreams() {
-        try{
-            const dreams = realm.objects('Dream');
-            console.log("Sonhos => ", JSON.stringify(dreams, null, 2));
-        } catch (e){
-            console.log("Erro ao buscar sonhos => " + e.message)
-        }
-    }
 
     return (
         <Background>

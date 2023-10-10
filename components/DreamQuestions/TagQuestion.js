@@ -22,13 +22,15 @@ const TagText = styled.Text`
 `;
 
 const TagQuestionComponent = ({ options, selectedAnswers, handleAnswerClick }) => {
+  selectedTagsId = selectedAnswers.map(tag => tag._id);
+  console.log("selectedTagsId", selectedTagsId)
   const buttons = options.map((option, index) => (
     <TagQuestion
-      key={index}
-      selected={selectedAnswers.includes(option)}
+      key={option._id}
+      selected={selectedTagsId.includes(option._id)}
       onPress={() => handleAnswerClick(option)}
     >
-      <TagText>{option}</TagText>
+      <TagText>{option.name}</TagText>
     </TagQuestion>
   ));
 

@@ -10,9 +10,7 @@ const MenuItemText = styled.Text`
 `;
 
 const ContentMenu = styled.TouchableOpacity`
-  margin-top: 15%;
   flex-direction: row;
-  margin-horizontal: 30px; /* Espaço nas margens laterais */
   align-items: center;
 `;
 
@@ -25,14 +23,14 @@ const CountText = styled.Text`
   text-align: right; /* Alinhar o texto à direita */
 `;
 
-const MenuItem = ({count, imagem, menuItemText}) => {
+const MenuItem = ({count, imagem, menuItemText, onPress}) => {
     return (
-        <ContentMenu onPress={() => navigation.navigate('Home')}>
+        <ContentMenu onPress={onPress}>
             <Image
                 source={imagem}
                 style={{ width: 23, height: 24, resizeMode: 'contain', tintColor: 'white' }}
             />
-            <MenuItemText>{menuItemText}</MenuItemText>
+            <MenuItemText>{menuItemText}</MenuItemText> 
             <CountText>{count}</CountText>
         </ContentMenu>
     )

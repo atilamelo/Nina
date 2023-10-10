@@ -6,9 +6,8 @@ import Barra from '@components/Barra';
 import TextoComponents from '@components/EndComponents/TextoComponent';
 
 const DreamDetails = ({ dreamData }) => {
-  const marginTopForBarra = '6%';
   const margin = '12%';
-
+  
   return (
     <CenteredContainer>
       <Titulo>{dreamData.title}</Titulo>
@@ -22,9 +21,9 @@ const DreamDetails = ({ dreamData }) => {
             {/* Tags that user attached */}
             { dreamData.selectedTags.length > 0 &&
             <TagsContainer>
-              {dreamData.selectedTags.map((tag, index) => (
-                <Tag key={index}>
-                  <TextTag>{tag}</TextTag>
+              {dreamData.selectedTags.map((tag) => (
+                <Tag key={tag._id}>
+                  <TextTag>{tag.name}</TextTag>
                 </Tag>
               ))}
             </TagsContainer>

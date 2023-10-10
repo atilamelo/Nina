@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, View, Text, Alert, Image } from 'react-native';
+import { useRealm, useQuery } from '@databases/realm';
+import { TagSchema } from '@databases/schemas/TagSchema';
+import uuid from 'react-native-uuid';
 import Background from '@components/Background';
 import Search from '@components/Search';
 import styled from 'styled-components/native';
@@ -22,7 +25,6 @@ const Imagem = styled(Image)`
 
 const Content = styled(TouchableOpacity)`
   flex-direction: row;
-  padding: 10px;
   margin-top: 8%; 
 `;
 
@@ -35,12 +37,64 @@ const TagText = styled(Text)`
 const AddTag = ({ navigation }) => {
   // Estado para armazenar o texto da pesquisa
   const [searchQuery, setSearchQuery] = useState('');
+  const [tags, setTags] = useState([]);
+  const realm = useRealm();
 
   // Função chamada ao pressionar o botão
-  const handleContentPress = () => {
-    console.log('Tag criada:', searchQuery);
-    navigation.goBack();
+  const addTag = () => {
+    try{
+      const existingTag = realm.objects(TagSchema).filtered('name = $0', searchQuery)[0];
+      console.log(existingTag)
+        
+      if(existingTag == undefined || existingTag.length > 0){
+        realm.write(() => {
+          realm.create('Tag', {
+            _id: uuid.v4(),
+            name: searchQuery,
+          });
+        });
+  
+        if(__DEV__){
+          Alert.alert("Tag", "Tag salva com sucesso!");
+        }
+        
+      }else{
+
+        if(__DEV__){
+          Alert.alert("Tag", "Tag já existente!");
+        }
+
+      }
+
+    } catch (e) {
+      console.log(e);
+
+      if(__DEV__){
+        Alert.alert("Tag", "Problema ao salvar a tag!");
+      }
+
+    }
   };
+
+  const getAllTags = () => {
+    return realm.objects(TagSchema); 
+  };
+
+  useEffect(() => {
+    const tags = getAllTags();
+    setTags(tags);
+  }, []);
+
+  useEffect(() => {
+    const subscription = realm.objects(TagSchema).addListener(() => {
+      const tags = getAllTags();
+      setTags(tags);
+    });
+
+    return () => {
+      subscription.removeAllListeners();
+    };
+  }, []);
 
   return (
     <Background>
@@ -51,12 +105,16 @@ const AddTag = ({ navigation }) => {
         value={searchQuery}
       />
 
-      <Tags marginLeft='10%' marginTop='8%' />
-      <Tags marginLeft='10%' marginTop='8%' />
-      <Tags marginLeft='10%' marginTop='8%' />
+    <Container>
+      {tags.map((tag) => (
+        <Tags
+          key={tag._id}
+          text={tag.name}
+          marginTop="8%"
+        />
+      ))}
 
-      <Container>
-        <Content onPress={handleContentPress}>
+        <Content onPress={addTag}>
           <Imagem source={mais} />
           <TagText>Criar tag "{searchQuery}"</TagText>
         </Content>

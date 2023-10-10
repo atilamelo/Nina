@@ -2,19 +2,31 @@ import React, { useState } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import Background from '@components/Background';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useRealm, useQuery } from '@databases/realm'
+import { DegradeButton } from '@components/Buttons';
+import { DreamSchema } from '@databases/schemas/DreamSchema';
 import styled from 'styled-components/native';
 import DreamFooter from '@components/Footers/DreamFooter';
-import { DegradeButton } from '@components/Buttons';
 import DreamDetails from '@components/EndComponents/DreamDetails';
 import Header from '@components/EndComponents/Header';
 
 const EndDreamScreen = ({ route, navigation }) => {
-    const dreamData = route.params.props;
-    const [favorited, setFavorited] = useState(false);
-    console.log(navigation)
+    const dreamData = useQuery(DreamSchema).filtered(`_id = "${route.params.props._id}"`)[0];
+    const [favorited, setFavorited] = useState(dreamData.favorite);
+    const realm = useRealm();
+
     const toggleFavorite = () => {
+        try{
+        realm.write(() => {
+          const dream = realm.objectForPrimaryKey(DreamSchema, dreamData._id);
+          dream.favorite = !favorited;
+        });
+        }catch(e){
+            console.log(e);
+        }
+        
         setFavorited(!favorited);
-    };
+      };
 
     return (
     <KeyboardAvoidingView

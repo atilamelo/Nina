@@ -1,26 +1,27 @@
 import React, { useState, useContext } from 'react'
 import {TextInput, Platform, useWindowDimensions, Pressable, ScrollView, Image } from 'react-native'
-import { ScreenContainer } from './style'
 import { QuestionContainer, QuestionText } from '@components/DreamQuestions/StyleQuestion';
+import { useQuery, useRealm } from '@databases/realm';
+import { ScreenContainer } from './style'
+import { useNavigation } from '@react-navigation/native';
 import { DreamContext } from '@contexts/DreamContext';
+import { TagSchema } from '@databases/schemas/TagSchema';
 import TagQuestion from '@components/DreamQuestions/TagQuestion';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import styled from 'styled-components/native'
-import { useNavigation } from '@react-navigation/native';
 
 import mais from '@assets/icons/mais.png';
 
 export default function Step1() {
   const dreamContext = useContext(DreamContext);
   const dreamData = dreamContext.dreamData;
-  const setDreamData = dreamContext.setDreamData;
+  const setDreamData = dreamContext.setDreamData; 
   const { width } = useWindowDimensions();
-  const tagOptions = ['Pesadelo', 'Surreal', 'Vivido', 'Recorrente'];
+  const tagOptions = useQuery(TagSchema)
   const navigation = useNavigation();
-  
-  // Stores the date formated at schema Day Month(at full lenght) Year
+  const realm = useRealm();
+
   const [datePlaceHolder, setDatePlaceHolder] = useState("");
-  // Stores the state of the datepicker
   const [showPicker, setShowPicker] = useState(false);
 
   const toggleDatepicker = () => {
@@ -28,14 +29,14 @@ export default function Step1() {
   };
 
   const onChange = ({ type }, selectedDate) => {
-    if (type === "set") {
+    if (type === 'set') {
       const currentDate = selectedDate;
       setDreamData(prevData => ({
         ...prevData,
         date: currentDate
       }));
   
-      if (Platform.OS === "android") {
+      if (Platform.OS === 'android') {
         toggleDatepicker();
         const formattedDate = formatDate(currentDate);
         setDatePlaceHolder(formattedDate);
@@ -50,19 +51,26 @@ export default function Step1() {
     return date.toLocaleDateString('pt-BR', options);
   };
 
-
-  const handleTagsClick = (index) => {
-    if (dreamData.selectedTags.includes(index)) {
-      setDreamData(prevData => ({
-        ...prevData,
-        selectedTags: prevData.selectedTags.filter(item => item !== index)
-      }))
-    } else {
-      setDreamData(prevData => ({
-        ...prevData,
-        selectedTags: [...prevData.selectedTags, index]
-      }));    }
+  const handleTagsClick = (tagData) => {
+    setDreamData((prevData) => {
+      const selectedTagsId = prevData.selectedTags.map((tag) => tag._id);
+  
+      if (selectedTagsId.includes(tagData._id)) {
+        // Remove the tag if it's already selected
+        return {
+          ...prevData,
+          selectedTags: prevData.selectedTags.filter((item) => item._id !== tagData._id),
+        };
+      } else {
+        // Add the tag if it's not already selected
+        return {
+          ...prevData,
+          selectedTags: [...prevData.selectedTags, tagData],
+        };
+      }
+    });
   };
+  
 
   const navigateToAddTag = () => {
     navigation.navigate('AddTag');
@@ -101,16 +109,19 @@ export default function Step1() {
       </QuestionContainer>
 
       <TagContainer>
-        <ScrollView  style={{ width: 300 }}>
+        <ScrollView style={{ width: 300 }}>
+          
           <TagQuestion
             options={tagOptions}
             selectedAnswers={dreamData.selectedTags}
             handleAnswerClick={handleTagsClick} 
           />
+
           <AdicionarTag onPress={navigateToAddTag}>
             <Image source={mais} style={{ width: 24, height: 24, marginRight: 10, tintColor: '#9F238E' }} />
             <TagText>Criar nova Tag</TagText>
           </AdicionarTag>
+
         </ScrollView>
       </TagContainer>
     </ScreenContainer>
