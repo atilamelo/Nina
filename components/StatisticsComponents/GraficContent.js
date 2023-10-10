@@ -11,7 +11,6 @@ const Container = styled.View`
 `;
 
 const Content = styled.View`
-  width: 80%;
   aspect-ratio: 1;
   background-color: #222840;
   border-radius: 7px;
@@ -27,20 +26,29 @@ const Texto = styled.Text`
   text-align: center;
 `;
 
-const GraficContent = ({ Titulo }) => {
-    const { width } = Dimensions.get('window');
-    const contentSize = width * 0.85;  // 80% do tamanho da largura da tela
-    const margin = '6%';
+const ChartContent = styled.View`
+  flex: 1;
+  border-radius: 7px;
+  overflow: hidden;
+  margin-top: 8%; 
+`;
 
-    return (
-        <Container>
-            <Content style={{ width: contentSize }}>
-                <Texto>{Titulo}</Texto>
-                <Barra marginTop={margin}/>
-                <GraficBar/>
-            </Content>
-        </Container>
-    );
+const GraficContent = ({ Titulo }) => {
+  const { width } = Dimensions.get('window');
+  const contentSize = width * 0.91;
+  const margin = '6%';
+
+  return (
+    <Container>
+      <Content style={{ width: contentSize }}>
+        <Texto>{Titulo}</Texto>
+        <Barra marginTop={margin} />
+        <ChartContent>
+          <GraficBar contentWidth={contentSize} />
+        </ChartContent>
+      </Content>
+    </Container>
+  );
 };
 
 export default GraficContent;
