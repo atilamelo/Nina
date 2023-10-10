@@ -18,14 +18,14 @@ const Container = styled.View`
 const StatisticsScreen = ({ navigation }) => {
   return (
     <Background>
-    <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
-      <DrawerHeader />
-      <Container>
-        <GraficContent
-          Titulo="Sonhos Registrados por Semana"
-        />
-        <GraficContent/>
-      </Container></ScrollView>
+      <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
+        <DrawerHeader />
+        <Container>
+          <GraficContent
+            Titulo="Sonhos Registrados por Semana"
+          />
+        </Container>
+      </ScrollView>
     </Background>
   );
 };

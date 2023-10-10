@@ -9,25 +9,18 @@ const Container = styled.View`
   align-items: center;
 `;
 
-const GraficBar = ({ contentWidth }) => {
+// Componente GraficBar que renderiza um gráfico de barras
+const GraficBar = ({ contentWidth, labels, datasets }) => {
+
   const screenWidth = Dimensions.get('window').width;
 
+  // Configuração dos dados para o gráfico
   const data = {
-    labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5'],
-    datasets: [
-      {
-        data: [2, 3, 4, 6, 8],
-        colors: [
-          (opacity = 1) => `#9F238E`,
-          (opacity = 1) => `#9F238E`,
-          (opacity = 1) => `#9F238E`,
-          (opacity = 1) => `#9F238E`,
-          (opacity = 1) => `#9F238E`,
-        ],
-      },
-    ],
+    labels: labels,       // Rótulos do eixo X (semanas)
+    datasets: datasets    // Rótulos do eixo Y (sonhos)
   };
 
+  // Configuração visual do gráfico
   const chartConfig = {
     backgroundColor: 'transparent',
     backgroundGradientTo: 'white',
@@ -38,19 +31,21 @@ const GraficBar = ({ contentWidth }) => {
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     barRadius: 5,
     propsForLabels: {
-      fontFamily: "Inter Regular",
-      fontSize: "11px",
+      fontFamily: 'Inter Regular',
+      fontSize: '11px',
     },
   };
 
+  // Calcula as dimensões do gráfico com base na largura do conteúdo e largura da tela
   const chartWidth = contentWidth * 0.999;
   const chartHeight = (chartWidth / screenWidth) * 235;
 
+  // Renderiza o componente BarChart com as configurações e dados fornecidos
   return (
     <Container>
       <BarChart
         style={{
-          marginLeft: -40
+          marginLeft: -40,
         }}
         data={data}
         width={chartWidth}
