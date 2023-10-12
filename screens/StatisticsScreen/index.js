@@ -84,11 +84,11 @@ const StatisticsScreen = ({ navigation }) => {
                 {
                   data: [2, 4, 1, 3, 5],
                   colors: [
-                    (opacity = 1) => `#FFDF99`,
-                    (opacity = 1) => `#FFDF99`,
-                    (opacity = 1) => `#FFDF99`,
-                    (opacity = 1) => `#FFDF99`,
-                    (opacity = 1) => `#FFDF99`,
+                    (opacity = 1) => `#9464B1`,
+                    (opacity = 1) => `#9464B1`,
+                    (opacity = 1) => `#9464B1`,
+                    (opacity = 1) => `#9464B1`,
+                    (opacity = 1) => `#9464B1`,
                   ],
                 },
               ]}
@@ -108,7 +108,7 @@ const StatisticsScreen = ({ navigation }) => {
                 {
                   name: 'Sim',
                   porcentagem: 80,
-                  color: '#443681',
+                  color: '#9464B1',
                   legendFontColor: '#fff',
                   legendFontSize: 15,
                   legendFontFamily: 'Inter SemiBold',
@@ -122,7 +122,7 @@ const StatisticsScreen = ({ navigation }) => {
                 {
                   name: 'Não',
                   porcentagem: 20,
-                  color: '#FFDF99',
+                  color: '#443681',
                   legendFontColor: '#fff',
                   legendFontSize: 15,
                   legendFontFamily: 'Inter SemiBold',
