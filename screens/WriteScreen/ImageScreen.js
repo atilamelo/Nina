@@ -26,35 +26,35 @@ const GenerateImage = ({ navigation }) => {
             const response = await fetch(apiUrl + '/generate_image', {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ text: dreamData.text }),
             });
 
             const data = await response.json();
             const link_generated_img = data.link_generated_img;
-            
+
             dreamData.imagePath = link_generated_img;
 
             setIsLoading(false);
         } catch (error) {
-          console.error('Error fetching or saving image:', error);
-        } 
-      };
-    
+            console.error('Error fetching or saving image:', error);
+        }
+    };
+
     const saveImageLocally = async () => {
         const fileUri = FileSystem.documentDirectory + dreamData.id + '_image.png';
 
         try {
-          const { uri } = await FileSystem.downloadAsync(
-            dreamData.imagePath,
-            fileUri
-          );
-          
-          dreamData.localImagePath = uri;
-          console.log('Image saved to:', uri);
+            const { uri } = await FileSystem.downloadAsync(
+                dreamData.imagePath,
+                fileUri
+            );
+
+            dreamData.localImagePath = uri;
+            console.log('Image saved to:', uri);
         } catch (error) {
-          console.error('Error saving image:', error);
+            console.error('Error saving image:', error);
         }
     };
 
@@ -68,25 +68,27 @@ const GenerateImage = ({ navigation }) => {
     }
 
     return (
-        
+
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container}
             windowSoftInputMode="adjustResize"
         >
             <Background>
-                
-                <BackHeader onPress={() => {navigation.goBack()}} title={'Gerar imagem'}/>
+
+                <BackHeader onPress={() => { navigation.goBack() }} title={'Gerar imagem'} />
 
                 <Container>
                     <Content>
                         {isLoading ? (
-                            <Image source={require('@assets/icons/loading.gif')}/>
+                            <LoadingContainer>
+                                <Image source={require('@assets/icons/loading.gif')} style={{ width: 70, height: 70 }} />
+                            </LoadingContainer>
                         ) : (
-                            <Imagem source={{uri: dreamData.imagePath}} resizeMode="contain" borderRadius={13}/>
+                            <Imagem source={{ uri: dreamData.imagePath }} resizeMode="contain" borderRadius={13} />
                         )}
-                        <DreamFooter style = {{justifyContent: "space-between"}}>
-                            
+                        <DreamFooter style={{ justifyContent: "space-between" }}>
+
                             <DegradeButton
                                 onPress={generateImage}
                                 iconFile={reload}
@@ -109,6 +111,12 @@ const GenerateImage = ({ navigation }) => {
         </KeyboardAvoidingView>
     );
 }
+
+const LoadingContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  margin-top: 65%;
+`;
 
 const Container = styled.View`
     flex: 1;
