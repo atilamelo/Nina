@@ -22,8 +22,8 @@ const StatisticsScreen = ({ navigation }) => {
     // Provedor do contexto gráfico que envolve a tela
     <GraficProvider>
       <Background>
+        <DrawerHeader />
         <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
-          <DrawerHeader />
           <Container>
             <GraphicBarContent
               Titulo="Sonhos Registrados por Semana"
@@ -41,9 +41,101 @@ const StatisticsScreen = ({ navigation }) => {
                 },
               ]}
             />
-            
+
+            <GraphicBarContent
+              Titulo="Sonhos Por Categoria"
+              labels={['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6']}
+              datasets={[
+                {
+                  data: [4, 3, 9, 7, 3, 5],
+                  colors: [
+                    (opacity = 1) => `#653483`,
+                    (opacity = 1) => `#653483`,
+                    (opacity = 1) => `#653483`,
+                    (opacity = 1) => `#653483`,
+                    (opacity = 1) => `#653483`,
+                    (opacity = 1) => `#653483`,
+                  ],
+                },
+              ]}
+            />
+
+            <GraphicBarContent
+              Titulo="Sonhos Por Nível de Lucidez"
+              labels={['Nível 1', 'Nível 2', 'Nível 3', 'Nível 4', 'Nível 5']}
+              datasets={[
+                {
+                  data: [4, 3, 1, 7, 1],
+                  colors: [
+                    (opacity = 1) => `#443681`,
+                    (opacity = 1) => `#443681`,
+                    (opacity = 1) => `#443681`,
+                    (opacity = 1) => `#443681`,
+                    (opacity = 1) => `#443681`,
+                  ],
+                },
+              ]}
+            />
+
+            <GraphicBarContent
+              Titulo="Sonhos Por Sentimento"
+              labels={['Felicidade', 'Tristeza', 'Medo', 'Raiva', 'Ansiedade']}
+              datasets={[
+                {
+                  data: [2, 4, 1, 3, 5],
+                  colors: [
+                    (opacity = 1) => `#FFDF99`,
+                    (opacity = 1) => `#FFDF99`,
+                    (opacity = 1) => `#FFDF99`,
+                    (opacity = 1) => `#FFDF99`,
+                    (opacity = 1) => `#FFDF99`,
+                  ],
+                },
+              ]}
+            />
+
             <GraphicPieContent
-              Titulo="Sonhos por Nível de Lucidez"
+              Titulo="Sonhos com Conexão com a Realidade"
+              data={[
+                {
+                  name: 'Não',
+                  porcentagem: 100,
+                  color: '#9F238E',
+                  legendFontColor: '#fff',
+                  legendFontSize: 15,
+                  legendFontFamily: 'Inter SemiBold',
+                },
+                {
+                  name: 'Sim',
+                  porcentagem: 80,
+                  color: '#443681',
+                  legendFontColor: '#fff',
+                  legendFontSize: 15,
+                  legendFontFamily: 'Inter SemiBold',
+                },
+              ]}
+            />
+
+            <GraphicPieContent
+              Titulo="Sonhos com Recorrência"
+              data={[
+                {
+                  name: 'Não',
+                  porcentagem: 20,
+                  color: '#FFDF99',
+                  legendFontColor: '#fff',
+                  legendFontSize: 15,
+                  legendFontFamily: 'Inter SemiBold',
+                },
+                {
+                  name: 'Sim',
+                  porcentagem: 30,
+                  color: '#653483',
+                  legendFontColor: '#fff',
+                  legendFontSize: 15,
+                  legendFontFamily: 'Inter SemiBold',
+                },
+              ]}
             />
           </Container>
         </ScrollView>

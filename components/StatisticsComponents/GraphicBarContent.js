@@ -9,7 +9,7 @@ import { useGraficContext } from '@contexts/GraphicBarContext';
 const Container = styled.View`
   flex: 1;
   align-items: center;
-  margin-bottom: 15%;
+  margin-bottom: 7%;
 `;
 
 const Content = styled.View`

@@ -33,7 +33,7 @@ const ChartContent = styled.View`
   overflow: hidden;
 `;
 
-const GraphicPieContent = ({ Titulo }) => {
+const GraphicPieContent = ({ Titulo, data }) => {
 
   const { width } = Dimensions.get('window');
   // Calcula a largura do conteúdo com base na largura da tela
@@ -53,6 +53,7 @@ const GraphicPieContent = ({ Titulo }) => {
         <ChartContent>
           <GraphicPie
             contentWidth={contentSize}
+            data={data}
           />
         </ChartContent>
       </Content>
