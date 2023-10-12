@@ -2,9 +2,9 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import Barra from '@components/Barra';
-import GraficBar from '@components/StatisticsComponents/GraficBar';
+import GraphicBar from '@components/StatisticsComponents/GraphicBar';
 import HeaderChart from '@components/StatisticsComponents/HeaderChart';
-import { useGraficContext } from '@contexts/GraficContext';
+import { useGraficContext } from '@contexts/GraphicBarContext';
 
 const Container = styled.View`
   flex: 1;
@@ -34,7 +34,7 @@ const ChartContent = styled.View`
   overflow: hidden;
 `;
 
-const GraficContent = ({ Titulo, labels: propLabels, datasets: propDatasets }) => {
+const GraphicBarContent = ({ Titulo, labels: propLabels, datasets: propDatasets }) => {
 
   // Obtém os dados do contexto usando o hook personalizado useGraficContext
   const { graficData } = useGraficContext();
@@ -59,7 +59,7 @@ const GraficContent = ({ Titulo, labels: propLabels, datasets: propDatasets }) =
         <HeaderChart />
 
         <ChartContent>
-          <GraficBar
+          <GraphicBar
             contentWidth={contentSize}
             labels={labels}
             datasets={datasets} />
@@ -69,4 +69,4 @@ const GraficContent = ({ Titulo, labels: propLabels, datasets: propDatasets }) =
   );
 };
 
-export default GraficContent;
+export default GraphicBarContent;

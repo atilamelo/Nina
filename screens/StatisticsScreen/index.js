@@ -6,9 +6,10 @@ import React from 'react';
 import styled from 'styled-components/native';
 import Background from '@components/Background';
 import DrawerHeader from '@components/Headers/DrawerHeader';
-import GraficContent from '@components/StatisticsComponents/GraficContent';
+import GraphicBarContent from '@components/StatisticsComponents/GraphicBarContent';
+import GraphicPieContent from '@components/StatisticsComponents/GraphicPieContent';
 import { ScrollView } from 'react-native';
-import { GraficProvider } from '@contexts/GraficContext';
+import { GraficProvider } from '@contexts/GraphicBarContext';
 
 const Container = styled.View`
   flex: 1;
@@ -24,7 +25,7 @@ const StatisticsScreen = ({ navigation }) => {
         <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
           <DrawerHeader />
           <Container>
-            <GraficContent
+            <GraphicBarContent
               Titulo="Sonhos Registrados por Semana"
               labels={['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5']}
               datasets={[
@@ -39,6 +40,10 @@ const StatisticsScreen = ({ navigation }) => {
                   ],
                 },
               ]}
+            />
+            
+            <GraphicPieContent
+              Titulo="Sonhos por Nível de Lucidez"
             />
           </Container>
         </ScrollView>
