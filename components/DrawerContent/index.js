@@ -19,6 +19,22 @@ const DrawerContent = ({ navigation }) => {
   const [tagsCount, setTagsCount] = useState(10);
   const realm = useRealm();
 
+  function onRealmChange() {
+    dreamObjects = realm.objects(DreamSchema)
+    setTodosSonhosCount(dreamObjects.length)
+    setLixeiraCount(dreamObjects.filtered('deleted = true').length)
+    setFavoritosCount(dreamObjects.filtered('favorite = true').length)
+    setTagsCount(realm.objects(TagSchema).length)
+  }
+
+  try {
+    realm.addListener("change", onRealmChange);
+  } catch (error) {
+    console.error(
+      `An exception was thrown within the change listener: ${error}`
+    );
+  }
+
   const renderMenuItem = (icon, text, count, onPress) => (
     <MenuItem onPress={onPress} imagem={icon} menuItemText={text} count={count}/>
   );

@@ -17,16 +17,29 @@ const EndDreamScreen = ({ route, navigation }) => {
 
     const toggleFavorite = () => {
         try{
-        realm.write(() => {
-          const dream = realm.objectForPrimaryKey(DreamSchema, dreamData._id);
-          dream.favorite = !favorited;
-        });
-        }catch(e){
+            realm.write(() => {
+            const dream = realm.objectForPrimaryKey(DreamSchema, dreamData._id);
+            dream.favorite = !favorited;
+            });
+        } catch(e){
             console.log(e);
         }
         
         setFavorited(!favorited);
-      };
+    };
+
+    const toggleDelete = () => {
+        try{
+            realm.write(() => {
+                const dream = realm.objectForPrimaryKey(DreamSchema, dreamData._id);
+                dream.deleted = true;
+                });
+            
+            navigation.goBack();
+        } catch(e){
+            console.log(e);
+        }
+    }
 
     return (
     <KeyboardAvoidingView
@@ -36,7 +49,7 @@ const EndDreamScreen = ({ route, navigation }) => {
     >
         <Background>
 
-            <Header navigation={navigation} toggleFavorite={toggleFavorite} favorited={favorited} />
+            <Header navigation={navigation} toggleFavorite={toggleFavorite} toggleDelete={toggleDelete} favorited={favorited} />
 
             <ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
 

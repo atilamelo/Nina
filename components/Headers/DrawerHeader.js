@@ -7,15 +7,17 @@ import menuIco from '@assets/icons/menu.png';
 const MenuButton = styled.TouchableOpacity`
 `;
 
-const DrawerHeader = ({ left, middle, right }) => {
+const DrawerHeader = ({ left, middle, right, navigation }) => {
     return (
         <MainContainer>
-            <LeftContainer><MenuButton onPress={() => navigation.openDrawer()}>
-                <Image
-                    source={menuIco}
-                    style={{ width: 24, height: 20, resizeMode: 'contain' }}
-                />
-            </MenuButton></LeftContainer>
+            <LeftContainer>
+                <MenuButton onPress={() => navigation.openDrawer()}>
+                    <Image
+                        source={menuIco}
+                        style={{ width: 24, height: 20, resizeMode: 'contain' }}
+                    />
+                </MenuButton>
+            </LeftContainer>
         </MainContainer>
     );
 };

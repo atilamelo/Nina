@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import MainHeader from '@components/Headers/MainHeader';
 import BackHeader from '@components/Headers/BackHeader';
 
-const DreamHeader = ({ navigation, favorited, toggleFavorite}) => {
+const DreamHeader = ({ navigation, favorited, toggleFavorite, toggleDelete}) => {
     const favoritosIcon = favorited
     ? require('@assets/icons/favoritado.png')
     : require('@assets/icons/favoritos.png');
@@ -38,7 +38,7 @@ const DreamHeader = ({ navigation, favorited, toggleFavorite}) => {
                     <Image source={compartilharIcon} style={{ width: 24, height: 24, marginHorizontal: 12 }} />
                 </TouchableOpacity>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={toggleDelete}>
                     <Image source={lixoIcon} style={{ width: 24, height: 24, marginHorizontal: 12 }} />
                 </TouchableOpacity>
                 </View>
