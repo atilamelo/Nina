@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { KeyboardAvoidingView, Platform, Image } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import { KeyboardAvoidingView, Platform, Image, BackHandler } from 'react-native';
 import { DegradeButton } from '@components/Buttons';
 import { DreamContext } from '@contexts/DreamContext';
 import DreamFooter from '@components/Footers/DreamFooter';
@@ -7,20 +7,37 @@ import Background from '@components/Background';
 import BackHeader from '@components/Headers/BackHeader';
 import * as FileSystem from 'expo-file-system';
 import styled from 'styled-components/native';
+import AlertModal from '@components/Modals/AlertModal';
 
 /* Images */
 import arrow from '@assets/icons/arrow.png';
 import reload from '@assets/icons/reload.png';
 
-const apiUrl = 'http://eedc-2804-d45-995a-3300-85ea-1788-e0b-f86f.ngrok-free.app'
+const apiUrl = 'http://a3c3-2804-d45-995a-3300-90b1-8a5-3eb7-cb26.ngrok-free.app'
 
 const GenerateImage = ({ navigation }) => {
     const dreamContext = useContext(DreamContext);
     const dreamData = dreamContext.dreamData;
     const [isLoading, setIsLoading] = useState(true);
+    const [isExitModalVisible, setIsExitModalVisible] = useState(false);
     console.log(dreamData)
 
     const fr = new FileReader();
+
+    // Função para lidar com o botão de voltar
+    const handleBackPress = () => {
+        setIsExitModalVisible(true);
+        return true; // Impede o comportamento padrão de fechar a tela
+    };
+
+    // Adiciona o ouvinte para o botão de voltar
+    useEffect(() => {
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+
+        // Remove o ouvinte quando o componente é desmontado
+        return () => backHandler.remove();
+    }, []);
+
     const fetchData = async () => {
         try {
             const response = await fetch(apiUrl + '/generate_image', {
@@ -67,6 +84,15 @@ const GenerateImage = ({ navigation }) => {
         saveImageLocally();
     }
 
+    const confirmExit = () => {
+        setIsExitModalVisible(false);
+        navigation.goBack();
+    };
+
+    const cancelExit = () => {
+        setIsExitModalVisible(false);
+    };
+
     return (
 
         <KeyboardAvoidingView
@@ -76,7 +102,7 @@ const GenerateImage = ({ navigation }) => {
         >
             <Background>
 
-                <BackHeader onPress={() => { navigation.goBack() }} title={'Gerar imagem'} />
+            <BackHeader onPress={() => setIsExitModalVisible(true)} title={'Gerar imagem'} />
 
                 <Container>
                     <Content>
@@ -107,6 +133,18 @@ const GenerateImage = ({ navigation }) => {
                     </Content>
 
                 </Container>
+
+                <AlertModal
+                    visible={isExitModalVisible}
+                    content="Se você sair a imagem será descartada"
+                    button1Text='SAIR'
+                    button2Text='CANCELAR'
+                    onRequestButton1={confirmExit}
+                    onRequestButton2={cancelExit}
+                    button1Color="#BD2E32"
+                    onClose={cancelExit}
+                />
+                
             </Background>
         </KeyboardAvoidingView>
     );
