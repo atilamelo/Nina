@@ -9,13 +9,15 @@ import Background from '@components/Background';
 import styled from 'styled-components/native';
 import Record from '@components/Record';
 import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
-import AlertModal from '../../components/Modals/AlertModal';
+import AlertModal from '@components/Modals/AlertModal';
 
 const WriteScreen = ({ navigation }) => {
   // Contexto do sonho
   const dreamContext = useContext(DreamContext);
   const dreamData = dreamContext.dreamData;
   const setDreamData = dreamContext.setDreamData;
+
+  const [isBackModalVisible, setIsBackModalVisible] = useState(false);
 
   // Estados locais
   const [showRecord, setShowRecord] = useState(false);
@@ -79,6 +81,27 @@ const WriteScreen = ({ navigation }) => {
     closeModal();
   };
 
+  // Função para exibir o modal de confirmação de volta
+  const showBackConfirmationModal = () => {
+    if (dreamData.title || dreamData.text) {
+      setIsBackModalVisible(true);
+    } else {
+      // Se não houver texto no título ou no sonho, volta sem mostrar o modal
+      navigation.goBack();
+    }
+  };
+
+  // Função chamada quando o usuário confirma a volta
+  const onConfirmBack = () => {
+    setIsBackModalVisible(false);
+    navigation.goBack();
+  };
+
+  // Função chamada quando o usuário cancela a volta
+  const onCancelBack = () => {
+    setIsBackModalVisible(false);
+  };
+
   // Renderização da interface
   return (
     <KeyboardAvoidingView
@@ -87,8 +110,18 @@ const WriteScreen = ({ navigation }) => {
       windowSoftInputMode="adjustResize"
     >
       <Background>
-        <BackHeader onPress={() => navigation.goBack()} title={'Escreva seu sonho'} />
+        <BackHeader onPress={showBackConfirmationModal} title={'Escreva seu sonho'} />
 
+        <AlertModal
+          visible={isBackModalVisible}
+          content="Deseja sair sem salvar?"
+          button1Text='SAIR'
+          button2Text='CANCELAR'
+          onRequestButton1={onConfirmBack}
+          onRequestButton2={onCancelBack}
+          button1Color="#BD2E32"
+          onClose={onCancelBack}
+        />
         <ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
           <Container>
             <Titulo
@@ -116,7 +149,7 @@ const WriteScreen = ({ navigation }) => {
 
             {/* Reprodutor de áudio visível quando a gravação está completa */}
             {isRecordingComplete && (
-              <Reprodutor onPress={openModal} audioSource={{uri: dreamData.audioPath}} />
+              <Reprodutor onPress={openModal} audioSource={{ uri: dreamData.audioPath }} />
             )}
           </Container>
         </ScrollView>
