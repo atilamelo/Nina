@@ -25,14 +25,11 @@ export default function Step2() {
       }));
     }
   };
-  
+
   return (
     <ScreenContainer windowWidth={width}>
-      <QuestionContainer>
-        <QuestionText>Como você se sentiu no sonho?</QuestionText>
-      </QuestionContainer>
-
       <FeelingsQuestion
+        questionLabel={'Como você se sentiu no sonho?'}
         options={feelingsOptions}
         selectedAnswers={dreamData.selectedFeelings} // Atualizado para selectedAnswers
         handleAnswerClick={handleFeelingsClick}

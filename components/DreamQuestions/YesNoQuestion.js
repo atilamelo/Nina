@@ -26,7 +26,7 @@ const YesNoText = styled.Text`
     font-size: 18px;
 `;
 
-const YesNoQuestionComponent = ({ options, questionLabel, selectedAnswer, handleAnswerClick }) => {
+const YesNoQuestionComponent = ({ options, questionLabel, selectedAnswer, handleAnswerClick, disabled }) => {
     return (
         <QuestionContainer>
             <QuestionText>{questionLabel}</QuestionText>
@@ -35,7 +35,7 @@ const YesNoQuestionComponent = ({ options, questionLabel, selectedAnswer, handle
                     <TouchableOpacity
                         key={option.label}
                         onPress={() => handleAnswerClick(option.value)}
-                        disabled={selectedAnswer === option.value}
+                        disabled={disabled || selectedAnswer === option.value}
                     >
                         <YesNoQuestion selected={selectedAnswer === option.value}>
                             <YesNoText>{option.label}</YesNoText>
