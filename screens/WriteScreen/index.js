@@ -10,6 +10,7 @@ import styled from 'styled-components/native';
 import Record from '@components/Record';
 import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
 import AlertModal from '@components/Modals/AlertModal';
+import { useEffect } from 'react';
 
 const WriteScreen = ({ navigation }) => {
   // Contexto do sonho
@@ -83,12 +84,14 @@ const WriteScreen = ({ navigation }) => {
 
   // Função para exibir o modal de confirmação de volta
   const showBackConfirmationModal = () => {
-    if (dreamData.title || dreamData.text) {
-      setIsBackModalVisible(true);
-    } else {
-      // Se não houver texto no título ou no sonho, volta sem mostrar o modal
-      navigation.goBack();
-    }
+    // Verifica se o título ou o texto do sonho foram preenchidos
+  if (dreamData.title.trim() !== '' || dreamData.text.trim() !== '') {
+    // Se algum dos campos estiver preenchido, exibe o modal de confirmação
+    setIsBackModalVisible(true);
+  } else {
+    // Se nenhum dos campos estiver preenchido, volta sem exibir o modal
+    navigation.goBack();
+  }
   };
 
   // Função chamada quando o usuário confirma a volta
