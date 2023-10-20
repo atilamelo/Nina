@@ -99,21 +99,9 @@ function AudioPlayer({ audioSource, disabled, onPress }) {
     try {
       await newSoundObject.loadAsync(audioSource);
       setSoundObject(newSoundObject);
-
-      // Verifica a posição atual e inicia o áudio a partir do início se for 0
-      if (soundPosition === 0) {
-        await newSoundObject.replayAsync();
-      } else if (pausedPosition > 0) {
-        // Se houver uma posição pausada, define a posição e continua a reprodução.
-        await newSoundObject.setPositionAsync(pausedPosition);
-        setSoundPosition(pausedPosition);
-      } else {
-        await newSoundObject.playAsync();
-      }
-
-      setIsPlaying(true);
+      
     } catch (error) {
-      console.error('Erro ao reproduzir áudio:', error);
+      console.error('Erro ao criar novo som:', error);
     }
   }
 
