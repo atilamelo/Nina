@@ -24,25 +24,25 @@ const ElipseText = styled.Text`
     font-size: 25px;
 `;
 
-const LucidyQuestion = ( props ) => {
+const LucidyQuestion = ({ questionLabel, ...props }) => {
     return (
-        <QuestionContainer>
-            <QuestionText>Em qual nível de lucidez você classifica esse sonho?</QuestionText>
-                <ElipseGroup>
-                    {[1, 2, 3, 4, 5].map((num, index) => (
-                        <TouchableOpacity
-                            key={num}
-                            onPress={() => props.handleElipseClick(index)}
-                            disabled={props.lucidityRating === index}
-                        >
-                            <ElipseQuestion selected={props.lucidityRating === index}>
-                                <ElipseText>{num}</ElipseText>
-                            </ElipseQuestion>
-                        </TouchableOpacity>
-                    ))}
-                </ElipseGroup>
-        </QuestionContainer>
+      <QuestionContainer>
+        <QuestionText>{questionLabel}</QuestionText>
+        <ElipseGroup>
+          {[1, 2, 3, 4, 5].map((num, index) => (
+            <TouchableOpacity
+              key={num}
+              onPress={props.handleElipseClick ? () => props.handleElipseClick(index) : undefined}
+              disabled={props.lucidityRating === index || props.disabled}
+            >
+              <ElipseQuestion selected={props.lucidityRating === index}>
+                <ElipseText>{num}</ElipseText>
+              </ElipseQuestion>
+            </TouchableOpacity>
+          ))}
+        </ElipseGroup>
+      </QuestionContainer>
     );
-};
+  };
 
 export default LucidyQuestion;

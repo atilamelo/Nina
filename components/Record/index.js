@@ -1,127 +1,111 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { Image, Alert } from 'react-native';
+import { Image, Alert, PermissionsAndroid, Platform, Button } from 'react-native';
 import { DreamContext } from '@contexts/DreamContext';
-import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av';
 import styled from 'styled-components/native';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 
-const Record = ({ onRecordingComplete }) => {
-  // Estados para gerenciar a gravação
-  const [recording, setRecording] = useState(false);
-  const [recordingFileURI, setRecordingFileURI] = useState();
+const audioRecorderPlayer = new AudioRecorderPlayer();
+
+const Record = ({onRecordingComplete}) => {
   const [timer, setTimer] = useState(0);
   const timerRef = useRef();
   const dreamContext = useContext(DreamContext);
-  const dreamData = dreamContext.dreamData;
+  const setDreamData = dreamContext.setDreamData;
 
-  // Função para iniciar o timer
-  const startTimer = () => {
-    timerRef.current = setInterval(() => {
-      setTimer((prevTimer) => prevTimer + 1);
-    }, 1000);
-  };
+  // Importe a imagem usando require
+  const micIcon = require('@assets/icons/micPreenchido.png');
 
-  // Função para parar o timer
-  const stopTimer = () => {
-    clearInterval(timerRef.current);
-    setTimer(0);
-  };
+  const [isRecording, setIsRecording] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  // Função para formatar o tempo em minutos e segundos
-  const formatTime = (timeInSeconds) => {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = timeInSeconds % 60;
-    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-  };
+  useEffect(() => {
+    requestPermissions();
+  }, []);
 
-  // Função para lidar com o início da gravação
-  async function handleRecordingStart() {
-    if (recording) {
-      // Se já estiver gravando, ignore o início da gravação
-      return;
-    }
-
-    const { granted } = await Audio.getPermissionsAsync();
-
-    if (granted) {
+  const requestPermissions = async () => {
+    if (Platform.OS === 'android') {
       try {
-        const { recording } = await Audio.Recording.createAsync({
-          android: {
-            extension: '.m4a',
-            outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
-            audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
-            sampleRate: 44100,
-            numberOfChannels: 2,
-            bitRate: 128000,
-          },
-          ios: {
-            extension: '.wav',
-            outputFormat: Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_LINEARPCM,
-            audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_MAX,
-            sampleRate: 44100,
-            numberOfChannels: 1,
-            bitRate: 128000,
-            linearPCMBitDepth: 16,
-            linearPCMIsBigEndian: false,
-            linearPCMIsFloat: false,
-          },
-        });
+        const grants = await PermissionsAndroid.requestMultiple([
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+        ]);
 
-        setRecording(true);
-        setRecording(recording);
-        startTimer();
-      } catch (error) {
-        console.log('error', error);
-        Alert.alert('Erro ao gravar', 'Não foi possível iniciar a gravação do áudio.');
+        if (
+          grants['android.permission.WRITE_EXTERNAL_STORAGE'] === PermissionsAndroid.RESULTS.GRANTED &&
+          grants['android.permission.READ_EXTERNAL_STORAGE'] === PermissionsAndroid.RESULTS.GRANTED &&
+          grants['android.permission.RECORD_AUDIO'] === PermissionsAndroid.RESULTS.GRANTED
+        ) {
+          console.log('Permissions granted');
+        } else {
+          console.log('All required permissions not granted');
+        }
+      } catch (err) {
+        console.warn(err);
       }
     }
-  }
+  };
 
-  // Função para lidar com a parada da gravação
-  async function handleRecordingStop() {
-    if (!recording) {
+  const startRecording = async () => {
+    const result = await audioRecorderPlayer.startRecorder();
+    setIsRecording(true);
+
+    // Iniciar o timer quando a gravação começar
+    startTimer();
+
+    console.log(result);
+  };
+
+  const stopRecording = async () => {
+    if (!isRecording) {
       // Se não estiver gravando, ignore a parada da gravação
       return;
     }
-    try {
-      if (recording) {
-        await recording.stopAndUnloadAsync();
-        const fileUri = recording.getURI();
-        dreamData.audioPath = fileUri;
-        setRecording(false);
-        stopTimer();
-        onRecordingComplete();
+    const result = await audioRecorderPlayer.stopRecorder();
+    setIsRecording(false);
 
-        console.log('Registered audio, fileUri: ', fileUri)
-      }
-    } catch (error) {
-      console.log('error', error);
-      Alert.alert('Erro ao pausar', 'Não foi possível parar a gravação do áudio.');
+    // Parar o timer quando a gravação terminar
+    stopTimer();
+
+    onRecordingComplete();
+
+    setDreamData((prevData) => ({
+      ...prevData,
+      audioPath: result,
+    }));
+
+    console.log(result);
+  };
+
+  const startTimer = () => {
+    // Certifique-se de que o timer não esteja sendo executado antes de iniciar
+    if (!timerRef.current) {
+      timerRef.current = setInterval(() => {
+        setTimer((prevTimer) => prevTimer + 1);
+      }, 1000);
     }
-  }
+  };
 
-  // Efeito colateral para solicitar permissões de áudio ao carregar o componente
-  useEffect(() => {
-    Audio.requestPermissionsAsync().then(({ granted }) => {
-      if (granted) {
-        Audio.setAudioModeAsync({
-          allowsRecordingIOS: true,
-          interruptionModeIOS: InterruptionModeIOS.DoNotMix,
-          playsInSilentModeIOS: true,
-          allowsRecordingAndroid: true,
-          interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
-          shouldDuckAndroid: true,
-          playThroughEarpieceAndroid: true,
-        });
-      }
-    });
+  const stopTimer = () => {
+    // Pare o timer se estiver em execução
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+      setTimer(0);
+    }
+  };
 
-    // Função de limpeza para parar o timer ao desmontar o componente
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
-    };
-  }, []);
+  const startPlaying = async () => {
+    const result = await audioRecorderPlayer.startPlayer();
+    setIsPlaying(true);
+    console.log(result);
+  };
+
+  const stopPlaying = async () => {
+    const result = await audioRecorderPlayer.stopPlayer();
+    setIsPlaying(false);
+    console.log(result);
+  };
 
   // Renderização do componente Record
   return (
@@ -132,12 +116,21 @@ const Record = ({ onRecordingComplete }) => {
         </Content>
 
         <PressableEllipse
-          recording={recording}
-          onPressIn={handleRecordingStart}
-          onPressOut={handleRecordingStop}>
-          <Image source={recording ? require('@assets/icons/rec.png') : require('@assets/icons/micPreenchido.png')} style={{ width: recording ? 25 : 21, height: recording ? 25 : 30 }} />
+          isRecording={isRecording}
+          onPressIn={startRecording}
+          onPressOut={stopRecording}
+        >
+          <Image
+            source={isRecording ? require('@assets/icons/rec.png') : micIcon}
+            style={{ width: isRecording ? 25 : 21, height: isRecording ? 25 : 30 }}
+          />
         </PressableEllipse>
-        {recording ? <Tempo>{`${formatTime(timer)}`}</Tempo> : <Texto>Aperte ou segure o Microfone para falar</Texto>}
+        {isRecording ? (
+          <Tempo>{`${String(Math.floor(timer / 60)).padStart(2, '0')}:${String(timer % 60).padStart(2, '0')}`}</Tempo>
+        ) : (
+          <Texto>Aperte ou segure o Microfone para falar</Texto>
+        )}
+        <Button title={isPlaying ? 'Stop Playing' : 'Start Playing'} onPress={isPlaying ? stopPlaying : startPlaying} />
       </LowerRectangleContainer>
     </>
   );
@@ -146,7 +139,7 @@ const Record = ({ onRecordingComplete }) => {
 const PressableEllipse = styled.Pressable`
   width: 60px;
   height: 60px;
-  background-color: ${({ recording }) => (recording ? '#BD2E32' : '#9F238E')};
+  background-color: ${({ isRecording }) => (isRecording ? '#BD2E32' : '#9F238E')};
   border-radius: 30px;
   align-self: center;
   margin-top: 65px;

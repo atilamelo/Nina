@@ -5,6 +5,7 @@ import { DreamContext } from '@contexts/DreamContext';
 import LucidyQuestion from '@components/DreamQuestions/LucidyQuestion';
 import YesNoQuestion from '@components/DreamQuestions/YesNoQuestion';
 import Barra from '@components/Barra';
+import { QuestionContainer, QuestionText } from '@components/DreamQuestions/StyleQuestion';
 
 export default function Step3() {
     const dreamContext = useContext(DreamContext);
@@ -29,11 +30,14 @@ export default function Step3() {
     return (
 
         <ScreenContainer windowWidth={width}>
+
+            
             <LucidyQuestion
+                questionLabel={'Em qual nível de lucidez você classifica esse sonho?'}
                 lucidityRating={dreamContext.dreamData.lucidyRating}
                 handleElipseClick={handleLucidyClick}
             />
-            <Barra marginTop={margin}/>
+            <Barra marginTop={margin} />
 
             <YesNoQuestion
                 options={[
@@ -45,7 +49,7 @@ export default function Step3() {
                 handleAnswerClick={handleRealityClick}
             />
 
-            <Barra marginTop={margin}/>
+            <Barra marginTop={margin} />
 
             <YesNoQuestion
                 options={[

@@ -47,6 +47,12 @@ function AudioPlayer({ audioSource, disabled, onPress }) {
   const [soundPosition, setSoundPosition] = useState(0);
   const [soundDuration, setSoundDuration] = useState(0);
   const [pausedPosition, setPausedPosition] = useState(0);
+  
+  useEffect(() => {
+    setIsPlaying(false);
+    setSoundPosition(0);
+    newSoundObject();
+  }, [audioSource])
 
   useEffect(() => {
     // Atualizações de status do playback
@@ -68,27 +74,7 @@ function AudioPlayer({ audioSource, disabled, onPress }) {
 
   async function playAudio() {
     if (!soundObject) {
-      // Cria um novo objeto de áudio se não existir
-      const newSoundObject = new Audio.Sound();
-      try {
-        await newSoundObject.loadAsync(audioSource);
-        setSoundObject(newSoundObject);
-
-        // Verifica a posição atual e inicia o áudio a partir do início se for 0
-        if (soundPosition === 0) {
-          await newSoundObject.replayAsync();
-        } else if (pausedPosition > 0) {
-          // Se houver uma posição pausada, define a posição e continua a reprodução.
-          await newSoundObject.setPositionAsync(pausedPosition);
-          setSoundPosition(pausedPosition);
-        } else {
-          await newSoundObject.playAsync();
-        }
-
-        setIsPlaying(true);
-      } catch (error) {
-        console.error('Erro ao reproduzir áudio:', error);
-      }
+      newSoundObject();
     } else {
       // Pausa ou retoma a reprodução
       if (isPlaying) {
@@ -103,6 +89,31 @@ function AudioPlayer({ audioSource, disabled, onPress }) {
         }
       }
       setIsPlaying(!isPlaying);
+    }
+  }
+
+  async function newSoundObject(){
+    // Cria um novo objeto de áudio se não existir
+    const newSoundObject = new Audio.Sound();
+    
+    try {
+      await newSoundObject.loadAsync(audioSource);
+      setSoundObject(newSoundObject);
+
+      // Verifica a posição atual e inicia o áudio a partir do início se for 0
+      if (soundPosition === 0) {
+        await newSoundObject.replayAsync();
+      } else if (pausedPosition > 0) {
+        // Se houver uma posição pausada, define a posição e continua a reprodução.
+        await newSoundObject.setPositionAsync(pausedPosition);
+        setSoundPosition(pausedPosition);
+      } else {
+        await newSoundObject.playAsync();
+      }
+
+      setIsPlaying(true);
+    } catch (error) {
+      console.error('Erro ao reproduzir áudio:', error);
     }
   }
 
