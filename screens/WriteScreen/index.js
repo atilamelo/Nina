@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ScrollView, KeyboardAvoidingView, View, Platform, Button } from 'react-native';
 import { FluidDrawerNative } from '@builddiv/fluid-drawer-native';
 import { DreamContext } from '@contexts/DreamContext';
 import { BasicButton, DegradeButton } from '@components/Buttons';
+import { useRealm } from '@databases/realm';
 import DreamFooter from '@components/Footers/DreamFooter';
 import BackHeader from '@components/Headers/BackHeader';
 import Background from '@components/Background';
@@ -11,19 +12,48 @@ import Record from '@components/Record';
 import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
 import AlertModal from '@components/Modals/AlertModal';
 
-const WriteScreen = ({ navigation }) => {
+const WriteScreen = ({ route, navigation }) => {
   // Contexto do sonho
-  const dreamContext = useContext(DreamContext);
-  const dreamData = dreamContext.dreamData;
-  const setDreamData = dreamContext.setDreamData;
-
-  const [isBackModalVisible, setIsBackModalVisible] = useState(false);
+  const { dreamData, setDreamData } = useContext(DreamContext);
+  const realm = useRealm();
 
   // Estados locais
+  const [isBackModalVisible, setIsBackModalVisible] = useState(false);
   const [showRecord, setShowRecord] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isRecordingComplete, setIsRecordingComplete] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    if (route.params?.idDream !== undefined) {
+      dreamInfo = realm.objectForPrimaryKey('Dream', route.params.idDream);
+      setDreamData((prevDreamData) => ({
+        ...prevDreamData,
+        id: dreamInfo._id,
+        title: dreamInfo.title,
+        text: dreamInfo.text,
+        date: dreamInfo.date,
+        imagePath: dreamInfo.imagePath,
+        localImagePath: dreamInfo.localImagePath,
+        audioPath: dreamInfo.audioPath,
+        selectedTags: dreamInfo.selectedTags,
+        selectedFeelings: dreamInfo.selectedFeelings,
+        lucidyRating: dreamInfo.lucidyRating,
+        realityConection: dreamInfo.realityConection,
+        recurrence: dreamInfo.recurrence,
+        deleted: dreamInfo.deleted,
+        favorite: dreamInfo.favorite,
+      }))
+    }
+  }, [route.params]);
+
+  useEffect(() => {
+    navigation.addListener('beforeRemove', (e) => {
+      console.log("Saindo")
+      // e.preventDefault();
+    })
+  }, [ navigation ])
+
 
   // Função para navegar para a próxima tela
   const nextScreen = () => {

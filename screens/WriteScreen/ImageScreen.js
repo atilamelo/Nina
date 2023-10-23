@@ -13,14 +13,13 @@ import AlertModal from '@components/Modals/AlertModal';
 import arrow from '@assets/icons/arrow.png';
 import reload from '@assets/icons/reload.png';
 
-const apiUrl = 'http://a3c3-2804-d45-995a-3300-90b1-8a5-3eb7-cb26.ngrok-free.app'
+const apiUrl = 'https://5e31-200-17-154-233.ngrok-free.app'
 
 const GenerateImage = ({ navigation }) => {
     const dreamContext = useContext(DreamContext);
     const dreamData = dreamContext.dreamData;
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(dreamData.localImagePath === undefined);
     const [isExitModalVisible, setIsExitModalVisible] = useState(false);
-    console.log(dreamData)
 
     const fr = new FileReader();
 

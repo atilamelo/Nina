@@ -1,6 +1,6 @@
 import React, { useRef, useState, useContext } from 'react';
 import { FlatList, View, Animated, Alert } from 'react-native';
-import { useRealm } from '@databases/realm';
+import { useRealm, useQuery } from '@databases/realm';
 import { DreamContext } from '@contexts/DreamContext';
 import Background from '@components/Background';
 import Paginator from '@components/Paginator';
@@ -44,29 +44,50 @@ const RegistroSonho = ({ navigation }) => {
     async function addDream() {
         try{
             console.log("Dream data => " + JSON.stringify(dreamData))
-            realm.write(() => {
-                realm.create('Dream', {
-                    _id: dreamData.id,
-                    title: dreamData.title,
-                    text: dreamData.text,
-                    date: dreamData.date,
-                    imagePath: dreamData.imagePath,
-                    localImagePath: dreamData.localImagePath,
-                    audioPath: dreamData.audioPath,
-                    selectedTags: dreamData.selectedTags,
-                    selectedFeelings:  dreamData.selectedFeelings,
-                    lucidyRating:  dreamData.lucidyRating,
-                    realityConection: dreamData.realityConection,
-                    recurrence: dreamData.recurrence,
-                    favorite: dreamData.favorite,
-                    deleted: dreamData.deleted,
+            dreamObject = realm.objects('Dream').filtered(`_id = "${dreamData.id}"`)[0];
+
+            if(dreamObject !== undefined){
+                realm.write(() => {
+                    dreamObject.title = dreamData.title;
+                    dreamObject.text = dreamData.text;
+                    dreamObject.date = dreamData.date;
+                    dreamObject.imagePath = dreamData.imagePath;
+                    dreamObject.localImagePath = dreamData.localImagePath;
+                    dreamObject.audioPath = dreamData.audioPath;
+                    dreamObject.selectedTags = dreamData.selectedTags;
+                    dreamObject.selectedFeelings = dreamData.selectedFeelings;
+                    dreamObject.lucidyRating = dreamData.lucidyRating;
+                    dreamObject.realityConection = dreamData.realityConection;
+                    dreamObject.recurrence = dreamData.recurrence;
+                    dreamObject.favorite = dreamData.favorite;
+                    dreamObject.deleted = dreamData.deleted;
+                })
+            } else {
+                realm.write(() => {
+                    realm.create('Dream', {
+                        _id: dreamData.id,
+                        title: dreamData.title,
+                        text: dreamData.text,
+                        date: dreamData.date,
+                        imagePath: dreamData.imagePath,
+                        localImagePath: dreamData.localImagePath,
+                        audioPath: dreamData.audioPath,
+                        selectedTags: dreamData.selectedTags,
+                        selectedFeelings:  dreamData.selectedFeelings,
+                        lucidyRating:  dreamData.lucidyRating,
+                        realityConection: dreamData.realityConection,
+                        recurrence: dreamData.recurrence,
+                        favorite: dreamData.favorite,
+                        deleted: dreamData.deleted,
+                    });
                 });
-            });
+            }
 
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Home' }],
-              });
+            });
+
             dreamContext.clearDreamData();
             Alert.alert("Sonho", "Sonho salvo com sucesso!");
         } catch (e){

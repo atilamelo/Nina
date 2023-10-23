@@ -21,9 +21,6 @@ export default function Step1() {
   const navigation = useNavigation();
   const realm = useRealm();
 
-  const [datePlaceHolder, setDatePlaceHolder] = useState("");
-  const [showPicker, setShowPicker] = useState(false);
-
   const toggleDatepicker = () => {
     setShowPicker(!showPicker);
   };
@@ -75,6 +72,9 @@ export default function Step1() {
   const navigateToAddTag = () => {
     navigation.navigate('AddTag');
   }
+
+  const [datePlaceHolder, setDatePlaceHolder] = useState(formatDate(dreamData.date));
+  const [showPicker, setShowPicker] = useState(false);
 
   return (
     <ScreenContainer windowWidth={width}>
