@@ -11,7 +11,6 @@ import styled from 'styled-components/native';
 import Record from '@components/Record';
 import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
 import AlertModal from '@components/Modals/AlertModal';
-import { useEffect } from 'react';
 
 const WriteScreen = ({ route, navigation }) => {
   // Contexto do sonho
