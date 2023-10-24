@@ -13,22 +13,23 @@ const HomeHeader = ({ toggleOptionsModal }) => {
 
     return (
         <MainHeader
-            left={
-                <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                    <Image
-                        source={menuIco}
-                        style={{ width: 24, height: 20, resizeMode: 'contain' }}
+        left={
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                <Image 
+                    source={menuIco}
+                    style={{ width: 24, height: 24, resizeMode: 'contain' }}
+                />
+            </TouchableOpacity>
+        }
+        right={
+            <View style={{flexDirection: 'row', alignItems:'center', justifyContent:'center'}}>
+                <TouchableOpacity>
+                    <Image 
+                        source={searchIco}
+                        resizeMode="contain"
+                        style={{ width: 24, height: 24, marginHorizontal: 12 }}
                     />
                 </TouchableOpacity>
-            }
-            right={
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                    <TouchableOpacity>
-                        <Image
-                            source={searchIco}
-                            style={{ width: 24, height: 24, marginHorizontal: 12 }}
-                        />
-                    </TouchableOpacity>
 
                     <TouchableOpacity onPress={toggleOptionsModal}>
                         <Image
