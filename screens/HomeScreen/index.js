@@ -1,88 +1,22 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, FlatList, Image, TouchableOpacity, Modal, Text } from 'react-native';
+import React from 'react';
+import { View, Text } from 'react-native';
 import { DreamSchema } from '@databases/schemas/DreamSchema';
-import { useQuery, useRealm } from '@databases/realm';
-import DreamBox from '@components/DreamBox';
-import Background from '@components/Background';
-import MainHeader from '@components/Headers/MainHeader';
-import OptionsModal from '@components/Modals/OptionsModal';
+import { useQuery } from '@databases/realm';
+import HomeScreenModel from './HomeScreenModel';
 
-// Images
-import menuIco from '@assets/icons/menu.png'; 
-import searchIco from '@assets/icons/search.png';
-import sorting from 'assets/icons/sorting.png';
+/**
+ * Returns an array of dreams sorted by date and filtered to exclude deleted dreams.
+ */
+const getdreamData = () => {
+    return useQuery(DreamSchema).filtered('deleted = false');
+  };
 
-const getSortedDreams = () => {
-    return useQuery(DreamSchema).sorted('date', true)
-}
-
-const HomeScreen = ({ navigation }) => {
-    const [isOptionsVisible, setOptionsVisible] = useState(false);
-    const toggleOptionsModal = () => {
-        setOptionsVisible(!isOptionsVisible);
-    }
-
+const HomeScreen = () => {
     return (
-        <Background>
-            <View style={styles.container}>
-
-                    <MainHeader
-                        left={
-                            <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                                <Image 
-                                    source={menuIco}
-                                    style={{ width: 24, height: 20, resizeMode: 'contain' }}
-                                />
-                            </TouchableOpacity>
-                        }
-                        right={
-                            <View style={{flexDirection: 'row', alignItems:'center', justifyContent:'center'}}>
-                                <TouchableOpacity>
-                                    <Image 
-                                        source={searchIco}
-                                        style={{ width: 24, height: 24, marginHorizontal: 12 }}
-                                    />
-                                </TouchableOpacity>
-
-                                <TouchableOpacity onPress={toggleOptionsModal}>
-                                    <Image 
-                                        source={sorting}
-                                        style={{ width: 24, height: 20, marginHorizontal: 12 }}
-                                    />
-                                </TouchableOpacity>
-                            </View>
-                        }
-                    />
-                    
-                    <View style={styles.content}>
-                        {/* List of dreams */}
-                        <View style={styles.dreamsList}>
-                            <FlatList
-                                data={getSortedDreams()}
-                                renderItem={({ item }) => <DreamBox item={item} navigation={navigation} />}
-                                keyExtractor={(item, index) => index.toString()}
-                                contentContainerStyle={{ paddingBottom: 90 }}
-                            />
-                        </View>
-                    </View>
-            </View>
-
-            <OptionsModal isVisible={isOptionsVisible} onClose={toggleOptionsModal} />
-            
-        </Background>
+        <HomeScreenModel dreamData={getdreamData()}>
+            <Text style={{color: 'white', fontSize: 20, textAlign: 'center'}}>Todos os sonhos</Text>
+        </HomeScreenModel>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    content: {
-        flex: 1,
-    },
-    dreamsList: {
-        flex: 1,
-    },
-});
 
 export default HomeScreen;

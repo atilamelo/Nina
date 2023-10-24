@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, View, Text, TouchableOpacity } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import Background from '@components/Background';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useRealm, useQuery } from '@databases/realm';
 import { DegradeButton } from '@components/Buttons';
 import { DreamSchema } from '@databases/schemas/DreamSchema';
-import styled from 'styled-components/native';
 import DreamFooter from '@components/Footers/DreamFooter';
 import DreamDetails from '@components/EndComponents/DreamDetails';
 import Header from '@components/EndComponents/Header';
@@ -70,12 +69,26 @@ const EndDreamScreen = ({ route, navigation }) => {
 
         <DreamFooter style={{ justifyContent: 'flex-end' }}>
           <DegradeButton
-            onPress={() => navigation.navigate('WriteScreen')}
+            onPress={() =>
+              navigation.navigate('DrawerNavigator', {
+                screen: 'HomeNavigator',
+                params: {
+                  screen: 'WriteDreams',
+                  params : {
+                    screen: 'WriteHome',
+                    params : {
+                      idDream: dreamData._id
+                    }
+                  },
+                }
+              })
+            }
             iconFile={require('@assets/icons/pen.png')}
             iconWidth={27}
             iconHeight={27}
           />
         </DreamFooter>
+
 
         <AlertModal
           visible={isDeleteModalVisible}

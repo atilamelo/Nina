@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
-import { ScrollView, KeyboardAvoidingView, View, Platform, Button } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import { ScrollView, KeyboardAvoidingView, View, Platform, BackHandler } from 'react-native';
 import { FluidDrawerNative } from '@builddiv/fluid-drawer-native';
 import { DreamContext } from '@contexts/DreamContext';
 import { BasicButton, DegradeButton } from '@components/Buttons';
+import { useRealm } from '@databases/realm';
 import DreamFooter from '@components/Footers/DreamFooter';
 import BackHeader from '@components/Headers/BackHeader';
 import Background from '@components/Background';
@@ -10,21 +11,50 @@ import styled from 'styled-components/native';
 import Record from '@components/Record';
 import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
 import AlertModal from '@components/Modals/AlertModal';
-import { useEffect } from 'react';
 
-const WriteScreen = ({ navigation }) => {
+const WriteScreen = ({ route, navigation }) => {
   // Contexto do sonho
-  const dreamContext = useContext(DreamContext);
-  const dreamData = dreamContext.dreamData;
-  const setDreamData = dreamContext.setDreamData;
-
-  const [isBackModalVisible, setIsBackModalVisible] = useState(false);
+  const { dreamData, setDreamData, clearDreamData } = useContext(DreamContext);
+  const realm = useRealm();
 
   // Estados locais
+  const [isBackModalVisible, setIsBackModalVisible] = useState(false);
   const [showRecord, setShowRecord] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isRecordingComplete, setIsRecordingComplete] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+
+  useEffect(() => {
+    if (route.params?.idDream !== undefined) {
+      dreamInfo = realm.objectForPrimaryKey('Dream', route.params.idDream);
+      setDreamData((prevDreamData) => ({
+        ...prevDreamData,
+        id: dreamInfo._id,
+        title: dreamInfo.title,
+        text: dreamInfo.text,
+        date: dreamInfo.date,
+        imagePath: dreamInfo.imagePath,
+        localImagePath: dreamInfo.localImagePath,
+        audioPath: dreamInfo.audioPath,
+        selectedTags: dreamInfo.selectedTags,
+        selectedFeelings: dreamInfo.selectedFeelings,
+        lucidyRating: dreamInfo.lucidyRating,
+        realityConection: dreamInfo.realityConection,
+        recurrence: dreamInfo.recurrence,
+        deleted: dreamInfo.deleted,
+        favorite: dreamInfo.favorite,
+      }))
+    }
+  }, [route.params]);
+
+  // Adiciona o ouvinte para o botão de voltar
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', showBackConfirmationModal);
+
+    // Remove o ouvinte quando o componente é desmontado
+    return () => backHandler.remove();
+  });
+
 
   // Função para navegar para a próxima tela
   const nextScreen = () => {
@@ -85,18 +115,20 @@ const WriteScreen = ({ navigation }) => {
   // Função para exibir o modal de confirmação de volta
   const showBackConfirmationModal = () => {
     // Verifica se o título ou o texto do sonho foram preenchidos
-  if (dreamData.title.trim() !== '' || dreamData.text.trim() !== '') {
-    // Se algum dos campos estiver preenchido, exibe o modal de confirmação
-    setIsBackModalVisible(true);
-  } else {
-    // Se nenhum dos campos estiver preenchido, volta sem exibir o modal
-    navigation.goBack();
-  }
+    if (dreamData.title !== undefined || dreamData.text !== undefined) {
+      // Se algum dos campos estiver preenchido, exibe o modal de confirmação
+      setIsBackModalVisible(true);  
+    } else {
+      navigation.goBack();
+    }
+
+    return true; // Impede o comportamento padrão de fechar a tela (Caso pressionado pelo botão do Header)
   };
 
   // Função chamada quando o usuário confirma a volta
   const onConfirmBack = () => {
     setIsBackModalVisible(false);
+    clearDreamData();
     navigation.goBack();
   };
 
