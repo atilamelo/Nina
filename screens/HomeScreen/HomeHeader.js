@@ -17,7 +17,7 @@ const HomeHeader = ( { toggleOptionsModal } ) => {
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
                 <Image 
                     source={menuIco}
-                    style={{ width: 24, height: 20, resizeMode: 'contain' }}
+                    style={{ width: 24, height: 24, resizeMode: 'contain' }}
                 />
             </TouchableOpacity>
         }
@@ -26,6 +26,7 @@ const HomeHeader = ( { toggleOptionsModal } ) => {
                 <TouchableOpacity>
                     <Image 
                         source={searchIco}
+                        resizeMode="contain"
                         style={{ width: 24, height: 24, marginHorizontal: 12 }}
                     />
                 </TouchableOpacity>
@@ -33,7 +34,7 @@ const HomeHeader = ( { toggleOptionsModal } ) => {
                 <TouchableOpacity onPress={toggleOptionsModal}>
                     <Image 
                         source={organizarIco}
-                        style={{ width: 20, height: 20, marginHorizontal: 12 }}
+                        style={{ width: 24, height: 24, marginHorizontal: 12 }}
                     />
                 </TouchableOpacity>
             </View>

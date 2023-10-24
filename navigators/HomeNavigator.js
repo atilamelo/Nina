@@ -45,20 +45,11 @@ const TabIcon = ({ focused, source, text }) => (
       source={source}
       resizeMode="contain"
       style={{
-        width: 23,
-        height: 23,
+        width: 26,
+        height: 26,
         tintColor: focused ? focusedColor : unfocusedColor,
       }}
     />
-    <Text
-      style={{
-        paddingTop: 5,
-        fontSize: 11,
-        color: focused ? focusedColor : unfocusedColor,
-      }}
-    >
-      {text}
-    </Text>
   </View>
 );
 
@@ -71,8 +62,8 @@ const HomeNavigator = () => (
         height: 60,
         backgroundColor: '#222840',
         borderTopWidth: 0,
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
       },
       tabBarInactiveTintColor: unfocusedColor,
       tabBarActiveTintColor: focusedColor,
@@ -88,7 +79,6 @@ const HomeNavigator = () => (
           <TabIcon
             focused={focused}
             source={require('@assets/icons/home.png')}
-            text="Díario"
           />
         ),
       }}
@@ -102,7 +92,6 @@ const HomeNavigator = () => (
           <TabIcon
             focused={focused}
             source={require('@assets/icons/statistics.png')}
-            text="Estatísticas"
           />
         ),
       }}
@@ -136,7 +125,6 @@ const HomeNavigator = () => (
           <TabIcon
             focused={focused}
             source={require('@assets/icons/calendar.png')}
-            text="Calendário"
           />
         ),
       }}
@@ -150,7 +138,6 @@ const HomeNavigator = () => (
           <TabIcon
             focused={focused}
             source={require('@assets/icons/settings.png')}
-            text="Config."
           />
         ),
       }}
