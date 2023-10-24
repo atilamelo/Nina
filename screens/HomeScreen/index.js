@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { DreamSchema } from '@databases/schemas/DreamSchema';
 import { useQuery } from '@databases/realm';
-import HomeScreenModel from './HomeScreenModel';
+import HomeScreenModel from '@components/HomeScreenModel/HomeScreenModel';
 
 /**
  * Returns an array of dreams sorted by date and filtered to exclude deleted dreams.
@@ -13,9 +13,12 @@ const getdreamData = () => {
 
 const HomeScreen = () => {
     return (
-        <HomeScreenModel dreamData={getdreamData()}>
-            <Text style={{color: 'white', fontSize: 20, textAlign: 'center'}}>Todos os sonhos</Text>
-        </HomeScreenModel>
+        <HomeScreenModel 
+            dreamData={getdreamData()}
+            title={"Todos os sonhos"}
+            showSearch={true}
+            showSort={true}
+        />
     );
 };
 

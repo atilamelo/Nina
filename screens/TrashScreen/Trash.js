@@ -7,7 +7,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { DreamSchema } from '@databases/schemas/DreamSchema';
 import { useQuery } from '@databases/realm';
-import HomeScreenModel from './HomeScreenModel';
+import HomeScreenModel from '@components/HomeScreenModel/HomeScreenModel';
 
 
 /**
@@ -19,9 +19,12 @@ const getdreamData = () => {
 
 const Trash = ({ navigation }) => {
     return (
-        <HomeScreenModel dreamData={getdreamData()}>
-            <Text style={{color: 'white', fontSize: 20, textAlign: 'center'}}>Lixeira</Text>
-        </HomeScreenModel>
+        <HomeScreenModel 
+            dreamData={getdreamData()}
+            title={"Lixeira"}
+            showSearch={true}
+            showSort={true}
+        />
     );
 }
 
