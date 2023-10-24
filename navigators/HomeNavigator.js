@@ -55,6 +55,7 @@ const TabIcon = ({ focused, source, text }) => (
         paddingTop: 5,
         fontSize: 11,
         color: focused ? focusedColor : unfocusedColor,
+        fontFamily: 'Inter Regular',
       }}
     >
       {text}

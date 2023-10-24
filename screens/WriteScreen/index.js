@@ -161,10 +161,10 @@ const WriteScreen = ({ navigation }) => {
           <View style={{ flexDirection: 'row' }}>
             {/* Botão para iniciar/parar a gravação */}
             <View style={{ marginRight: 27 }}>
-              <BasicButton onPress={toggleRecord} iconFile={require('@assets/icons/mic.png')} iconWidth={31} iconHeight={29} />
+              <BasicButton onPress={toggleRecord} iconFile={require('@assets/icons/micPreenchido.png')} iconWidth={31} iconHeight={29} />
             </View>
             {/* Botão para gerar uma imagem */}
-            <BasicButton onPress={generateImage} iconFile={require('@assets/icons/img.png')} iconWidth={27} iconHeight={22} />
+            <BasicButton onPress={generateImage} iconFile={require('@assets/icons/image.png')} iconWidth={27} iconHeight={22} />
           </View>
           {/* Botão para avançar para a próxima tela */}
           <DegradeButton onPress={nextScreen} iconFile={require('@assets/icons/arrow.png')} iconWidth={22} iconHeight={22} />

@@ -10,7 +10,7 @@ import OptionsModal from '@components/Modals/OptionsModal';
 // Images
 import menuIco from '@assets/icons/menu.png'; 
 import searchIco from '@assets/icons/search.png';
-import organizarIco from 'assets/icons/organizar.png';
+import sorting from 'assets/icons/sorting.png';
 
 const getSortedDreams = () => {
     return useQuery(DreamSchema).sorted('date', true)
@@ -46,8 +46,8 @@ const HomeScreen = ({ navigation }) => {
 
                                 <TouchableOpacity onPress={toggleOptionsModal}>
                                     <Image 
-                                        source={organizarIco}
-                                        style={{ width: 20, height: 20, marginHorizontal: 12 }}
+                                        source={sorting}
+                                        style={{ width: 24, height: 20, marginHorizontal: 12 }}
                                     />
                                 </TouchableOpacity>
                             </View>

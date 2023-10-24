@@ -43,7 +43,7 @@ const Contatos = styled.Text`
     color: #fff;
     margin-left: 10%;
     margin-top: 4%;
-    font-family: 'Inter Regular';
+    font-family: 'Inter SemiBold';
 `;
 
 const styles = {
