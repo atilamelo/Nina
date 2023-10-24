@@ -3,14 +3,14 @@ import { useContext } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import DreamBox from '@components/DreamBox';
 
-const HomeContent = ( { getSortedDreams } ) => {
+const HomeContent = ( { dreamData } ) => {
     const navigation = useContext(NavigationContext);
 
     return (
         <View style={styles.content}>
             <View style={styles.dreamsList}>
                 <FlatList
-                    data={getSortedDreams()}
+                    data={dreamData}
                     renderItem={({ item }) => <DreamBox item={item} navigation={navigation} />}
                     keyExtractor={(item, index) => index.toString()}
                     contentContainerStyle={{ paddingBottom: 90 }}

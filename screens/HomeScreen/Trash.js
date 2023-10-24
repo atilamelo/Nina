@@ -4,79 +4,25 @@
  */
 
 import React from 'react';
-import { TouchableOpacity, Image, Text } from 'react-native';
-import styled from 'styled-components/native';
-import Background from '@components/Background';
-import MainHeader from '@components/Headers/MainHeader';
+import { Text } from 'react-native';
+import { DreamSchema } from '@databases/schemas/DreamSchema';
+import { useQuery } from '@databases/realm';
+import HomeScreenModel from './HomeScreenModel';
 
-// Images
-import menuIco from '@assets/icons/menu.png'; 
-import searchIco from '@assets/icons/search.png';
-import organizarIco from 'assets/icons/organizar.png';
+
+/**
+ * Returns an array of dreams sorted by date and filtered to exclude deleted dreams.
+ */
+const getdreamData = () => {
+    return useQuery(DreamSchema).filtered('deleted = true');
+  };
 
 const Trash = ({ navigation }) => {
     return (
-        <Background>
-            <Container>
-                <MainHeader
-                    left={
-                        <MenuButton onPress={() => navigation.openDrawer()}>
-                            <Image 
-                                source={menuIco}
-                                style={{ width: 24, height: 20, resizeMode: 'contain' }}
-                            />
-                        </MenuButton>
-                    }
-                    right={
-                        <RightButtons>
-                            <TouchableOpacity>
-                                <Image 
-                                    source={searchIco}
-                                    style={{ width: 24, height: 24, marginHorizontal: 12 }}
-                                />
-                            </TouchableOpacity>
-
-                            <TouchableOpacity>
-                                <Image 
-                                    source={organizarIco}
-                                    style={{ width: 5, height: 22, marginHorizontal: 12 }}
-                                />
-                            </TouchableOpacity>
-                        </RightButtons>
-                    }
-                />
-            
-                <Content>
-                    <Texto>Os itens apagados aparecerão aqui</Texto>
-                </Content>
-            </Container>
-        </Background>
+        <HomeScreenModel dreamData={getdreamData()}>
+            <Text style={{color: 'white', fontSize: 20, textAlign: 'center'}}>Lixeira</Text>
+        </HomeScreenModel>
     );
 }
 
 export default Trash;
-
-const Container = styled.View`
-    flex: 1;
-`;
-
-const Texto = styled.Text`
-    color: #ffffff;
-`;
-
-const Content = styled.View`
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-`;
-
-const MenuButton = styled.TouchableOpacity`
-    /* Adicione estilos para o botão do menu aqui */
-`;
-
-const RightButtons = styled.View`
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    /* Adicione estilos para os botões da direita aqui */
-`;
