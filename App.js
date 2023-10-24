@@ -38,7 +38,7 @@ const App = () => {
         <RealmProvider>
             <SafeAreaView style={{ flex: 1 }}>
                     <MainStack/>
-                    <StatusBar style='light' backgroundColor='#2A0A41' />
+                    <StatusBar style='light' backgroundColor='#111526' />
             </SafeAreaView>
         </RealmProvider>
     );

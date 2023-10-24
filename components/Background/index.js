@@ -8,7 +8,7 @@ const Background = ({ children }) => {
                 <LinearGradient
                     colors={['#36204E', '#1A1F32']}
                     start={{ x: 0, y: 0 }}
-                    end={{ x: 0, y: 0.2 }}
+                    end={{ x: 0, y: 0 }}
                     style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}
                 >
                 { children }

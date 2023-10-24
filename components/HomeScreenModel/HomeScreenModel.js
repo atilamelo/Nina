@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Background from '@components/Background';
 import OptionsModal from '@components/Modals/OptionsModal';
-import HomeHeader from './HomeHeader';
+import HomeHeader from '@components/Headers/HomeHeader';
 import HomeContent from './HomeContent';
 
 /**
  * The home screen component.
  */
-const HomeScreenModel = ({ dreamData, children }) => {
+const HomeScreenModel = ({ title, dreamData, children, showSearch, showSort }) => {
   const [isOptionsVisible, setOptionsVisible] = useState(false);
   
   /**
@@ -21,7 +21,12 @@ const HomeScreenModel = ({ dreamData, children }) => {
   return (
     <Background>
       <View style={styles.container}>
-        <HomeHeader toggleOptionsModal={toggleOptionsModal} />
+        <HomeHeader 
+          toggleOptionsModal={toggleOptionsModal}
+          title={title}
+          showSearch={showSearch}
+          showSort={showSort}
+        />
         { children }
         <HomeContent dreamData={dreamData} />
       </View>

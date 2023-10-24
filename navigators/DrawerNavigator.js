@@ -1,11 +1,9 @@
 import React from 'react';
-import HomeScreen from '@screens/HomeScreen'; // Importe a tela HomeScreen
-import FavoriteScreen from '@screens/HomeScreen/Favorites';
-import Trash from '@screens/HomeScreen/Trash';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import FavoriteScreen from '@screens/FavoriteScreen/Favorites';
+import Trash from '@screens/TrashScreen/Trash';
 import HomeNavigator from '@navigators/HomeNavigator'; // Importe o seu HomeNavigator
 import DrawerContent from '@components/DrawerContent'; // Crie um componente para o conteúdo do Drawer (vamos chamá-lo de DrawerContent)
-import HomeTab from '@navigators/HomeNavigator';
 import AddTag from '@screens/WriteScreen/AddTag';
 
 

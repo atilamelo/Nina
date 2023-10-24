@@ -3,19 +3,26 @@ import styled from 'styled-components/native';
 
 const MainHeader = ({ left, middle, right }) => {
   return (
-    <MainContainer>
-      <LeftContainer>{left}</LeftContainer>
-      <MiddleContainer>{middle}</MiddleContainer>
-      <RightContainer>{right}</RightContainer>
-    </MainContainer>
+    <Container>
+      <MainContainer>
+        <LeftContainer>{left}</LeftContainer>
+        <MiddleContainer>{middle}</MiddleContainer>
+        <RightContainer>{right}</RightContainer>
+      </MainContainer>
+    </Container>
   );
 };
 
 export default MainHeader;
 
+const Container = styled.View`
+  height: 10%;
+  justify-content: center;
+`
+
+
 const MainContainer = styled.View`
-  height: 11%;
-  margin-horizontal: 5%;
+  margin-horizontal: 4%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
