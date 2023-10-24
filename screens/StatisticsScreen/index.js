@@ -27,12 +27,11 @@ const StatisticsScreen = ({ navigation }) => {
           <Container>
             <GraphicBarContent
               Titulo="Sonhos Registrados por Semana"
-              labels={['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5']}
+              labels={['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4']}
               datasets={[
                 {
-                  data: [2, 3, 4, 6, 8],
+                  data: [2, 3, 4, 6],
                   colors: [
-                    (opacity = 1) => `#9F238E`,
                     (opacity = 1) => `#9F238E`,
                     (opacity = 1) => `#9F238E`,
                     (opacity = 1) => `#9F238E`,

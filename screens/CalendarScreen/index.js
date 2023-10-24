@@ -12,6 +12,7 @@ import moment from 'moment';
 import menuIco from '@assets/icons/menu.png';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MainHeader from '@components/Headers/MainHeader';
+import Barra from '@components/Barra';
 
 
 const CalendarScreen = ({ navigation }) => {
@@ -66,6 +67,7 @@ const CalendarScreen = ({ navigation }) => {
             textStyle={{
               fontSize: 18,
               color: 'white',
+              fontFamily: 'Inter SemiBold'
             }}
             selectedDayTextStyle={{}}
             customDatesStyles={[
@@ -91,11 +93,15 @@ const CalendarScreen = ({ navigation }) => {
             nextComponent={<Imagem source={require('@assets/icons/proximo.png')} />}
             previousComponent={<Imagem source={require('@assets/icons/anterior.png')} />}
             dayLabelsWrapper={{ borderTopWidth: 0, borderBottomWidth: 0 }}
-            selectMonthTitle="Selecionar Mês em "
-            selectYearTitle="Selecionar Ano"
+            selectMonthTitle=""
+            selectYearTitle="Ano"
             headerWrapperStyle={{
               padding: 20,
             }}
+          />
+          
+          <Barra
+            marginTop={'6%'}
           />
 
           <Texto>Sonhos do dia</Texto>

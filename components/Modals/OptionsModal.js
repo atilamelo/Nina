@@ -24,7 +24,7 @@ const OptionsModal = ({ isVisible, onClose }) => {
             <TouchableOpacity
               style={[
                 styles.option,
-                selectedOption === 'Título' && { backgroundColor: '#C578FF'}, // Verifica se a opção foi selecionada
+                selectedOption === 'Título' && { backgroundColor: '#9F238E'}, // Verifica se a opção foi selecionada
               ]}
               onPress={() => handleOptionClick('Título')}
             >
@@ -35,7 +35,7 @@ const OptionsModal = ({ isVisible, onClose }) => {
             <TouchableOpacity
               style={[
                 styles.option,
-                selectedOption === 'Data de criação' && { backgroundColor: '#C578FF' }, 
+                selectedOption === 'Data de criação' && { backgroundColor: '#9F238E' }, 
               ]}
               onPress={() => handleOptionClick('Data de criação')}
             >
@@ -46,7 +46,7 @@ const OptionsModal = ({ isVisible, onClose }) => {
             <TouchableOpacity
               style={[
                 styles.option,
-                selectedOption === 'modificação' && { backgroundColor: '#C578FF' }, 
+                selectedOption === 'modificação' && { backgroundColor: '#9F238E' }, 
               ]}
               onPress={() => handleOptionClick('modificação')}
             >
@@ -57,18 +57,18 @@ const OptionsModal = ({ isVisible, onClose }) => {
             <TouchableOpacity
               style={[
                 styles.option,
-                selectedOption === 'favorito' && { backgroundColor: '#C578FF' }, 
+                selectedOption === 'favorito' && { backgroundColor: '#9F238E' }, 
               ]}
               onPress={() => handleOptionClick('favorito')}
             >
-              <Text style={styles.texto}>Marcado como fav.</Text>
+              <Text style={styles.texto}>Favoritos</Text>
               {selectedOption === 'favorito'}
             </TouchableOpacity>
 
             <TouchableOpacity
               style={[
                 styles.option,
-                selectedOption === 'tag' && { backgroundColor: '#C578FF' }, 
+                selectedOption === 'tag' && { backgroundColor: '#9F238E' }, 
               ]}
               onPress={() => handleOptionClick('tag')}
             >

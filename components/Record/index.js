@@ -12,6 +12,8 @@ const Record = ({onRecordingComplete}) => {
   const dreamContext = useContext(DreamContext);
   const setDreamData = dreamContext.setDreamData;
 
+  console.log("Id: ", dreamContext.dreamData.rid)
+
   // Importe a imagem usando require
   const micIcon = require('@assets/icons/micPreenchido.png');
 

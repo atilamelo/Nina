@@ -4,11 +4,11 @@ import { View, TouchableOpacity, Image } from 'react-native';
 import MainHeader from '@components/Headers/MainHeader';
 
 // Images
-import menuIco from '@assets/icons/menu.png'; 
+import menuIco from '@assets/icons/menu.png';
 import searchIco from '@assets/icons/search.png';
-import organizarIco from 'assets/icons/organizar.png';
+import sorting from 'assets/icons/sorting.png';
 
-const HomeHeader = ( { toggleOptionsModal } ) => {
+const HomeHeader = ({ toggleOptionsModal }) => {
     const navigation = React.useContext(NavigationContext);
 
     return (
@@ -31,15 +31,15 @@ const HomeHeader = ( { toggleOptionsModal } ) => {
                     />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={toggleOptionsModal}>
-                    <Image 
-                        source={organizarIco}
-                        style={{ width: 24, height: 24, marginHorizontal: 12 }}
-                    />
-                </TouchableOpacity>
-            </View>
-        }
-    />
+                    <TouchableOpacity onPress={toggleOptionsModal}>
+                        <Image
+                            source={sorting}
+                            style={{ width: 24, height: 20, marginHorizontal: 12 }}
+                        />
+                    </TouchableOpacity>
+                </View>
+            }
+        />
     );
 };
 
