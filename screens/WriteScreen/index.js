@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { ScrollView, KeyboardAvoidingView, View, Platform, Button } from 'react-native';
+import { ScrollView, KeyboardAvoidingView, View, Platform, BackHandler } from 'react-native';
 import { FluidDrawerNative } from '@builddiv/fluid-drawer-native';
 import { DreamContext } from '@contexts/DreamContext';
 import { BasicButton, DegradeButton } from '@components/Buttons';
@@ -14,7 +14,7 @@ import AlertModal from '@components/Modals/AlertModal';
 
 const WriteScreen = ({ route, navigation }) => {
   // Contexto do sonho
-  const { dreamData, setDreamData } = useContext(DreamContext);
+  const { dreamData, setDreamData, clearDreamData } = useContext(DreamContext);
   const realm = useRealm();
 
   // Estados locais
@@ -47,12 +47,13 @@ const WriteScreen = ({ route, navigation }) => {
     }
   }, [route.params]);
 
+  // Adiciona o ouvinte para o botão de voltar
   useEffect(() => {
-    navigation.addListener('beforeRemove', (e) => {
-      console.log("Saindo")
-      // e.preventDefault();
-    })
-  }, [ navigation ])
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', showBackConfirmationModal);
+
+    // Remove o ouvinte quando o componente é desmontado
+    return () => backHandler.remove();
+  });
 
 
   // Função para navegar para a próxima tela
@@ -114,18 +115,20 @@ const WriteScreen = ({ route, navigation }) => {
   // Função para exibir o modal de confirmação de volta
   const showBackConfirmationModal = () => {
     // Verifica se o título ou o texto do sonho foram preenchidos
-  if (dreamData.title.trim() !== '' || dreamData.text.trim() !== '') {
-    // Se algum dos campos estiver preenchido, exibe o modal de confirmação
-    setIsBackModalVisible(true);
-  } else {
-    // Se nenhum dos campos estiver preenchido, volta sem exibir o modal
-    navigation.goBack();
-  }
+    if (dreamData.title !== undefined || dreamData.text !== undefined) {
+      // Se algum dos campos estiver preenchido, exibe o modal de confirmação
+      setIsBackModalVisible(true);  
+    } else {
+      navigation.goBack();
+    }
+
+    return true; // Impede o comportamento padrão de fechar a tela (Caso pressionado pelo botão do Header)
   };
 
   // Função chamada quando o usuário confirma a volta
   const onConfirmBack = () => {
     setIsBackModalVisible(false);
+    clearDreamData();
     navigation.goBack();
   };
 
