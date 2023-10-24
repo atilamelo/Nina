@@ -6,7 +6,6 @@ import Background from '@components/Background';
 import styled from 'styled-components/native';
 import CalendarPicker from 'react-native-calendar-picker';
 import 'moment/locale/pt-br';
-import DrawerHeader from '@components/Headers/DrawerHeader';
 import DreamContainer from '@components/CalendarComponents/DreamContainer';
 import moment from 'moment';
 import menuIco from '@assets/icons/menu.png';
