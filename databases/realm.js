@@ -6,7 +6,7 @@ import uuid from 'react-native-uuid';
 
 const realmConfig = {
   schema: [DreamSchema, TagSchema],
-  schemaVersion: 7,
+  schemaVersion: 8,
 };
 
 const { RealmProvider, useRealm, useObject, useQuery } = 

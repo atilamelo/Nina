@@ -8,13 +8,14 @@ const formatDate = ( date ) => {
 };
 
 const DreamBox = ({ item: props, navigation }) => {
+    console.log(props)
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('EndDreamScreen', { props: { ...props, date: props.date.toISOString() } })}>
+        <TouchableOpacity onPress={() => navigation.navigate('EndDreamScreen', { props: { ...props, date: props.creationDate.toISOString() } })}>
             <View style={styles.container}>
                 <View style={styles.cardContainer}>
                     <AdditionalInformation item={props} />
                     <DreamContent item={props} />
-                    <Text style={styles.data}>{formatDate(props.date)}</Text>
+                    <Text style={styles.data}>{formatDate(props.creationDate)}</Text>
                 </View>
             </View>
 
