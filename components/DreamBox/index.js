@@ -8,7 +8,6 @@ const formatDate = ( date ) => {
 };
 
 const DreamBox = ({ item: props, navigation }) => {
-    console.log(props)
     return (
         <TouchableOpacity onPress={() => navigation.navigate('EndDreamScreen', { props: { ...props, date: props.creationDate.toISOString() } })}>
             <View style={styles.container}>

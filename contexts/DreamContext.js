@@ -25,6 +25,7 @@ function DreamProvider({ children }) {
   const [dreamData, setDreamData] = useState(modelo);
 
   const clearDreamData = () => {
+    console.log("DreamContext cleared")
     setDreamData(modelo);
   }
 

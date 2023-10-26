@@ -22,7 +22,7 @@ const SearchInput = styled(TextInput)`
 
 const SearchHeader = ( { drawer, placeholder, onChangeText, value } ) => {
     const navigation = React.useContext(NavigationContext);
-    console.log(drawer)
+
     return (
         <MainHeader
             left={
