@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native'
 import { NavigationContext } from '@react-navigation/native';
 import { sortOptions } from '../Modals/OptionsModal';
@@ -29,6 +29,10 @@ const HomeScreenModel = ({ title, dreamData, children, showSearch, showSort }) =
   const [isOptionsVisible, setOptionsVisible] = useState(false);
   const [sortedDreamData, setSortedDreamData] = useState(sortDreamData(dreamData, defaultSortOption));
   const navigation = useContext(NavigationContext);
+
+  useEffect(() => {
+    setSortedDreamData(sortDreamData(dreamData, defaultSortOption))
+  }, [ dreamData ])
 
   /**
    * Toggles the visibility of the options modal.
