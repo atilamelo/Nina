@@ -22,11 +22,10 @@ const Container = styled.View`
 
 
 const MainContainer = styled.View`
-  margin-horizontal: 4%;
+  margin-horizontal: 7%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-horizontal: 2%;
 `;
 
 const LeftContainer = styled.View`
@@ -43,4 +42,6 @@ const MiddleContainer = styled.View`
 const RightContainer = styled.View`
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  gap: 17px;
 `;

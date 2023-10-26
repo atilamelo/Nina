@@ -93,22 +93,17 @@ const AddTag = ({ route }) => {
       setTags(tags);
     });
 
-    return () => {
-      subscription.removeAllListeners();
-    };
+
   }, []);
 
   return (
     <Background>
       <SearchHeader
-        
-      />
-      {/* <Search
-        navigation={navigation}
-        placeholder="Insira o nome da Tag"
+        drawer={drawer}
+        placeholder={'Insira o nome da Tag'}
         onChangeText={(text) => setSearchQuery(text)}
         value={searchQuery}
-      /> */}
+      />
 
     <Container>
       {tags.map((tag) => (

@@ -4,7 +4,7 @@ import FavoriteScreen from '@screens/FavoriteScreen/Favorites';
 import Trash from '@screens/TrashScreen/Trash';
 import HomeNavigator from '@navigators/HomeNavigator'; // Importe o seu HomeNavigator
 import DrawerContent from '@components/DrawerContent'; // Crie um componente para o conteúdo do Drawer (vamos chamá-lo de DrawerContent)
-import AddTag from '@screens/WriteScreen/AddTag';
+import TagScreen from '@screens/TagScreen';
 
 
 const Drawer = createDrawerNavigator();
@@ -24,7 +24,13 @@ const DrawerNavigation = () => {
         <Drawer.Screen name="HomeNavigator" component={HomeNavigator} />
         <Drawer.Screen name="FavoriteScreen" component={FavoriteScreen} />
         <Drawer.Screen name="Trash" component={Trash} />
-        <Drawer.Screen name="AddTag" component={AddTag} />
+        <Drawer.Screen 
+          name="AddTag" 
+          component={TagScreen}
+          initialParams={{
+            drawer: true
+          }}
+        />
         
       </Drawer.Navigator>
     );

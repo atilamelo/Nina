@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import MainHeader from './MainHeader';
-import { BackButton } from './styles';
+import { Button } from './styles';
 
 const DreamHeader = ({ navigation, onSkip }) => {
     return (
         <MainHeader
-            left={<BackButton onPress={() => {navigation.goBack()}}/>}
+            left={
+                <Button
+                    source={require('@assets/icons/Voltar.png')}
+                    onPress={() => navigation.goBack()}
+                />
+            }
             right={
                 <SkipButton onPress={onSkip}>
                     <SkipText>Pular</SkipText>

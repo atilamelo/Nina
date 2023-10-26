@@ -37,6 +37,10 @@ export default function WriteStack() {
           name="AddTag"
           component={AddTag}
           options={{ headerShown: false }}
+          initialParams={{
+              drawer: false
+            }
+          }
         />
       </Stack.Navigator>
     </DreamContext>

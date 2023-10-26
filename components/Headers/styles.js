@@ -1,28 +1,27 @@
-import { TouchableOpacity, Image } from 'react-native';
-import styled from 'styled-components/native'
-import VoltarImg from '@assets/icons/Voltar.png'
+import { TouchableOpacity, Image, Text } from 'react-native';
 
-export const BackButton = ( { onPress } ) => {
-    return(
+const sizeIcon = 21;
+
+export const Button = ( { source, onPress } ) => {
+    return (
         <TouchableOpacity onPress={ onPress }>
-            <Image source={VoltarImg} style={{
-                width: 18, 
-                height: 29,
-                resizeMode: 'contain',
-            }} />
+            <Image
+                source={source}
+                resizeMode='contain'
+                style={{ width: sizeIcon, height: sizeIcon }}
+            />
         </TouchableOpacity>
     )
 }
 
-export const Title = ( { text }) => {
+export const Title = ( { children: text } ) => {
     return (
-        <TitleStyle>{text}</TitleStyle>
+        <Text style={{
+            color: 'white',
+            fontSize: 19,
+            fontFamily: 'Inter Medium'
+        }}>
+            {text}
+        </Text>
     )
 }
-
-const TitleStyle = styled.Text`
-    font-family:'Inter Bold';
-    color: white;
-    font-size: 23px;
-    margin-left: 3.5%;
-`
