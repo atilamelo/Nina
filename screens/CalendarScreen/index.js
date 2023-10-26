@@ -6,6 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Background from '@components/Background';
 import styled from 'styled-components/native';
 import CalendarPicker from 'react-native-calendar-picker';
+import 'moment/locale/pt-br';
 import DreamContainer from '@components/CalendarComponents/DreamContainer';
 import moment from 'moment';
 import HomeHeader from '@components/Headers/HomeHeader';

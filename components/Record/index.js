@@ -3,10 +3,11 @@ import { Image, Alert, PermissionsAndroid, Platform, Button } from 'react-native
 import { DreamContext } from '@contexts/DreamContext';
 import styled from 'styled-components/native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import * as FileSystem from 'expo-file-system';
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
-const Record = ({onRecordingComplete}) => {
+const Record = ({ onRecordingComplete }) => {
   const [timer, setTimer] = useState(0);
   const timerRef = useRef();
   const dreamContext = useContext(DreamContext);
@@ -28,14 +29,9 @@ const Record = ({onRecordingComplete}) => {
     if (Platform.OS === 'android') {
       try {
         const grants = await PermissionsAndroid.requestMultiple([
-          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
           PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
         ]);
-
         if (
-          grants['android.permission.WRITE_EXTERNAL_STORAGE'] === PermissionsAndroid.RESULTS.GRANTED &&
-          grants['android.permission.READ_EXTERNAL_STORAGE'] === PermissionsAndroid.RESULTS.GRANTED &&
           grants['android.permission.RECORD_AUDIO'] === PermissionsAndroid.RESULTS.GRANTED
         ) {
           console.log('Permissions granted');
@@ -49,13 +45,13 @@ const Record = ({onRecordingComplete}) => {
   };
 
   const startRecording = async () => {
+    
     const result = await audioRecorderPlayer.startRecorder();
     setIsRecording(true);
 
     // Iniciar o timer quando a gravação começar
     startTimer();
 
-    console.log(result);
   };
 
   const stopRecording = async () => {
@@ -70,14 +66,25 @@ const Record = ({onRecordingComplete}) => {
     stopTimer();
 
     onRecordingComplete();
+    
+    const newPath = FileSystem.documentDirectory + dreamContext.dreamData.id + "_audio.mp4";
+    
+    try {
+      await FileSystem.copyAsync({
+        from: result, // Path
+        to: newPath
+      })
+    }catch (err) {
+      console.error(err);
+    };
 
     setDreamData((prevData) => ({
       ...prevData,
-      audioPath: result,
+      audioPath: newPath,
     }));
 
-    console.log(result);
-  };
+    console.log(newPath);
+  }
 
   const startTimer = () => {
     // Certifique-se de que o timer não esteja sendo executado antes de iniciar
@@ -106,7 +113,6 @@ const Record = ({onRecordingComplete}) => {
   const stopPlaying = async () => {
     const result = await audioRecorderPlayer.stopPlayer();
     setIsPlaying(false);
-    console.log(result);
   };
 
   // Renderização do componente Record

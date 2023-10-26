@@ -3,7 +3,7 @@ import { Audio } from 'expo-av';
 import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
-import micIcon from '@assets/icons/mic.png';
+import micIcon from '@assets/icons/micPreenchido.png';
 import SeekBar from '@components/EndComponents/AudioComponents/SeekBar';
 
 const Container = styled.View`
@@ -14,26 +14,16 @@ const Container = styled.View`
 
 const AudioButton = styled.Pressable`
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 85%;
   height: 59%;
   margin-top: 10%;
   border-radius: 13px;
   background-color: #2B314C;
 `;
 
-const IconContainer = styled.View`
-  padding: 16px;
-`;
-
 const PauseContainer = styled.TouchableOpacity`
   padding: 14px;
-`;
-
-const MicIcon = styled.Image`
-  width: 19px;
-  height: 28px;
 `;
 
 const seekBarStyles = {
@@ -116,9 +106,6 @@ function AudioPlayer({ audioSource, disabled, onPress }) {
           currentPosition={soundPosition}
           styles={seekBarStyles}
         />
-        <IconContainer>
-          <MicIcon source={micIcon} />
-        </IconContainer>
       </AudioButton>
     </Container>
   );
