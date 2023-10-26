@@ -4,7 +4,6 @@ import { useRealm, useQuery } from '@databases/realm';
 import { TagSchema } from '@databases/schemas/TagSchema';
 import uuid from 'react-native-uuid';
 import Background from '@components/Background';
-import Search from '@components/Search';
 import styled from 'styled-components/native';
 import Tags from '@components/Tags';
 

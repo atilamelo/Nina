@@ -8,6 +8,7 @@ import Background from '@components/Background';
 import HomeHeader from '@components/Headers/HomeHeader';
 import GraphicBarContent from '@components/StatisticsComponents/GraphicBarContent';
 import GraphicPieContent from '@components/StatisticsComponents/GraphicPieContent';
+import GraphicCloudContent from '@components/StatisticsComponents/GraphicCloudContent';
 import { ScrollView } from 'react-native';
 import { GraficProvider } from '@contexts/GraphicBarContext';
 
@@ -17,83 +18,56 @@ const Container = styled.View`
   justify-content: center;
 `;
 
+const tags = [
+  { value: 'jQuery', count: 25 },
+  { value: 'MongoDB', count: 18 },
+  { value: 'Nodejs', count: 28 },
+  { value: 'Express.js', count: 25 },
+  { value: 'teste', count: 28 },
+  { value: 'testando.js', count: 25 },
+];
+
+const feelings = [
+  { value: 'jQuery', count: 25 },
+  { value: 'MongoDB', count: 18 },
+  { value: 'Nodejs', count: 28 },
+  { value: 'Express.js', count: 25 },
+  { value: 'teste', count: 28 },
+  { value: 'testando.js', count: 25 },
+];
+
+const tagColor = {
+  luminosity: 'light',
+  hue: '#443681',
+}
+
+const feelingsColor = {
+  luminosity: 'light',
+  hue: '#9F238E',
+}
+
 const StatisticsScreen = ({ navigation }) => {
   return (
     // Provedor do contexto gráfico que envolve a tela
     <GraficProvider>
       <Background>
-        <HomeHeader 
+
+        <HomeHeader
           title={"Estatísticas"}
         />
 
         <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
           <Container>
-            <GraphicBarContent
-              Titulo="Sonhos Registrados por Semana"
-              labels={['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4']}
-              datasets={[
-                {
-                  data: [2, 3, 4, 6],
-                  colors: [
-                    (opacity = 1) => `#9F238E`,
-                    (opacity = 1) => `#9F238E`,
-                    (opacity = 1) => `#9F238E`,
-                    (opacity = 1) => `#9F238E`,
-                  ],
-                },
-              ]}
+            <GraphicCloudContent
+              Titulo="Tags mais usadas"
+              data={tags}
+              options={tagColor}
             />
 
-            <GraphicBarContent
-              Titulo="Sonhos Por Categoria"
-              labels={['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5', 'Tag 6']}
-              datasets={[
-                {
-                  data: [4, 3, 9, 7, 3, 5],
-                  colors: [
-                    (opacity = 1) => `#653483`,
-                    (opacity = 1) => `#653483`,
-                    (opacity = 1) => `#653483`,
-                    (opacity = 1) => `#653483`,
-                    (opacity = 1) => `#653483`,
-                    (opacity = 1) => `#653483`,
-                  ],
-                },
-              ]}
-            />
-
-            <GraphicBarContent
-              Titulo="Sonhos Por Nível de Lucidez"
-              labels={['Nível 1', 'Nível 2', 'Nível 3', 'Nível 4', 'Nível 5']}
-              datasets={[
-                {
-                  data: [4, 3, 1, 7, 1],
-                  colors: [
-                    (opacity = 1) => `#443681`,
-                    (opacity = 1) => `#443681`,
-                    (opacity = 1) => `#443681`,
-                    (opacity = 1) => `#443681`,
-                    (opacity = 1) => `#443681`,
-                  ],
-                },
-              ]}
-            />
-
-            <GraphicBarContent
-              Titulo="Sonhos Por Sentimento"
-              labels={['Felicidade', 'Tristeza', 'Medo', 'Raiva', 'Ansiedade']}
-              datasets={[
-                {
-                  data: [2, 4, 1, 3, 5],
-                  colors: [
-                    (opacity = 1) => `#9464B1`,
-                    (opacity = 1) => `#9464B1`,
-                    (opacity = 1) => `#9464B1`,
-                    (opacity = 1) => `#9464B1`,
-                    (opacity = 1) => `#9464B1`,
-                  ],
-                },
-              ]}
+            <GraphicCloudContent
+              Titulo="Sentimentos mais usados"
+              data={feelings}
+              options={feelingsColor}
             />
 
             <GraphicPieContent

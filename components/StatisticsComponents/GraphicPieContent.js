@@ -20,11 +20,11 @@ const Content = styled.View`
 
 const Texto = styled.Text`
   color: #ffffff;
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'Inter SemiBold';
   margin-top: 6%;
   width: 87%;
-  text-align: center;
+  margin-left: 6%;
 `;
 
 const ChartContent = styled.View`
@@ -45,10 +45,6 @@ const GraphicPieContent = ({ Titulo, data }) => {
       <Content style={{ width: contentSize }}>
 
         <Texto>{Titulo}</Texto>
-
-        <Barra marginTop={margin} />
-
-        <HeaderChart />
 
         <ChartContent>
           <GraphicPie

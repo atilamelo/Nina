@@ -4,12 +4,11 @@ import { useRealm, useQuery } from '@databases/realm';
 import { TagSchema } from '@databases/schemas/TagSchema';
 import uuid from 'react-native-uuid';
 import Background from '@components/Background';
-import Search from '@components/Search';
 import styled from 'styled-components/native';
 import Tags from '@components/Tags';
 
 import mais from '@assets/icons/mais.png';
-import SearchHeader from '../../components/Headers/SearchHeader';
+import SearchHeader from '@components/Headers/SearchHeader';
 
 const Container = styled(View)`
   flex: 1;

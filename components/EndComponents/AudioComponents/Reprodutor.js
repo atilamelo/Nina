@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Audio } from 'expo-av';
-import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
-import micIcon from '@assets/icons/micPreenchido.png';
 import SeekBar from '@components/EndComponents/AudioComponents/SeekBar';
 
 const Container = styled.View`
