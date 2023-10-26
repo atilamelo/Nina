@@ -1,4 +1,4 @@
-package com.anonymous.myproject;
+package com.dreamvision.nina;
 
 import android.app.Application;
 import android.content.res.Configuration;

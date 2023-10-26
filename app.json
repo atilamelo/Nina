@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "myproject",
-    "slug": "myproject",
+    "name": "Nina",
+    "slug": "Nina",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.myproject",
+      "package": "com.dreamvision.nina",
       "permissions": ["RECORD_AUDIO"]
     },
     "web": {

@@ -1,4 +1,4 @@
-package com.anonymous.myproject;
+package com.dreamvision.nina;
 
 import android.os.Build;
 import android.os.Bundle;
