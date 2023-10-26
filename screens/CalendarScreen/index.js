@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Image, ScrollView } from 'react-native';
 import { DreamSchema } from '@databases/schemas/DreamSchema';
 import { useQuery } from '@databases/realm';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Background from '@components/Background';
 import styled from 'styled-components/native';
 import CalendarPicker from 'react-native-calendar-picker';
-import 'moment/locale/pt-br';
-import DrawerHeader from '@components/Headers/DrawerHeader';
 import DreamContainer from '@components/CalendarComponents/DreamContainer';
 import moment from 'moment';
-import menuIco from '@assets/icons/menu.png';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import MainHeader from '@components/Headers/MainHeader';
+import HomeHeader from '@components/Headers/HomeHeader';
 import Barra from '@components/Barra';
+import 'moment/locale/pt-br';
 
 
 const CalendarScreen = ({ navigation }) => {
@@ -33,15 +31,8 @@ const CalendarScreen = ({ navigation }) => {
   
   return (
     <Background>
-      <MainHeader
-        left={
-          <MenuButton onPress={() => navigation.openDrawer()}>
-            <Image
-              source={menuIco}
-              style={{ width: 24, height: 20, resizeMode: 'contain' }}
-            />
-          </MenuButton>
-        }
+      <HomeHeader
+        title={"Calendário"}
       />
 
       <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>

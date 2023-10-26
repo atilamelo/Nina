@@ -5,7 +5,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import Background from '@components/Background';
-import DrawerHeader from '@components/Headers/DrawerHeader';
+import HomeHeader from '@components/Headers/HomeHeader';
 import GraphicBarContent from '@components/StatisticsComponents/GraphicBarContent';
 import GraphicPieContent from '@components/StatisticsComponents/GraphicPieContent';
 import { ScrollView } from 'react-native';
@@ -22,7 +22,10 @@ const StatisticsScreen = ({ navigation }) => {
     // Provedor do contexto gráfico que envolve a tela
     <GraficProvider>
       <Background>
-        <DrawerHeader />
+        <HomeHeader 
+          title={"Estatísticas"}
+        />
+
         <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
           <Container>
             <GraphicBarContent
