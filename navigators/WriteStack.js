@@ -2,7 +2,7 @@ import React from 'react'
 import WriteScreen from '@screens/WriteScreen';
 import DreamRecordScreen from '@screens/WriteScreen/DreamRecordScreen';
 import GenerateImageScreen from '@screens/WriteScreen/ImageScreen';
-import AddTag from '@screens/WriteScreen/AddTag';
+import TagScreen from '@screens/TagScreen';
 import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import DreamContext from '@contexts/DreamContext';
 
@@ -35,7 +35,7 @@ export default function WriteStack() {
         />
         <Stack.Screen
           name="AddTag"
-          component={AddTag}
+          component={TagScreen}
           options={{ headerShown: false }}
           initialParams={{
               drawer: false
