@@ -4,8 +4,9 @@ export class DreamSchema extends Realm.Object{
         properties: {
             _id: 'string',
             title: 'string',
-            text: 'string',
-            date: 'date',
+            text: 'string?',
+            creationDate: 'date',
+            modificationDate: 'date',
             imagePath: 'string?',
             localImagePath: 'string?',
             selectedTags: 'Tag[]',

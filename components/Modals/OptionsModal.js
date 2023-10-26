@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import { Modal, TouchableOpacity, View, Text, Image, StyleSheet } from 'react-native';
 
-const OptionsModal = ({ isVisible, onClose }) => {
+const options = [
+  { label: 'Título', value: 'title' },
+  { label: 'Data de criação', value: 'creationDate' },
+  { label: 'Data de modificação', value: 'modificationDate' },
+  { label: 'Favoritos', value: 'favorites' },
+  { label: 'Organizar por tags', value: 'tags' },
+];
+
+const OptionsModal = ({ isVisible, onClose, onSortSelection }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
+    onSortSelection(option);
   };
-  
+
   return (
-    <Modal
-      animationType="fade"
-      transparent={true}
-      visible={isVisible}
-    >
+    <Modal animationType="fade" transparent={true} visible={isVisible}>
       <TouchableOpacity
         style={styles.modalContainer}
         activeOpacity={1}
@@ -21,60 +26,24 @@ const OptionsModal = ({ isVisible, onClose }) => {
       >
         <View style={styles.modal}>
           <View style={styles.modalContent}>
-            <TouchableOpacity
-              style={[
-                styles.option,
-                selectedOption === 'Título' && { backgroundColor: '#9F238E'}, // Verifica se a opção foi selecionada
-              ]}
-              onPress={() => handleOptionClick('Título')}
-            >
-              <Text style={styles.texto}>Título</Text>
-              {selectedOption === 'Título'}
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[
-                styles.option,
-                selectedOption === 'Data de criação' && { backgroundColor: '#9F238E' }, 
-              ]}
-              onPress={() => handleOptionClick('Data de criação')}
-            >
-              <Text style={styles.texto}>Data de criação</Text>
-              {selectedOption === 'Data de criação'}
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[
-                styles.option,
-                selectedOption === 'modificação' && { backgroundColor: '#9F238E' }, 
-              ]}
-              onPress={() => handleOptionClick('modificação')}
-            >
-              <Text style={styles.texto}>Data de modificação</Text>
-              {selectedOption === 'modificação'}
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[
-                styles.option,
-                selectedOption === 'favorito' && { backgroundColor: '#9F238E' }, 
-              ]}
-              onPress={() => handleOptionClick('favorito')}
-            >
-              <Text style={styles.texto}>Favoritos</Text>
-              {selectedOption === 'favorito'}
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={[
-                styles.option,
-                selectedOption === 'tag' && { backgroundColor: '#9F238E' }, 
-              ]}
-              onPress={() => handleOptionClick('tag')}
-            >
-              <Text style={styles.texto}>Organizar por tags</Text>
-              {selectedOption === 'tag'}
-            </TouchableOpacity>
+            {options.map((option) => (
+              <TouchableOpacity
+                key={option.value}
+                style={[
+                  styles.option,
+                  selectedOption === option.value && { backgroundColor: '#9F238E' },
+                ]}
+                onPress={() => handleOptionClick(option.value)}
+              >
+                <Text style={styles.texto}>{option.label}</Text>
+                {selectedOption === option.value && (
+                  <Image
+                    source={require('@assets/icons/check.png')}
+                    style={styles.checkIcon}
+                  />
+                )}
+              </TouchableOpacity>
+            ))}
           </View>
         </View>
       </TouchableOpacity>

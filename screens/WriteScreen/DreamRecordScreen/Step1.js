@@ -73,7 +73,7 @@ export default function Step1() {
     navigation.navigate('AddTag');
   }
 
-  const [datePlaceHolder, setDatePlaceHolder] = useState(formatDate(dreamData.date));
+  const [datePlaceHolder, setDatePlaceHolder] = useState(formatDate(dreamData.creationDate));
   const [showPicker, setShowPicker] = useState(false);
 
   return (
@@ -98,7 +98,7 @@ export default function Step1() {
         <DateTimePicker
           mode="date"
           display="spinner"
-          value={dreamData.date}
+          value={dreamData.creationDate}
           onChange={onChange}
           maximumDate={new Date()}
         />

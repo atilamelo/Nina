@@ -50,7 +50,7 @@ const RegistroSonho = ({ navigation }) => {
                 realm.write(() => {
                     dreamObject.title = dreamData.title;
                     dreamObject.text = dreamData.text;
-                    dreamObject.date = dreamData.date;
+                    dreamObject.date = dreamData.creationDate;
                     dreamObject.imagePath = dreamData.imagePath;
                     dreamObject.localImagePath = dreamData.localImagePath;
                     dreamObject.audioPath = dreamData.audioPath;
@@ -68,7 +68,7 @@ const RegistroSonho = ({ navigation }) => {
                         _id: dreamData.id,
                         title: dreamData.title,
                         text: dreamData.text,
-                        date: dreamData.date,
+                        date: dreamData.creationDate,
                         imagePath: dreamData.imagePath,
                         localImagePath: dreamData.localImagePath,
                         audioPath: dreamData.audioPath,
