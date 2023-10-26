@@ -109,16 +109,18 @@ const WriteScreen = ({ route, navigation }) => {
   // Lógica para apagar o áudio
   const onRequestButton1 = () => {
     setIsRecordingComplete(false);
+    dreamData.audioPath = null;
     closeModal();
   };
 
   // Função para exibir o modal de confirmação de volta
   const showBackConfirmationModal = () => {
     // Verifica se o título ou o texto do sonho foram preenchidos
-    if (dreamData.title !== undefined || dreamData.text !== undefined) {
+    if (dreamData.title || dreamData.text|| dreamData.audioPath) {
       // Se algum dos campos estiver preenchido, exibe o modal de confirmação
       setIsBackModalVisible(true);  
     } else {
+      setIsDrawerOpen(false);
       navigation.goBack();
     }
 
@@ -128,6 +130,7 @@ const WriteScreen = ({ route, navigation }) => {
   // Função chamada quando o usuário confirma a volta
   const onConfirmBack = () => {
     setIsBackModalVisible(false);
+    setIsDrawerOpen(false);
     clearDreamData();
     navigation.goBack();
   };
@@ -183,7 +186,7 @@ const WriteScreen = ({ route, navigation }) => {
             />
 
             {/* Reprodutor de áudio visível quando a gravação está completa */}
-            {isRecordingComplete && (
+            {dreamData.audioPath && (
               <Reprodutor onPress={openModal} audioSource={{ uri: dreamData.audioPath }} />
             )}
           </Container>
