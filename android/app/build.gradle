@@ -81,9 +81,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace 'com.anonymous.myproject'
+    namespace 'com.dreamvision.nina'
     defaultConfig {
-        applicationId 'com.anonymous.myproject'
+        applicationId 'com.dreamvision.nina'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -30,7 +30,7 @@ export default function Step1() {
       const currentDate = selectedDate;
       setDreamData(prevData => ({
         ...prevData,
-        date: currentDate
+        creationDate: currentDate
       }));
   
       if (Platform.OS === 'android') {

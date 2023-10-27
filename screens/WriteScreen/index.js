@@ -26,13 +26,15 @@ const WriteScreen = ({ route, navigation }) => {
 
   useEffect(() => {
     if (route.params?.idDream !== undefined) {
+      console.log("Editing dream", route.params.idDream)
       dreamInfo = realm.objectForPrimaryKey('Dream', route.params.idDream);
       setDreamData((prevDreamData) => ({
         ...prevDreamData,
         id: dreamInfo._id,
         title: dreamInfo.title,
         text: dreamInfo.text,
-        date: dreamInfo.date,
+        creationDate: dreamInfo.creationDate,
+        modificationDate: new Date(),
         imagePath: dreamInfo.imagePath,
         localImagePath: dreamInfo.localImagePath,
         audioPath: dreamInfo.audioPath,
@@ -44,6 +46,7 @@ const WriteScreen = ({ route, navigation }) => {
         deleted: dreamInfo.deleted,
         favorite: dreamInfo.favorite,
       }))
+      route.params.idDream = undefined;
     }
   }, [route.params]);
 

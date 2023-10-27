@@ -1,27 +1,38 @@
-import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import { View, StyleSheet, FlatList } from 'react-native'
+import { NavigationContext } from '@react-navigation/native';
+import { sortOptions } from '../Modals/OptionsModal';
+import DreamBox from '@components/DreamBox';
 import Background from '@components/Background';
 import OptionsModal from '@components/Modals/OptionsModal';
 import HomeHeader from '@components/Headers/HomeHeader';
-import HomeContent from './HomeContent';
 
-// const sortDreamData = (dreamData, option) => {
-//   switch (option) {
-//     case 'title':
-//       return [...dreamData].sort((a, b) => a.title.localeCompare(b.title));
-//     case 'creationDate':
-//       return [...dreamData].sort((a, b) => new Date(a.creationDate) - new Date(b.creationDate));
-//     case 'modificationDate':
-//       return [...dreamData].sort((a, b) => new Date(a.modificationDate) - new Date(b.modificationDate));
-//     default:
-//       return dreamData;
-//   }
-// };
+const sortDreamData = (dreamData, option) => {
+  switch (option) {
+    case 'title':
+      return [...dreamData].sort((a, b) => a.title.localeCompare(b.title));
+    case 'creationDate':
+      return [...dreamData].sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate));
+    case 'modificationDate':
+      return [...dreamData].sort((a, b) => new Date(b.modificationDate) - new Date(a.modificationDate));
+    default:
+      return dreamData;
+  }
+};
+
+const defaultSortOption = sortOptions[1].value;
+
 /**
  * The home screen component.
  */
 const HomeScreenModel = ({ title, dreamData, children, showSearch, showSort }) => {
   const [isOptionsVisible, setOptionsVisible] = useState(false);
+  const [sortedDreamData, setSortedDreamData] = useState(sortDreamData(dreamData, defaultSortOption));
+  const navigation = useContext(NavigationContext);
+
+  useEffect(() => {
+    setSortedDreamData(sortDreamData(dreamData, defaultSortOption))
+  }, [ dreamData ])
 
   /**
    * Toggles the visibility of the options modal.
@@ -30,7 +41,9 @@ const HomeScreenModel = ({ title, dreamData, children, showSearch, showSort }) =
     setOptionsVisible(!isOptionsVisible);
   };
 
-
+  const onSortSelection = ( option ) => {
+    setSortedDreamData(sortDreamData(dreamData, option));
+  }
 
   return (
     <Background>
@@ -42,9 +55,23 @@ const HomeScreenModel = ({ title, dreamData, children, showSearch, showSort }) =
           showSort={showSort}
         />
         { children }
-        <HomeContent dreamData={dreamData} />
+
+        <FlatList
+            data={sortedDreamData}
+            renderItem={({ item }) => <DreamBox item={item} navigation={navigation} />}
+            keyExtractor={(item, index) => index.toString()}
+            contentContainerStyle={{ paddingBottom: 90 }}
+        />
+
       </View>
-      <OptionsModal isVisible={isOptionsVisible} onClose={toggleOptionsModal} />
+
+      <OptionsModal 
+        isVisible={isOptionsVisible} 
+        onClose={toggleOptionsModal} 
+        onSortSelection={onSortSelection}
+        defaultSortOption={defaultSortOption}
+      />
+    
     </Background>
   );
 };

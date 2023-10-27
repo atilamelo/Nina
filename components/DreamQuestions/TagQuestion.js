@@ -23,7 +23,7 @@ const TagText = styled.Text`
 
 const TagQuestionComponent = ({ options, selectedAnswers, handleAnswerClick }) => {
   selectedTagsId = selectedAnswers.map(tag => tag._id);
-  console.log("selectedTagsId", selectedTagsId)
+
   const buttons = options.map((option, index) => (
     <TagQuestion
       key={option._id}

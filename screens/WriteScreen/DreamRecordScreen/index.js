@@ -18,8 +18,7 @@ const screens = [
   ]
   
 const RegistroSonho = ({ navigation }) => {
-    const dreamContext = useContext(DreamContext);
-    const dreamData = dreamContext.dreamData;  
+    const { dreamData, clearDreamData } = useContext(DreamContext);
     const realm = useRealm();
     const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
@@ -50,7 +49,8 @@ const RegistroSonho = ({ navigation }) => {
                 realm.write(() => {
                     dreamObject.title = dreamData.title;
                     dreamObject.text = dreamData.text;
-                    dreamObject.date = dreamData.creationDate;
+                    dreamObject.creationDate = dreamData.creationDate;
+                    dreamObject.modificationDate = dreamData.modificationDate;
                     dreamObject.imagePath = dreamData.imagePath;
                     dreamObject.localImagePath = dreamData.localImagePath;
                     dreamObject.audioPath = dreamData.audioPath;
@@ -68,7 +68,8 @@ const RegistroSonho = ({ navigation }) => {
                         _id: dreamData.id,
                         title: dreamData.title,
                         text: dreamData.text,
-                        date: dreamData.creationDate,
+                        creationDate: dreamData.creationDate,
+                        modificationDate: dreamData.modificationDate,
                         imagePath: dreamData.imagePath,
                         localImagePath: dreamData.localImagePath,
                         audioPath: dreamData.audioPath,
@@ -82,13 +83,15 @@ const RegistroSonho = ({ navigation }) => {
                     });
                 });
             }
+            
+            clearDreamData();
 
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Home' }],
             });
 
-            dreamContext.clearDreamData();
+
             Alert.alert("Sonho", "Sonho salvo com sucesso!");
         } catch (e){
             console.error(e.message);
