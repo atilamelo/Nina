@@ -18,22 +18,26 @@ const Container = styled.View`
   justify-content: center;
 `;
 
+const cloudStyle = {
+  fontFamily: 'Inter Regular',
+};
+
 const tags = [
-  { value: 'jQuery', count: 25 },
-  { value: 'MongoDB', count: 18 },
-  { value: 'Nodejs', count: 28 },
-  { value: 'Express.js', count: 25 },
-  { value: 'teste', count: 28 },
-  { value: 'testando.js', count: 25 },
+  { value: 'jQuery', count: 25, key: 1, props: { style: cloudStyle } },
+  { value: 'MongoDB', count: 18, key: 2, props: { style: cloudStyle } },
+  { value: 'Nodejs', count: 28, key: 3, props: { style: cloudStyle } },
+  { value: 'Express.js', count: 25, key: 4, props: { style: cloudStyle } },
+  { value: 'teste', count: 28, key: 5, props: { style: cloudStyle } },
+  { value: 'testando.js', count: 25, key: 6, props: { style: cloudStyle } },
 ];
 
 const feelings = [
-  { value: 'jQuery', count: 25 },
-  { value: 'MongoDB', count: 18 },
-  { value: 'Nodejs', count: 28 },
-  { value: 'Express.js', count: 25 },
-  { value: 'teste', count: 28 },
-  { value: 'testando.js', count: 25 },
+  { value: 'jQuery', count: 25, key: 1, props: { style: cloudStyle } },
+  { value: 'MongoDB', count: 18, key: 2, props: { style: cloudStyle } },
+  { value: 'Nodejs', count: 28, key: 3, props: { style: cloudStyle } },
+  { value: 'Express.js', count: 25, key: 4, props: { style: cloudStyle } },
+  { value: 'teste', count: 28, key: 5, props: { style: cloudStyle } },
+  { value: 'testando.js', count: 25, key: 6, props: { style: cloudStyle } },
 ];
 
 const tagColor = {
