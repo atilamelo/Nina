@@ -1,6 +1,5 @@
 // TagCloudComponent.js
 import React from 'react';
-import { Alert } from 'react-native';
 import styled from 'styled-components/native';
 import { TagCloud } from 'react-tagcloud/rn';
 

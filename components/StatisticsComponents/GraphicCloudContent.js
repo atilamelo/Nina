@@ -2,7 +2,7 @@
 import React from 'react';
 import { Dimensions, Alert } from 'react-native';
 import styled from 'styled-components/native';
-import GraphicCloud from './GraphicCloud';
+import GraphicCloud from '@components/StatisticsComponents/GraphicCloud';
 
 const Container = styled.View`
   flex: 1;

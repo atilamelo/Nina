@@ -9,6 +9,7 @@ import HomeHeader from '@components/Headers/HomeHeader';
 import GraphicBarContent from '@components/StatisticsComponents/GraphicBarContent';
 import GraphicPieContent from '@components/StatisticsComponents/GraphicPieContent';
 import GraphicCloudContent from '@components/StatisticsComponents/GraphicCloudContent';
+import GraphicNumberContent from '@components/StatisticsComponents/GraphicNumberContent';
 import { ScrollView } from 'react-native';
 import { GraficProvider } from '@contexts/GraphicBarContext';
 
@@ -50,6 +51,9 @@ const feelingsColor = {
   hue: '#9F238E',
 }
 
+const numbers = [120, 52, 8, 50];
+const texto = ["Sonhos no Período", "Tags Criadas", "Sonhos Favoritados", "Imagens Geradas"];
+
 const StatisticsScreen = ({ navigation }) => {
   return (
     // Provedor do contexto gráfico que envolve a tela
@@ -62,6 +66,12 @@ const StatisticsScreen = ({ navigation }) => {
 
         <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
           <Container>
+
+            <GraphicNumberContent
+              Titulo="Em números"
+              numbers={numbers} texts={texto}
+            />
+
             <GraphicCloudContent
               Titulo="Tags mais usadas"
               data={tags}
