@@ -7,22 +7,26 @@ import Background from '@components/Background';
 import BackHeader from '@components/Headers/BackHeader';
 import * as FileSystem from 'expo-file-system';
 import styled from 'styled-components/native';
+import uuid from 'react-native-uuid';
 import AlertModal from '@components/Modals/AlertModal';
 
 /* Images */
 import arrow from '@assets/icons/arrow.png';
 import reload from '@assets/icons/reload.png';
 
-const apiUrl = 'https://5e31-200-17-154-233.ngrok-free.app'
+const apiUrl = 'http://3320-2804-d45-995a-3300-a429-3034-6086-54c4.ngrok-free.app'
 
 const GenerateImage = ({ navigation }) => {
     const dreamContext = useContext(DreamContext);
     const dreamData = dreamContext.dreamData;
+    const [pathGeneratedImage, setPathGeneratedImage] = useState(dreamData.localImagePath !== null ? dreamData.localImagePath : null);    
     const [isLoading, setIsLoading] = useState(dreamData.localImagePath === undefined);
     const [isExitModalVisible, setIsExitModalVisible] = useState(false);
 
     const fr = new FileReader();
-
+    console.log(pathGeneratedImage)
+    console.log(dreamData.imagePath)
+    console.log(dreamData.localImagePath)
     // Função para lidar com o botão de voltar
     const handleBackPress = () => {
         setIsExitModalVisible(true);
@@ -36,6 +40,12 @@ const GenerateImage = ({ navigation }) => {
         // Remove o ouvinte quando o componente é desmontado
         return () => backHandler.remove();
     }, []);
+
+    useEffect(() => {
+        if(pathGeneratedImage == null) {
+            generateImage();
+        }
+    })
 
     const fetchData = async () => {
         try {
@@ -51,7 +61,9 @@ const GenerateImage = ({ navigation }) => {
             const link_generated_img = data.link_generated_img;
 
             dreamData.imagePath = link_generated_img;
-
+            setPathGeneratedImage(link_generated_img);
+            saveImageLocally();
+            
             setIsLoading(false);
         } catch (error) {
             console.error('Error fetching or saving image:', error);
@@ -59,9 +71,14 @@ const GenerateImage = ({ navigation }) => {
     };
 
     const saveImageLocally = async () => {
-        const fileUri = FileSystem.documentDirectory + dreamData.id + '_image.png';
-
+        // Delete last generated image if it exists
+        if(dreamData.localImagePath !== null){
+            await FileSystem.deleteAsync(dreamData.localImagePath, { idempotent: true });
+        }
+        const fileUri = FileSystem.documentDirectory + dreamData.id + '_' + uuid.v4() + '_image.png';
+        
         try {
+
             const { uri } = await FileSystem.downloadAsync(
                 dreamData.imagePath,
                 fileUri
@@ -75,12 +92,14 @@ const GenerateImage = ({ navigation }) => {
     };
 
     const generateImage = () => {
-        fetchData();
+        if(!isLoading){
+            setIsLoading(true);
+            fetchData();
+        }
     }
 
     const nextStep = () => {
         navigation.navigate('DreamRec');
-        saveImageLocally();
     }
 
     const confirmExit = () => {
@@ -110,7 +129,7 @@ const GenerateImage = ({ navigation }) => {
                                 <Image source={require('@assets/icons/loading.gif')} style={{ width: 70, height: 70 }} />
                             </LoadingContainer>
                         ) : (
-                            <Imagem source={{ uri: dreamData.imagePath }} resizeMode="contain" borderRadius={13} />
+                            <Imagem source={{ uri: pathGeneratedImage }} resizeMode="contain" borderRadius={13} />
                         )}
                         <DreamFooter style={{ justifyContent: "space-between" }}>
 
