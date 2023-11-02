@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 const Container = styled.View`
   flex-direction: row;
-  align-items: center;
+  align-items: baseline;
   width: 30%;
   height: 60%;
 `;
@@ -12,6 +12,7 @@ const ContentItem = styled.View`
   padding: 10px;
   box-sizing: border-box;
   margin-horizontal: 1%;
+  justify-content: center;
 `;
 
 const Numero = styled.Text`
