@@ -6,7 +6,7 @@ const TagGroup = styled.View`
 `;
 
 const TagQuestion = styled.TouchableOpacity`
-  width: 274px;
+  width: 82%;
   height: 50px;
   border-radius: 10px;
   background-color: ${p => (p.selected ? '#9F238E' : '#2B314C')};

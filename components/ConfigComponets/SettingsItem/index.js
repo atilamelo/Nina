@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Switch } from 'react-native';
+import { TouchableOpacity, Switch, Dimensions  } from 'react-native';
 import styled from 'styled-components/native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const ConfigItem = ({ label, description, onPress, showSwitch }) => {
 
@@ -35,18 +38,19 @@ const TouchableItem = styled(TouchableOpacity)`
 `;
 
 const ItemContainer = styled.View`
-    width: 330px; 
-    height: 60px; 
-    background-color: #2B314C;
+    width: 90%;
+    height: 70px;
+    background-color: #2b314c;
     border-radius: 13px;
     padding: 10px;
-    margin-top: 22px;
+    margin-top: 6%;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
 `;
 
 const Container = styled.View`
+    flex: 1;
     flex-direction: column;
     justify-content: center; 
 `;

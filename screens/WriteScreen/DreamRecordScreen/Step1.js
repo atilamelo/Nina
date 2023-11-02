@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import {TextInput, Platform, useWindowDimensions, Pressable, ScrollView, Image } from 'react-native'
+import { TextInput, Platform, useWindowDimensions, Pressable, ScrollView, Image } from 'react-native'
 import { QuestionContainer, QuestionText } from '@components/DreamQuestions/StyleQuestion';
 import { useQuery, useRealm } from '@databases/realm';
 import { ScreenContainer } from './style'
@@ -15,7 +15,7 @@ import mais from '@assets/icons/mais.png';
 export default function Step1() {
   const dreamContext = useContext(DreamContext);
   const dreamData = dreamContext.dreamData;
-  const setDreamData = dreamContext.setDreamData; 
+  const setDreamData = dreamContext.setDreamData;
   const { width } = useWindowDimensions();
   const tagOptions = useQuery(TagSchema)
   const navigation = useNavigation();
@@ -32,7 +32,7 @@ export default function Step1() {
         ...prevData,
         creationDate: currentDate
       }));
-  
+
       if (Platform.OS === 'android') {
         toggleDatepicker();
         const formattedDate = formatDate(currentDate);
@@ -42,7 +42,7 @@ export default function Step1() {
       toggleDatepicker();
     }
   };
-  
+
   const formatDate = (date) => {
     const options = { day: 'numeric', month: 'short', year: 'numeric' };
     return date.toLocaleDateString('pt-BR', options);
@@ -51,7 +51,7 @@ export default function Step1() {
   const handleTagsClick = (tagData) => {
     setDreamData((prevData) => {
       const selectedTagsId = prevData.selectedTags.map((tag) => tag._id);
-  
+
       if (selectedTagsId.includes(tagData._id)) {
         // Remove the tag if it's already selected
         return {
@@ -67,7 +67,7 @@ export default function Step1() {
       }
     });
   };
-  
+
 
   const navigateToAddTag = () => {
     navigation.navigate('AddTag');
@@ -109,18 +109,19 @@ export default function Step1() {
       </QuestionContainer>
 
       <TagContainer>
-        <ScrollView style={{ width: 300 }}>
-          
+        <ScrollView style={{ width: '100%' }}>
+
           <TagQuestion
             options={tagOptions}
             selectedAnswers={dreamData.selectedTags}
-            handleAnswerClick={handleTagsClick} 
+            handleAnswerClick={handleTagsClick}
           />
-
-          <AdicionarTag onPress={navigateToAddTag}>
-            <Image source={mais} style={{ width: 24, height: 24, marginRight: 10, tintColor: '#9F238E' }} />
-            <TagText>Criar nova Tag</TagText>
-          </AdicionarTag>
+          <ContantTag>
+            <AdicionarTag onPress={navigateToAddTag}>
+              <Image source={mais} style={{ width: 24, height: 24, marginRight: 10, tintColor: '#9F238E' }} />
+              <TagText>Criar nova Tag</TagText>
+            </AdicionarTag>
+          </ContantTag>
 
         </ScrollView>
       </TagContainer>
@@ -129,14 +130,13 @@ export default function Step1() {
 }
 
 const AdicionarTag = styled.TouchableOpacity`
-  width: 274px;
+  width: 82%;
   height: 50px;
   border-radius: 10px;
   background-color: #2B314C;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  margin-left: 14px;
   flex-direction: row;
 `;
 
@@ -159,6 +159,10 @@ const StyledTextInput = styled(TextInput)`
   color: #ffffff;
 `;
 
+const ContantTag = styled.View`
+  align-items: center;
+`;
+
 const Styled = styled.View`
   align-items: center;
   justify-content: center;
@@ -167,7 +171,7 @@ const Styled = styled.View`
 `;
 
 const TagContainer = styled.View`
-  width: 300px; 
+  width: 100%; 
   height: 250px;
   align-items: center;
   justify-content: center;

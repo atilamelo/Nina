@@ -102,17 +102,6 @@ const Record = ({ onRecordingComplete }) => {
     }
   };
 
-  const startPlaying = async () => {
-    const result = await audioRecorderPlayer.startPlayer();
-    setIsPlaying(true);
-    console.log(result);
-  };
-
-  const stopPlaying = async () => {
-    const result = await audioRecorderPlayer.stopPlayer();
-    setIsPlaying(false);
-  };
-
   // Renderização do componente Record
   return (
     <>
@@ -136,7 +125,6 @@ const Record = ({ onRecordingComplete }) => {
         ) : (
           <Texto>Aperte ou segure o Microfone para falar</Texto>
         )}
-        <Button title={isPlaying ? 'Stop Playing' : 'Start Playing'} onPress={isPlaying ? stopPlaying : startPlaying} />
       </LowerRectangleContainer>
     </>
   );
