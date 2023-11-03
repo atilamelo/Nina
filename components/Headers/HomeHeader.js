@@ -35,7 +35,7 @@ const HomeHeader = ({ title, dreamData, toggleOptionsModal, showSearch, showSort
                 {showSearch && (
                     <Button
                         source={searchIco}
-                        // onPress={() => navigation.navigate('Search')}
+                        onPress={() => navigation.navigate('Search', {props: {dreamData : dreamData}})}
                     />
                 )}
 

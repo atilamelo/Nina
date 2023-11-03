@@ -7,18 +7,10 @@ import DreamBox from '@components/DreamBox';
 import Background from '@components/Background';
 import SearchHeader from '@components/Headers/SearchHeader';
 
-export default SearchScreen = ( { route, navigation } ) => {
-    const realm = useRealm();
+export default SearchScreen = ( { route, navigation, placeholder } ) => {
+    const dreamsData = route.params.props.dreamData;
     const [searchText, setSearchText] = useState(null);
-    const [dreamsData, setdreamsData] = useState(null);
     const [matchData, setMatchData] = useState(null);
-
-    useFocusEffect(
-        React.useCallback(() => {
-            console.log("Focused")
-            setdreamsData(realm.objects(DreamSchema))
-        }, [])
-    );
     
     useEffect(() => {
         if(searchText && dreamsData){
@@ -46,7 +38,7 @@ export default SearchScreen = ( { route, navigation } ) => {
             <Background>
             
                 <SearchHeader
-                    placeholder="Pesquisar pelo título"
+                    placeholder= {placeholder ? placeholder : "Pesquisar nos seus sonhos"}
                     onChangeText={onChangeText}
                 />
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStackNavigator, CardStyleInterpolators, TransitionPresets } from '@react-navigation/stack';
 import DreamContext from '../contexts/DreamContext';
-import HomeNavigator from './HomeNavigator';
+import SearchScreen from '@screens/SearchScreen';
 import DrawerNavigator from './DrawerNavigator';
 import EndDreamScreen from '../screens/EndDreamScreen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -28,6 +28,12 @@ export default function ConfigStack() {
                 name="EndDreamScreen"
                 component={EndDreamScreen}
                 options={{ headerShown: false }} 
+            />
+
+            <Stack.Screen
+              name="Search"
+              component={SearchScreen}
+              options={{ headerShown: false }}
             />
         </Stack.Navigator>
       </NavigationContainer>

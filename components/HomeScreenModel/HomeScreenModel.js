@@ -53,6 +53,7 @@ const HomeScreenModel = ({ title, dreamData, children, showSearch, showSort }) =
           title={title}
           showSearch={showSearch}
           showSort={showSort}
+          dreamData={dreamData}
         />
         { children }
 
