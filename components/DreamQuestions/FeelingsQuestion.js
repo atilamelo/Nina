@@ -1,30 +1,32 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import { QuestionContainer, QuestionText } from './StyleQuestion';
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 const FeelingsQuestion = styled.TouchableOpacity`
-  width: 144px;
-  height: 47px;
+  width: ${windowWidth * 0.38}px;
+  height: ${windowHeight * 0.07}px;
   border-radius: 10px;
   background-color: ${p => (p.selected ? '#9F238E' : '#2B314C')};
   justify-content: center;
   align-items: center;
-  margin-left: 12.5px;
-  margin-right: 12.5px;
-  margin-bottom: 20px;
+  margin-horizontal: 3%;
+  margin-bottom: ${windowHeight * 0.03}px;
 `;
 
 const FeelingsText = styled.Text`
     color: #fff;
     font-family: "Inter SemiBold";
-    font-size: 18px;
+    font-size: ${windowWidth * 0.05}px;
 `;
 
 const FeelingsGroup = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 55px;
+  margin-top: ${windowHeight * 0.05}px;
   flex-wrap: wrap;
 `;
 
@@ -59,7 +61,7 @@ const FeelingsQuestionComponent = ({ disabled, options, questionLabel, selectedA
     <QuestionContainer>
       <QuestionText>{questionLabel}</QuestionText>
       <View>
-        <View>
+        <View style={{  }}>
           <FeelingsGroup>{buttonRows}</FeelingsGroup>
         </View>
       </View>
