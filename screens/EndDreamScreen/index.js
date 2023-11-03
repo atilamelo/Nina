@@ -11,9 +11,9 @@ import Header from '@components/EndComponents/Header';
 import AlertModal from '@components/Modals/AlertModal';
 
 const EndDreamScreen = ({ route, navigation }) => {
+  const realm = useRealm();
   const dreamData = useQuery(DreamSchema).filtered(`_id = "${route.params.props._id}"`)[0];
   const [favorited, setFavorited] = useState(dreamData.favorite);
-  const realm = useRealm();
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
 
   const toggleFavorite = () => {
@@ -31,7 +31,15 @@ const EndDreamScreen = ({ route, navigation }) => {
 
   const toggleDelete = () => {
     // Abre o modal de confirmação antes de excluir
-    setIsDeleteModalVisible(true);
+    if(!dreamData.deleted){
+      setIsDeleteModalVisible(true);
+    }else{
+      realm.write(() => {
+        const dream = realm.objectForPrimaryKey(DreamSchema, dreamData._id);
+        dream.deleted = false;
+      });
+      navigation.goBack();
+    }
   };
 
   const confirmDelete = () => {
@@ -61,7 +69,13 @@ const EndDreamScreen = ({ route, navigation }) => {
       windowSoftInputMode="adjustResize"
     >
       <Background>
-        <Header navigation={navigation} toggleFavorite={toggleFavorite} toggleDelete={toggleDelete} favorited={favorited} />
+        <Header 
+          navigation={navigation}
+          toggleFavorite={toggleFavorite}
+          toggleDelete={toggleDelete}
+          favorited={favorited}
+          deleted={dreamData.deleted}
+        />
 
         <ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
           <DreamDetails dreamData={dreamData} />
