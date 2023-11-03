@@ -9,7 +9,7 @@ import menuIco from '@assets/icons/menu.png';
 import searchIco from '@assets/icons/search.png';
 import sorting from 'assets/icons/sorting.png';
 
-const HomeHeader = ({ title, toggleOptionsModal, showSearch, showSort, showBack }) => {
+const HomeHeader = ({ title, dreamData, toggleOptionsModal, showSearch, showSort, showBack }) => {
     const navigation = React.useContext(NavigationContext);
 
     return (
