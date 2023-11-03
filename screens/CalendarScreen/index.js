@@ -25,7 +25,9 @@ const CalendarScreen = ({ navigation }) => {
   };
 
   // Query para buscar os sonhos do dia selecionado
-  const allDreams = useQuery(DreamSchema);
+  const allDreams = useQuery(DreamSchema, (collection) => 
+    collection.filtered('deleted == $0', false), []
+  );
   const formattedDate = moment(selectedDate).format('YYYY-MM-DD');
   const displayDate = moment(selectedDate).locale('pt-br').format('LL');
   const filteredDreams = allDreams.filter(dream => moment(dream.date).format('YYYY-MM-DD') === formattedDate);  
@@ -100,9 +102,9 @@ const CalendarScreen = ({ navigation }) => {
 
           {/* Componente personalizado para exibir sonhos */}
           {filteredDreams.map((dream) => (
-            <TouchableOpacity onPress={() => navigation.navigate('EndDreamScreen', { props: { ...dream, date: dream.date.toISOString()}})}>
+            <TouchableOpacity onPress={() => navigation.navigate('EndDreamScreen', { props: { ...dream, creationDate: dream.creationDate.toISOString(), modificationDate: dream.modificationDate.toISOString() } })}>
               <DreamContainer
-                key={dream.id}
+                key={dream._id}
                 Data={displayDate}
                 Titulo={dream.title}
                 Sonho={dream.text}
@@ -125,9 +127,6 @@ const Imagem = styled(Image)`
 `;
 
 const StyledCalendarPicker = styled(CalendarPicker)`
-`;
-
-const MenuButton = styled.TouchableOpacity`
 `;
 
 const Texto = styled.Text`
