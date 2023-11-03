@@ -29,13 +29,13 @@ const Texto = styled.Text`
   text-align: center;
 `;
 
-const NumberContent = ({ numbers, texts }) => {
+const NumberContent = ({ data }) => {
   return (
     <Container>
-      {numbers.map((number, index) => (
-        <ContentItem key={index}>
-          <Numero>{number}</Numero>
-          <Texto>{texts[index]}</Texto>
+      {data.map((rowData) => (
+        <ContentItem key={rowData.id}>
+          <Numero>{rowData.value}</Numero>
+          <Texto>{rowData.title}</Texto>
         </ContentItem>
       ))}
     </Container>

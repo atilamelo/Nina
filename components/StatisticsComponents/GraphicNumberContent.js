@@ -30,7 +30,7 @@ const Texto = styled.Text`
   margin-left: 6%;
 `;
 
-const GraphicNumberContent = ({ Titulo, numbers, texts }) => {
+const GraphicNumberContent = ({ Titulo, data }) => {
   const { width, height } = Dimensions.get('window');
   const widthSize = width * 0.91;
   const heightSize = height * 0.23;
@@ -40,7 +40,7 @@ const GraphicNumberContent = ({ Titulo, numbers, texts }) => {
       <Content style={{ width: widthSize, height: heightSize }}>
         <Texto>{Titulo}</Texto>
         <ContentTeste>
-          <GraphicNumber numbers={numbers} texts={texts}  />
+          <GraphicNumber data={data}/>
         </ContentTeste>
       </Content>
     </Container>

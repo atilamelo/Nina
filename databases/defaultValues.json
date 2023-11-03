@@ -1,0 +1,15 @@
+{
+    "sentiments" : [
+        {"id": 1, "name": "Felicidade"},
+        {"id": 2, "name": "Curiosidade"},
+        {"id": 3, "name": "Tristeza"},
+        {"id": 4, "name": "Ansiedade"},
+        {"id": 5, "name": "Medo"},
+        {"id": 6, "name": "Surpresa"},
+        {"id": 7, "name": "Raiva"},
+        {"id": 8, "name": "Calma"},
+        {"id": 9, "name": "Frustração"},
+        {"id": 10, "name": "Empolgação"}
+    ]
+
+}

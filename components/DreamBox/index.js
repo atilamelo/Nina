@@ -3,43 +3,39 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 
-const formatDate = ( date ) => {  
+const formatDate = (date) => {
     return format(date, 'dd \'de\' MMMM \'de\' yyyy', { locale: ptBR });
 };
 
-const DreamBox = ({ item: props, navigation }) => {
+const AdditionalInformation = ({ item }) => (
+    <View style={styles.aditionalInformation}>
+        <Text style={styles.title}>{item.title}</Text>
+    </View>
+);
+
+const DreamContent = ({ item }) => (
+    <View style={styles.backgroundMain}>
+        <View style={styles.mainContainer}>
+            <Text style={styles.text}>{item.text}</Text>
+            {item.localImagePath && (
+                <Image style={styles.dreamImage} source={{ uri: item.localImagePath }} />
+            )}
+        </View>
+    </View>
+);
+
+const DreamBox = ({ item, navigation }) => {
+    const { creationDate, modificationDate, ...otherProps } = item;
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('EndDreamScreen', { props: { ...props, date: props.creationDate.toISOString() } })}>
+        <TouchableOpacity onPress={() => navigation.navigate('EndDreamScreen', { props: { ...otherProps, creationDate: creationDate.toISOString(), modificationDate: modificationDate.toISOString() } })}>
             <View style={styles.container}>
                 <View style={styles.cardContainer}>
-                    <AdditionalInformation item={props} />
-                    <DreamContent item={props} />
-                    <Text style={styles.data}>{formatDate(props.creationDate)}</Text>
+                    <AdditionalInformation item={item} />
+                    <DreamContent item={item} />
+                    <Text style={styles.data}>{formatDate(creationDate)}</Text>
                 </View>
             </View>
-
         </TouchableOpacity>
-    );
-};
-
-const DreamContent = ({ item }) => {
-    return (
-            <View style={styles.backgroundMain}>
-                <View style={styles.mainContainer}>
-                    <Text style={styles.text}>{item.text}</Text>
-                    {item.localImagePath ? (
-                        <Image style={styles.dreamImage} source={{uri: item.localImagePath}} />
-                    ) : null}                
-                    </View>
-            </View>
-    );
-};
-
-const AdditionalInformation = ({ item }) => {
-    return (
-        <View style={styles.aditionalInformation}>
-            <Text style={styles.title}>{item.title}</Text>
-        </View>
     );
 };
 
