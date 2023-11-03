@@ -32,8 +32,8 @@ const Texto = styled.Text`
 const NumberContent = ({ data }) => {
   return (
     <Container>
-      {data.map((rowData) => (
-        <ContentItem key={rowData.id}>
+      {data.map((rowData, index) => (
+        <ContentItem key={index}>
           <Numero>{rowData.value}</Numero>
           <Texto>{rowData.title}</Texto>
         </ContentItem>

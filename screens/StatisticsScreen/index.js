@@ -2,10 +2,10 @@
 // Date: 28/06/2023
 // Description: Statistics Screen that will show the statistics of the user based on dreams
 
-import React, { useEffect, useState, useCallback} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { GraficProvider } from '@contexts/GraphicBarContext';
-import { useRealm, useQuery } from '@databases/realm';
+import { useRealm } from '@databases/realm';
 import { DreamSchema } from '@databases/schemas/DreamSchema';
 import { TagSchema } from '@databases/schemas/TagSchema';
 import styled from 'styled-components/native';
@@ -14,6 +14,7 @@ import HomeHeader from '@components/Headers/HomeHeader';
 import GraphicPieContent from '@components/StatisticsComponents/GraphicPieContent';
 import GraphicCloudContent from '@components/StatisticsComponents/GraphicCloudContent';
 import GraphicNumberContent from '@components/StatisticsComponents/GraphicNumberContent';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Container = styled.View`
   flex: 1;
@@ -43,15 +44,15 @@ const StatisticsScreen = ({ navigation }) => {
   const [tagsData, setTags] = useState();
   const [numbersData, setNumbers] = useState();
 
-  const getDreamCountByFilter = useCallback((filter, value) => {
+  const getDreamCountByFilter = (filter, value) => {
     return realm.objects(DreamSchema).filtered(`${filter} CONTAINS $0`, value).length;
-  }, [realm]);
+  }
 
-  const getDreamCountByEquals = useCallback((filter, value) => {
+  const getDreamCountByEquals = (filter, value) => {
     return realm.objects(DreamSchema).filtered(`${filter} == $0`, value).length;
-  }, [realm]);
+  }
 
-  const updateTagData = useCallback(() => {
+  const updateTagData = () => {
     const objectTags = realm.objects(TagSchema);
     const tags = objectTags.map(row => {
       const dreamWithTag = getDreamCountByFilter('selectedTags._id', row._id);
@@ -59,34 +60,34 @@ const StatisticsScreen = ({ navigation }) => {
     }).filter(Boolean);
 
     setTags(tags);
-  }, [realm, getDreamCountByFilter]);
+  }
 
-  const updateSentimentData = useCallback(() => {
+  const updateSentimentData = () => {
     const feelingsData = feelingsOptions.map(row => {
       const dreamWithSentiment = getDreamCountByFilter('selectedFeelings', row);
       return dreamWithSentiment > 0 ? { value: row, count: dreamWithSentiment, key: row, props: { style: cloudStyle }} : null;
     }).filter(Boolean);
 
     setFeelings(feelingsData);
-  }, [getDreamCountByFilter]);
+  }
 
-  const updateNumbersData = useCallback(() => {
+  const updateNumbersData = () => {
     const numbersData = [
       {"title" : "Sonhos no Período", "value": realm.objects(DreamSchema).length},
       {"title" : "Tags Criadas", "value": realm.objects(TagSchema).length},
       {"title" : "Sonhos Favoritados", "value": getDreamCountByEquals('favorite', true)},
       {"title" : "Imagens Geradas", "value": getDreamCountByEquals('imagePath', null)},
-    ];
-    
+    ];  
     setNumbers(numbersData);
-  }, [realm, getDreamCountByFilter]);
+  }
 
-  useEffect(() => {
-    updateTagData();
-    updateSentimentData();
-    updateNumbersData();
-  }, [updateTagData, updateSentimentData, updateNumbersData]);
-
+  useFocusEffect(
+    useCallback(() => {
+      updateTagData();
+      updateSentimentData();
+      updateNumbersData();  
+    }, [])
+  );
 
   return (
     // Provedor do contexto gráfico que envolve a tela
