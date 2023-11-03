@@ -24,13 +24,17 @@ const CalendarScreen = ({ navigation }) => {
     setSelectedDate(date);
   };
 
-  // Query para buscar os sonhos do dia selecionado
-  const allDreams = useQuery(DreamSchema, (collection) => 
+  const fetchDreams = () => {
+    return useQuery(DreamSchema, (collection) => 
     collection.filtered('deleted == $0', false), []
-  );
+  )
+  }
+
+  // Query para buscar os sonhos do dia selecionado
+  const allDreams = fetchDreams();
   const formattedDate = moment(selectedDate).format('YYYY-MM-DD');
   const displayDate = moment(selectedDate).locale('pt-br').format('LL');
-  const filteredDreams = allDreams.filter(dream => moment(dream.date).format('YYYY-MM-DD') === formattedDate);  
+  const filteredDreams = allDreams.filter(dream => moment(dream.creationDate).format('YYYY-MM-DD') === formattedDate);  
   
   return (
     <Background>
