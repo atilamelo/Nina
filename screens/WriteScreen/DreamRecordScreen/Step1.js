@@ -78,53 +78,57 @@ export default function Step1() {
 
   return (
     <ScreenContainer windowWidth={width}>
-      <QuestionContainer>
-        <QuestionText>Que dia você sonhou?</QuestionText>
-      </QuestionContainer>
+      <ScrollView contentContainerStyle={{ paddingBottom: '85%' }}  showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
+        <QuestionContainer>
+          <QuestionText>Que dia você sonhou?</QuestionText>
+        </QuestionContainer>
 
-      <Pressable onPress={toggleDatepicker}>
-        <Styled>
-          <StyledTextInput
-            placeholder={formatDate(new Date())}
-            value={datePlaceHolder}
-            onChangeText={setDatePlaceHolder}
-            placeholderTextColor="#ffffff"
-            editable={false}
+        <Pressable onPress={toggleDatepicker}>
+          <Styled>
+            <StyledTextInput
+              windowWidth={width}
+              placeholder={formatDate(new Date())}
+              value={datePlaceHolder}
+              onChangeText={setDatePlaceHolder}
+              placeholderTextColor="#ffffff"
+              editable={false}
+            />
+          </Styled>
+        </Pressable>
+
+        {showPicker && (
+          <DateTimePicker
+            mode="date"
+            display="spinner"
+            value={dreamData.creationDate}
+            onChange={onChange}
+            maximumDate={new Date()}
           />
-        </Styled>
-      </Pressable>
+        )}
 
-      {showPicker && (
-        <DateTimePicker
-          mode="date"
-          display="spinner"
-          value={dreamData.creationDate}
-          onChange={onChange}
-          maximumDate={new Date()}
-        />
-      )}
+        <QuestionContainer>
+          <QuestionText>Deseja adicionar esse sonho em alguma tag?</QuestionText>
+        </QuestionContainer>
 
-      <QuestionContainer>
-        <QuestionText>Deseja adicionar esse sonho em alguma tag?</QuestionText>
-      </QuestionContainer>
+        <TagContainer>
+          <ScrollView style={{ width: '100%' }}  nestedScrollEnabled={true}>
 
-      <TagContainer>
-        <ScrollView style={{ width: '100%' }}>
+            <TagQuestion
+              options={tagOptions}
+              selectedAnswers={dreamData.selectedTags}
+              handleAnswerClick={handleTagsClick}
+            />
+            <ContantTag>
+              <AdicionarTag onPress={navigateToAddTag}>
+                <Image source={mais} style={{ width: 24, height: 24, marginRight: 10, tintColor: '#9F238E' }} />
+                <TagText>Criar nova Tag</TagText>
+              </AdicionarTag>
+            </ContantTag>
 
-          <TagQuestion
-            options={tagOptions}
-            selectedAnswers={dreamData.selectedTags}
-            handleAnswerClick={handleTagsClick}
-          />
-          <ContantTag>
-            <AdicionarTag onPress={navigateToAddTag}>
-              <Image source={mais} style={{ width: 24, height: 24, marginRight: 10, tintColor: '#9F238E' }} />
-              <TagText>Criar nova Tag</TagText>
-            </AdicionarTag>
-          </ContantTag>
-
-        </ScrollView>
-      </TagContainer>
+          </ScrollView>
+        </TagContainer>
+      </ScrollView>
     </ScreenContainer>
   )
 }
@@ -147,12 +151,11 @@ const TagText = styled.Text`
 `;
 
 const StyledTextInput = styled(TextInput)`
-  text-align-vertical: center;
-  justify-content: space-between;
+  text-align: center;
   background-color: #9f238e;
-  padding-horizontal: 50px;
+  padding-horizontal: ${props => props.windowWidth * 0.1}px; 
   height: 50px;
-  width: 292px;
+  width: ${props => props.windowWidth * 0.76}px;
   font-size: 18px;
   border-radius: 10px;
   font-family: 'Inter SemiBold';

@@ -20,7 +20,7 @@ const FeelingsQuestion = styled.TouchableOpacity`
 const FeelingsText = styled.Text`
     color: #fff;
     font-family: "Inter SemiBold";
-    font-size: ${windowWidth * 0.05}px;
+    font-size: ${windowWidth * 0.04}px;
 `;
 
 const FeelingsGroup = styled.View`

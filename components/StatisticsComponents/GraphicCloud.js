@@ -18,7 +18,7 @@ const GraphicCloud = ({ data, options }) => (
             maxSize={35}
             tags={data}
             colorOptions={options}
-            style={{ width: "90%"}}
+            style={{ width: "90%" }}
         />
     </ChartContent>
 );

@@ -38,11 +38,11 @@ const TouchableItem = styled(TouchableOpacity)`
 `;
 
 const ItemContainer = styled.View`
-    width: 90%;
-    height: 70px;
+    width: ${windowWidth * 0.9}px;
+    height: ${windowHeight * 0.09}px;
     background-color: #2b314c;
     border-radius: 13px;
-    padding: 10px;
+    padding: 2%;
     margin-top: 6%;
     justify-content: space-between;
     flex-direction: row;
@@ -54,6 +54,7 @@ const Container = styled.View`
     flex-direction: column;
     justify-content: center; 
 `;
+
 
 const ItemLabel = styled.Text`
     color: #FFFFFF;

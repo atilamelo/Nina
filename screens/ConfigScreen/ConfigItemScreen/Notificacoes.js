@@ -22,8 +22,8 @@ const Notificacoes = ( { navigation } ) => {
                 <ScrollView>
                     <Container>
 
-                        <SettingsItem label="Notificação da manhã" description= "Lembre-se de escrever seus sonhos" onPress={() => { }} showSwitch={true} />
-                        <SettingsItem label="Notificação da noite" description= "Lembre-se de revisar seus sonhos" onPress={() => { }} showSwitch={true} />
+                        <SettingsItem label="Notificação da manhã" description= "Lembre-se de escrever os sonhos" onPress={() => { }} showSwitch={true} />
+                        <SettingsItem label="Notificação da noite" description= "Lembre-se de revisar os sonhos" onPress={() => { }} showSwitch={true} />
                         <SettingsItem label="Silenciar notificações " description= "Defina um intervalo sem notificações" onPress={() => { }} showSwitch={false} />
 
                     </Container>

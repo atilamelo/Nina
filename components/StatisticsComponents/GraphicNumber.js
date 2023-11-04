@@ -9,7 +9,7 @@ const Container = styled.View`
 `;
 
 const ContentItem = styled.View`
-  padding: 10px;
+  padding: 3%;
   box-sizing: border-box;
   margin-horizontal: 1%;
   justify-content: center;

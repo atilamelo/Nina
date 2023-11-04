@@ -12,12 +12,17 @@ export default function ConfigStack() {
   return (
     <DreamContext>
       <NavigationContainer>
-        <Stack.Navigator
-            initialRouteName="DrawerNavigator"
-            screenOptions={{
-            headerShown: false, 
-            }}
-            >
+      <Stack.Navigator
+          initialRouteName="DrawerNavigator"
+          screenOptions={{
+            headerShown: false,
+            cardStyleInterpolator: ({ current, closing }) => ({
+              cardStyle: {
+                opacity: closing ? current.progress : 1,
+              },
+            }),
+          }}
+        >
             <Stack.Screen
                 name="DrawerNavigator"
                 component={DrawerNavigator}

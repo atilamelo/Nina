@@ -9,13 +9,13 @@ const ElipseGroup = styled.View`
 `;
 
 const ElipseQuestion = styled.View`
-    width: 50px;
-    height: 50px;
+    flex: 1;
+    aspect-ratio: 1;
     border-radius: 50px;
     background-color: ${ p  => (p.selected ? '#9F238E' : '#2B314C')};
     justify-content: center;
     align-items: center;
-    margin: 0px 0px 0px 10px;
+    margin: 0px 0px 0px 3%;
 `;
 
 const ElipseText = styled.Text`

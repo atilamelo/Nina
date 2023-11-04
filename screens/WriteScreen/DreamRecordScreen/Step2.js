@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useWindowDimensions } from 'react-native';
+import { useWindowDimensions, ScrollView } from 'react-native';
 import { ScreenContainer } from './style';
 import { QuestionContainer, QuestionText } from '@components/DreamQuestions/StyleQuestion';
 import { DreamContext } from '@contexts/DreamContext';
@@ -28,12 +28,15 @@ export default function Step2() {
 
   return (
     <ScreenContainer windowWidth={width}>
-      <FeelingsQuestion
-        questionLabel={'Como você se sentiu no sonho?'}
-        options={feelingsOptions}
-        selectedAnswers={dreamData.selectedFeelings} // Atualizado para selectedAnswers
-        handleAnswerClick={handleFeelingsClick}
-      />
+      <ScrollView contentContainerStyle={{ paddingBottom: '80%' }} showsVerticalScrollIndicator={false}
+       showsHorizontalScrollIndicator={false}>
+        <FeelingsQuestion
+          questionLabel={'Como você se sentiu no sonho?'}
+          options={feelingsOptions}
+          selectedAnswers={dreamData.selectedFeelings} // Atualizado para selectedAnswers
+          handleAnswerClick={handleFeelingsClick}
+        />
+      </ScrollView>
     </ScreenContainer>
   );
 }

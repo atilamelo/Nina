@@ -18,7 +18,7 @@ const CountText = styled.Text`
   font-family: 'Inter Bold';
   font-size: 14px;
   color: #8A8686;
-  margin-left: 15px;
+  margin-left: auto;
   flex: 1; /* Ocupar todo o espaço horizontal */
   text-align: right; /* Alinhar o texto à direita */
 `;
