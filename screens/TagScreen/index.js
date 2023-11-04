@@ -7,6 +7,7 @@ import Background from '@components/Background';
 import styled from 'styled-components/native';
 import Tags from '@components/Tags';
 import SearchHeader from '@components/Headers/SearchHeader';
+import AlertModal from '@components/Modals/AlertModal';
 
 import mais from '@assets/icons/mais.png';
 
@@ -40,28 +41,46 @@ const AddTag = ({ route }) => {
   const [tags, setTags] = useState([]);
   const { drawer } = route.params;
   const realm = useRealm();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedTag, setSelectedTag] = useState(null);
+
+  const openModal = (tag) => {
+    setSelectedTag(tag);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  // Lógica para apagar a tag
+  const onRequestButton1 = () => {
+
+  };
 
   // Função chamada ao pressionar o botão
   const addTag = () => {
-    try{
+    try {
       const existingTag = realm.objects(TagSchema).filtered('name = $0', searchQuery)[0];
       console.log(existingTag)
-        
-      if(existingTag == undefined || existingTag.length > 0){
+
+      if (existingTag == undefined || existingTag.length > 0) {
         realm.write(() => {
           realm.create('Tag', {
             _id: uuid.v4(),
             name: searchQuery,
           });
         });
-  
-        if(__DEV__){
+
+        if (__DEV__) {
           Alert.alert("Tag", "Tag salva com sucesso!");
         }
-        
-      }else{
 
-        if(__DEV__){
+        setSelectedTag({ _id: uuid.v4(), name: searchQuery }); // Defina a tag selecionada
+
+      } else {
+
+        if (__DEV__) {
           Alert.alert("Tag", "Tag já existente!");
         }
 
@@ -70,7 +89,7 @@ const AddTag = ({ route }) => {
     } catch (e) {
       console.log(e);
 
-      if(__DEV__){
+      if (__DEV__) {
         Alert.alert("Tag", "Problema ao salvar a tag!");
       }
 
@@ -78,7 +97,7 @@ const AddTag = ({ route }) => {
   };
 
   const getAllTags = () => {
-    return realm.objects(TagSchema); 
+    return realm.objects(TagSchema);
   };
 
   useEffect(() => {
@@ -104,20 +123,29 @@ const AddTag = ({ route }) => {
         value={searchQuery}
       />
 
-    <Container>
-      {tags.map((tag) => (
-        <Tags
-          key={tag._id}
-          text={tag.name}
-          marginTop="8%"
-        />
-      ))}
+      <Container>
+        {tags.map((tag) => (
+          <Tags
+            key={tag._id}
+            text={tag.name}
+            marginTop="8%"
+            onPress={() => openModal(tag)}
+          />
+        ))}
 
         <Content onPress={addTag}>
           <Imagem source={mais} />
           <TagText>Criar tag "{searchQuery}"</TagText>
         </Content>
       </Container>
+      <AlertModal
+        visible={modalVisible}
+        content={`Deseja apagar a tag "${selectedTag ? selectedTag.name : ''}"?`}
+        button1Text='APAGAR'
+        onClose={closeModal}
+        onRequestButton1={onRequestButton1}
+        button1Color="#BD2E32"
+      />
     </Background>
   );
 };
