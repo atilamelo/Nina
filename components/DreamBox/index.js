@@ -16,7 +16,7 @@ const AdditionalInformation = ({ item }) => (
 const DreamContent = ({ item }) => (
     <View style={styles.backgroundMain}>
         <View style={styles.mainContainer}>
-            <Text style={styles.text}>{item.text}</Text>
+            <Text numberOfLines={3} style={styles.text}>{item.text}</Text>
             {item.localImagePath && (
                 <Image style={styles.dreamImage} source={{ uri: item.localImagePath }} />
             )}
@@ -77,6 +77,9 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
         color: '#fff',
         fontFamily: 'Inter Regular',
+        lineHeight: 20,
+        overflow: 'hidden',
+        position: 'relative',
     },
     title: {
         textAlign: 'center',

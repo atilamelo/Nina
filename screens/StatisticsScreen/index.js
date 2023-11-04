@@ -45,11 +45,15 @@ const StatisticsScreen = ({ navigation }) => {
   const [numbersData, setNumbers] = useState();
 
   const getDreamCountByFilter = (filter, value) => {
-    return realm.objects(DreamSchema).filtered(`${filter} CONTAINS $0`, value).length;
+    return realm.objects(DreamSchema).filtered(`${filter} CONTAINS $0 AND deleted == $1`, value, false).length;
   }
 
   const getDreamCountByEquals = (filter, value) => {
-    return realm.objects(DreamSchema).filtered(`${filter} == $0`, value).length;
+    return realm.objects(DreamSchema).filtered(`${filter} == $0 AND deleted == $1`, value, false).length;
+  }
+
+  const getDreamCountByDifferent = (filter, value) => {
+    return realm.objects(DreamSchema).filtered(`${filter} != $0 AND deleted == $1`, value, false).length;
   }
 
   const updateTagData = () => {
@@ -73,10 +77,10 @@ const StatisticsScreen = ({ navigation }) => {
 
   const updateNumbersData = () => {
     const numbersData = [
-      {"title" : "Sonhos no Período", "value": realm.objects(DreamSchema).length},
+      {"title" : "Sonhos no Período", "value": realm.objects(DreamSchema).filtered('deleted == false').length},
       {"title" : "Tags Criadas", "value": realm.objects(TagSchema).length},
       {"title" : "Sonhos Favoritados", "value": getDreamCountByEquals('favorite', true)},
-      {"title" : "Imagens Geradas", "value": getDreamCountByEquals('imagePath', null)},
+      {"title" : "Imagens Geradas", "value": getDreamCountByDifferent('localImagePath', null)},
     ];  
     setNumbers(numbersData);
   }
