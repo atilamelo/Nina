@@ -23,7 +23,8 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.dreamvision.nina",
-      "permissions": ["RECORD_AUDIO"]
+      "permissions": ["RECORD_AUDIO"],
+      "useNextNotificationApi": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
