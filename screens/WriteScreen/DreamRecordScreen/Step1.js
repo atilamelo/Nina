@@ -21,6 +21,12 @@ export default function Step1() {
   const navigation = useNavigation();
   const realm = useRealm();
 
+  const predefinedTags = [
+    { _id: '1', name: 'Pesadelo' },
+    { _id: '2', name: 'Romance' },
+    { _id: '3', name: 'Escola' },
+  ];
+
   const toggleDatepicker = () => {
     setShowPicker(!showPicker);
   };
@@ -78,7 +84,7 @@ export default function Step1() {
 
   return (
     <ScreenContainer windowWidth={width}>
-      <ScrollView contentContainerStyle={{ paddingBottom: '85%' }}  showsVerticalScrollIndicator={false}
+      <ScrollView contentContainerStyle={{ paddingBottom: '85%' }} showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
         <QuestionContainer>
           <QuestionText>Que dia você sonhou?</QuestionText>
@@ -112,8 +118,13 @@ export default function Step1() {
         </QuestionContainer>
 
         <TagContainer>
-          <ScrollView style={{ width: '100%' }}  nestedScrollEnabled={true}>
-
+          <ScrollView style={{ width: '100%' }} nestedScrollEnabled={true}>
+            
+            <TagQuestion
+              options={predefinedTags}
+              selectedAnswers={dreamData.selectedTags}
+              handleAnswerClick={handleTagsClick}
+            />
             <TagQuestion
               options={tagOptions}
               selectedAnswers={dreamData.selectedTags}
