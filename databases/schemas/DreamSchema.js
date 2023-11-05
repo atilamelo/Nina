@@ -17,6 +17,7 @@ export class DreamSchema extends Realm.Object{
             recurrence: 'bool?',
             favorite: 'bool',
             deleted: 'bool',
+            deletedAt: 'date?'
         },
         primaryKey: '_id',
     }
