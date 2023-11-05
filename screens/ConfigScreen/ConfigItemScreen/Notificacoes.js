@@ -5,7 +5,13 @@ import BackHeader from '@components/Headers/BackHeader';
 import SettingsItem from '@components/ConfigComponets/SettingsItem';
 import styled from 'styled-components/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { 
+    activateMorningNotifications, 
+    activateNightlyNotifications, 
+    cancelNightlyNotifications, 
+    cancelMorningNotifications, 
+} from '../../../utils/NotificationUtils'; 
+  
 const Notificacoes = ({ navigation }) => {
     const [morningIsChecked, setMorningIsChecked] = useState(false)
     const [nightlyIsChecked, setNightlyIsChecked] = useState(false)
@@ -25,11 +31,25 @@ const Notificacoes = ({ navigation }) => {
     const handleMorningNotification = useCallback(async () => {
         setMorningIsChecked((prev) => !prev);
         await AsyncStorage.setItem('morningNotification', JSON.stringify(!morningIsChecked));
+
+        if(!morningIsChecked){
+            await activateMorningNotifications();
+        }else{
+            await cancelMorningNotifications();
+        }
+
     }, [morningIsChecked]);
 
     const handleNightlyNotification = useCallback(async () => {
         setNightlyIsChecked((prev) => !prev);
         await AsyncStorage.setItem('nightlyNotification', JSON.stringify(!nightlyIsChecked));
+        
+        if(!nightlyIsChecked){
+            await activateNightlyNotifications();
+        }else{
+            await cancelNightlyNotifications();
+        }
+
     }, [nightlyIsChecked]);
 
     return (
