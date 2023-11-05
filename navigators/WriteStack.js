@@ -15,13 +15,11 @@ export default function WriteStack() {
       screenOptions={{
           headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, // Transição horizontal entre os elementos
-          gestureDirection: 'horizontal', 
-          ...TransitionPresets.SlideFromRightIOS, 
         }}>
         <Stack.Screen
           name="WriteHome"
           component={WriteScreen}
-          options={{ headerShown: false }}
+          options={{ headerShown: false}}
         />
         <Stack.Screen
           name="DreamRec"
