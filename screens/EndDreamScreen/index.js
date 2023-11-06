@@ -37,6 +37,7 @@ const EndDreamScreen = ({ route, navigation }) => {
       realm.write(() => {
         const dream = realm.objectForPrimaryKey(DreamSchema, dreamData._id);
         dream.deleted = false;
+        dream.deletedAt = null;
       });
       navigation.goBack();
     }
@@ -47,6 +48,7 @@ const EndDreamScreen = ({ route, navigation }) => {
       realm.write(() => {
         const dream = realm.objectForPrimaryKey(DreamSchema, dreamData._id);
         dream.deleted = true;
+        dream.deletedAt = new Date();
       });
 
       // Fecha o modal e navega de volta

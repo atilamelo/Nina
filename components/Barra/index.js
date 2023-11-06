@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   barra: (marginTop) => ({
     alignSelf: 'center',
     borderBottomColor: '#3F4A73',
-    borderBottomWidth: 2,
+    borderBottomWidth: 0.8,
     width: '90%',
     marginTop: marginTop,
   }),

@@ -10,7 +10,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { RealmProvider } from '@databases/realm';
 import MainStack from '@navigators/MainStack';
-import * as SplashScreen  from 'expo-splash-screen';
+import * as SplashScreen from 'expo-splash-screen';
+import { setupNotifications } from './utils/NotificationUtils';
+
+// Setups
+setupNotifications();
 
 const App = () => {
     const [fontsLoaded] = useFonts({
@@ -22,15 +26,15 @@ const App = () => {
     });
 
     useEffect(() => {
-        async function prepare(){
+        async function prepare() {
             await SplashScreen.preventAutoHideAsync();
         }
         prepare();
     }, []);
 
-    if(!fontsLoaded) {
+    if (!fontsLoaded) {
         return undefined;
-    }else{
+    } else {
         SplashScreen.hideAsync();
     }
 

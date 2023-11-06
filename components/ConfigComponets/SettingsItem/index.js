@@ -5,13 +5,7 @@ import styled from 'styled-components/native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const ConfigItem = ({ label, description, onPress, showSwitch }) => {
-
-    const [isChecked, setChecked] = useState(false)
-
-    const handleCheck = () => {
-        setChecked((prevState) => !prevState)
-    }
+const ConfigItem = ({ label, description, onPress, handleCheck, showSwitch, isChecked }) => {
 
     return (
         <TouchableItem onPress={onPress}>

@@ -4,11 +4,11 @@
  */
 
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import { DreamSchema } from '@databases/schemas/DreamSchema';
 import { useQuery } from '@databases/realm';
 import HomeScreenModel from '@components/HomeScreenModel/HomeScreenModel';
-
+import Barra from '@components/Barra';
 
 /**
  * Returns an array of dreams sorted by date and filtered to exclude deleted dreams.
@@ -24,8 +24,27 @@ const Trash = ({ navigation }) => {
             title={"Lixeira"}
             showSearch={true}
             showSort={true}
-        />
+        >
+            <Text style={styles.text}> Os sonhos na lixeira serão apagados após 30 dias</Text>
+            <View style={styles.barraContainer}>
+                <Barra/>
+            </View>
+            
+        </HomeScreenModel>
     );
 }
+
+const styles = StyleSheet.create({
+    text: {
+        fontFamily: 'Inter Regular',
+        fontSize: 14,
+        textAlign: 'center',
+        margin: 10,
+        color: '#a5acc6',
+    },
+    barraContainer: {
+        paddingBottom: 15,
+    }
+})
 
 export default Trash;
