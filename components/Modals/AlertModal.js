@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 
 // Obtém a altura da janela para dimensionar o tamanho máximo do modal
 const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 
 const ModalContainer = styled.View`
   flex: 1;
@@ -14,6 +15,7 @@ const ModalContent = styled.View`
   background-color: #2B314C;
   border-radius: 10px;
   max-height: ${windowHeight * 0.8}px;
+  min-width: ${windowWidth * 0.8}px;
 `;
 
 const Texto = styled.Text`
@@ -23,8 +25,9 @@ const Texto = styled.Text`
 `;
 
 const ContentText = styled.View`
-  margin: 9% 7%;
+  margin: 9% 7% 5%;
   align-items: center;
+  width: 85%;
 `;
 
 const ButtonContainer = styled.View`

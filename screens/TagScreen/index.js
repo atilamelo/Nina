@@ -8,6 +8,7 @@ import styled from 'styled-components/native';
 import Tags from '@components/Tags';
 import SearchHeader from '@components/Headers/SearchHeader';
 import AlertModal from '@components/Modals/AlertModal';
+import { ScrollView } from 'react-native';
 
 import mais from '@assets/icons/mais.png';
 
@@ -42,7 +43,9 @@ const AddTag = ({ route }) => {
   const { drawer } = route.params;
   const realm = useRealm();
   const [modalVisible, setModalVisible] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
   const [selectedTag, setSelectedTag] = useState(null);
+  const [textAlert, setTextAlert] = useState(null);
 
   const openModal = (tag) => {
     setSelectedTag(tag);
@@ -53,8 +56,17 @@ const AddTag = ({ route }) => {
     setModalVisible(false);
   };
 
+  const openAlert = (textAlert) => {
+    setAlertVisible(true);
+    setTextAlert(textAlert);
+  };
+
+  const closeAlert = () => {
+    setAlertVisible(false);
+  };
+
   // Lógica para apagar a tag
-  const onRequestButton1 = () => {
+  const apagarTag = () => {
 
   };
 
@@ -73,7 +85,8 @@ const AddTag = ({ route }) => {
         });
 
         if (__DEV__) {
-          Alert.alert("Tag", "Tag salva com sucesso!");
+          openAlert();
+          setTextAlert("Tag salva com sucesso!")
         }
 
         setSelectedTag({ _id: uuid.v4(), name: searchQuery }); // Defina a tag selecionada
@@ -81,7 +94,8 @@ const AddTag = ({ route }) => {
       } else {
 
         if (__DEV__) {
-          Alert.alert("Tag", "Tag já existente!");
+          openAlert();
+          setTextAlert("Tag já existente!");
         }
 
       }
@@ -90,7 +104,8 @@ const AddTag = ({ route }) => {
       console.log(e);
 
       if (__DEV__) {
-        Alert.alert("Tag", "Problema ao salvar a tag!");
+        openAlert();
+        setTextAlert("Problema ao salvar a tag!");
       }
 
     }
@@ -116,35 +131,44 @@ const AddTag = ({ route }) => {
 
   return (
     <Background>
-      <SearchHeader
-        drawer={drawer}
-        placeholder={'Insira o nome da Tag'}
-        onChangeText={(text) => setSearchQuery(text)}
-        value={searchQuery}
-      />
+      <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
+        <SearchHeader
+          drawer={drawer}
+          placeholder={'Insira o nome da Tag'}
+          onChangeText={(text) => setSearchQuery(text)}
+          value={searchQuery}
+        />
 
-      <Container>
-        {tags.map((tag) => (
-          <Tags
-            key={tag._id}
-            text={tag.name}
-            marginTop="8%"
-            onPress={() => openModal(tag)}
-          />
-        ))}
+        <Container>
+          {tags.map((tag) => (
+            <Tags
+              key={tag._id}
+              text={tag.name}
+              marginTop="8%"
+              onPress={() => openModal(tag)}
+            />
+          ))}
 
-        <Content onPress={addTag}>
-          <Imagem source={mais} />
-          <TagText>Criar tag "{searchQuery}"</TagText>
-        </Content>
-      </Container>
+          <Content onPress={addTag}>
+            <Imagem source={mais} />
+            <TagText>Criar tag "{searchQuery}"</TagText>
+          </Content>
+        </Container>
+      </ScrollView>
+
       <AlertModal
         visible={modalVisible}
         content={`Deseja apagar a tag "${selectedTag ? selectedTag.name : ''}"?`}
         button1Text='APAGAR'
         onClose={closeModal}
-        onRequestButton1={onRequestButton1}
+        onRequestButton1={apagarTag}
         button1Color="#BD2E32"
+      />
+
+      <AlertModal
+        visible={alertVisible}
+        content={textAlert}
+        onClose={closeAlert}
       />
     </Background>
   );

@@ -12,14 +12,16 @@ const sideMenuDisabledScreens = ['WriteDreams']
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
-    return (
-      <Drawer.Navigator
-        initialRouteName="HomeNavigator"
-        drawerContent={(props) => <DrawerContent {...props} />}
-        screenOptions={{
-          headerShown: false, // Ocultar o cabeçalho nas telas do Drawer
-        }}
-        drawerContentStyle={{
+  return (
+    <Drawer.Navigator
+      initialRouteName="HomeNavigator"
+      drawerContent={(props) => <DrawerContent {...props} />}
+      screenOptions={{
+        headerShown: false, // Ocultar o cabeçalho nas telas do Drawer
+        drawerActiveBackgroundColor: "pink",
+      }}
+      
+      drawerContentStyle={{
         width: '870%', // Ajuste o tamanho do Drawer conforme necessário
       }}
       >
