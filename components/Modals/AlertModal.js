@@ -25,7 +25,7 @@ const Texto = styled.Text`
 `;
 
 const ContentText = styled.View`
-  margin: 9% 7% 5%;
+  margin: 9% 7% 3%;
   align-items: center;
   width: 85%;
 `;
@@ -33,12 +33,11 @@ const ContentText = styled.View`
 const ButtonContainer = styled.View`
   flex-direction: row;
   justify-content: flex-end;
-  margin-right: 10%;
-  margin-bottom: 5%;
+  margin-right: 5%;
 `;
 
 const Button = styled(TouchableOpacity)`
-  margin-left: 10%;
+  padding: 5%;
 `;
 
 const ButtonText = styled.Text`

@@ -18,11 +18,10 @@ export default MainHeader;
 const Container = styled.View`
   height: 10%;
   justify-content: center;
-`
-
+`;
 
 const MainContainer = styled.View`
-  margin-horizontal: 7%;
+  margin-horizontal: 4%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -35,7 +34,7 @@ const LeftContainer = styled.View`
 `;
 
 const MiddleContainer = styled.View`
-  margin-left: 5%;
+  margin-left: 4%;
   flex: 1;
 `;
 
@@ -43,5 +42,5 @@ const RightContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 17px;
+  gap: 5px;
 `;
