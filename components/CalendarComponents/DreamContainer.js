@@ -1,7 +1,7 @@
 // dreamContainer.js
 import React from 'react';
 import styled from 'styled-components/native';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -39,7 +39,7 @@ const DreamContainer = ({ Titulo, Data, Sonho }) => {
             <Content>
                 <Texto>{Data}</Texto>
                 <Title>{Titulo}</Title>
-                <Texto>{Sonho}</Texto>
+                <Texto numberOfLines={2}>{Sonho}</Texto>
             </Content>
         </Container>
     );
