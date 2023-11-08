@@ -7,44 +7,59 @@ import Paginator from '@components/Paginator';
 import DreamHeader from '@components/Headers/DreamHeader';
 import DegradeButton from '@components/Buttons/DegradeButton';
 import DreamFooter from '@components/Footers/DreamFooter';
+import styled from 'styled-components/native';
+import AlertModal from '@components/Modals/AlertModal';
+import WarningModal from '@components/Modals/WarningModal';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 
 const screens = [
-    { key: 1, component: <Step1/> },
-    { key: 2, component: <Step2/> },
-    { key: 3, component: <Step3/> },
-  ]
-  
+    { key: 1, component: <Step1 /> },
+    { key: 2, component: <Step2 /> },
+    { key: 3, component: <Step3 /> },
+]
+
 const RegistroSonho = ({ navigation }) => {
     const { dreamData, clearDreamData } = useContext(DreamContext);
     const realm = useRealm();
     const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
     const slidesRef = useRef(null);
+    const [alertVisible, setAlertVisible] = useState(false);
+
+    const openAlert = (textAlert) => {
+        setAlertVisible(true);
+        setTextAlert(textAlert);
+    };
+
+    const closeAlert = () => {
+        setAlertVisible(false);
+    };
+
+    const [textAlert, setTextAlert] = useState(null);
 
     const viewableItemsChanged = useRef(({ viewableItems }) => {
         setCurrentScreenIndex(viewableItems[0].index);
     }).current;
 
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
-    
+
     const scrollTo = () => {
-        if(currentScreenIndex < screens.length - 1) {
+        if (currentScreenIndex < screens.length - 1) {
             slidesRef.current.scrollToIndex({ index: currentScreenIndex + 1 });
-        }if(currentScreenIndex == screens.length - 1){
+        } if (currentScreenIndex == screens.length - 1) {
             addDream();
         }
     }
-      
+
 
     async function addDream() {
-        try{
+        try {
             console.log("Dream data => " + JSON.stringify(dreamData))
             dreamObject = realm.objects('Dream').filtered(`_id = "${dreamData.id}"`)[0];
 
-            if(dreamObject !== undefined){
+            if (dreamObject !== undefined) {
                 realm.write(() => {
                     dreamObject.title = dreamData.title;
                     dreamObject.text = dreamData.text;
@@ -73,8 +88,8 @@ const RegistroSonho = ({ navigation }) => {
                         localImagePath: dreamData.localImagePath,
                         audioPath: dreamData.audioPath,
                         selectedTags: dreamData.selectedTags,
-                        selectedFeelings:  dreamData.selectedFeelings,
-                        lucidyRating:  dreamData.lucidyRating,
+                        selectedFeelings: dreamData.selectedFeelings,
+                        lucidyRating: dreamData.lucidyRating,
                         realityConection: dreamData.realityConection,
                         recurrence: dreamData.recurrence,
                         favorite: dreamData.favorite,
@@ -82,7 +97,7 @@ const RegistroSonho = ({ navigation }) => {
                     });
                 });
             }
-            
+
             clearDreamData();
 
             navigation.reset({
@@ -90,18 +105,17 @@ const RegistroSonho = ({ navigation }) => {
                 routes: [{ name: 'Home' }],
             });
 
-
-            Alert.alert("Sonho", "Sonho salvo com sucesso!");
-        } catch (e){
+        } catch (e) {
             console.error(e.message);
-            Alert.alert("Sonho", "Problema ao salvar o sonho!");
+            openAlert();
+            setTextAlert("Ocorreu um problema ao salvar seu sonho!")
         }
     }
 
 
     return (
         <Background>
-            <DreamHeader onSkip={addDream} navigation={navigation} />
+                <DreamHeader onSkip={addDream} navigation={navigation} />
 
             <View style={{flex: 1}}>
                 <FlatList
@@ -138,6 +152,12 @@ const RegistroSonho = ({ navigation }) => {
                         />
                 </View>
             </DreamFooter>
+            <WarningModal
+                visible={alertVisible}
+                content="Aviso"
+                description={textAlert}
+                onClose={closeAlert}
+            />
         </Background>
     );
 };

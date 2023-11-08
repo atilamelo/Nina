@@ -7,6 +7,7 @@ import Background from '@components/Background';
 import styled from 'styled-components/native';
 import Tags from '@components/Tags';
 import SearchHeader from '@components/Headers/SearchHeader';
+import WarningModal from '@components/Modals/WarningModal';
 import AlertModal from '@components/Modals/AlertModal';
 import { ScrollView } from 'react-native';
 
@@ -67,14 +68,13 @@ const AddTag = ({ route }) => {
 
   // Lógica para apagar a tag
   const apagarTag = () => {
-
+    // Implemente a lógica conforme necessário
   };
 
   // Função chamada ao pressionar o botão
   const addTag = () => {
     try {
       const existingTag = realm.objects(TagSchema).filtered('name = $0', searchQuery)[0];
-      console.log(existingTag)
 
       if (existingTag == undefined || existingTag.length > 0) {
         realm.write(() => {
@@ -85,29 +85,22 @@ const AddTag = ({ route }) => {
         });
 
         if (__DEV__) {
-          openAlert();
-          setTextAlert("Tag salva com sucesso!")
+          openAlert("Tag salva com sucesso!");
         }
 
         setSelectedTag({ _id: uuid.v4(), name: searchQuery }); // Defina a tag selecionada
-
       } else {
-
         if (__DEV__) {
-          openAlert();
-          setTextAlert("Tag já existente!");
+          openAlert("Já existe uma tag com esse nome!");
         }
-
       }
 
     } catch (e) {
       console.log(e);
 
       if (__DEV__) {
-        openAlert();
-        setTextAlert("Problema ao salvar a tag!");
+        openAlert("Problema ao salvar a tag!");
       }
-
     }
   };
 
@@ -125,8 +118,6 @@ const AddTag = ({ route }) => {
       const tags = getAllTags();
       setTags(tags);
     });
-
-
   }, []);
 
   return (
@@ -140,11 +131,11 @@ const AddTag = ({ route }) => {
         />
 
         <Container>
-          {tags.map((tag) => (
+          {tags.map((tag, index) => (
             <Tags
               key={tag._id}
               text={tag.name}
-              marginTop="8%"
+              marginTop={index > 0 ? "8%" : undefined}
               onPress={() => openModal(tag)}
             />
           ))}
@@ -165,9 +156,10 @@ const AddTag = ({ route }) => {
         button1Color="#BD2E32"
       />
 
-      <AlertModal
+      <WarningModal
         visible={alertVisible}
-        content={textAlert}
+        content="Tag"
+        description={textAlert}
         onClose={closeAlert}
       />
     </Background>

@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 
 // Obtém a altura da janela para dimensionar o tamanho máximo do modal
 const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 
 const ModalContainer = styled.View`
   flex: 1;
@@ -29,7 +30,7 @@ const Description = styled.Text`
 `;
 
 const ContentText = styled.View`
-  margin: 9% 7% 5%;
+  margin: 5% 7% 5%;
   align-items: center;
   width: 85%;
 `;
@@ -37,7 +38,7 @@ const ContentText = styled.View`
 const ContentDescription = styled.View`
   margin: 0% 7% 5%;
   align-items: center;
-  width: 85%;
+  width: 70%;
 `;
 
 const ButtonContainer = styled.View`
@@ -70,6 +71,9 @@ const WarningModal = ({ visible, content, onClose, button1Text, onRequestButton1
             <ContentText>
               <Texto>{content}</Texto>
             </ContentText>
+            <ContentDescription>
+              <Description>{description}</Description>
+            </ContentDescription>
             <ButtonContainer>
               <Button onPress={() => onRequestButton1()}>
                 <ButtonText style={{ color: button1Color }}>{button1Text}</ButtonText>
