@@ -78,7 +78,7 @@ export default function Step1() {
 
   return (
     <ScreenContainer windowWidth={width}>
-      <ScrollView contentContainerStyle={{ paddingBottom: '85%' }}  showsVerticalScrollIndicator={false}
+      <ScrollView   showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
         <QuestionContainer>
           <QuestionText>Que dia você sonhou?</QuestionText>

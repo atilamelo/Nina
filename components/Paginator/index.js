@@ -35,9 +35,7 @@ export default function Paginator({ data, scrollx }) {
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
         flexDirection: 'row', 
-        bottom: '13%',
         height: 64,
         alignItems: 'center',
         alignSelf: 'center',

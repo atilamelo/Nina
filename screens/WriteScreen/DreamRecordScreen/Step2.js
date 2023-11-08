@@ -28,7 +28,7 @@ export default function Step2() {
 
   return (
     <ScreenContainer windowWidth={width}>
-      <ScrollView contentContainerStyle={{ paddingBottom: '80%' }} showsVerticalScrollIndicator={false}
+      <ScrollView showsVerticalScrollIndicator={false}
        showsHorizontalScrollIndicator={false}>
         <FeelingsQuestion
           questionLabel={'Como você se sentiu no sonho?'}
