@@ -1,7 +1,6 @@
 import { styled } from "styled-components/native";
 
 export default DreamFooter = styled.View`
-    background-color: 'red';
     flex-direction: row;
     width: 100%;
     padding-right: 7%;
