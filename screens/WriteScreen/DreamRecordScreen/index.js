@@ -24,7 +24,6 @@ const RegistroSonho = ({ navigation }) => {
     const scrollX = useRef(new Animated.Value(0)).current;
     const slidesRef = useRef(null);
 
-
     const viewableItemsChanged = useRef(({ viewableItems }) => {
         setCurrentScreenIndex(viewableItems[0].index);
     }).current;
@@ -104,7 +103,7 @@ const RegistroSonho = ({ navigation }) => {
         <Background>
             <DreamHeader onSkip={addDream} navigation={navigation} />
 
-            <View>
+            <View style={{flex: 1}}>
                 <FlatList
                     data={screens}
                     renderItem={({ item }) => item.component}
@@ -123,16 +122,21 @@ const RegistroSonho = ({ navigation }) => {
                 />
             </View>
 
-            <Paginator data={screens} scrollx={scrollX}/>
 
-            <DreamFooter style={{justifyContent: 'flex-end'}}>
+            <DreamFooter style={{ flexDirection: 'column'}}>
                 
-                <DegradeButton 
-                    onPress={scrollTo}
-                    iconFile={require('@assets/icons/arrow.png')}
-                    iconWidth={22}
-                    iconHeight={22}
-                />
+                <View>
+                    <Paginator data={screens} scrollx={scrollX}/>
+                </View>
+
+                <View style={{alignItems:'flex-end'}}>
+                        <DegradeButton 
+                            onPress={scrollTo}
+                            iconFile={require('@assets/icons/arrow.png')}
+                            iconWidth={22}
+                            iconHeight={22}
+                        />
+                </View>
             </DreamFooter>
         </Background>
     );
