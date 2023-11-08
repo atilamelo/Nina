@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useWindowDimensions, ScrollView } from 'react-native';
+import { useWindowDimensions, ScrollView, Text } from 'react-native';
 import { ScreenContainer } from './style'
 import { DreamContext } from '@contexts/DreamContext';
 import LucidyQuestion from '@components/DreamQuestions/LucidyQuestion';
@@ -30,7 +30,7 @@ export default function Step3() {
     return (
 
         <ScreenContainer windowWidth={width}>
-            <ScrollView contentContainerStyle={{ paddingBottom: '90%' }}  showsVerticalScrollIndicator={false}
+            <ScrollView showsVerticalScrollIndicator={false}
              showsHorizontalScrollIndicator={false}>
 
                 <LucidyQuestion
