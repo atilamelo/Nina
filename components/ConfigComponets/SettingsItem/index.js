@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Switch, Dimensions  } from 'react-native';
+import { TouchableOpacity, Switch, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ConfigItem = ({ label, description, onPress, handleCheck, showSwitch, isChecked }) => {
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(new Date());
+
+    const showDatePicker = () => {
+        setDatePickerVisibility(true);
+    };
+
+    const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
 
     return (
         <TouchableItem onPress={onPress}>
@@ -15,19 +26,41 @@ const ConfigItem = ({ label, description, onPress, handleCheck, showSwitch, isCh
                     <ItemDescription>{description}</ItemDescription>
                 </Container>
                 {showSwitch && (
-                    <Switch
-                        value={isChecked}
-                        onValueChange={handleCheck}
-                        thumbColor={isChecked ? '#FFFFFF' : '#A8A8A8'}
-                        trackColor={{ false: '#1A1F32', true: '#9F238E' }}
-                    />
+                    <>
+                        <Switch
+                            value={isChecked}
+                            onValueChange={(value) => {
+                                handleCheck();
+                                if (value) {
+                                    showDatePicker(); // Chama a função para mostrar o seletor de data/hora apenas se o switch estiver ligado
+                                } else {
+                                    hideDatePicker(); // Esconde o seletor de data/hora se o switch estiver desligado
+                                }
+                            }}
+                            thumbColor={isChecked ? '#FFFFFF' : '#A8A8A8'}
+                            trackColor={{ false: '#1A1F32', true: '#9F238E' }}
+                        />
+                        <DateTimePickerModal
+                            isVisible={isDatePickerVisible}
+                            mode="time"
+                            onConfirm={(date) => {
+                                hideDatePicker();
+                                setSelectedDate(date);
+                                console.log("Horário selecionado:", date);
+                                // Lógica para lidar com o horário selecionado
+                            }}
+                            onCancel={hideDatePicker}
+                        />
+                    </>
+
                 )}
+
             </ItemContainer>
         </TouchableItem>
     );
 };
 
-const TouchableItem = styled(TouchableOpacity)`
+const TouchableItem = styled.View`
     align-self: center;
 `;
 
@@ -64,5 +97,4 @@ const ItemDescription = styled.Text`
     margin-left: 5%;
     font-family: "Inter Regular";
 `;
-
 export default ConfigItem;
