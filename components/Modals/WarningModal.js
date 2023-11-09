@@ -15,7 +15,6 @@ const ModalContent = styled.View`
   background-color: #2B314C;
   border-radius: 10px;
   max-height: ${windowHeight * 0.8}px;
-  min-width: ${windowWidth * 0.8}px;
 `;
 
 const Texto = styled.Text`
@@ -24,27 +23,40 @@ const Texto = styled.Text`
   font-size: 19px;
 `;
 
+const Description = styled.Text`
+  color: white;
+  font-family: 'Inter Regular';
+  font-size: 15px;
+`;
+
 const ContentText = styled.View`
-  margin: 9% 7% 3%;
+  margin: 5% 7% 5%;
   align-items: center;
   width: 85%;
+`;
+
+const ContentDescription = styled.View`
+  margin: 0% 7% 5%;
+  align-items: center;
+  width: 70%;
 `;
 
 const ButtonContainer = styled.View`
   flex-direction: row;
   justify-content: flex-end;
-  margin-right: 5%;
+  margin-right: 10%;
+  margin-bottom: 5%;
 `;
 
 const Button = styled(TouchableOpacity)`
-  padding: 5%;
+  margin-left: 10%;
 `;
 
 const ButtonText = styled.Text`
   font-family: 'Inter Regular';
 `;
 
-const AlertModal = ({ visible, content, onClose, button1Text, onRequestButton1, button1Color }) => {
+const WarningModal = ({ visible, content, onClose, button1Text, onRequestButton1, button1Color, description }) => {
   return (
     <Modal
       animationType="fade"
@@ -59,6 +71,9 @@ const AlertModal = ({ visible, content, onClose, button1Text, onRequestButton1, 
             <ContentText>
               <Texto>{content}</Texto>
             </ContentText>
+            <ContentDescription>
+              <Description>{description}</Description>
+            </ContentDescription>
             <ButtonContainer>
               <Button onPress={() => onRequestButton1()}>
                 <ButtonText style={{ color: button1Color }}>{button1Text}</ButtonText>
@@ -74,4 +89,4 @@ const AlertModal = ({ visible, content, onClose, button1Text, onRequestButton1, 
   );
 };
 
-export default AlertModal;
+export default WarningModal;

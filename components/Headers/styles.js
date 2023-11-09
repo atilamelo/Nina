@@ -1,20 +1,22 @@
-import { TouchableOpacity, Image, Text } from 'react-native';
+import { TouchableOpacity, Image, Text, View } from 'react-native';
 
 const sizeIcon = 21;
 
-export const Button = ( { source, onPress } ) => {
+export const Button = ({ source, onPress }) => {
     return (
-        <TouchableOpacity onPress={ onPress }>
-            <Image
-                source={source}
-                resizeMode='contain'
-                style={{ width: sizeIcon, height: sizeIcon }}
-            />
+        <TouchableOpacity onPress={onPress}>
+            <View style={{ padding: 10 }}>
+                <Image
+                    source={source}
+                    resizeMode='contain'
+                    style={{ width: sizeIcon, height: sizeIcon }}
+                />
+            </View>
         </TouchableOpacity>
     )
 }
 
-export const Title = ( { children: text } ) => {
+export const Title = ({ children: text }) => {
     return (
         <Text style={{
             color: 'white',

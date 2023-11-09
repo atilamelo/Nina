@@ -84,13 +84,6 @@ const Notificacoes = ({ navigation }) => {
                             isChecked={nightlyIsChecked}
                         />
 
-                        <SettingsItem
-                            label="Silenciar notificações"
-                            description="Defina um intervalo sem notificações"
-                            onPress={() => { }}
-                            showSwitch={false}
-                        />
-
                     </Container>
                 </ScrollView>
 

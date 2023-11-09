@@ -196,7 +196,7 @@ const WriteScreen = ({ route, navigation }) => {
           </Container>
         </ScrollView>
 
-        <DreamFooter style={{ justifyContent: 'space-between', backgroundColor:'red'}}>
+        <DreamFooter style={{ justifyContent: 'space-between'}}>
 
           <View style={{ flexDirection: 'row' }}>
             
