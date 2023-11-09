@@ -4,7 +4,7 @@ import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 
 const formatDate = (date) => {
-    return format(date, 'dd \'de\' MMMM \'de\' yyyy', { locale: ptBR });
+    return format(date, "dd 'de' MMMM 'de' yyyy, HH:mm", { locale: ptBR });
 };
 
 const AdditionalInformation = ({ item }) => (
