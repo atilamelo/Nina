@@ -19,7 +19,7 @@ const sortDreamData = (dreamData, option) => {
 const HomeScreenModel = ({ title, dreamData, children, showSearch, showSort }) => {
   const [isOptionsVisible, setOptionsVisible] = useState(false);
   const [sortedDreamData, setSortedDreamData] = useState(sortDreamData(dreamData, sortOptions[1].value));
-  const [viewGrid, setViewGrid] = useState(true);
+  const [viewGrid, setViewGrid] = useState(false);
 
   useEffect(() => {
     setSortedDreamData(sortDreamData(dreamData, sortOptions[1].value));
