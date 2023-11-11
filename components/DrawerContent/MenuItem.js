@@ -1,17 +1,18 @@
-import { TouchableOpacity, Image } from 'react-native'
-import React from 'react'
-import styled from 'styled-components/native'
+import { Image } from 'react-native';
+import React from 'react';
+import styled from 'styled-components/native';
 
 const MenuItemText = styled.Text`
-  font-family: 'Inter Regular';
+  font-family: ${({ isActive }) => (isActive ? 'Inter Bold' : 'Inter Regular')};
   font-size: 15px;
-  color: #FFF;
+  color: ${({ isActive }) => (isActive ? '#fff' : '#CDCDCD')};
   margin-left: 20px;
 `;
 
 const ContentMenu = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
+  padding-vertical: 15px;
 `;
 
 const CountText = styled.Text`
@@ -19,21 +20,20 @@ const CountText = styled.Text`
   font-size: 14px;
   color: #8A8686;
   margin-left: auto;
-  flex: 1; /* Ocupar todo o espaço horizontal */
-  text-align: right; /* Alinhar o texto à direita */
+  text-align: right;
 `;
 
-const MenuItem = ({count, imagem, menuItemText, onPress}) => {
-    return (
-        <ContentMenu onPress={onPress}>
-            <Image
-                source={imagem}
-                style={{ width: 23, height: 24, resizeMode: 'contain', tintColor: 'white' }}
-            />
-            <MenuItemText>{menuItemText}</MenuItemText> 
-            <CountText>{count}</CountText>
-        </ContentMenu>
-    )
-}
+const MenuItem = ({ count, imagem, menuItemText, onPress, isActive }) => {
+  return (
+    <ContentMenu onPress={onPress} >
+      <Image
+        source={imagem}
+        style={{ width: 23, height: 24, resizeMode: 'contain', tintColor: 'white' }}
+      />
+      <MenuItemText isActive={isActive}>{menuItemText}</MenuItemText>
+      <CountText>{count}</CountText>
+    </ContentMenu>
+  );
+};
 
-export default MenuItem
+export default MenuItem;
