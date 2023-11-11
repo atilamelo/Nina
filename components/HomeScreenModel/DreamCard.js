@@ -9,6 +9,7 @@ const MainContent = styled.View`
     width:100%;
     background-color: #2B314C;
     border-radius: 7px;
+    padding: 10%;
 `;
 
 const ExtraInfo = styled.View`
@@ -32,7 +33,6 @@ const StyledText = styled.Text`
     color: #fff;
     font-family: 'Inter Regular';
     line-height: 20px;
-    margin: 10%;
 `;
 
 const Title = styled(StyledText)`
@@ -70,20 +70,20 @@ const DreamCard = ({ dream }) => {
             <MainContent>
                 <StyledText numberOfLines={5}>{dream.text}</StyledText>
 
-                <ScrollView
-                    contentContainerStyle={{ alignItems: 'center' }}
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                    nestedScrollEnabled = {true}
-                >
-                    {dream.selectedTags.map((tag) => (
-                        <TagContainer key={tag._id}>
+                <TagContainer style={{ width: '100%' }}>
+                    <ScrollView
+                        contentContainerStyle={{ alignItems: 'center' }}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        nestedScrollEnabled={true}
+                    >
+                        {dream.selectedTags.map((tag) => (
                             <TagCard>
                                 <TagTitle>{tag.name}</TagTitle>
                             </TagCard>
-                        </TagContainer>
-                    ))}
-                </ScrollView>
+                        ))}
+                    </ScrollView>
+                </TagContainer>
             </MainContent>
 
             <ExtraInfo>
