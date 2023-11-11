@@ -2,4 +2,5 @@
   <string name="app_name">nina</string>
   <string name="expo_splash_screen_resize_mode" translatable="false">contain</string>
   <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
+  <string name="server_client_id">575617027073-onoo4ram63m3549v7ua8ka90l4v1f7ps.apps.googleusercontent.com</string>
 </resources>
