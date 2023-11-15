@@ -24,7 +24,7 @@ const LoginGoogle = ({ setIsLogged }) => {
 };
 
 const GoogleLogin = styled.View`
-  width: 330px;
+  width: 87%;
   height: 54px;
   margin: auto;
   background-color: #ececec;

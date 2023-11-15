@@ -12,6 +12,7 @@ import moment from 'moment';
 import HomeHeader from '@components/Headers/HomeHeader';
 import Barra from '@components/Barra';
 import 'moment/locale/pt-br';
+import { RFValue } from "react-native-responsive-fontsize";
 
 
 const CalendarScreen = ({ navigation }) => {
@@ -63,7 +64,7 @@ const CalendarScreen = ({ navigation }) => {
               'Dezembro',
             ]}
             textStyle={{
-              fontSize: 18,
+              fontSize: RFValue(18),
               color: 'white',
               fontFamily: 'Inter SemiBold'
             }}
