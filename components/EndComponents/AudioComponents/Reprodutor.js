@@ -6,7 +6,6 @@ import SeekBar from '@components/EndComponents/AudioComponents/SeekBar';
 
 const Container = styled.View`
   flex: 1;
-  justify-content: center;
   align-items: center;
 `;
 
@@ -14,7 +13,7 @@ const AudioButton = styled.Pressable`
   flex-direction: row;
   align-items: center;
   width: 85%;
-  height: 59%;
+  height: 60px;
   margin-top: 10%;
   border-radius: 13px;
   background-color: #2B314C;

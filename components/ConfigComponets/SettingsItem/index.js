@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TouchableOpacity, Switch, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -85,16 +86,17 @@ const Container = styled.View`
 
 const ItemLabel = styled.Text`
     color: #FFFFFF;
-    font-size: 14px;
+    font-size: ${RFValue(14)}px;
     margin-left: 5%;
     font-family: "Inter Bold";
 `;
 
 const ItemDescription = styled.Text`
     color: #A8A8A8;
-    font-size: 12px;
+    font-size: ${RFValue(12)}px;
     margin-top: 4px;
     margin-left: 5%;
     font-family: "Inter Regular";
 `;
+
 export default ConfigItem;

@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { RFValue } from "react-native-responsive-fontsize";
+import { useWindowDimensions } from 'react-native';
 
 const Container = styled.View`
   flex-direction: row;
@@ -17,19 +19,21 @@ const ContentItem = styled.View`
 
 const Numero = styled.Text`
   color: #fff;
-  font-size: 29px;
+  font-size: ${RFValue(29)}px;
   font-family: 'Inter Bold';
   text-align: center;
 `;
 
 const Texto = styled.Text`
   color: #fff;
-  font-size: 12px;
+  font-size: ${RFValue(12)}px;
   font-family: 'Inter Regular';
   text-align: center;
 `;
 
 const NumberContent = ({ data }) => {
+  const { width } = useWindowDimensions();
+
   return (
     <Container>
       {data.map((rowData, index) => (
