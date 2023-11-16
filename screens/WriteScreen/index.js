@@ -220,8 +220,8 @@ const WriteScreen = ({ route, navigation }) => {
           open={isDrawerOpen}
           onClose={closeDrawer}
           drawerHeight={260}
-          drawerStyle={{ backgroundColor: '#2B314C' }}
-          backdropStyle={{ backgroundColor: 'transparent' }}
+          drawerStyle={{ backgroundColor: '#2B314C'}}
+          backdropStyle={{ position: 'absolute', width: '100%', height: '100%'}}
           topTouchAreaStyle={{ marginTop: 0, height: 35, backgroundColor: '#222840', borderRadius: 0, borderTopLeftRadius: 13, borderTopRightRadius: 13 }}
           handleStyle={{ marginTop: 9, height: 6, width: 35, borderRadius: 3, backgroundColor: '#5C658F' }}>
           <Record onRecordingComplete={onRecordingComplete} />
