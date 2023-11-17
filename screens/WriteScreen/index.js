@@ -4,6 +4,7 @@ import { FluidDrawerNative } from '@builddiv/fluid-drawer-native';
 import { DreamContext } from '@contexts/DreamContext';
 import { BasicButton, DegradeButton } from '@components/Buttons';
 import { useRealm } from '@databases/realm';
+import { Keyboard } from 'react-native';
 import DreamFooter from '@components/Footers/DreamFooter';
 import BackHeader from '@components/Headers/BackHeader';
 import Background from '@components/Background';
@@ -106,6 +107,7 @@ const WriteScreen = ({ route, navigation }) => {
 
   // Função para alternar a exibição do gravador de áudio
   const toggleRecord = () => {
+    Keyboard.dismiss();
     setShowRecord(!showRecord);
     setIsDrawerOpen(true);
   };
