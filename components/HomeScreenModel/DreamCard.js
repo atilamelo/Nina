@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
 import { NavigationContext } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import format from 'date-fns/format';
@@ -56,7 +56,7 @@ const DateText = styled(StyledText)`
 `;
 
 const formatDate = (date) => {
-    return format(date, "dd 'de' MMMM 'de' yyyy, HH:mm", { locale: ptBR });
+    return format(new Date(date), "dd 'de' MMMM 'de' yyyy, HH:mm", { locale: ptBR });
 };
 
 const DreamCard = ({ dream }) => {

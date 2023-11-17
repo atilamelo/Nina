@@ -1,21 +1,25 @@
 import React from 'react';
-import { Button } from '../Headers/styles';
+import backIcon from '@assets/icons/Voltar.png';
+import favoritadoIcon from '@assets/icons/favoritado.png';
+import favoritosIcon from '@assets/icons/favoritos.png';
+import restoreIcon from '@assets/icons/restore.png';
+import lixoIcon from '@assets/icons/lixo.png';
 import MainHeader from '@components/Headers/MainHeader';
-import backIcon from '@assets/icons/Voltar.png'
+import { Button } from '../Headers/styles';
 
-const DreamHeader = ({ navigation, favorited, deleted, toggleFavorite, toggleDelete }) => {
-    const favoritosIcon = favorited
-        ? require('@assets/icons/favoritado.png')
-        : require('@assets/icons/favoritos.png');
+const selectIcon = (condition, trueIcon, falseIcon) => condition ? trueIcon : falseIcon;
 
-    const lixoIcon = deleted
-        ? require('@assets/icons/restore.png')
-        : require('@assets/icons/lixo.png');
-
-    const compartilharIcon = require('@assets/icons/compartilhar.png');
+const DreamHeader = ({
+    navigation,
+    favorited,
+    deleted,
+    toggleFavorite,
+    toggleDelete,
+    toggleRestore
+}) => {
+    const favoritosIconSelected = selectIcon(favorited, favoritadoIcon, favoritosIcon);
 
     return (
-
         <MainHeader
             left={
                 <Button
@@ -27,8 +31,15 @@ const DreamHeader = ({ navigation, favorited, deleted, toggleFavorite, toggleDel
                 <>
                     {!deleted && (
                         <Button
-                            source={favoritosIcon}
+                            source={favoritosIconSelected}
                             onPress={toggleFavorite}
+                        />
+                    )}
+
+                    {toggleRestore && (
+                        <Button
+                            source={restoreIcon}
+                            onPress={toggleRestore}
                         />
                     )}
 
@@ -41,6 +52,5 @@ const DreamHeader = ({ navigation, favorited, deleted, toggleFavorite, toggleDel
         />
     );
 };
-
 
 export default DreamHeader;
