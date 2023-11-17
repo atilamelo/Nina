@@ -155,7 +155,7 @@ const AddTag = ({ route }) => {
               key={tag._id}
               text={tag.name}
               marginVertical="3%"
-              onPress={() => openModal(tag)}
+              onLongPress={() => openModal(tag)}
             />
           ))}
 
