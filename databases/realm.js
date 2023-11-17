@@ -12,7 +12,9 @@ const { RealmProvider, useRealm, useObject, useQuery } =
 
 // Função para popular o banco de dados com dados predefinidos
 const populateDatabase = async (realm) => {
-  const sentiments = require('./defaultValues.json')["sentiments"];
+  const predefined = require('./defaultValues.json');
+  const sentiments = predefined["sentiments"];
+  const tags = predefined["tags"];
 
   sentiments.forEach( sentiment => {
     realm.write(() => {
@@ -22,12 +24,22 @@ const populateDatabase = async (realm) => {
       })
     })
   })
+
+  tags.forEach( tag => {
+    realm.write(() => {
+      realm.create('Tag', {
+        _id: tag.id.toString(),
+        name: tag.name,
+      })
+    })
+  })
 }
 
 // Função para verificar se os dados já foram populados
 const isDatabasePopulated = (realm) => {
   const sentiments = realm.objects(SentimentSchema);
-  return sentiments.length > 0;
+  const tags = realm.objects(TagSchema);
+  return sentiments.length > 0 && tags.length > 0;
 }
 
 // Função para deletar sonhos que estejam na lixeira há mais de 30 dias
