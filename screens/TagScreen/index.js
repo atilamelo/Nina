@@ -68,7 +68,25 @@ const AddTag = ({ route }) => {
 
   // Lógica para apagar a tag
   const apagarTag = () => {
-    // Implemente a lógica conforme necessário
+    try {
+      realm.write(() => {
+        realm.delete(selectedTag);
+      });
+
+      if (__DEV__) {
+        openAlert("Tag apagada com sucesso!");
+      }
+
+      setSelectedTag(null); // Reseta a tag selecionada
+    } catch (e) {
+      console.log(e);
+
+      if (__DEV__) {
+        openAlert("Problema ao apagar a tag!");
+      }
+    }
+
+    closeModal();
   };
 
   // Função chamada ao pressionar o botão
@@ -114,7 +132,7 @@ const AddTag = ({ route }) => {
   }, []);
 
   useEffect(() => {
-    const subscription = realm.objects(TagSchema).addListener(() => {
+    realm.objects(TagSchema).addListener(() => {
       const tags = getAllTags();
       setTags(tags);
     });
