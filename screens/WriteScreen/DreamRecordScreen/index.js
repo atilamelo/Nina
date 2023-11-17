@@ -7,9 +7,6 @@ import Paginator from '@components/Paginator';
 import DreamHeader from '@components/Headers/DreamHeader';
 import DegradeButton from '@components/Buttons/DegradeButton';
 import DreamFooter from '@components/Footers/DreamFooter';
-import styled from 'styled-components/native';
-import AlertModal from '@components/Modals/AlertModal';
-import WarningModal from '@components/Modals/WarningModal';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -18,33 +15,22 @@ const screens = [
     { key: 1, component: <Step1 /> },
     { key: 2, component: <Step2 /> },
     { key: 3, component: <Step3 /> },
-]
-
+  ]
+  
 const RegistroSonho = ({ navigation }) => {
     const { dreamData, clearDreamData } = useContext(DreamContext);
     const realm = useRealm();
     const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current;
     const slidesRef = useRef(null);
-    const [alertVisible, setAlertVisible] = useState(false);
 
-    const openAlert = (textAlert) => {
-        setAlertVisible(true);
-        setTextAlert(textAlert);
-    };
-
-    const closeAlert = () => {
-        setAlertVisible(false);
-    };
-
-    const [textAlert, setTextAlert] = useState(null);
 
     const viewableItemsChanged = useRef(({ viewableItems }) => {
         setCurrentScreenIndex(viewableItems[0].index);
     }).current;
 
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
-
+    
     const scrollTo = () => {
         if (currentScreenIndex < screens.length - 1) {
             slidesRef.current.scrollToIndex({ index: currentScreenIndex + 1 });
@@ -52,7 +38,7 @@ const RegistroSonho = ({ navigation }) => {
             addDream();
         }
     }
-
+      
 
     async function addDream() {
         try {
@@ -97,7 +83,7 @@ const RegistroSonho = ({ navigation }) => {
                     });
                 });
             }
-
+            
             clearDreamData();
 
             navigation.reset({
@@ -105,7 +91,7 @@ const RegistroSonho = ({ navigation }) => {
                 routes: [{ name: 'Home' }],
             });
 
-        } catch (e) {
+} catch (e) {
             console.error(e.message);
             openAlert();
             setTextAlert("Ocorreu um problema ao salvar seu sonho!")
@@ -115,7 +101,7 @@ const RegistroSonho = ({ navigation }) => {
 
     return (
         <Background>
-                <DreamHeader onSkip={addDream} navigation={navigation} />
+            <DreamHeader onSkip={addDream} navigation={navigation} />
 
             <View style={{flex: 1}}>
                 <FlatList
@@ -136,28 +122,17 @@ const RegistroSonho = ({ navigation }) => {
                 />
             </View>
 
+            <Paginator data={screens} scrollx={scrollX}/>
 
-            <DreamFooter style={{ flexDirection: 'column'}}>
+            <DreamFooter style={{justifyContent: 'flex-end'}}>
                 
-                <View>
-                    <Paginator data={screens} scrollx={scrollX}/>
-                </View>
-
-                <View style={{alignItems:'flex-end'}}>
-                        <DegradeButton 
-                            onPress={scrollTo}
-                            iconFile={require('@assets/icons/arrow.png')}
-                            iconWidth={22}
-                            iconHeight={22}
-                        />
-                </View>
+                <DegradeButton 
+                    onPress={scrollTo}
+                    iconFile={require('@assets/icons/arrow.png')}
+                    iconWidth={22}
+                    iconHeight={22}
+                />
             </DreamFooter>
-            <WarningModal
-                visible={alertVisible}
-                content="Aviso"
-                description={textAlert}
-                onClose={closeAlert}
-            />
         </Background>
     );
 };

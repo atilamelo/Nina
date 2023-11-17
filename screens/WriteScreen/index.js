@@ -52,8 +52,17 @@ const WriteScreen = ({ route, navigation }) => {
 
   // Adiciona o ouvinte para o botão de voltar
   useEffect(() => {
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', showBackConfirmationModal);
+    const backAction = () => {
+      if (navigation.isFocused()) {
+        showBackConfirmationModal();
+      } else {
+        navigation.goBack();
+      } 
+      
+      return true;
+    }
 
+    const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
     // Remove o ouvinte quando o componente é desmontado
     return () => backHandler.remove();
   });
@@ -121,7 +130,7 @@ const WriteScreen = ({ route, navigation }) => {
     // Verifica se o título ou o texto do sonho foram preenchidos
     if (dreamData.title || dreamData.text|| dreamData.audioPath) {
       // Se algum dos campos estiver preenchido, exibe o modal de confirmação
-      setIsBackModalVisible(true);  
+      setIsBackModalVisible(true);
     } else {
       setIsDrawerOpen(false);
       navigation.goBack();
@@ -199,7 +208,7 @@ const WriteScreen = ({ route, navigation }) => {
         <DreamFooter style={{ justifyContent: 'space-between'}}>
 
           <View style={{ flexDirection: 'row' }}>
-            
+
             {/* Botão para iniciar/parar a gravação */}
             <View style={{ marginRight: 27 }}>
               <BasicButton onPress={toggleRecord} iconFile={require('@assets/icons/micPreenchido.png')} iconWidth={31} iconHeight={29} />
