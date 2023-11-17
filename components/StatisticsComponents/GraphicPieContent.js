@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import Barra from '@components/Barra';
 import GraphicPie from '@components/StatisticsComponents/GraphicPie';
 import HeaderChart from '@components/StatisticsComponents/HeaderChart';
+import NoInformation from '@components/StatisticsComponents/NoInformation';
 
 const Container = styled.View`
   flex: 1;
@@ -39,20 +40,27 @@ const GraphicPieContent = ({ Titulo, data }) => {
   // Calcula a largura do conteúdo com base na largura da tela
   const contentSize = width * 0.91;
   const margin = '6%';
-
+  
+  console.log("Data Length:", data && data.length);
+  console.log(data)
   return (
     <Container>
+
       <Content style={{ width: contentSize }}>
 
         <Texto>{Titulo}</Texto>
-
-        <ChartContent>
-          <GraphicPie
-            contentWidth={contentSize}
-            data={data}
-          />
-        </ChartContent>
+        {data[0].porcentagem > 0 || data[1].porcentagem > 0 ? (
+          <ChartContent>
+            <GraphicPie
+              contentWidth={contentSize}
+              data={data}
+            />
+          </ChartContent>
+        ) : (
+          <NoInformation />
+        )}
       </Content>
+
     </Container>
   );
 };
