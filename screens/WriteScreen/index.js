@@ -220,7 +220,7 @@ const WriteScreen = ({ route, navigation }) => {
 
             {/* Reprodutor de áudio visível quando a gravação está completa */}
             {dreamData.audioPath && (
-              <Reprodutor onPress={openModal} audioSource={{ uri: dreamData.audioPath }} />
+              <Reprodutor onLongPress={openModal} audioSource={{ uri: dreamData.audioPath }} />
             )}
           </Container>
         </ScrollView>
