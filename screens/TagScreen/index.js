@@ -136,7 +136,7 @@ const AddTag = ({ route }) => {
             <Tags
               key={tag._id}
               text={tag.name}
-              marginTop={index > 0 ? "8%" : undefined}
+              marginVertical="3%"
               onPress={() => openModal(tag)}
             />
           ))}
