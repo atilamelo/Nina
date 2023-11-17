@@ -15,9 +15,9 @@ const MenuItemText = styled.Text`
   margin-left: 20px;
 `;
 
-const Tags = ({text, color, marginLeft, marginTop, onPress}) => {
+const Tags = ({text, color, marginLeft, marginVertical, onPress}) => {
     return (
-        <TagItem onPress={onPress} style={{marginTop: marginTop}}>
+        <TagItem onPress={onPress} style={{marginVertical: marginVertical}}>
             <Image
                 source={tag}
                 style={{ width: 32, height: 23, resizeMode: 'contain', tintColor: color, marginLeft: marginLeft }}

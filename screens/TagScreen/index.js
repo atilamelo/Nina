@@ -122,13 +122,14 @@ const AddTag = ({ route }) => {
 
   return (
     <Background>
+      <SearchHeader
+        drawer={drawer}
+        placeholder={'Insira o nome da Tag'}
+        onChangeText={(text) => setSearchQuery(text)}
+        value={searchQuery}
+      />
+      
       <ScrollView contentContainerStyle={{ paddingBottom: 90 }}>
-        <SearchHeader
-          drawer={drawer}
-          placeholder={'Insira o nome da Tag'}
-          onChangeText={(text) => setSearchQuery(text)}
-          value={searchQuery}
-        />
 
         <Container>
           {tags.map((tag, index) => (
