@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, useWindowDimensions } from 'react-native';
 import styled from 'styled-components/native';
 import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
@@ -9,6 +9,13 @@ import YesNoQuestion from '@components/DreamQuestions/YesNoQuestion';
 
 const DreamDetails = ({ dreamData }) => {
   const margin = '8%';
+  const [selectedTag, setSelectedTag] = useState(null);
+
+  const handlePress = (tag) => {
+    setSelectedTag(tag);
+    console.log('Tag selecionada:', tag); 
+    // Navegar para a tela TagsEspecificas, passando a tag como parâmetro, se necessário
+  };
 
   const { width } = useWindowDimensions();
   if (dreamData) {
@@ -26,7 +33,7 @@ const DreamDetails = ({ dreamData }) => {
         {dreamData.selectedTags.length > 0 &&
           <Container>
             {dreamData.selectedTags.map((tag) => (
-              <Content key={tag._id}>
+              <Content onPress={() => handlePress(tag)} key={tag._id}>
                 <Text>{tag.name}</Text>
               </Content>
             ))}
@@ -51,7 +58,7 @@ const DreamDetails = ({ dreamData }) => {
               </QuestionContainer>
               <Container>
                 {dreamData.selectedFeelings.map((feeling, index) => (
-                  <Content key={index}>
+                  <Content disabled={true} key={index}>
                     <Text>{feeling}</Text>
                   </Content>
                 ))}
@@ -177,7 +184,7 @@ const Container = styled.View`
   margin-top: 9%;
 `;
 
-const Content = styled.View`
+const Content = styled.TouchableOpacity`
   margin: 6px;
   padding: 8px;
   border-radius: 6px;

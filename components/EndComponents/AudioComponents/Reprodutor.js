@@ -28,7 +28,7 @@ const seekBarStyles = {
   trackColor: '#9D9D9D',
 };
 
-function AudioPlayer({ audioSource, disabled, onPress }) {
+function AudioPlayer({ audioSource, disabled, onLongPress }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [soundObject, setSoundObject] = useState(null);
   const [soundPosition, setSoundPosition] = useState(0);
@@ -94,7 +94,7 @@ function AudioPlayer({ audioSource, disabled, onPress }) {
 
   return (
     <Container>
-      <AudioButton disabled={disabled} onPress={onPress}>
+      <AudioButton disabled={disabled} onLongPress={onLongPress}>
         <PauseContainer onPress={playAudio}>
           <Ionicons onPress={playAudio} name={isPlaying ? 'ios-pause' : 'ios-play'} size={24} color="white" />
         </PauseContainer>

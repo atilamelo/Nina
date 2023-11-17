@@ -3,6 +3,7 @@ import React from 'react';
 import { Dimensions, Alert } from 'react-native';
 import styled from 'styled-components/native';
 import GraphicCloud from '@components/StatisticsComponents/GraphicCloud';
+import NoInformation from '@components/StatisticsComponents/NoInformation';
 
 const Container = styled.View`
   flex: 1;
@@ -26,28 +27,37 @@ const Texto = styled.Text`
 `;
 
 const GraphicCloudContent = ({ Titulo, data, options }) => {
-    const { width, height } = Dimensions.get('window');
-    const widthSize = width * 0.91;
+  const { width, height } = Dimensions.get('window');
+  const widthSize = width * 0.91;
 
-    // Calcula a altura estimada com base no número de tags
-    const estimatedTagHeight = 11;
-    const estimatedTagsCount = data.length;
-    const estimatedHeight = estimatedTagHeight * estimatedTagsCount;
+  // Calcula a altura estimada com base no número de tags
+  const estimatedTagHeight = 11;
+  const estimatedTagsCount = data.length;
+  const estimatedHeight = estimatedTagHeight * estimatedTagsCount;
 
-    // Define a altura mínima para o Content
-    const minHeight = height * 0.3;
+  // Define a altura mínima para o Content
+  const minHeight = height * 0.3;
 
-    // Use a altura estimada, mas não exceda 80% da altura da tela
-    const heightSize = Math.max(minHeight, Math.min(height * 0.8, estimatedHeight));
+  // Use a altura estimada, mas não exceda 80% da altura da tela
+  const heightSize = Math.max(minHeight, Math.min(height * 0.8, estimatedHeight));
 
-    return (
-        <Container>
-            <Content style={{ width: widthSize, minHeight: heightSize }}>
-                <Texto>{Titulo}</Texto>
-                <GraphicCloud data={data} options={options} />
-            </Content>
-        </Container>
-    );
+  return (
+    <Container>
+
+      <Content style={{ width: widthSize, minHeight: heightSize }}>
+        <Texto>{Titulo}</Texto>
+        {data && data.length > 0 ? (
+          <>
+            <GraphicCloud data={data} options={options} />
+          </>
+        ) : (
+          <NoInformation />
+        )}
+      </Content>
+
+    </Container>
+
+  );
 };
 
 export default GraphicCloudContent;
