@@ -80,7 +80,7 @@ const RegistroSonho = ({ navigation }) => {
                 realm.write(() => {
                     realm.create('Dream', {
                         _id: dreamData.id,
-                        title: dreamData.title,
+                        title: dreamData.title || "Sem título",
                         text: dreamData.text,
                         creationDate: dreamData.creationDate,
                         modificationDate: dreamData.modificationDate,
