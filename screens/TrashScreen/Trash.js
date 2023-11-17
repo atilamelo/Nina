@@ -14,7 +14,7 @@ import Barra from '@components/Barra';
  * Returns an array of dreams sorted by date and filtered to exclude deleted dreams.
  */
 const getdreamData = () => {
-    return useQuery(DreamSchema).filtered('deleted = true');
+    return JSON.parse(JSON.stringify(useQuery(DreamSchema).filtered('deleted = true')));
   };
 
 const Trash = ({ navigation }) => {
