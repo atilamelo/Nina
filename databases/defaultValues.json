@@ -10,6 +10,11 @@
         {"id": 8, "name": "Calma"},
         {"id": 9, "name": "Frustração"},
         {"id": 10, "name": "Empolgação"}
+    ],
+    "tags": [
+        {"id": 1, "name": "Pesadelo"},
+        {"id": 2, "name": "Romance"},
+        {"id": 3, "name": "Fantasia"}
     ]
 
 }
