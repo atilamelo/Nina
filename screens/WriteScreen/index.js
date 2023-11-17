@@ -11,6 +11,7 @@ import styled from 'styled-components/native';
 import Record from '@components/Record';
 import Reprodutor from '@components/EndComponents/AudioComponents/Reprodutor';
 import AlertModal from '@components/Modals/AlertModal';
+import WarningModal from '@components/Modals/WarningModal';
 
 const WriteScreen = ({ route, navigation }) => {
   // Contexto do sonho
@@ -23,6 +24,7 @@ const WriteScreen = ({ route, navigation }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isRecordingComplete, setIsRecordingComplete] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [isAlertModalVisible, setIsAlertModalVisible] = useState(false);
 
   useEffect(() => {
     if (route.params?.idDream !== undefined) {
@@ -57,8 +59,8 @@ const WriteScreen = ({ route, navigation }) => {
         showBackConfirmationModal();
       } else {
         navigation.goBack();
-      } 
-      
+      }
+
       return true;
     }
 
@@ -70,12 +72,21 @@ const WriteScreen = ({ route, navigation }) => {
 
   // Função para navegar para a próxima tela
   const nextScreen = () => {
-    navigation.navigate('DreamRec');
+    if (!dreamData.text) {
+      setIsAlertModalVisible(true);
+    } else {
+      navigation.navigate('DreamRec');
+    }
   };
+
 
   // Função para gerar uma imagem (navegar para DreamImage)
   const generateImage = () => {
-    navigation.navigate('DreamImage');
+    if (!dreamData.text) {
+      setIsAlertModalVisible(true);
+    } else {
+      navigation.navigate('DreamImage');
+    }
   };
 
   // Funções para atualizar dados do sonho
@@ -128,7 +139,7 @@ const WriteScreen = ({ route, navigation }) => {
   // Função para exibir o modal de confirmação de volta
   const showBackConfirmationModal = () => {
     // Verifica se o título ou o texto do sonho foram preenchidos
-    if (dreamData.title || dreamData.text|| dreamData.audioPath) {
+    if (dreamData.title || dreamData.text || dreamData.audioPath) {
       // Se algum dos campos estiver preenchido, exibe o modal de confirmação
       setIsBackModalVisible(true);
     } else {
@@ -173,6 +184,13 @@ const WriteScreen = ({ route, navigation }) => {
           onClose={onCancelBack}
         />
 
+        <WarningModal
+          visible={isAlertModalVisible}
+          content="Alerta"
+          description="Por favor, escreva seu sonho antes de continuar."
+          onClose={() => setIsAlertModalVisible(false)}
+        />
+
         <ScrollView contentContainerStyle={{ flex: 1 }}>
           <Container>
             <Titulo
@@ -205,7 +223,7 @@ const WriteScreen = ({ route, navigation }) => {
           </Container>
         </ScrollView>
 
-        <DreamFooter style={{ justifyContent: 'space-between'}}>
+        <DreamFooter style={{ justifyContent: 'space-between' }}>
 
           <View style={{ flexDirection: 'row' }}>
 
@@ -229,8 +247,8 @@ const WriteScreen = ({ route, navigation }) => {
           open={isDrawerOpen}
           onClose={closeDrawer}
           drawerHeight={260}
-          drawerStyle={{ backgroundColor: '#2B314C'}}
-          backdropStyle={{ position: 'absolute', width: '100%', height: '100%'}}
+          drawerStyle={{ backgroundColor: '#2B314C' }}
+          backdropStyle={{ position: 'absolute', width: '100%', height: '100%' }}
           topTouchAreaStyle={{ marginTop: 0, height: 35, backgroundColor: '#222840', borderRadius: 0, borderTopLeftRadius: 13, borderTopRightRadius: 13 }}
           handleStyle={{ marginTop: 9, height: 6, width: 35, borderRadius: 3, backgroundColor: '#5C658F' }}>
           <Record onRecordingComplete={onRecordingComplete} />
