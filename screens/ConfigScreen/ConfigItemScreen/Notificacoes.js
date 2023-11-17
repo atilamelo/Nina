@@ -17,7 +17,7 @@ const Notificacoes = ({ navigation }) => {
     const [nightlyIsChecked, setNightlyIsChecked] = useState(false)
 
     useEffect(() => {
-        const fetchNotifications = async () => {
+        const fetchNotifications = async ( ) => {
             const morningValue = await AsyncStorage.getItem('morningNotification');
             const nightlyValue = await AsyncStorage.getItem('nightlyNotification');
 
@@ -28,24 +28,29 @@ const Notificacoes = ({ navigation }) => {
         fetchNotifications();
     }, []);
 
-    const handleMorningNotification = useCallback(async () => {
-        setMorningIsChecked((prev) => !prev);
+    const handleMorningNotification = useCallback(async ( hour, minute, changeSwitch ) => {
+        if(!changeSwitch){
+            setMorningIsChecked((prev) => !prev);
+        }
+        
         await AsyncStorage.setItem('morningNotification', JSON.stringify(!morningIsChecked));
 
         if(!morningIsChecked){
-            await activateMorningNotifications();
+            await activateMorningNotifications( hour, minute );
         }else{
             await cancelMorningNotifications();
         }
 
     }, [morningIsChecked]);
 
-    const handleNightlyNotification = useCallback(async () => {
-        setNightlyIsChecked((prev) => !prev);
+    const handleNightlyNotification = useCallback(async ( hour, minute, changeSwitch ) => {
+        if(!changeSwitch){
+            setNightlyIsChecked((prev) => !prev);
+        }
         await AsyncStorage.setItem('nightlyNotification', JSON.stringify(!nightlyIsChecked));
         
         if(!nightlyIsChecked){
-            await activateNightlyNotifications();
+            await activateNightlyNotifications( hour, minute );
         }else{
             await cancelNightlyNotifications();
         }
@@ -68,18 +73,18 @@ const Notificacoes = ({ navigation }) => {
 
                         <SettingsItem
                             label="Notificação da manhã"
-                            description="Lembre-se de escrever os sonhos"
+                            description={"Lembre-se de escrever os sonhos. " + (morningIsChecked ? "Clique para alterar o horário." : "") }
                             onPress={() => { }}
-                            handleCheck={() => { handleMorningNotification() }}
+                            handleCheck={handleMorningNotification}
                             showSwitch={true}
                             isChecked={morningIsChecked}
                         />
 
                         <SettingsItem
                             label="Notificação da noite"
-                            description="Lembre-se de revisar os sonhos"
+                            description={"Lembre-se de revisar os sonhos. " + (nightlyIsChecked ? "Clique para alterar o horário." : "" )}
                             onPress={() => { }}
-                            handleCheck={() => { handleNightlyNotification() }}
+                            handleCheck={handleNightlyNotification}
                             showSwitch={true}
                             isChecked={nightlyIsChecked}
                         />

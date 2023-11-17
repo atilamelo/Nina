@@ -8,9 +8,9 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const ConfigItem = ({ label, description, onPress, handleCheck, showSwitch, isChecked }) => {
-    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);     
     const [selectedDate, setSelectedDate] = useState(new Date());
-
+    
     const showDatePicker = () => {
         setDatePickerVisibility(true);
     };
@@ -20,7 +20,7 @@ const ConfigItem = ({ label, description, onPress, handleCheck, showSwitch, isCh
     };
 
     return (
-        <TouchableItem onPress={onPress}>
+        <TouchableItem onPress={isChecked ? showDatePicker : () => {}}>
             <ItemContainer>
                 <Container>
                     <ItemLabel>{label}</ItemLabel>
@@ -31,11 +31,11 @@ const ConfigItem = ({ label, description, onPress, handleCheck, showSwitch, isCh
                         <Switch
                             value={isChecked}
                             onValueChange={(value) => {
-                                handleCheck();
                                 if (value) {
                                     showDatePicker(); // Chama a função para mostrar o seletor de data/hora apenas se o switch estiver ligado
                                 } else {
                                     hideDatePicker(); // Esconde o seletor de data/hora se o switch estiver desligado
+                                    handleCheck();
                                 }
                             }}
                             thumbColor={isChecked ? '#FFFFFF' : '#A8A8A8'}
@@ -47,6 +47,7 @@ const ConfigItem = ({ label, description, onPress, handleCheck, showSwitch, isCh
                             onConfirm={(date) => {
                                 hideDatePicker();
                                 setSelectedDate(date);
+                                handleCheck(date.getHours(), date.getMinutes(), isChecked);
                                 console.log("Horário selecionado:", date);
                                 // Lógica para lidar com o horário selecionado
                             }}
@@ -61,7 +62,7 @@ const ConfigItem = ({ label, description, onPress, handleCheck, showSwitch, isCh
     );
 };
 
-const TouchableItem = styled.View`
+const TouchableItem = styled.TouchableOpacity`
     align-self: center;
 `;
 

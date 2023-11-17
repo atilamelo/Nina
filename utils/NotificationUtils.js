@@ -34,9 +34,12 @@ const scheduleNotification = async (title, body, data, hour, minute, storageKey)
     await AsyncStorage.setItem(storageKey, JSON.stringify(notificationId));
 };
 
-export const activateMorningNotifications = async () => {
+export const activateMorningNotifications = async ( hour, minute ) => {
     if (await isPermissionGranted()) {
-        await scheduleNotification("Bom dia!", "Lembre-se de escrever seus sonhos", 'morning', 6, 0, 'morningNotificationId');
+        if(AsyncStorage.getItem('morningNotificationId')){
+            await cancelMorningNotifications();
+        }
+        await scheduleNotification("Bom dia!", "Lembre-se de escrever seus sonhos", 'morning', hour, minute, 'morningNotificationId');
     } else {
         const { status } = await Notifications.requestPermissionsAsync();
 
@@ -46,9 +49,13 @@ export const activateMorningNotifications = async () => {
     }
 };
 
-export const activateNightlyNotifications = async () => {
+export const activateNightlyNotifications = async ( hour, minute ) => {
     if (await isPermissionGranted()) {
-        await scheduleNotification("Boa noite!", "Lembre-se de revisar seus sonhos", 'evening', 20, 0, 'nightlyNotificationId');
+        if(AsyncStorage.getItem('nightlyNotificationId')){
+            await cancelNightlyNotifications();
+        }
+
+        await scheduleNotification("Boa noite!", "Lembre-se de revisar seus sonhos", 'evening', hour, minute, 'nightlyNotificationId');
     } else {
         const { status } = await Notifications.requestPermissionsAsync();
 
@@ -62,6 +69,7 @@ export const cancelSpecificNotification = async (notificationId) => {
     if (notificationId === null) {
         return;
     }
+    console.log('Notificação com id: ' + notificationId + ' cancelada');
     await Notifications.cancelScheduledNotificationAsync(notificationId);
 };
 
