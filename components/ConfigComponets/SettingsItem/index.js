@@ -68,7 +68,6 @@ const TouchableItem = styled.TouchableOpacity`
 
 const ItemContainer = styled.View`
     width: ${windowWidth * 0.9}px;
-    height: ${windowHeight * 0.09}px;
     background-color: #2b314c;
     border-radius: 13px;
     padding: 2%;
@@ -76,6 +75,7 @@ const ItemContainer = styled.View`
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
+    align-self: flex-start;
 `;
 
 const Container = styled.View`
