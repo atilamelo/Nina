@@ -41,8 +41,6 @@ const GraphicPieContent = ({ Titulo, data }) => {
   const contentSize = width * 0.91;
   const margin = '6%';
   
-  console.log("Data Length:", data && data.length);
-  console.log(data)
   return (
     <Container>
 

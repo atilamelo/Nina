@@ -159,10 +159,12 @@ const AddTag = ({ route }) => {
             />
           ))}
 
-          <Content onPress={addTag}>
-            <Imagem source={mais} />
-            <TagText>Criar tag "{searchQuery}"</TagText>
-          </Content>
+          {searchQuery.length > 0 && (  // Adicione esta linha
+            <Content onPress={addTag}>
+              <Imagem source={mais} />
+              <TagText>Criar tag "{searchQuery}"</TagText>
+            </Content>
+          )} 
         </Container>
       </ScrollView>
 

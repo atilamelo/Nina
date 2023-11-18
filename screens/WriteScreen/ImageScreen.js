@@ -13,20 +13,19 @@ import AlertModal from '@components/Modals/AlertModal';
 /* Images */
 import arrow from '@assets/icons/arrow.png';
 import reload from '@assets/icons/reload.png';
+import { useFocusEffect } from '@react-navigation/native';
 
-const apiUrl = 'http://3320-2804-d45-995a-3300-a429-3034-6086-54c4.ngrok-free.app'
+const apiUrl = 'https://25d9-2804-d45-9974-a00-310f-67a0-9cc6-3afe.ngrok-free.app'
 
 const GenerateImage = ({ navigation }) => {
     const dreamContext = useContext(DreamContext);
     const dreamData = dreamContext.dreamData;
-    const [pathGeneratedImage, setPathGeneratedImage] = useState(dreamData.localImagePath !== null ? dreamData.localImagePath : null);    
+    const [pathGeneratedImage, setPathGeneratedImage] = useState(dreamData.localImagePath !== null ? dreamData.localImagePath : null);
     const [isLoading, setIsLoading] = useState(dreamData.localImagePath === undefined);
     const [isExitModalVisible, setIsExitModalVisible] = useState(false);
 
     const fr = new FileReader();
-    console.log(pathGeneratedImage)
-    console.log(dreamData.imagePath)
-    console.log(dreamData.localImagePath)
+    console.log(isLoading)
     // Função para lidar com o botão de voltar
     const handleBackPress = () => {
         setIsExitModalVisible(true);
@@ -42,12 +41,16 @@ const GenerateImage = ({ navigation }) => {
     }, []);
 
     useEffect(() => {
-        if(pathGeneratedImage == null) {
-            generateImage();
+        if (navigation.isFocused() && !dreamData.localImagePath) {
+            fetchData();
+            setIsLoading(true);
+        } else {
+            setIsLoading(false);
         }
-    })
+    }, [navigation.isFocused()]);
 
     const fetchData = async () => {
+        console.log("Fetching data...");
         try {
             const response = await fetch(apiUrl + '/generate_image', {
                 method: 'POST',
@@ -63,7 +66,7 @@ const GenerateImage = ({ navigation }) => {
             dreamData.imagePath = link_generated_img;
             setPathGeneratedImage(link_generated_img);
             saveImageLocally();
-            
+
             setIsLoading(false);
         } catch (error) {
             console.error('Error fetching or saving image:', error);
@@ -72,11 +75,11 @@ const GenerateImage = ({ navigation }) => {
 
     const saveImageLocally = async () => {
         // Delete last generated image if it exists
-        if(dreamData.localImagePath !== null){
+        if (dreamData.localImagePath !== null) {
             await FileSystem.deleteAsync(dreamData.localImagePath, { idempotent: true });
         }
         const fileUri = FileSystem.documentDirectory + dreamData.id + '_' + uuid.v4() + '_image.png';
-        
+
         try {
 
             const { uri } = await FileSystem.downloadAsync(
@@ -92,7 +95,7 @@ const GenerateImage = ({ navigation }) => {
     };
 
     const generateImage = () => {
-        if(!isLoading){
+        if (!isLoading) {
             setIsLoading(true);
             fetchData();
         }
@@ -120,7 +123,7 @@ const GenerateImage = ({ navigation }) => {
         >
             <Background>
 
-            <BackHeader onPress={() => setIsExitModalVisible(true)} title={'Gerar imagem'} />
+                <BackHeader onPress={() => setIsExitModalVisible(true)} title={'Gerar imagem'} />
 
                 <Container>
                     <Content>
@@ -162,7 +165,7 @@ const GenerateImage = ({ navigation }) => {
                     button1Color="#BD2E32"
                     onClose={cancelExit}
                 />
-                
+
             </Background>
         </KeyboardAvoidingView>
     );
