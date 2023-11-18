@@ -28,7 +28,7 @@ const seekBarStyles = {
   trackColor: '#9D9D9D',
 };
 
-function AudioPlayer({ audioSource, disabled, onLongPress }) {
+function AudioPlayer({ audioSource, disabled, onLongPress, isDrawerOpen }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [soundObject, setSoundObject] = useState(null);
   const [soundPosition, setSoundPosition] = useState(0);
@@ -58,6 +58,13 @@ function AudioPlayer({ audioSource, disabled, onLongPress }) {
       });
     }
   }, [soundObject]);
+
+  useEffect(() => {
+    // Pausa o áudio se o drawer for aberto
+    if (isDrawerOpen) {
+      playAudio();
+    }
+  }, [isDrawerOpen])
 
   async function playAudio() {
     if (!soundObject) {

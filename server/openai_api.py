@@ -1,7 +1,6 @@
 import os
 import openai
 from dotenv import load_dotenv
-import re
 
 # Carrega as variáveis de ambiente
 load_dotenv()
@@ -14,35 +13,30 @@ with open('server/prompts/system_prompt.txt', 'rb') as file:
 with open('server/prompts/start_mpgm.txt', 'rb') as file:
     start_mpgm_prompt = file.read().decode('utf-8')
 
-def gerar_prompts(dream_text):
+def translate(dream_text):
     completion = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[
         {"role": "system", "content": server_prompt},
-        {"role": "assistant", "content": "DallE Prompt Generator Mode ready."},
-        {"role": "user", "content": "[Start DPGM]"},
-        {"role": "assistant", "content": start_mpgm_prompt},
-        {"role": "user", "content": f"[prompt] {dream_text}]"},
+        {"role": "user", "content": f"{dream_text}"},
     ]
     )
 
     response = completion.choices[0].message["content"]
-    print(f"Response of chat gpt: {response}")
-    pattern = r"\[generated prompt\](?: |\n)([^\n]+)"
-    matches = re.findall(pattern, response)
     
-    return matches
+    return response
 
 def gerarImagemDeTexto(dream_text):
     print("Texto do sonho: " + dream_text   )
-    prompts = gerar_prompts(dream_text)
-    prompt = prompts[0]
+    prompt = translate(dream_text)
     print(f"Prompt usado: {prompt}")
 
     response = openai.Image.create(
+        model="dall-e-3",
         prompt=prompt,
+        size="1024x1024",
+        quality="standard",
         n=1,
-        size="512x512"
     )
 
     print(f"DallE response: {response}")
@@ -61,8 +55,6 @@ def gerarImagemDeAudio(audio_path):
 if __name__ == '__main__':
 
     # Prompt para gerar os prompts para o DallE
-    with open('server/sonho.txt', 'r') as file:
+    with open('server/sonhoTeste.txt', 'r') as file:
         text_dream = file.read()
-    print(gerar_prompts(text_dream))
-
-    # print(gerarImagemDeAudio('server\\teste_carla.mp3'))
+    print(gerarImagemDeTexto(text_dream))
