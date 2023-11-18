@@ -15,7 +15,7 @@ import arrow from '@assets/icons/arrow.png';
 import reload from '@assets/icons/reload.png';
 import { useFocusEffect } from '@react-navigation/native';
 
-const apiUrl = 'https://25d9-2804-d45-9974-a00-310f-67a0-9cc6-3afe.ngrok-free.app'
+const apiUrl = 'http://a857-2804-d45-9974-a00-310f-67a0-9cc6-3afe.ngrok-free.app'
 
 const GenerateImage = ({ navigation }) => {
     const dreamContext = useContext(DreamContext);
@@ -128,12 +128,13 @@ const GenerateImage = ({ navigation }) => {
                 <Container>
                     <Content>
                         {isLoading ? (
-                            <LoadingContainer>
-                                <Image source={require('@assets/icons/loading.gif')} style={{ width: 70, height: 70 }} />
-                            </LoadingContainer>
+                            <Image source={require('@assets/icons/loading.gif')} style={{ width: 70, height: 70}} />
                         ) : (
                             <Imagem source={{ uri: pathGeneratedImage }} resizeMode="contain" borderRadius={13} />
                         )}
+                    </Content>
+
+
                         <DreamFooter style={{ justifyContent: "space-between" }}>
 
                             <DegradeButton
@@ -151,8 +152,6 @@ const GenerateImage = ({ navigation }) => {
                             />
 
                         </DreamFooter>
-                    </Content>
-
                 </Container>
 
                 <AlertModal
@@ -172,12 +171,13 @@ const GenerateImage = ({ navigation }) => {
 }
 
 const LoadingContainer = styled.View`
-  flex: 1;
-  align-items: center;
-  margin-top: 65%;
+    background-color: "#fff";
+    align-self: center;
+    align-items: center;
 `;
 
 const Container = styled.View`
+    background-color: "#fff";
     flex: 1;
     padding: 20px; 
 `;
@@ -185,14 +185,12 @@ const Container = styled.View`
 const Content = styled.View`
     flex: 1;
     align-items: center;
-    
+    justify-content: center;
 `;
 
 const Imagem = styled.Image`
     width: 283px;
     height: 289px;
-    align-self: center;
-    margin-top: 40%;
 `;
 
 const styles = {
