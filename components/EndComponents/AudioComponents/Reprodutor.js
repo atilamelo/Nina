@@ -36,6 +36,7 @@ function AudioPlayer({ audioSource, disabled, onLongPress, isDrawerOpen }) {
   const [pausedPosition, setPausedPosition] = useState(0);
   
   useEffect(() => {
+    console.log('New sound object')
     setIsPlaying(false);
     setSoundPosition(0);
     newSoundObject();
@@ -62,7 +63,7 @@ function AudioPlayer({ audioSource, disabled, onLongPress, isDrawerOpen }) {
   useEffect(() => {
     // Pausa o áudio se o drawer for aberto
     if (isDrawerOpen) {
-      playAudio();
+      stopAudio();
     }
   }, [isDrawerOpen])
 
@@ -86,7 +87,15 @@ function AudioPlayer({ audioSource, disabled, onLongPress, isDrawerOpen }) {
     }
   }
 
-  async function newSoundObject(){
+  async function stopAudio(){
+    if(isPlaying){
+      await soundObject.pauseAsync();
+      setPausedPosition(soundPosition);
+    }
+  }
+
+
+  async function newSoundObject(){    
     // Cria um novo objeto de áudio se não existir
     const newSoundObject = new Audio.Sound();
     

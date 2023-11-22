@@ -4,6 +4,10 @@ import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 
 const formatDate = (date) => {
+    if (typeof date === 'string'){
+        return format(new Date(date), "dd 'de' MMMM 'de' yyyy, HH:mm", { locale: ptBR });
+
+    }
     return format(date, "dd 'de' MMMM 'de' yyyy, HH:mm", { locale: ptBR });
 };
 

@@ -14,11 +14,13 @@ export default SearchScreen = ( { route, navigation, placeholder } ) => {
     
     useEffect(() => {
         if(searchText && dreamsData){
-            const filteredDreams = dreamsData.filtered(
-                `title CONTAINS[c] "${searchText}" OR text CONTAINS[c] "${searchText}"`
-            );
+            const filteredDreams = dreamsData.filter((dream) => {
+                return dream.title.toLowerCase().includes(searchText.toLowerCase()) || dream.text.toLowerCase().includes(searchText.toLowerCase());
+            });
             
-            setMatchData(filteredDreams)
+            // Log the filtered dreams in a prettier JSON format
+            console.log(JSON.stringify(filteredDreams, null, 2));
+            setMatchData(filteredDreams);
         }else{
             setMatchData(null)
         }

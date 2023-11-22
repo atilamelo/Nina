@@ -42,7 +42,7 @@ const RegistroSonho = ({ navigation }) => {
 
     async function addDream() {
         try {
-            console.log("Dream data => " + JSON.stringify(dreamData))
+            console.log("Dream data => " + JSON.stringify(dreamData, null, 2))
             dreamObject = realm.objects('Dream').filtered(`_id = "${dreamData.id}"`)[0];
 
             if (dreamObject !== undefined) {
